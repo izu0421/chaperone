@@ -71,11 +71,12 @@ def _protein_class(gene, protein_class, secretome_location=None):
     return _call("hpa_protein_class", {"gene": gene, "protein_class": protein_class, "secretome_location": secretome_location})
 
 
-def _expression(gene, tissues=None, cell_types=None):
+def _expression(gene, tissues=None):
+    # protein_tissue_specific_intensity: HPA's protein-level (antibody/IHC)
+    # tissue field the gate actually reads — deliberately not RNA nTPM/nCPM.
     return _call("hpa_expression", {
         "gene": gene,
-        "rna_tissue_specific_nTPM": {t: "1.0" for t in (tissues or [])},
-        "rna_single_cell_type_specific_nCPM": {c: "1.0" for c in (cell_types or [])},
+        "protein_tissue_specific_intensity": {t: "1.0" for t in (tissues or [])},
     })
 
 
@@ -86,8 +87,8 @@ def test_membrane_and_intracellular_tag_together_is_not_a_mismatch():
     tool_calls = [
         _protein_class("NPR3", ["Predicted membrane proteins", "Predicted intracellular proteins"]),
         _protein_class("RAB8B", ["Predicted intracellular proteins"]),
-        _expression("NPR3", tissues=["kidney"], cell_types=["podocytes"]),
-        _expression("RAB8B", tissues=["kidney"], cell_types=["podocytes"]),
+        _expression("NPR3", tissues=["kidney"]),
+        _expression("RAB8B", tissues=["kidney"]),
     ]
     result = gate.hpa_plausibility(tool_calls, "NPR3", "RAB8B")
     assert result["plausibility"] == "plausible"
@@ -100,8 +101,8 @@ def test_no_mismatch_but_no_shared_tissue_and_neither_secreted_is_implausible():
     tool_calls = [
         _protein_class("GENE_A", ["Predicted membrane proteins"]),
         _protein_class("GENE_B", ["Predicted membrane proteins"]),
-        _expression("GENE_A", tissues=["brain"], cell_types=["neurons"]),
-        _expression("GENE_B", tissues=["liver"], cell_types=["hepatocytes"]),
+        _expression("GENE_A", tissues=["brain"]),
+        _expression("GENE_B", tissues=["liver"]),
     ]
     result = gate.hpa_plausibility(tool_calls, "GENE_A", "GENE_B")
     assert result["plausibility"] == "implausible"
@@ -114,8 +115,8 @@ def test_no_mismatch_no_shared_tissue_but_secreted_ligand_is_still_plausible():
     tool_calls = [
         _protein_class("LIGAND", ["Predicted secreted proteins"], secretome_location="Secreted"),
         _protein_class("RECEPTOR", ["Predicted membrane proteins"]),
-        _expression("LIGAND", tissues=["liver"], cell_types=["hepatocytes"]),
-        _expression("RECEPTOR", tissues=["brain"], cell_types=["neurons"]),
+        _expression("LIGAND", tissues=["liver"]),
+        _expression("RECEPTOR", tissues=["brain"]),
     ]
     result = gate.hpa_plausibility(tool_calls, "LIGAND", "RECEPTOR")
     assert result["plausibility"] == "plausible"
@@ -134,8 +135,8 @@ def test_intracellular_only_plus_secreted_with_no_coexpression_is_implausible():
     tool_calls = [
         _protein_class("GENE_A", ["Predicted intracellular proteins"]),
         _protein_class("GENE_B", ["Predicted secreted proteins"], secretome_location="Secreted"),
-        _expression("GENE_A", tissues=["brain"], cell_types=["neurons"]),
-        _expression("GENE_B", tissues=["liver"], cell_types=["hepatocytes"]),
+        _expression("GENE_A", tissues=["brain"]),
+        _expression("GENE_B", tissues=["liver"]),
     ]
     result = gate.hpa_plausibility(tool_calls, "GENE_A", "GENE_B")
     assert result["plausibility"] == "implausible"
@@ -147,8 +148,8 @@ def test_compartment_mismatch_with_real_coexpression_is_still_plausible():
     tool_calls = [
         _protein_class("GENE_A", ["Predicted intracellular proteins"]),
         _protein_class("GENE_B", ["Predicted secreted proteins"], secretome_location="Secreted"),
-        _expression("GENE_A", tissues=["bone marrow"], cell_types=["Neutrophils"]),
-        _expression("GENE_B", tissues=["bone marrow"], cell_types=["Neutrophils"]),
+        _expression("GENE_A", tissues=["bone marrow"]),
+        _expression("GENE_B", tissues=["bone marrow"]),
     ]
     result = gate.hpa_plausibility(tool_calls, "GENE_A", "GENE_B")
     assert result["plausibility"] == "plausible"
