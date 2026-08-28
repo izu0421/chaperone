@@ -200,31 +200,63 @@ VALIDATION_TIERS = {
 }
 
 
+INTERFACE_PLDDT_CONFIDENT = 50  # generic "not garbage" bar for an AF3 interface
+
+
 def classify_validation(row: dict, executed_results: list) -> dict:
     """Return {tier, label, reason, note} for candidates worth prioritizing
-    for experimental validation — i.e. NOT already proven in the literature
-    (excludes ALREADY_KNOWN) and not judged implausible. Returns None for
+    for experimental validation. A verdict only *names* an open question
+    (missing subunit, possible PTM/glycosylation artifact) — it is not
+    itself grounds to recommend wet-lab time. LIKELY_SUBCOMPLEX and
+    LIKELY_ARTIFACT_PTM therefore only return Yes once that specific
+    question has actually been checked and resolved by a real executed fold,
+    not merely proposed as a follow-up. Returns None otherwise, and for
     excluded verdicts (ALREADY_KNOWN: already proven; IMPLAUSIBLE: unlikely
     to be real; INSUFFICIENT_EVIDENCE: not enough evidence to prioritize
-    either way — listed separately, not as a validation pick)."""
+    either way — all listed separately, not as a validation pick)."""
     verdict = row.get("verdict")
     tier = VALIDATION_TIERS.get(verdict)
     if not tier:
         return None
 
     note = None
-    if verdict == "LIKELY_SUBCOMPLEX" and row.get("other_subunits"):
-        note = f"Re-fold with: {row['other_subunits']}"
+
+    if verdict == "LIKELY_SUBCOMPLEX":
+        if not row.get("other_subunits"):
+            return None  # no concrete subunit(s) even named - nothing to resolve against
+        interfaces = [
+            iface
+            for r in executed_results
+            for iface in (r.get("structural_analysis") or {}).get("interfaces", [])
+        ]
+        confirmed = interfaces and all(
+            (iface.get("interface_plddt_a") or {}).get("mean", 0) >= INTERFACE_PLDDT_CONFIDENT
+            and (iface.get("interface_plddt_b") or {}).get("mean", 0) >= INTERFACE_PLDDT_CONFIDENT
+            for iface in interfaces
+        )
+        if not confirmed:
+            return None  # proposed subunit(s) not yet re-folded and confirmed
+        note = f"Re-folded with {row['other_subunits']}: confident interface confirmed (pLDDT >= {INTERFACE_PLDDT_CONFIDENT})."
+
     if verdict == "LIKELY_ARTIFACT_PTM":
-        # If this was actually structurally checked (fold_complex + interface
-        # analysis) and no PTM/glycosylation site landed on the modeled
-        # interface, that concern is resolved — surface it as a stronger pick.
+        # Only resolved if this was actually structurally checked
+        # (fold_complex + interface analysis) and no PTM/glycosylation site
+        # landed on the modeled interface. A candidate whose mechanism is
+        # fundamentally glycan-mediated (e.g. a galectin) isn't something a
+        # single fold can clear regardless — it correctly stays unresolved.
+        resolved = False
         for r in executed_results:
             for iface in (r.get("structural_analysis") or {}).get("interfaces", []):
                 has_ptm = (iface.get("ptm_sites_at_interface_a") or []) or (iface.get("ptm_sites_at_interface_b") or [])
                 if not has_ptm:
-                    note = "Checked structurally: no known PTM/glycosylation site at the modeled interface — concern resolved, treat as a stronger pick"
+                    resolved = True
+                    note = "Checked structurally: no known PTM/glycosylation site at the modeled interface — concern resolved."
                     break
+            if resolved:
+                break
+        if not resolved:
+            return None  # PTM/glycosylation concern not yet checked/cleared
+
     return {
         "tier": verdict,
         "label": tier["label"],
@@ -252,6 +284,8 @@ REJECTED_VERDICT_BLURBS = {
     "IMPLAUSIBLE": "No expression/localization/structural support for a direct interaction.",
     "ALREADY_KNOWN": "Already proven in the literature/curated databases; not a new finding.",
     "INSUFFICIENT_EVIDENCE": "Data was genuinely too thin to call either way — not rejected, just unresolved.",
+    "LIKELY_SUBCOMPLEX": "Likely an incomplete complex — proposed subunit(s) not yet re-folded and confirmed.",
+    "LIKELY_ARTIFACT_PTM": "Possible modeling artifact (unmodeled glycan/PTM at the interface) — not yet resolved structurally.",
 }
 
 
@@ -299,8 +333,9 @@ def render_validation_summary(enriched_rows: list, strategies: dict = None) -> s
     return f"""
     <section class="validation">
       <h2>Worth validating experimentally?</h2>
-      <p class="validation-note">{n_yes} of {len(entries)} candidates are not already proven in the literature and
-      are worth prioritizing for wet-lab follow-up — every candidate is listed, nothing hidden.</p>
+      <p class="validation-note">{n_yes} of {len(entries)} candidates are not already proven in the literature, and
+      any open structural/mechanism concern raised has actually been checked and cleared — every candidate is
+      listed, nothing hidden.</p>
       <table class="validation-table">
         <thead><tr><th>Pair</th><th>Worth validating?</th><th>Why</th></tr></thead>
         <tbody>{rows_html}</tbody>
