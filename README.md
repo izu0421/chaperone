@@ -54,10 +54,19 @@ pip install -e .
 cp .env.example .env   # then put your real ANTHROPIC_API_KEY in .env
 ```
 
+Instead of `.env`, you can also pass the key directly on the command line:
+`chaperone candidates.csv --api-key sk-ant-...` (overrides `.env`/the
+environment if both are set).
+
 Optional, for the real AF3 follow-up folding step: a local AlphaFast
-install (MMseqs2-GPU + AF3 weights) reachable via `run_alphafast.sh` — see
-`skills/fold-candidate/SKILL.md`. Without it, folding stays disabled
-(`--fold-gpus ""`) and everything else still works.
+install (MMseqs2-GPU + AF3 weights) — see `skills/fold-candidate/SKILL.md`.
+Its location is configurable via `CHAPERONE_ALPHAFAST_DIR` /
+`CHAPERONE_ALPHAFAST_DB_DIR` / `CHAPERONE_ALPHAFAST_WEIGHTS_DIR` (the
+defaults point at one specific dev box and are almost certainly wrong for
+you). Without an AlphaFast install, pass `--no-fold` (or `--fold-gpus ""`)
+and folding stays disabled — the `fold_complex` tool is never offered to the
+agent, so `run_alphafast.sh`/the SIF/the weights are never touched — and
+everything else still works.
 
 **New to chaperone? See [TUTORIAL.md](TUTORIAL.md)** — a walkthrough of a
 real run on `examples/candidates.csv`, with the actual output it produced
@@ -96,7 +105,9 @@ individually skippable:
 ```bash
 chaperone candidates.csv \
   --concurrency 4 \
+  --api-key sk-ant-...           # overrides ANTHROPIC_API_KEY from the environment/.env
   --fold-gpus "0,1"              # GPU device IDs the agent's fold tool may use; "" disables folding
+  --no-fold                      # or just disable folding outright, no AlphaFast install needed
   --out data/verdicts.csv \
   --report-out data/report.html \
   --skip-validation-strategies \
