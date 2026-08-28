@@ -65,20 +65,21 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
 
     <section class="validation">
       <h2>Worth validating experimentally?</h2>
-      <p class="validation-note">2 of 2 candidates are not already proven in the literature and
-      are worth prioritizing for wet-lab follow-up — every candidate is listed, nothing hidden.</p>
+      <p class="validation-note">0 of 2 candidates are not already proven in the literature, and
+      any open structural/mechanism concern raised has actually been checked and cleared — every candidate is
+      listed, nothing hidden.</p>
       <table class="validation-table">
         <thead><tr><th>Pair</th><th>Worth validating?</th><th>Why</th></tr></thead>
         <tbody>
         <tr>
           <td><b>CD69 &harr; CLEC2B</b></td>
-          <td><span class='badge' style='background:#2EC4B6;'>Yes</span></td>
-          <td style="font-size:12px;color:var(--grey);">May be a modeling artifact (unmodeled glycan/PTM at the interface) — check structurally (fold_complex) before committing wet-lab time.<br><span style='color:var(--grey);'>Suggested: <b>PLA (co-localization)</b> in lymphoid tissue, bone marrow</span></td>
+          <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
+          <td style="font-size:12px;color:var(--grey);">Possible modeling artifact (unmodeled glycan/PTM at the interface) — not yet resolved structurally. The contradiction is valid: CD69&#x27;s UniProt FUNCTION annotation describes carbohydrate/sialic-acid-dependent binding as a core physiological mechanism, not a peripheral PTM elsewhere in the protein — this is analogous to the galectin caveat, meaning CD69&#x27;s native recognition mode may be fundamentally glycan-mediated rather than a bare CTLD-CTLD protein contact.</td>
         </tr>
         <tr>
           <td><b>LGALS1 &harr; CSF2RA</b></td>
-          <td><span class='badge' style='background:#2EC4B6;'>Yes</span></td>
-          <td style="font-size:12px;color:var(--grey);">May be a modeling artifact (unmodeled glycan/PTM at the interface) — check structurally (fold_complex) before committing wet-lab time.<br><span style='color:var(--grey);'>Suggested: <b>Stimulation assay</b> in blood/lymphoid tissue (monocytes, neutrophils), placenta (trophoblast/Hofbauer cell compartment), myeloid cell co-culture (monocyte-derived cells)</span></td>
+          <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
+          <td style="font-size:12px;color:var(--grey);">Possible modeling artifact (unmodeled glycan/PTM at the interface) — not yet resolved structurally. Expression, compartment and novelty all support the pair (zero STRING/CellPhoneDB/PubMed evidence), but LGALS1 is a galectin whose documented mechanism is carbohydrate binding, and CSF2RA carries 11 UniProt-annotated extracellular glycosylation sites.</td>
         </tr></tbody>
       </table>
     </section>
@@ -89,7 +90,7 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
         <span class="pair">CD69 &harr; CLEC2B</span>
         <span class="badge" style="background:#FF9F1C">LIKELY_ARTIFACT_PTM</span>
         
-        <span class='badge' style='background:#FF9F1C;opacity:.85;' title='May be a modeling artifact (unmodeled glycan/PTM at the interface) — check structurally (fold_complex) before committing wet-lab time.'>VALIDATE</span>
+        
         <span class="conf">medium confidence</span>
         <span class="metrics">ipTM  &middot; pTM </span>
       </div>
@@ -99,162 +100,9 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
         
         <div class='followup'><b>Follow-up (not yet executed):</b> Since fold_evidence_status is not_run, first generate an actual AF3 structural model of the CD69-CLEC2B pair before drawing conclusions about interface residues; separately, given CD69&#x27;s documented carbohydrate-dependent binding mode, consider testing/annotating whether CLEC2B&#x27;s N-glycans (rather than its protein backbone) are the relevant ligand for CD69, e.g. via glycan-array or lectin-binding assays, since a bare-protein AF3 model would not capture this mechanism.</div>
         
-    <details class="validation-strategy" open>
-      <summary>Validation strategy: PLA (co-localization) (PLA with parallel +/- neuraminidase (sialidase) and PNGase F treatment arms to test glycan-dependence of the signal)</summary>
-      <div class="field"><div class="k">Why this method</div><div class="v">Both CD69 and CLEC2B are membrane-anchored CTLD proteins co-expressed on the same immune cells (NK-cells, T-cells, innate lymphoid cells), so a direct cis/trans surface-proximity assay is appropriate rather than a ligand-receptor stimulation format. PLA in situ or on fixed cells will reveal whether the two proteins actually sit close enough to interact, and by adding glycosidase-treatment arms we can directly interrogate whether the observed proximity signal depends on CD69&#x27;s carbohydrate-recognition activity or on CLEC2B&#x27;s N-glycans, addressing the core PTM/glycan artifact concern head-on rather than just confirming co-localization.</div></div>
-      <div class="field"><div class="k">Target tissue(s)</div><div class="v">lymphoid tissue, bone marrow</div></div>
-      <div class="field"><div class="k">Why these tissues (HPA)</div><div class="v">Lymphoid tissue shows strong protein-level CLEC2B expression (624041.2 intensity units) alongside high CD69 RNA (88.3 nTPM), and bone marrow shows both CD69 (159.6 nTPM) and CLEC2B (106.6 nTPM) RNA expression — these are the only two tissues in the HPA data with quantifiable signal for both proteins, making them the best real overlap for tissue-section PLA.</div></div>
-      <div class='field'><div class='k'>Cell type(s)</div><div class='v'>NK-cells, T-cells, Innate lymphoid cells</div></div>
-      <div class="field"><div class="k">Protocol notes</div><div class="v">1) Use primary human NK-cells or T-cells (freshly isolated or short-term activated, since CD69 is an activation marker and may need TCR/cytokine stimulation to reach surface levels detected in single-cell data) fixed non-permeabilized to preserve surface glycans. 2) Apply validated anti-CD69 and anti-CLEC2B antibody pairs (different host species) for PLA probe conjugation; include a tissue section arm from lymphoid tissue (e.g., tonsil or lymph node) given the strong CLEC2B protein signal there. 3) Run parallel samples pretreated with neuraminidase (removes sialic acids) or PNGase F (removes N-glycans, targeting CLEC2B&#x27;s 3 N-glycosylation sites) before PLA probing; quantify puncta/cell across conditions. 4) Include a companion cis-binding ELISA/flow cytometry assay with recombinant CD69-Fc and CLEC2B-Fc (glycosylated vs. enzymatically deglycosylated) to corroborate PLA findings biochemically.</div></div>
-      <div class="field"><div class="k">Controls</div><div class="v">Positive control: known glycan-dependent lectin pair (e.g., CD69-galectin-1 PLA, or Siglec-sialoglycan pair) to confirm glycosidase treatment is effective and doesn&#x27;t abolish unrelated PLA signals nonspecifically. Negative controls: single-antibody-only PLA (no interaction expected), isotype control antibodies, and a cell type expressing only one of the two proteins (e.g., a CLEC2B-negative T-cell subset or CD69-negative resting cell) to establish background puncta rate.</div></div>
-      <div class="field"><div class="k">Caveats</div><div class="v">This pair is flagged LIKELY_ARTIFACT_PTM because no AF3 interface was actually modeled (fold_evidence_status=not_run), so there is no structural basis to argue the interface is PTM-free — the entire premise of a bare-protein CTLD-CTLD contact is unsupported. CD69&#x27;s documented physiological binding mode is carbohydrate/sialic-acid-dependent, and CLEC2B carries 3 N-glycosylation sites, so a positive PLA signal that disappears after neuraminidase/PNGase F treatment would confirm the interaction is glycan-mediated rather than a genuine protein-protein interface, which would still be biologically interesting but mechanistically different from what AF3 implicitly assumes. Also note CD69 surface levels are activation-dependent and low/absent on resting cells, so stimulation conditions must be carefully controlled to ensure both proteins are actually present at the cell surface during the assay.</div></div>
-    </details>
-    
         <details class="tools">
-          <summary>Full tool-call ledger (11 calls) — raw evidence behind this verdict</summary>
-          <div class='toolcall'><div><span class='name'>1. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.677s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CD69&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CD69&quot;,
-  &quot;rna_tissue_specific_nTPM&quot;: {
-    &quot;bone marrow&quot;: &quot;159.6&quot;,
-    &quot;lymphoid tissue&quot;: &quot;88.3&quot;
-  },
-  &quot;rna_tissue_specificity&quot;: &quot;Group enriched&quot;,
-  &quot;rna_single_cell_type_specific_nCPM&quot;: {
-    &quot;B-cells&quot;: &quot;1058.2&quot;,
-    &quot;Hematopoietic stem cells&quot;: &quot;1802.1&quot;,
-    &quot;Innate lymphoid cells&quot;: &quot;1663.3&quot;,
-    &quot;Mast cells&quot;: &quot;3282.2&quot;,
-    &quot;Megakaryocyte progenitors&quot;: &quot;1010.7&quot;,
-    &quot;Megakaryocyte-Erythroid progenitors&quot;: &quot;1084.5&quot;,
-    &quot;NK-cells&quot;: &quot;1210.9&quot;,
-    &quot;T-cells&quot;: &quot;1522.4&quot;
-  },
-  &quot;rna_single_cell_type_specificity&quot;: &quot;Group enriched&quot;,
-  &quot;protein_tissue_specific_intensity&quot;: null
-}</pre></div><div class='toolcall'><div><span class='name'>2. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.704s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CLEC2B&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CLEC2B&quot;,
-  &quot;rna_tissue_specific_nTPM&quot;: {
-    &quot;bone marrow&quot;: &quot;106.6&quot;
-  },
-  &quot;rna_tissue_specificity&quot;: &quot;Tissue enhanced&quot;,
-  &quot;rna_single_cell_type_specific_nCPM&quot;: {
-    &quot;cDC&quot;: &quot;166.3&quot;,
-    &quot;Conjunctival goblet cells&quot;: &quot;327.2&quot;,
-    &quot;Decidual stromal cells&quot;: &quot;176.9&quot;,
-    &quot;Esophageal basal cells&quot;: &quot;225.1&quot;,
-    &quot;Innate lymphoid cells&quot;: &quot;180.9&quot;,
-    &quot;Kupffer cells&quot;: &quot;228.6&quot;,
-    &quot;Macrophages&quot;: &quot;192.1&quot;,
-    &quot;monocytes&quot;: &quot;196.4&quot;,
-    &quot;Neutrophils&quot;: &quot;449.3&quot;,
-    &quot;NK-cells&quot;: &quot;396.8&quot;,
-    &quot;Ocular epithelial cells&quot;: &quot;335.1&quot;,
-    &quot;T-cells&quot;: &quot;343.0&quot;,
-    &quot;Vascular endothelial cells&quot;: &quot;182.6&quot;
-  },
-  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
-  &quot;protein_tissue_specific_intensity&quot;: {
-    &quot;lymphoid tissue&quot;: &quot;624041.2&quot;
-  }
-}</pre></div><div class='toolcall'><div><span class='name'>3. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.369s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CD69&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CD69&quot;,
-  &quot;subcellular_main_location&quot;: null,
-  &quot;subcellular_additional_location&quot;: null,
-  &quot;subcellular_location&quot;: null,
-  &quot;reliability_if&quot;: null
-}</pre></div><div class='toolcall'><div><span class='name'>4. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.077s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CLEC2B&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CLEC2B&quot;,
-  &quot;subcellular_main_location&quot;: null,
-  &quot;subcellular_additional_location&quot;: null,
-  &quot;subcellular_location&quot;: null,
-  &quot;reliability_if&quot;: null
-}</pre></div><div class='toolcall'><div><span class='name'>5. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.002s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CD69&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CD69&quot;,
-  &quot;gene_description&quot;: &quot;CD69 molecule&quot;,
-  &quot;protein_class&quot;: [
-    &quot;CD markers&quot;,
-    &quot;Predicted membrane proteins&quot;
-  ],
-  &quot;secretome_location&quot;: null,
-  &quot;secretome_function&quot;: null,
-  &quot;known_interactions_count&quot;: 13
-}</pre></div><div class='toolcall'><div><span class='name'>6. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.002s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CLEC2B&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CLEC2B&quot;,
-  &quot;gene_description&quot;: &quot;C-type lectin domain family 2 member B&quot;,
-  &quot;protein_class&quot;: [
-    &quot;Predicted intracellular proteins&quot;
-  ],
-  &quot;secretome_location&quot;: &quot;Intracellular and membrane&quot;,
-  &quot;secretome_function&quot;: &quot;No annotated function&quot;,
-  &quot;known_interactions_count&quot;: 82
-}</pre></div><div class='toolcall'><div><span class='name'>7. string_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.313s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;CD69&quot;, &quot;gene_b&quot;: &quot;CLEC2B&quot;}</div><pre>{
-  &quot;found&quot;: false
-}</pre></div><div class='toolcall'><div><span class='name'>8. cellphonedb_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.002s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;CD69&quot;, &quot;gene_b&quot;: &quot;CLEC2B&quot;}</div><pre>{
-  &quot;found&quot;: false,
-  &quot;matches&quot;: []
-}</pre></div><div class='toolcall'><div><span class='name'>9. pubmed_cooccurrence</span> <span style='color:var(--grey);font-size:12px;'>(0.34s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;CD69&quot;, &quot;gene_b&quot;: &quot;CLEC2B&quot;}</div><pre>{
-  &quot;count&quot;: 1,
-  &quot;hits&quot;: [
-    {
-      &quot;pmid&quot;: &quot;18046548&quot;,
-      &quot;title&quot;: &quot;CLEC2A: a novel, alternatively spliced and skin-associated member of the NKC-encoded AICL-CD69-LLT1 family.&quot;,
-      &quot;pubdate&quot;: &quot;2007 Dec&quot;,
-      &quot;source&quot;: &quot;Immunogenetics&quot;
-    }
-  ]
-}</pre></div><div class='toolcall'><div><span class='name'>10. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(3.052s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CD69&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CD69&quot;,
-  &quot;accession&quot;: &quot;Q07108&quot;,
-  &quot;protein_name&quot;: &quot;Early activation antigen CD69&quot;,
-  &quot;function&quot;: &quot;Transmembrane protein expressed mainly on T-cells resident in mucosa that plays an essential role in immune cell homeostasis. Rapidly expressed on the surface of platelets, T-lymphocytes and NK cells upon activation by various stimuli, such as antigen recognition or cytokine signaling, stimulates different signaling pathways in different cell types (PubMed:24752896, PubMed:26296369, PubMed:35930205). Negatively regulates Th17 cell differentiation through its carbohydrate dependent interaction with galectin-1/LGALS1 present on immature dendritic cells (PubMed:24752896). Association of CD69 cytoplasmic tail with the JAK3/STAT5 signaling pathway regulates the transcription of RORgamma/RORC and, consequently, differentiation toward the Th17 lineage (By similarity). Also acts via the S100A8/S100A9 complex present on peripheral blood mononuclear cells to promote the conversion of naive CD4 T-cells into regulatory T-cells (PubMed:26296369). Acts as an oxidized low-density lipoprotein (oxLDL) receptor in CD4 T-lymphocytes and negatively regulates the inflammatory response by inducing the expression of PDCD1 through the activation of NFAT (PubMed:35930205). Participates in adipose tissue-derived mesenchymal stem cells (ASCs)-mediated protection against P.aeruginosa infection. Mechanistically, specifically recognizes P.aeruginosa to promote ERK1 activation, followed by granulocyte-macrophage colony-stimulating factor (GM-CSF) and other inflammatory cytokines secretion (PubMed:34841721). In eosinophils, induces IL-10 production through the ERK1/2 pathway (By similarity). Negatively regulates the chemotactic responses of effector lymphocytes and dendritic cells (DCs) to sphingosine 1 phosphate/S1P by acting as a S1PR1 receptor agonist and facilitating the internalization and degradation of the receptor (PubMed:37039481)&quot;,
-  &quot;keywords&quot;: [
-    &quot;3D-structure&quot;,
-    &quot;Cell membrane&quot;,
-    &quot;Direct protein sequencing&quot;,
-    &quot;Disulfide bond&quot;,
-    &quot;Glycoprotein&quot;,
-    &quot;Lectin&quot;,
-    &quot;Membrane&quot;,
-    &quot;Phosphoprotein&quot;,
-    &quot;Proteomics identification&quot;,
-    &quot;Receptor&quot;,
-    &quot;Reference proteome&quot;,
-    &quot;Signal-anchor&quot;,
-    &quot;Transmembrane&quot;,
-    &quot;Transmembrane helix&quot;
-  ],
-  &quot;ptm_topology_feature_counts&quot;: {
-    &quot;Topological domain&quot;: 2,
-    &quot;Transmembrane&quot;: 1,
-    &quot;Glycosylation&quot;: 1,
-    &quot;Disulfide bond&quot;: 4
-  }
-}</pre></div><div class='toolcall'><div><span class='name'>11. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(0.215s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CLEC2B&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CLEC2B&quot;,
-  &quot;accession&quot;: &quot;Q92478&quot;,
-  &quot;protein_name&quot;: &quot;C-type lectin domain family 2 member B&quot;,
-  &quot;function&quot;: &quot;Membrane-bound protein expressed on myeloid cells which acts as a ligand to stimulate the activating receptor NKp80/KLRF1, expressed on the surface of natural killer (NK) cells. In turn, stimulates NK-cell cytotoxicity and cytokine production leading to the cytolysis of malignant CLEC2B-expressing myeloid cells&quot;,
-  &quot;keywords&quot;: [
-    &quot;Cell membrane&quot;,
-    &quot;Disulfide bond&quot;,
-    &quot;Glycoprotein&quot;,
-    &quot;Golgi apparatus&quot;,
-    &quot;Lectin&quot;,
-    &quot;Membrane&quot;,
-    &quot;Proteomics identification&quot;,
-    &quot;Reference proteome&quot;,
-    &quot;Signal-anchor&quot;,
-    &quot;Transmembrane&quot;,
-    &quot;Transmembrane helix&quot;,
-    &quot;Ubl conjugation&quot;
-  ],
-  &quot;ptm_topology_feature_counts&quot;: {
-    &quot;Topological domain&quot;: 2,
-    &quot;Transmembrane&quot;: 1,
-    &quot;Glycosylation&quot;: 3,
-    &quot;Disulfide bond&quot;: 3
-  }
-}</pre></div>
+          <summary>Full tool-call ledger (0 calls) — raw evidence behind this verdict</summary>
+          <p style='color:var(--grey);font-size:13px;'>No tool-call log captured for this candidate (older run, before traceability logging was added).</p>
         </details>
       </div>
     </div>
@@ -264,7 +112,7 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
         <span class="pair">LGALS1 &harr; CSF2RA</span>
         <span class="badge" style="background:#FF9F1C">LIKELY_ARTIFACT_PTM</span>
         
-        <span class='badge' style='background:#FF9F1C;opacity:.85;' title='May be a modeling artifact (unmodeled glycan/PTM at the interface) — check structurally (fold_complex) before committing wet-lab time.'>VALIDATE</span>
+        
         <span class="conf">medium confidence</span>
         <span class="metrics">ipTM  &middot; pTM </span>
       </div>
@@ -274,201 +122,9 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
         <div class='field'><div class='k'>Other subunits</div><div class='v'>CSF2RB</div></div>
         <div class='followup'><b>Follow-up (not yet executed):</b> Test experimentally with lactose/beta-galactoside competition and with deglycosylated or N-glycosylation-site-mutant CSF2RA ectodomain — if binding is lactose-sensitive it is glycan-mediated and the AF3 interface is moot. If a protein-level contact is still suspected, re-model with the glycans represented, and also fold CSF2RA with its obligate partner CSF2RB (CellPhoneDB complex &quot;GMCSFR&quot;) since the physiological receptor is the alpha/beta heterodimer.</div>
         
-    <details class="validation-strategy" open>
-      <summary>Validation strategy: Stimulation assay (Parallel PLA/binding arm with glycosidase (PNGase F / neuraminidase) pre-treatment to test lectin-glycan dependence)</summary>
-      <div class="field"><div class="k">Why this method</div><div class="v">LGALS1 is a secreted, cytosolic lectin (no transmembrane domain) while CSF2RA is a heavily glycosylated membrane receptor that pairs with CSF2RB to transduce GM-CSF signaling; this is a classic secreted-ligand/surface-receptor topology rather than two co-resident intracellular partners, so a functional stimulation readout on receptor-bearing cells is more informative than PLA alone. Because the triage concern is that AF3&#x27;s bare-peptide interface is actually a lectin-glycan contact, the assay must directly test glycan dependence, which a straight co-IP or PLA cannot resolve without an enzymatic control arm.</div></div>
-      <div class="field"><div class="k">Target tissue(s)</div><div class="v">blood/lymphoid tissue (monocytes, neutrophils), placenta (trophoblast/Hofbauer cell compartment), myeloid cell co-culture (monocyte-derived cells)</div></div>
-      <div class="field"><div class="k">Why these tissues (HPA)</div><div class="v">CSF2RA protein is extremely high in lymphoid tissue and its transcript is enriched in monocytes, neutrophils, cDCs and macrophages/Hofbauer cells; LGALS1 RNA is also substantial in monocytes, Hofbauer cells and cDCs, giving genuine single-cell-type overlap in myeloid/placental lineages even though bulk tissue nTPM for LGALS1 is not reported. Placenta is a strong shared site (both proteins expressed in Hofbauer cells, extravillous trophoblasts, and cDC-like antigen-presenting cells), and peripheral blood monocytes/neutrophils give an accessible primary-cell system for functional work.</div></div>
-      <div class='field'><div class='k'>Cell type(s)</div><div class='v'>Monocytes, Neutrophils, cDC, Hofbauer cells, Extravillous trophoblasts</div></div>
-      <div class="field"><div class="k">Protocol notes</div><div class="v">1) Treat CSF2RA/CSF2RB-expressing myeloid cells (primary monocytes, neutrophils, or a CSF2RA+ cell line such as TF-1) with recombinant carrier-free LGALS1 (dose range, include lactose/thiodigalactoside competitor control to confirm lectin-dependent binding) and measure downstream GM-CSF pathway readouts: STAT5 phosphorylation (phospho-flow or western), receptor internalization (surface CSF2RA by flow before/after treatment), or a STAT5-luciferase reporter in a reconstituted CSF2RA/CSF2RB line. 2) Run a parallel binding/PLA arm on fixed cells: pre-treat half the samples with PNGase F or neuraminidase to strip N-glycans/sialic acid from CSF2RA before adding LGALS1-biotin or performing anti-LGALS1/anti-CSF2RA PLA; compare signal in glycosidase-treated vs untreated to test whether binding is glycan-dependent (predicted to drop after deglycosylation if the artifact hypothesis is correct, i.e., true PPI is lectin-glycan not protein-protein). 3) Include CSF2 (GM-CSF) stimulation as the physiological positive control for pathway activation kinetics/magnitude comparison. 4) Time course 5-60 min for phospho-STAT5, 24-48h for functional outputs (survival/differentiation) if pursuing further.</div></div>
-      <div class="field"><div class="k">Controls</div><div class="v">Positive control: recombinant GM-CSF (CSF2) stimulation of the same cells to benchmark pathway activation. Negative controls: (a) lactose/thiodigalactoside-blocked LGALS1 to confirm any effect is carbohydrate-recognition-domain dependent, (b) CSF2RA-knockout or CSF2RA-low cell line, (c) irrelevant lectin (e.g., LGALS3) or heat-denatured LGALS1 as specificity control, (d) isotype/IgG control for PLA antibody pair, (e) untreated (no glycosidase) sample run alongside PNGase F/neuraminidase-treated sample on the same cell prep.</div></div>
-      <div class="field"><div class="k">Caveats</div><div class="v">Primary concern per triage: AF3 modeled an unglycosylated CSF2RA interface, but the real interaction (if any) is most plausibly a lectin-glycan contact via LGALS1&#x27;s carbohydrate-binding domain engaging one or more of CSF2RA&#x27;s 11 annotated extracellular N-glycosylation sites, not the specific protein-protein contact AF3 predicted — so even a positive functional/binding result would validate an LGALS1-CSF2RA association but NOT confirm the AF3-modeled interface itself. Loss of signal after glycosidase treatment would support the glycan-dependent/artifact-interface interpretation; retained signal would argue for a genuine protein-level contact and warrant re-modeling with glycans. LGALS1 lacks HPA tissue-level nTPM/protein intensity data (only single-cell nCPM available), so tissue overlap is inferred from single-cell data rather than bulk tissue expression—confirm with independent qPCR/proteomics if possible. CSF2RA normally functions as a heterodimer with CSF2RB, so pathway readouts should be interpreted in cells expressing both subunits.</div></div>
-    </details>
-    
         <details class="tools">
-          <summary>Full tool-call ledger (12 calls) — raw evidence behind this verdict</summary>
-          <div class='toolcall'><div><span class='name'>1. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.723s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;LGALS1&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;LGALS1&quot;,
-  &quot;gene_description&quot;: &quot;Galectin 1&quot;,
-  &quot;protein_class&quot;: [
-    &quot;Plasma proteins&quot;,
-    &quot;Predicted intracellular proteins&quot;,
-    &quot;Predicted secreted proteins&quot;
-  ],
-  &quot;secretome_location&quot;: &quot;Secreted to blood&quot;,
-  &quot;secretome_function&quot;: &quot;Other&quot;,
-  &quot;known_interactions_count&quot;: 89
-}</pre></div><div class='toolcall'><div><span class='name'>2. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.704s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CSF2RA&quot;,
-  &quot;gene_description&quot;: &quot;Colony stimulating factor 2 receptor subunit alpha&quot;,
-  &quot;protein_class&quot;: [
-    &quot;Cancer-related genes&quot;,
-    &quot;CD markers&quot;,
-    &quot;Disease related genes&quot;,
-    &quot;FDA approved drug targets&quot;,
-    &quot;Human disease related genes&quot;,
-    &quot;Predicted membrane proteins&quot;,
-    &quot;Predicted secreted proteins&quot;
-  ],
-  &quot;secretome_location&quot;: &quot;Secreted to blood&quot;,
-  &quot;secretome_function&quot;: &quot;Receptor&quot;,
-  &quot;known_interactions_count&quot;: 2
-}</pre></div><div class='toolcall'><div><span class='name'>3. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(0.369s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;LGALS1&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;LGALS1&quot;,
-  &quot;accession&quot;: &quot;P09382&quot;,
-  &quot;protein_name&quot;: &quot;Galectin-1&quot;,
-  &quot;function&quot;: &quot;Lectin that binds beta-galactoside and a wide array of complex carbohydrates. Plays a role in regulating apoptosis, cell proliferation and cell differentiation. Inhibits CD45 protein phosphatase activity and therefore the dephosphorylation of Lyn kinase. Strong inducer of T-cell apoptosis. Plays a negative role in Th17 cell differentiation via activation of the receptor CD69 (PubMed:24752896)&quot;,
-  &quot;keywords&quot;: [
-    &quot;3D-structure&quot;,
-    &quot;Acetylation&quot;,
-    &quot;Apoptosis&quot;,
-    &quot;Cytoplasm&quot;,
-    &quot;Direct protein sequencing&quot;,
-    &quot;Extracellular matrix&quot;,
-    &quot;Lectin&quot;,
-    &quot;Phosphoprotein&quot;,
-    &quot;Proteomics identification&quot;,
-    &quot;Reference proteome&quot;,
-    &quot;Secreted&quot;
-  ],
-  &quot;ptm_topology_feature_counts&quot;: {
-    &quot;Modified residue&quot;: 7
-  }
-}</pre></div><div class='toolcall'><div><span class='name'>4. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(0.059s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CSF2RA&quot;,
-  &quot;accession&quot;: &quot;P15509&quot;,
-  &quot;protein_name&quot;: &quot;Granulocyte-macrophage colony-stimulating factor receptor subunit alpha&quot;,
-  &quot;function&quot;: &quot;Low affinity receptor for granulocyte-macrophage colony-stimulating factor. Transduces a signal that results in the proliferation, differentiation, and functional activation of hematopoietic cells&quot;,
-  &quot;keywords&quot;: [
-    &quot;3D-structure&quot;,
-    &quot;Alternative splicing&quot;,
-    &quot;Cell membrane&quot;,
-    &quot;Disease variant&quot;,
-    &quot;Disulfide bond&quot;,
-    &quot;Glycoprotein&quot;,
-    &quot;Membrane&quot;,
-    &quot;Proteomics identification&quot;,
-    &quot;Receptor&quot;,
-    &quot;Reference proteome&quot;,
-    &quot;Secreted&quot;,
-    &quot;Signal&quot;,
-    &quot;Transmembrane&quot;,
-    &quot;Transmembrane helix&quot;
-  ],
-  &quot;ptm_topology_feature_counts&quot;: {
-    &quot;Topological domain&quot;: 2,
-    &quot;Transmembrane&quot;: 1,
-    &quot;Glycosylation&quot;: 11,
-    &quot;Disulfide bond&quot;: 2
-  }
-}</pre></div><div class='toolcall'><div><span class='name'>5. string_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.276s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;LGALS1&quot;, &quot;gene_b&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;found&quot;: false
-}</pre></div><div class='toolcall'><div><span class='name'>6. cellphonedb_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.198s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;LGALS1&quot;, &quot;gene_b&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;found&quot;: false,
-  &quot;matches&quot;: []
-}</pre></div><div class='toolcall'><div><span class='name'>7. pubmed_cooccurrence</span> <span style='color:var(--grey);font-size:12px;'>(0.354s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;LGALS1&quot;, &quot;gene_b&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;count&quot;: 0,
-  &quot;hits&quot;: []
-}</pre></div><div class='toolcall'><div><span class='name'>8. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.645s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;found&quot;: true,
-  &quot;complexes&quot;: [
-    {
-      &quot;complex_name&quot;: &quot;GMCSFR&quot;,
-      &quot;other_members&quot;: [
-        &quot;CSF2RB&quot;
-      ]
-    }
-  ]
-}</pre></div><div class='toolcall'><div><span class='name'>9. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.005s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;LGALS1&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;LGALS1&quot;,
-  &quot;rna_tissue_specific_nTPM&quot;: null,
-  &quot;rna_tissue_specificity&quot;: &quot;Low tissue specificity&quot;,
-  &quot;rna_single_cell_type_specific_nCPM&quot;: {
-    &quot;cDC&quot;: &quot;1781.1&quot;,
-    &quot;Decidual stromal cells&quot;: &quot;10329.3&quot;,
-    &quot;Endometrial stromal cells&quot;: &quot;2107.5&quot;,
-    &quot;Extravillous trophoblasts&quot;: &quot;2291.6&quot;,
-    &quot;Fibroblasts&quot;: &quot;1910.9&quot;,
-    &quot;Hepatic stellate cells&quot;: &quot;6725.9&quot;,
-    &quot;Hofbauer cells&quot;: &quot;2831.6&quot;,
-    &quot;Melanocytes&quot;: &quot;1948.2&quot;,
-    &quot;Monocyte progenitors&quot;: &quot;1860.1&quot;,
-    &quot;monocytes&quot;: &quot;1613.0&quot;,
-    &quot;Ovarian stromal cells&quot;: &quot;2597.2&quot;,
-    &quot;Pericytes&quot;: &quot;1746.4&quot;,
-    &quot;Schwann cells&quot;: &quot;1920.5&quot;,
-    &quot;Smooth muscle cells&quot;: &quot;3074.6&quot;
-  },
-  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
-  &quot;protein_tissue_specific_intensity&quot;: null
-}</pre></div><div class='toolcall'><div><span class='name'>10. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.004s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;CSF2RA&quot;,
-  &quot;rna_tissue_specific_nTPM&quot;: {
-    &quot;placenta&quot;: &quot;59.9&quot;
-  },
-  &quot;rna_tissue_specificity&quot;: &quot;Tissue enhanced&quot;,
-  &quot;rna_single_cell_type_specific_nCPM&quot;: {
-    &quot;cDC&quot;: &quot;771.2&quot;,
-    &quot;Cytotrophoblasts&quot;: &quot;425.8&quot;,
-    &quot;Extravillous trophoblasts&quot;: &quot;237.0&quot;,
-    &quot;Hofbauer cells&quot;: &quot;158.7&quot;,
-    &quot;Macrophages&quot;: &quot;349.2&quot;,
-    &quot;Migrating cytotrophoblasts&quot;: &quot;410.4&quot;,
-    &quot;monocytes&quot;: &quot;323.7&quot;,
-    &quot;Neutrophil progenitors&quot;: &quot;156.6&quot;,
-    &quot;Neutrophils&quot;: &quot;750.1&quot;,
-    &quot;pDCs&quot;: &quot;189.1&quot;,
-    &quot;Syncytiotrophoblasts&quot;: &quot;523.6&quot;
-  },
-  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
-  &quot;protein_tissue_specific_intensity&quot;: {
-    &quot;lymphoid tissue&quot;: &quot;356104.5&quot;
-  }
-}</pre></div><div class='toolcall'><div><span class='name'>11. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.004s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;LGALS1&quot;}</div><pre>{
-  &quot;gene&quot;: &quot;LGALS1&quot;,
-  &quot;subcellular_main_location&quot;: [
-    &quot;Cytosol&quot;
-  ],
-  &quot;subcellular_additional_location&quot;: null,
-  &quot;subcellular_location&quot;: [
-    &quot;Cytosol&quot;
-  ],
-  &quot;reliability_if&quot;: &quot;Supported&quot;
-}</pre></div><div class='toolcall'><div><span class='name'>12. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(0.659s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;CSF2RA&quot;}</div><pre>{
-  &quot;count&quot;: 12,
-  &quot;hits&quot;: [
-    {
-      &quot;pmid&quot;: &quot;41896590&quot;,
-      &quot;title&quot;: &quot;Colony-stimulating factor-2 triggers NNMT-dependent myofibroblast activation in head and neck cancer.&quot;,
-      &quot;pubdate&quot;: &quot;2026 May&quot;,
-      &quot;source&quot;: &quot;Oncogene&quot;
-    },
-    {
-      &quot;pmid&quot;: &quot;41892355&quot;,
-      &quot;title&quot;: &quot;Modeling Chronic BaP Exposure in Bronchial Epithelial Cells Reveals Multi-Scale Drivers of Early Preneoplastic Reprogramming.&quot;,
-      &quot;pubdate&quot;: &quot;2026 Mar 22&quot;,
-      &quot;source&quot;: &quot;Cells&quot;
-    },
-    {
-      &quot;pmid&quot;: &quot;38743735&quot;,
-      &quot;title&quot;: &quot;Identification of triciribine as a novel myeloid cell differentiation inducer.&quot;,
-      &quot;pubdate&quot;: &quot;2024&quot;,
-      &quot;source&quot;: &quot;PLoS One&quot;
-    },
-    {
-      &quot;pmid&quot;: &quot;37022174&quot;,
-      &quot;title&quot;: &quot;African Swine Fever Virus Envelope Glycoprotein CD2v Interacts with Host CSF2RA to Regulate the JAK2-STAT3 Pathway and Inhibit Apoptosis to Facilitate Virus Replication.&quot;,
-      &quot;pubdate&quot;: &quot;2023 Apr 27&quot;,
-      &quot;source&quot;: &quot;J Virol&quot;
-    },
-    {
-      &quot;pmid&quot;: &quot;37000631&quot;,
-      &quot;title&quot;: &quot;Disruption of CSF2RA in the bovine preimplantation embryo reduces development and affects embryonic gene expression in utero.&quot;,
-      &quot;pubdate&quot;: &quot;2023 May 2&quot;,
-      &quot;source&quot;: &quot;Reprod Fertil&quot;
-    }
-  ]
-}</pre></div>
+          <summary>Full tool-call ledger (0 calls) — raw evidence behind this verdict</summary>
+          <p style='color:var(--grey);font-size:13px;'>No tool-call log captured for this candidate (older run, before traceability logging was added).</p>
         </details>
       </div>
     </div>
