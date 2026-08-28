@@ -1,0 +1,30 @@
+[project]
+name = "chaperone"
+version = "0.1.0"
+description = "Agentic triage of AlphaFold3-predicted protein-protein interactions against real biological evidence."
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic[mcp]==0.122.0",
+    "mcp==1.29.0",
+    "httpx==0.28.1",
+    "pydantic==2.13.4",
+    "python-dotenv==1.2.3",
+    "gemmi==0.7.5",
+    "numpy==2.5.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+chaperone = "chaperone.run_pipeline:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
