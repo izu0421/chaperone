@@ -94,6 +94,15 @@ the code under test would otherwise make one).
 chaperone path/to/candidates.csv --concurrency 4
 ```
 
+For example, using the real dataset checked into `examples/` (see
+[TUTORIAL.md](TUTORIAL.md) for the full walkthrough of what this actually
+produces):
+
+```bash
+chaperone examples/candidates.csv --concurrency 2 --no-fold \
+  --out examples/verdicts.csv --report-out examples/report.html
+```
+
 Input CSV columns: `protein_a`, `protein_b` (gene symbols, required),
 `iptm`, `ptm`, `pae_interaction`, `model_path` (optional, passed through and
 shown in the report).
