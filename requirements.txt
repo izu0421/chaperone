@@ -1,0 +1,7 @@
+anthropic[mcp]==0.122.0
+mcp==1.29.0
+httpx==0.28.1
+pydantic==2.13.4
+python-dotenv==1.2.3
+gemmi==0.7.5
+numpy==2.5.2
