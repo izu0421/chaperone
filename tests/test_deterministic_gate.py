@@ -86,9 +86,48 @@ def test_membrane_and_intracellular_tag_together_is_not_a_mismatch():
     tool_calls = [
         _protein_class("NPR3", ["Predicted membrane proteins", "Predicted intracellular proteins"]),
         _protein_class("RAB8B", ["Predicted intracellular proteins"]),
+        _expression("NPR3", tissues=["kidney"], cell_types=["podocytes"]),
+        _expression("RAB8B", tissues=["kidney"], cell_types=["podocytes"]),
     ]
     result = gate.hpa_plausibility(tool_calls, "NPR3", "RAB8B")
     assert result["plausibility"] == "plausible"
+
+
+def test_no_mismatch_but_no_shared_tissue_and_neither_secreted_is_implausible():
+    # two compatible (non-mismatched) compartments still can't interact if
+    # they're never actually coexpressed anywhere, and neither is secreted
+    # (so there's no circulation-based route for them to meet either).
+    tool_calls = [
+        _protein_class("GENE_A", ["Predicted membrane proteins"]),
+        _protein_class("GENE_B", ["Predicted membrane proteins"]),
+        _expression("GENE_A", tissues=["brain"], cell_types=["neurons"]),
+        _expression("GENE_B", tissues=["liver"], cell_types=["hepatocytes"]),
+    ]
+    result = gate.hpa_plausibility(tool_calls, "GENE_A", "GENE_B")
+    assert result["plausibility"] == "implausible"
+
+
+def test_no_mismatch_no_shared_tissue_but_secreted_ligand_is_still_plausible():
+    # a secreted ligand circulates — it doesn't need to be expressed in the
+    # same tissue as its receptor (paracrine/endocrine signalling). A blanket
+    # same-tissue filter would wrongly kill real ligand-receptor pairs.
+    tool_calls = [
+        _protein_class("LIGAND", ["Predicted secreted proteins"], secretome_location="Secreted"),
+        _protein_class("RECEPTOR", ["Predicted membrane proteins"]),
+        _expression("LIGAND", tissues=["liver"], cell_types=["hepatocytes"]),
+        _expression("RECEPTOR", tissues=["brain"], cell_types=["neurons"]),
+    ]
+    result = gate.hpa_plausibility(tool_calls, "LIGAND", "RECEPTOR")
+    assert result["plausibility"] == "plausible"
+
+
+def test_no_mismatch_missing_expression_data_is_unknown_not_implausible():
+    tool_calls = [
+        _protein_class("GENE_A", ["Predicted membrane proteins"]),
+        _protein_class("GENE_B", ["Predicted membrane proteins"]),
+    ]
+    result = gate.hpa_plausibility(tool_calls, "GENE_A", "GENE_B")
+    assert result["plausibility"] == "unknown"
 
 
 def test_intracellular_only_plus_secreted_with_no_coexpression_is_implausible():
