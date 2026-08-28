@@ -185,7 +185,15 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
     Deliberately conservative (learned from an earlier over-firing heuristic
     in this project): only fires "implausible" when there's BOTH a real
     compartment mismatch AND zero coexpression signal — proteins do
-    moonlight/shuttle, so this needs two independent red flags, not one."""
+    moonlight/shuttle, so this needs two independent red flags, not one.
+
+    Also requires the pair to actually share an HPA tissue or single-cell
+    type even when there's no compartment mismatch — two compatible but
+    never-coexpressed proteins can't physically interact either. Exempt if
+    either protein is secreted: a secreted ligand circulates and doesn't
+    need to be expressed in the same tissue as its receptor (paracrine/
+    endocrine signalling) — a blanket same-tissue filter would wrongly kill
+    real ligand-receptor pairs like that."""
     flags_a = _protein_class_flags(tool_calls, gene_a)
     flags_b = _protein_class_flags(tool_calls, gene_b)
     if not flags_a["classes"] or not flags_b["classes"]:
@@ -195,12 +203,36 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
         (flags_a["intracellular_only"] and flags_b["secreted"])
         or (flags_b["intracellular_only"] and flags_a["secreted"])
     )
-    if not mismatch:
-        return {"plausibility": "plausible", "trace": "No hard compartment mismatch per HPA protein_class/secretome_location."}
-
     exp_a, exp_b = _expression_keys(tool_calls, gene_a), _expression_keys(tool_calls, gene_b)
     shared_tissue = exp_a["tissues"] & exp_b["tissues"]
     shared_cell_type = exp_a["cell_types"] & exp_b["cell_types"]
+
+    if not mismatch:
+        if flags_a["secreted"] or flags_b["secreted"]:
+            return {
+                "plausibility": "plausible",
+                "trace": "No hard compartment mismatch, and at least one protein is secreted — paracrine/endocrine "
+                         "signalling doesn't require same-tissue expression.",
+            }
+        if shared_tissue or shared_cell_type:
+            return {
+                "plausibility": "plausible",
+                "trace": f"No hard compartment mismatch, and real HPA coexpression exists "
+                         f"(shared tissue={shared_tissue or None}, shared cell type={shared_cell_type or None}).",
+            }
+        if not (exp_a["tissues"] or exp_a["cell_types"]) or not (exp_b["tissues"] or exp_b["cell_types"]):
+            return {
+                "plausibility": "unknown",
+                "trace": "No hard compartment mismatch, but HPA expression data is missing for one or both genes "
+                         "— can't judge tissue coexpression.",
+            }
+        return {
+            "plausibility": "implausible",
+            "trace": "No hard compartment mismatch, but neither protein is secreted (a direct contact would need "
+                     "them physically in the same place) and zero shared HPA tissue or single-cell-type expression "
+                     "— no plausible route for these two to meet.",
+        }
+
     if shared_tissue or shared_cell_type:
         return {
             "plausibility": "plausible",
