@@ -171,13 +171,18 @@ def _protein_class_flags(tool_calls: list, gene: str) -> dict:
     return {"secreted": False, "intracellular_only": False, "classes": set()}
 
 
-def _expression_keys(tool_calls: list, gene: str) -> dict:
+def _protein_tissue_keys(tool_calls: list, gene: str) -> set:
+    """Protein-level (antibody/IHC-derived) tissue presence, per HPA's
+    'Protein tissue specific Intensity' field — deliberately NOT the RNA
+    nTPM/nCPM fields. RNA presence doesn't guarantee real protein presence,
+    and using it produced a false positive on real project data: NPR3's and
+    RAB8B's RNA tissue-specificity fields showed zero overlap (kidney vs
+    bone marrow — each gene's single most RNA-enriched tissue), but the
+    protein-level field shows both genuinely present in lymphoid tissue."""
     for out in _tool_outputs(tool_calls, "hpa_expression"):
         if out.get("gene") == gene:
-            tissues = set((out.get("rna_tissue_specific_nTPM") or {}).keys())
-            cell_types = set((out.get("rna_single_cell_type_specific_nCPM") or {}).keys())
-            return {"tissues": tissues, "cell_types": cell_types}
-    return {"tissues": set(), "cell_types": set()}
+            return set((out.get("protein_tissue_specific_intensity") or {}).keys())
+    return set()
 
 
 def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
@@ -187,8 +192,8 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
     compartment mismatch AND zero coexpression signal — proteins do
     moonlight/shuttle, so this needs two independent red flags, not one.
 
-    Also requires the pair to actually share an HPA tissue or single-cell
-    type even when there's no compartment mismatch — two compatible but
+    Also requires the pair to actually share an HPA protein-level tissue
+    even when there's no compartment mismatch — two compatible but
     never-coexpressed proteins can't physically interact either. Exempt if
     either protein is secreted: a secreted ligand circulates and doesn't
     need to be expressed in the same tissue as its receptor (paracrine/
@@ -203,9 +208,8 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
         (flags_a["intracellular_only"] and flags_b["secreted"])
         or (flags_b["intracellular_only"] and flags_a["secreted"])
     )
-    exp_a, exp_b = _expression_keys(tool_calls, gene_a), _expression_keys(tool_calls, gene_b)
-    shared_tissue = exp_a["tissues"] & exp_b["tissues"]
-    shared_cell_type = exp_a["cell_types"] & exp_b["cell_types"]
+    tissues_a, tissues_b = _protein_tissue_keys(tool_calls, gene_a), _protein_tissue_keys(tool_calls, gene_b)
+    shared_tissue = tissues_a & tissues_b
 
     if not mismatch:
         if flags_a["secreted"] or flags_b["secreted"]:
@@ -214,38 +218,38 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
                 "trace": "No hard compartment mismatch, and at least one protein is secreted — paracrine/endocrine "
                          "signalling doesn't require same-tissue expression.",
             }
-        if shared_tissue or shared_cell_type:
+        if shared_tissue:
             return {
                 "plausibility": "plausible",
-                "trace": f"No hard compartment mismatch, and real HPA coexpression exists "
-                         f"(shared tissue={shared_tissue or None}, shared cell type={shared_cell_type or None}).",
+                "trace": f"No hard compartment mismatch, and real HPA protein-level tissue overlap exists "
+                         f"(shared tissue={shared_tissue}).",
             }
-        if not (exp_a["tissues"] or exp_a["cell_types"]) or not (exp_b["tissues"] or exp_b["cell_types"]):
+        if not tissues_a or not tissues_b:
             return {
                 "plausibility": "unknown",
-                "trace": "No hard compartment mismatch, but HPA expression data is missing for one or both genes "
-                         "— can't judge tissue coexpression.",
+                "trace": "No hard compartment mismatch, but HPA protein-level tissue data is missing for one or "
+                         "both genes — can't judge tissue coexpression.",
             }
         return {
             "plausibility": "implausible",
             "trace": "No hard compartment mismatch, but neither protein is secreted (a direct contact would need "
-                     "them physically in the same place) and zero shared HPA tissue or single-cell-type expression "
-                     "— no plausible route for these two to meet.",
+                     "them physically in the same place) and zero shared HPA protein-level tissue — no plausible "
+                     "route for these two to meet.",
         }
 
-    if shared_tissue or shared_cell_type:
+    if shared_tissue:
         return {
             "plausibility": "plausible",
-            "trace": f"Compartment mismatch flagged ({flags_a['classes']} vs {flags_b['classes']}) but real HPA coexpression "
-                     f"overlap exists (shared tissue={shared_tissue or None}, shared cell type={shared_cell_type or None}) "
-                     f"— proteins can moonlight/shuttle, treating as plausible.",
+            "trace": f"Compartment mismatch flagged ({flags_a['classes']} vs {flags_b['classes']}) but real HPA "
+                     f"protein-level tissue overlap exists (shared tissue={shared_tissue}) — proteins can "
+                     f"moonlight/shuttle, treating as plausible.",
         }
     intracellular_gene, secreted_gene = (gene_a, gene_b) if flags_a["intracellular_only"] else (gene_b, gene_a)
     return {
         "plausibility": "implausible",
         "trace": f"{intracellular_gene} has no membrane presence at all per HPA (purely intracellular) and "
-                 f"{secreted_gene} is genuinely secreted, AND zero shared tissue or single-cell-type expression in "
-                 f"the HPA data given — no plausible route for these two to physically meet.",
+                 f"{secreted_gene} is genuinely secreted, AND zero shared HPA protein-level tissue — no plausible "
+                 f"route for these two to physically meet.",
     }
 
 
