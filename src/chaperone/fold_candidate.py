@@ -1,7 +1,14 @@
 """Fetch UniProt sequences for one or more proposed proteins and fold them
-together as a single complex using AlphaFast (local AlphaFold 3), running on
-this box's existing GPU/database/weights/container setup at
-/data/yzy21/yy/af/alphafast.
+together as a single complex using AlphaFast (local AlphaFold 3). Folding is
+entirely optional: if you don't have a local AlphaFast install, just don't
+pass GPU device IDs (`--fold-gpus ""` / `--no-fold` on the `chaperone`
+command) and this module is never invoked.
+
+If you do have AlphaFast, point this module at it via env vars (defaults
+below match a specific dev box and are almost certainly wrong for you):
+    CHAPERONE_ALPHAFAST_DIR  (default /data/yzy21/yy/af/alphafast)
+    CHAPERONE_ALPHAFAST_DB_DIR      (default /data/yzy21/yy/af/alphafast_db)
+    CHAPERONE_ALPHAFAST_WEIGHTS_DIR (default /data/yzy21/yy/af)
 
 This is the "close the loop" step for a triage follow_up like "re-run AF3
 multimer with subunit X" — it actually runs it, rather than just suggesting it.
@@ -26,9 +33,9 @@ import httpx
 from .sources.http_retry import get_with_retry  # noqa: E402
 from .paths import FOLD_RUNS_DIR, GPU_LOCKS_DIR  # noqa: E402
 
-ALPHAFAST_DIR = Path("/data/yzy21/yy/af/alphafast")
-DB_DIR = Path("/data/yzy21/yy/af/alphafast_db")
-WEIGHTS_DIR = Path("/data/yzy21/yy/af")  # contains af3.bin.zst directly
+ALPHAFAST_DIR = Path(os.environ.get("CHAPERONE_ALPHAFAST_DIR", "/data/yzy21/yy/af/alphafast"))
+DB_DIR = Path(os.environ.get("CHAPERONE_ALPHAFAST_DB_DIR", "/data/yzy21/yy/af/alphafast_db"))
+WEIGHTS_DIR = Path(os.environ.get("CHAPERONE_ALPHAFAST_WEIGHTS_DIR", "/data/yzy21/yy/af"))  # contains af3.bin.zst directly
 SIF = ALPHAFAST_DIR / "alphafast.sif"
 RUN_SCRIPT = ALPHAFAST_DIR / "scripts" / "run_alphafast.sh"
 GPU_LOCK_DIR = GPU_LOCKS_DIR

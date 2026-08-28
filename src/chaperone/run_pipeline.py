@@ -10,6 +10,7 @@ import asyncio
 import csv
 import itertools
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -132,9 +133,18 @@ def main():
     parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--out", default=str(DATA_DIR / "verdicts.csv"))
     parser.add_argument(
+        "--api-key", default=None,
+        help="Anthropic API key. Overrides ANTHROPIC_API_KEY from the environment/.env if given.",
+    )
+    parser.add_argument(
         "--fold-gpus", default=",".join(DEFAULT_FOLD_GPUS),
         help="Comma-separated GPU device IDs the agent's fold_complex tool may use "
              "(bounds concurrent real AF3 folds across the whole batch); empty string disables folding",
+    )
+    parser.add_argument(
+        "--no-fold", action="store_true",
+        help="Disable the fold_complex tool entirely (no local AlphaFast install required). "
+             "Equivalent to --fold-gpus \"\".",
     )
     parser.add_argument("--skip-validation-strategies", action="store_true",
                          help="Skip designing PLA/stimulation/co-IP validation strategies for recommended candidates")
@@ -149,7 +159,10 @@ def main():
     parser.add_argument("--fold-summary", default=str(ROOT / "fold_runs" / "followups" / "_summary.json"))
     args = parser.parse_args()
 
-    fold_gpus = [g for g in args.fold_gpus.split(",") if g]
+    if args.api_key:
+        os.environ["ANTHROPIC_API_KEY"] = args.api_key
+
+    fold_gpus = [] if args.no_fold else [g for g in args.fold_gpus.split(",") if g]
     results = asyncio.run(run_batch(args.csv_path, args.concurrency, fold_gpus))
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     out_path = Path(args.out)
