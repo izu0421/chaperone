@@ -143,24 +143,30 @@ async def reconsider_one(client: AsyncAnthropic, row: dict, fold_result: dict) -
     raise RuntimeError(f"No record_verdict tool call in response for {row['protein_a']}/{row['protein_b']}")
 
 
-async def main():
-    load_dotenv(ROOT / ".env")
-    client = AsyncAnthropic()
+async def run_fold_reconsideration(csv_path: Path, fold_summary_path: Path, concurrency: int = 4) -> int:
+    """Runs reconsideration over every candidate with a REAL executed
+    follow-up fold in fold_summary_path, and rewrites csv_path in place.
+    Returns the number of candidates reconsidered. A no-op (returns 0) if no
+    follow-up folds have been executed yet — this only revisits candidates
+    where real structural evidence actually exists to reconsider against."""
+    if not fold_summary_path.exists():
+        return 0
 
-    csv_path = ROOT / "data" / "verdicts_full.csv"
-    summary_path = ROOT / "fold_runs" / "followups" / "_summary.json"
+    client = AsyncAnthropic()
 
     with open(csv_path, newline="") as f:
         rows = list(csv.DictReader(f))
         fieldnames = list(rows[0].keys())
 
-    fold_results = {r["source_pair"]: r for r in json.loads(summary_path.read_text())}
+    fold_results = {r["source_pair"]: r for r in json.loads(fold_summary_path.read_text())}
 
     row_by_pair = {f"{r['protein_a']}/{r['protein_b']}": r for r in rows}
     targets = [(row_by_pair[pair], fold) for pair, fold in fold_results.items() if pair in row_by_pair]
+    if not targets:
+        return 0
     print(f"Reconsidering {len(targets)} candidates with executed folds...")
 
-    semaphore = asyncio.Semaphore(4)
+    semaphore = asyncio.Semaphore(concurrency)
 
     async def worker(row, fold):
         async with semaphore:
@@ -186,7 +192,15 @@ async def main():
                 out["other_subunits"] = ";".join(out["other_subunits"])
             writer.writerow(out)
 
-    print(f"\nUpdated {csv_path}")
+    print(f"Updated {csv_path}")
+    return len(targets)
+
+
+async def main():
+    load_dotenv(ROOT / ".env")
+    csv_path = ROOT / "data" / "verdicts_full.csv"
+    summary_path = ROOT / "fold_runs" / "followups" / "_summary.json"
+    await run_fold_reconsideration(csv_path, summary_path)
 
 
 if __name__ == "__main__":

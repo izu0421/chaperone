@@ -24,6 +24,7 @@ from .design_validation import run_validation_design  # noqa: E402
 from .build_report import build_report  # noqa: E402
 from .review_run import deterministic_checks, llm_audit  # noqa: E402
 from .reconsider_with_gate import run_gate_reconsideration  # noqa: E402
+from .reconsider_with_fold import run_fold_reconsideration  # noqa: E402
 from .anthropic_client import make_client  # noqa: E402
 from .paths import PROJECT_ROOT as ROOT  # noqa: E402
 
@@ -156,6 +157,11 @@ def main():
     parser.add_argument("--skip-gate", action="store_true",
                          help="Skip the deterministic evidence gate that flags and reconsiders verdicts "
                               "contradicted by STRING/CellPhoneDB/HPA/fold evidence")
+    parser.add_argument("--skip-fold-reconsideration", action="store_true",
+                         help="Skip re-reconsidering verdicts against any REAL executed follow-up folds in "
+                              "--fold-summary (e.g. a LIKELY_ARTIFACT_PTM/LIKELY_SUBCOMPLEX verdict whose named "
+                              "concern a real fold actually checked and cleared/confirmed gets genuinely revisited, "
+                              "not just noted in the report)")
     parser.add_argument("--fold-summary", default=str(ROOT / "fold_runs" / "followups" / "_summary.json"))
     args = parser.parse_args()
 
@@ -172,6 +178,9 @@ def main():
     if not args.skip_gate:
         asyncio.run(run_gate_reconsideration(out_path, LOG_DIR, Path(args.fold_summary)))
 
+    if not args.skip_fold_reconsideration:
+        asyncio.run(run_fold_reconsideration(out_path, Path(args.fold_summary)))
+
     strategies = []
     if not args.skip_validation_strategies:
         strategies_path = DATA_DIR / "validation_strategies.json"
@@ -183,7 +192,7 @@ def main():
     if not args.skip_review:
         with open(out_path, newline="") as f:
             rows = list(csv.DictReader(f))
-        findings = deterministic_checks(rows, strategies, LOG_DIR)
+        findings = deterministic_checks(rows, strategies, LOG_DIR, Path(args.fold_summary))
         if strategies:
             findings += asyncio.run(llm_audit(rows, strategies))
         findings_path = DATA_DIR / "review_findings.json"
