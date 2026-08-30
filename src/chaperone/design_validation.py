@@ -24,10 +24,18 @@ from dotenv import load_dotenv
 
 
 from anthropic import AsyncAnthropic, beta_async_tool  # noqa: E402
-from .build_report import classify_validation  # noqa: E402
+from .build_report import (  # noqa: E402
+    classify_validation,
+    gather_executed_results,
+    load_executed_follow_ups,
+    load_tool_calls,
+)
 from .sources.hpa_client import fetch_gene_profile  # noqa: E402
 from .strategy_utils import normalize_str_list  # noqa: E402
 from .paths import PROJECT_ROOT as ROOT  # noqa: E402
+
+DEFAULT_FOLD_SUMMARY = ROOT / "fold_runs" / "followups" / "_summary.json"
+DEFAULT_LOG_DIR = ROOT / "log"
 
 
 def make_client() -> AsyncAnthropic:
@@ -223,17 +231,29 @@ async def design_one(client: AsyncAnthropic, row: dict, tier: dict, revision_iss
     raise RuntimeError(f"No valid record_validation_strategy call for {row['protein_a']}/{row['protein_b']} after {max_attempts} attempts")
 
 
-async def run_validation_design(csv_path: Path, out_path: Path, concurrency: int = 6) -> list[dict]:
+async def run_validation_design(
+    csv_path: Path, out_path: Path, concurrency: int = 6,
+    log_dir: Path = None, fold_summary_path: Path = None,
+) -> list[dict]:
     """Design a validation strategy for every candidate in csv_path that
-    classify_validation recommends. Writes out_path and returns the list."""
+    classify_validation recommends. Writes out_path and returns the list.
+
+    Needs each row's REAL executed_results (not an empty list) since
+    classify_validation now only recommends LIKELY_SUBCOMPLEX/
+    LIKELY_ARTIFACT_PTM once a real executed fold resolved the concern it
+    names — passing [] would silently skip every one of those, even
+    already-resolved ones, and only ever design for CONFIRMED_NOVEL rows."""
     client = make_client()
 
     with open(csv_path, newline="") as f:
         rows = list(csv.DictReader(f))
 
+    executed_by_pair = load_executed_follow_ups(fold_summary_path or DEFAULT_FOLD_SUMMARY)
     targets = []
     for row in rows:
-        tier = classify_validation(row, [])  # executed_results not needed for method design
+        tool_calls = load_tool_calls(row, log_dir or DEFAULT_LOG_DIR)
+        executed_results = gather_executed_results(row, tool_calls, executed_by_pair)
+        tier = classify_validation(row, executed_results)
         if tier:
             targets.append((row, tier))
     print(f"Designing validation strategies for {len(targets)} recommended candidates...")

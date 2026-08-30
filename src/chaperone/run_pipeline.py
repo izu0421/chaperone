@@ -184,7 +184,7 @@ def main():
     strategies = []
     if not args.skip_validation_strategies:
         strategies_path = DATA_DIR / "validation_strategies.json"
-        strategies = asyncio.run(run_validation_design(out_path, strategies_path))
+        strategies = asyncio.run(run_validation_design(out_path, strategies_path, log_dir=LOG_DIR, fold_summary_path=Path(args.fold_summary)))
 
     if not args.skip_report:
         build_report(str(out_path), str(LOG_DIR), args.report_out)
