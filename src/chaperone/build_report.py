@@ -14,6 +14,7 @@ from pathlib import Path
 
 from .strategy_utils import normalize_str_list  # noqa: E402
 from .paths import PROJECT_ROOT  # noqa: E402
+from .deterministic_gate import fold_evidence_status  # noqa: E402
 
 VERDICT_COLORS = {
     "CONFIRMED_NOVEL": "#2EC4B6",
@@ -221,9 +222,24 @@ def classify_validation(row: dict, executed_results: list) -> dict:
 
     note = None
 
+    # A real fold can clear pLDDT/PTM checks numerically while its own
+    # topology finding (an interface spanning BOTH Cytoplasmic AND
+    # Extracellular residues — impossible across an intact membrane, per
+    # fold_evidence_status) argues the modeled complex can't be trusted at
+    # all. Reuse the gate's own read of this same fold data rather than a
+    # second, cruder copy of the logic — an earlier version of this function
+    # duplicated a pLDDT-only check that missed exactly this: KLRK1/KLRD1's
+    # fold cleared pLDDT>=50 on every interface yet fold_evidence_status
+    # independently flagged topology_violation on the same data (KLRD1's
+    # real, disulfide-confirmed partner is KLRC1, not KLRK1).
+    fold_status = fold_evidence_status(executed_results)
+    blocked_by_topology = fold_status["status"] == "topology_violation"
+
     if verdict == "LIKELY_SUBCOMPLEX":
         if not row.get("other_subunits"):
             return None  # no concrete subunit(s) even named - nothing to resolve against
+        if blocked_by_topology:
+            return None  # the fold itself argues against this modeled complex, regardless of interface pLDDT
         interfaces = [
             iface
             for r in executed_results
@@ -244,6 +260,8 @@ def classify_validation(row: dict, executed_results: list) -> dict:
         # landed on the modeled interface. A candidate whose mechanism is
         # fundamentally glycan-mediated (e.g. a galectin) isn't something a
         # single fold can clear regardless — it correctly stays unresolved.
+        if blocked_by_topology:
+            return None  # a stronger, more fundamental structural problem than the named PTM concern
         resolved = False
         for r in executed_results:
             for iface in (r.get("structural_analysis") or {}).get("interfaces", []):
