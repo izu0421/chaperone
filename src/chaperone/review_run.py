@@ -30,7 +30,12 @@ from dotenv import load_dotenv
 
 
 from anthropic import AsyncAnthropic, beta_async_tool  # noqa: E402
-from .build_report import classify_validation  # noqa: E402
+from .build_report import (  # noqa: E402
+    classify_validation,
+    gather_executed_results,
+    load_executed_follow_ups,
+    load_tool_calls,
+)
 from .design_validation import summarize_hpa  # noqa: E402
 from .sources.hpa_client import fetch_gene_profile  # noqa: E402
 from .strategy_utils import normalize_str_list  # noqa: E402
@@ -39,6 +44,7 @@ from .paths import PROJECT_ROOT as ROOT  # noqa: E402
 MODEL = "claude-sonnet-5"
 VALID_METHODS = {"PLA", "stimulation_assay", "co_ip", "other"}
 FREE_TEXT_FIELDS = ["method_rationale", "tissue_rationale", "protocol_notes", "controls", "caveats"]
+DEFAULT_FOLD_SUMMARY = ROOT / "fold_runs" / "followups" / "_summary.json"
 
 
 def make_client() -> AsyncAnthropic:
@@ -55,10 +61,22 @@ def looks_truncated(text: str) -> bool:
     return text[-1] not in ".!?\"')"
 
 
-def deterministic_checks(rows: list[dict], strategies: list[dict], log_dir: Path) -> list[dict]:
+def deterministic_checks(
+    rows: list[dict], strategies: list[dict], log_dir: Path, fold_summary_path: Path = None
+) -> list[dict]:
     findings = []
 
-    n_recommended = sum(1 for r in rows if classify_validation(r, []))
+    # classify_validation only recommends LIKELY_SUBCOMPLEX/LIKELY_ARTIFACT_PTM
+    # once a real executed fold resolved the concern it names, so this ratio
+    # needs each row's REAL executed_results, not an empty list — passing []
+    # silently undercounts to just the CONFIRMED_NOVEL rows.
+    executed_by_pair = load_executed_follow_ups(fold_summary_path or DEFAULT_FOLD_SUMMARY)
+    n_recommended = 0
+    for r in rows:
+        tool_calls = load_tool_calls(r, log_dir)
+        executed_results = gather_executed_results(r, tool_calls, executed_by_pair)
+        if classify_validation(r, executed_results):
+            n_recommended += 1
     ratio = n_recommended / len(rows) if rows else 0
     findings.append({
         "severity": "info",
@@ -265,6 +283,7 @@ async def main():
     ap.add_argument("log_dir")
     ap.add_argument("--strategies", default=str(ROOT / "data" / "validation_strategies.json"))
     ap.add_argument("--out", default=str(ROOT / "data" / "review_findings.json"))
+    ap.add_argument("--fold-summary", default=str(DEFAULT_FOLD_SUMMARY))
     ap.add_argument("--skip-llm-audit", action="store_true", help="Only run the free deterministic checks")
     args = ap.parse_args()
 
@@ -273,7 +292,7 @@ async def main():
     strategies_path = Path(args.strategies)
     strategies = json.loads(strategies_path.read_text()) if strategies_path.exists() else []
 
-    findings = deterministic_checks(rows, strategies, Path(args.log_dir))
+    findings = deterministic_checks(rows, strategies, Path(args.log_dir), Path(args.fold_summary))
     print(f"Deterministic checks: {len(findings)} findings")
 
     if not args.skip_llm_audit and strategies:
