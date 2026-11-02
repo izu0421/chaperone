@@ -12,6 +12,7 @@ from mcp import ClientSession
 from mcp.client.stdio import StdioServerParameters, stdio_client
 
 from .fold_tool import make_fold_tool
+from .resolve_ptm_artifact_tool import make_resolve_ptm_artifact_tool
 from .verdict_tool import make_record_verdict_tool
 
 MODEL = "claude-fable-5"
@@ -95,6 +96,23 @@ them at once — that would test a complex that can't exist). When you do use \
 it, report the real result (ipTM, interface pLDDT, PTM-at-interface finding) \
 in follow_up/other_subunits/ptm_glycosylation_evidence instead of a deferred \
 recommendation.
+
+You ALSO have resolve_ptm_artifact, for right after fold_complex's \
+structural_analysis shows a real N-linked Glycosylation site sitting ON the \
+modeled interface — instead of just writing LIKELY_ARTIFACT_PTM and \
+stopping, this actually tries to resolve it: it re-folds with the real \
+glycan (the standard core sugar) covalently attached at its true UniProt \
+site, then checks whether the original interface survives, moves to a \
+different site, or whether nothing reaches real confidence anywhere. It \
+costs one more real fold (only when there's a glycan-fixable concern to \
+test — free/instant otherwise) and is capped at one call, same as \
+fold_complex. Report whichever of its five outcomes you get directly — \
+including INCONCLUSIVE_LOW_CONFIDENCE, which is a legitimate real answer \
+(defer to the wet-lab follow_up), not a failed call to retry. Never treat a \
+chain_pair_iptm below 0.5 as a weak positive signal, however biologically \
+suggestive the residue pattern looks — that threshold is the standard \
+AF-Multimer/AF3 convention for "not predicting a real interaction here", \
+full stop.
 
 For known-interaction / novelty ("is this ALREADY_KNOWN") always call ALL \
 THREE of string_known_interaction, cellphonedb_known_interaction (cellphonedb \
@@ -240,7 +258,15 @@ async def evaluate_candidate(
     if enable_fold:
         fold_semaphore = fold_semaphore or asyncio.Semaphore(len(DEFAULT_FOLD_GPUS))
         fold_gpu_cycle = fold_gpu_cycle or itertools.cycle(DEFAULT_FOLD_GPUS)
-        extra_tools.append(make_fold_tool(candidate.pair_id, fold_semaphore, fold_gpu_cycle, tool_calls))
+        # One shared dict so resolve_ptm_artifact can reach fold_complex's
+        # FULL (unsummarized) structural analysis instead of re-deriving it.
+        fold_state: dict = {}
+        extra_tools.append(make_fold_tool(candidate.pair_id, fold_semaphore, fold_gpu_cycle,
+                                           tool_calls, shared_state=fold_state))
+        extra_tools.append(make_resolve_ptm_artifact_tool(
+            candidate.pair_id, candidate.protein_a, candidate.protein_b,
+            fold_semaphore, fold_gpu_cycle, fold_state, tool_calls,
+        ))
 
     extra_lines = "\n".join(
         f"{k}={v}" for k, v in candidate.extra.items() if v not in (None, "") and not k.endswith("_sequence")

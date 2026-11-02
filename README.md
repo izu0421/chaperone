@@ -59,7 +59,8 @@ Instead of `.env`, you can also pass the key directly on the command line:
 environment if both are set).
 
 Optional, for the real AF3 follow-up folding step: a local AlphaFast
-install (MMseqs2-GPU + AF3 weights) — see `skills/fold-candidate/SKILL.md`.
+install (MMseqs2-GPU + AF3 weights) — see `skills/fold-candidate/SKILL.md`
+and `skills/resolve-ptm-artifact/SKILL.md`.
 Its location is configurable via `CHAPERONE_ALPHAFAST_DIR` /
 `CHAPERONE_ALPHAFAST_DB_DIR` / `CHAPERONE_ALPHAFAST_WEIGHTS_DIR` (the
 defaults point at one specific dev box and are almost certainly wrong for
@@ -85,7 +86,9 @@ the loop: the deterministic gate's fact-checking functions
 (`known_interaction_strength`, `hpa_plausibility`, `fold_evidence_status`,
 `find_contradictions`, the UniProt glycan-binding mechanism check),
 `normalize_str_list` (guards the exact "cut off text" bug a real run hit),
-and CSV ingestion. Network-free and fast (network calls are mocked where
+CSV ingestion, and (`tests/test_fold_discovery.py`) the rule that the gate
+must never report "no fold was run" for a pair whose fold is on disk — the
+one regression that has already got through this project once. Network-free and fast (network calls are mocked where
 the code under test would otherwise make one).
 
 ## Run
@@ -146,6 +149,11 @@ directory.
 - `chaperone.fold_candidate` / `chaperone.fold_tool` / `chaperone.analyze_fold`
   — real AF3 folding + structural analysis (interface residues, pLDDT,
   PTM/glycosylation overlap, membrane topology).
+- `chaperone.resolve_ptm_artifact` / `chaperone.resolve_ptm_artifact_tool` /
+  `chaperone.glycan_lib` — a bounded (<=2 folds) attempt to actually RESOLVE
+  a glycosylation-artifact concern instead of only labelling it: re-folds
+  with the real N-glycan core covalently attached at its true UniProt site
+  and reports one of five honest outcomes, including "inconclusive".
 - `chaperone.sources.*` — the evidence-source clients (HPA, PubMed, STRING,
   CellPhoneDB, UniProt) and the MCP server (`chaperone.sources.server`)
   exposing them as agent tools.

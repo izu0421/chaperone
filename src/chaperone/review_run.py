@@ -264,7 +264,19 @@ async def llm_audit(rows: list[dict], strategies: list[dict], concurrency: int =
             try:
                 result = await audit_one(client, row, s)
             except Exception as exc:  # noqa: BLE001
+                # Returning silently here would put this module back in
+                # exactly the hole audit_one's refusal check was added to
+                # climb out of: a pair that was never audited would be
+                # indistinguishable, in review_findings.json, from one
+                # audited and found clean. Record the failure AS a finding.
                 print(f"  AUDIT FAILED {s['protein_a']}/{s['protein_b']}: {exc}")
+                findings.append({
+                    "severity": "error",
+                    "pair": f"{s['protein_a']}/{s['protein_b']}",
+                    "check": "audit_failed",
+                    "detail": f"The LLM consistency audit did not complete for this candidate ({exc}) — "
+                              f"its validation strategy is UNREVIEWED, not reviewed-and-clean.",
+                })
                 return
             if not result.get("consistent", True):
                 pair = f"{s['protein_a']}/{s['protein_b']}"

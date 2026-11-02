@@ -173,10 +173,21 @@ def main():
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     out_path = Path(args.out)
     write_report(results, out_path)
+    # A candidate whose agent run died is written out as INSUFFICIENT_EVIDENCE
+    # with "Agent run failed: ..." as its rationale. Counting those here is
+    # the difference between a run that triaged 75 candidates and one where
+    # (say) a bad API key failed all 75 and still exited 0 looking finished.
+    n_failed = sum(1 for r in results if str(r.get("rationale", "")).startswith("Agent run failed:"))
     print(f"Wrote {len(results)} verdicts to {out_path}")
+    if n_failed:
+        print(f"WARNING: {n_failed}/{len(results)} candidates have NO real triage — their agent run "
+              f"failed and they were recorded as INSUFFICIENT_EVIDENCE. Re-run those before trusting "
+              f"any downstream tier, gate or report.")
 
     if not args.skip_gate:
-        asyncio.run(run_gate_reconsideration(out_path, LOG_DIR, Path(args.fold_summary)))
+        gate_stats = asyncio.run(run_gate_reconsideration(out_path, LOG_DIR, Path(args.fold_summary)))
+        print(f"Deterministic gate: {gate_stats['flagged']} flagged, "
+              f"{gate_stats['reconsidered']} reconsidered, {gate_stats['failed']} failed")
 
     if not args.skip_fold_reconsideration:
         asyncio.run(run_fold_reconsideration(out_path, Path(args.fold_summary)))

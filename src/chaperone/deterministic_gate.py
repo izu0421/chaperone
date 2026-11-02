@@ -31,7 +31,15 @@ from pathlib import Path
 
 
 from .sources.uniprot_client import fetch_uniprot_annotation  # noqa: E402
-from .paths import PROJECT_ROOT as ROOT  # noqa: E402
+from .analyze_fold import analyze  # noqa: E402
+from .fold_candidate import fetch_sequence, CHAIN_LETTERS  # noqa: E402
+from .paths import PROJECT_ROOT as ROOT, FOLD_RUNS_DIR  # noqa: E402
+
+# Where the bulk pre-screen's own fold jobs live, as '<a>__<b>_agentfold/'
+# directories. Configurable with the rest of the project layout via
+# CHAPERONE_HOME (see paths.py); a pip-installed chaperone pointed at a
+# different project directory picks that project's folds up instead.
+BULK_FOLD_RUNS_DIR = FOLD_RUNS_DIR
 
 # STRING channel score at/above this is treated as real curated/experimental
 # backing, not just a co-mention. STRING itself treats >=0.4 as "medium
@@ -166,7 +174,20 @@ def _protein_class_flags(tool_calls: list, gene: str) -> dict:
             # partner with zero membrane presence at all.
             secreted = bool("secreted" in classes or "predicted secreted proteins" in classes or "secreted" in secretome)
             has_any_membrane_presence = bool(classes & SURFACE_OR_SECRETED_CLASSES or "membrane" in secretome)
-            intracellular_only = bool(any("intracellular" in c for c in classes) and not has_any_membrane_presence)
+            # "and not secreted" matters: HPA routinely tags one protein
+            # BOTH "predicted secreted proteins" and "predicted
+            # intracellular proteins" (measured on this project's own data:
+            # 5 of 107 genes — TGM2, SMOC2, COL21A1, VWA1, ADAMTSL5), and
+            # SURFACE_OR_SECRETED_CLASSES deliberately holds no secreted
+            # class, so without this a genuinely secreted protein could be
+            # designated "purely intracellular, no membrane presence at
+            # all" in a compartment-mismatch trace against another secreted
+            # partner it can perfectly well meet extracellularly.
+            intracellular_only = bool(
+                any("intracellular" in c for c in classes)
+                and not has_any_membrane_presence
+                and not secreted
+            )
             return {"secreted": secreted, "intracellular_only": intracellular_only, "classes": classes}
     return {"secreted": False, "intracellular_only": False, "classes": set()}
 
@@ -290,6 +311,23 @@ def fold_evidence_status(fold_results: list) -> dict:
         return {"status": "topology_violation", "trace": "Real fold executed and flagged: " + "; ".join(topology_notes + ptm_notes)}
     if ptm_notes:
         return {"status": "ptm_only_concern", "trace": "Real fold executed and flagged: " + "; ".join(ptm_notes)}
+
+    # A fold with no structural_analysis at all was never actually checked
+    # for PTM sites or topology — reporting "pass" for it would be a false
+    # clean bill of health, and "pass" is specifically what makes
+    # find_contradictions argue a LIKELY_ARTIFACT_PTM verdict has been
+    # tested and cleared. Say so instead. This became reachable once
+    # discover_bulk_screen_fold started returning bulk pre-screen folds,
+    # whose analysis needs a UniProt accession lookup that can fail.
+    if not any((r.get("structural_analysis") or {}).get("interfaces") is not None for r in fold_results):
+        errors = [r["structural_analysis_error"] for r in fold_results if r.get("structural_analysis_error")]
+        return {
+            "status": "analysis_unavailable",
+            "trace": "A real fold exists for this candidate but its interface was never analysed, so no "
+                     "PTM/topology conclusion can be drawn from it"
+                     + (f" ({'; '.join(errors)})" if errors else "")
+                     + " — this is NOT a clean result.",
+        }
     return {"status": "pass", "trace": "Real fold executed; no PTM/glycosylation site at the interface and no membrane-topology violation."}
 
 
@@ -379,6 +417,121 @@ def find_contradictions(row: dict, facts: dict) -> list[str]:
     return contradictions
 
 
+_accession_cache: dict = {}
+
+
+def _get_accession(gene: str):
+    """Cached gene->UniProt-accession lookup (network call the first time a
+    gene is seen in this process)."""
+    if gene not in _accession_cache:
+        try:
+            _accession_cache[gene] = fetch_sequence(gene)["accession"]
+        except Exception:  # noqa: BLE001
+            _accession_cache[gene] = None
+    return _accession_cache[gene]
+
+
+def ensure_structural_analysis(fold_result: dict, cache_path: Path = None) -> dict:
+    """Two real gaps this closes, found auditing CLIC3/CD300A and
+    CXCR1/GNAQ (a real fold existed on disk but fold_evidence_status never
+    saw it):
+    1. Bulk pre-screen fold_runs/<pair>_agentfold/ results (~85% of
+       candidates) were never even loaded by gather_fold_results.
+    2. Even fold_runs/followups/ results — the ones that ARE loaded —
+       often never got structural_analysis attached (run_follow_up_folds
+       computes it in-memory per job, but roughly half the *_result.json
+       files on disk predate that code and were never backfilled, and
+       _summary.json never carried the field at all).
+    This computes (or loads a cached) structural_analysis for any fold
+    result that has a model_cif + chain accessions but is missing it, and
+    persists the result to cache_path (or back into a *_result.json this
+    dict was loaded from) so it's not recomputed on every gate run."""
+    if fold_result.get("structural_analysis", {}).get("interfaces") is not None:
+        return fold_result
+    model_cif = fold_result.get("model_cif")
+    chains = fold_result.get("chains")
+    if not model_cif or not Path(model_cif).exists() or not chains:
+        return fold_result
+    chain_accessions = {
+        CHAIN_LETTERS[i]: c["accession"] for i, c in enumerate(chains) if c.get("accession")
+    }
+    if not chain_accessions:
+        return fold_result
+    try:
+        fold_result["structural_analysis"] = analyze(model_cif, chain_accessions)
+    except Exception as exc:  # noqa: BLE001
+        fold_result["structural_analysis_error"] = str(exc)
+        return fold_result
+    if cache_path is not None:
+        try:
+            cache_path.write_text(json.dumps(fold_result, indent=2))
+        except Exception:  # noqa: BLE001
+            pass
+    return fold_result
+
+
+def discover_bulk_screen_fold(gene_a: str, gene_b: str):
+    """Find the original bulk pre-screen AF3/AF2M fold for this pair (job
+    dirs named '<a>__<b>_agentfold', either gene order, directly under
+    BULK_FOLD_RUNS_DIR — NOT its followups/ subdirectory, which is a
+    separate, much smaller set gather_fold_results already checked).
+    Returns a fold_result-shaped dict (with structural_analysis attached and
+    cached) or None if no such directory/model exists."""
+    name = job_dir = None
+    for a, b in ((gene_a, gene_b), (gene_b, gene_a)):
+        candidate_name = f"{a.lower()}__{b.lower()}_agentfold"
+        candidate_dir = BULK_FOLD_RUNS_DIR / candidate_name / "output" / candidate_name
+        if (candidate_dir / f"{candidate_name}_model.cif").exists():
+            # Chain order MUST match the job's actual chain order
+            # (A=first_gene, B=second_gene), which is whichever of
+            # (gene_a,gene_b)/(gene_b,gene_a) matched the on-disk directory
+            # name — not necessarily the caller's gene_a/gene_b order.
+            name, job_dir, first_gene, second_gene = candidate_name, candidate_dir, a, b
+            break
+    if name is None:
+        return None
+
+    cache_path = job_dir / f"{name}_gate_result.json"
+    if cache_path.exists():
+        try:
+            return json.loads(cache_path.read_text())
+        except json.JSONDecodeError:
+            pass
+
+    summary_path = job_dir / f"{name}_summary_confidences.json"
+    summary = json.loads(summary_path.read_text()) if summary_path.exists() else {}
+    acc_first, acc_second = _get_accession(first_gene), _get_accession(second_gene)
+    if not acc_first or not acc_second:
+        # A fold genuinely exists on disk; we just can't resolve the
+        # accessions needed to analyse it (UniProt unreachable, renamed
+        # symbol). Report it WITHOUT structural_analysis so
+        # fold_evidence_status says "analysis_unavailable" rather than
+        # silently falling back to "not_run" — the distinction matters,
+        # because this fold could still carry a topology violation.
+        return {
+            "job_name": name,
+            "model_cif": str(job_dir / f"{name}_model.cif"),
+            "chains": [{"identifier": first_gene, "accession": acc_first},
+                       {"identifier": second_gene, "accession": acc_second}],
+            "iptm": summary.get("iptm"),
+            "ptm": summary.get("ptm"),
+            "source": "bulk_screen",
+            "source_pair": f"{gene_a}/{gene_b}",
+            "structural_analysis_error": "could not resolve UniProt accessions for both chains",
+        }
+    fold_result = {
+        "job_name": name,
+        "model_cif": str(job_dir / f"{name}_model.cif"),
+        "chains": [{"identifier": first_gene, "accession": acc_first},
+                   {"identifier": second_gene, "accession": acc_second}],
+        "iptm": summary.get("iptm"),
+        "ptm": summary.get("ptm"),
+        "source": "bulk_screen",
+        "source_pair": f"{gene_a}/{gene_b}",
+    }
+    return ensure_structural_analysis(fold_result, cache_path=cache_path)
+
+
 def load_tool_calls(row: dict, log_dir: Path) -> list:
     log_path = log_dir / f"{row['protein_a']}__{row['protein_b']}.json"
     if not log_path.exists():
@@ -399,10 +552,23 @@ def load_fold_results(fold_summary_path: Path) -> dict:
 
 
 def gather_fold_results(row: dict, tool_calls: list, fold_by_pair: dict) -> list:
-    results = list(fold_by_pair.get(f"{row['protein_a']}/{row['protein_b']}", []))
+    pair_key = f"{row['protein_a']}/{row['protein_b']}"
+    # followups/_summary.json entries never carry structural_analysis (the
+    # per-job *_result.json files are the source of truth for that, and
+    # roughly half predate the field existing) — backfill+cache it here so
+    # it only has to be computed once per job, ever.
+    results = [
+        ensure_structural_analysis(
+            r, cache_path=BULK_FOLD_RUNS_DIR / "followups" / f"{r.get('job_name')}_result.json"
+        )
+        for r in fold_by_pair.get(pair_key, [])
+    ]
     for call in tool_calls:
         if call.get("tool") == "fold_complex" and isinstance(call.get("output"), dict) and "iptm" in call["output"]:
             results.append(call["output"])
+    bulk = discover_bulk_screen_fold(row["protein_a"], row["protein_b"])
+    if bulk:
+        results.append(bulk)
     return results
 
 

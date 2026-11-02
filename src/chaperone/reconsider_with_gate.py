@@ -73,8 +73,12 @@ Guidance specific to the two most common contradiction types:
   given for how these two would ever physically meet — a strong argument for
   IMPLAUSIBLE (proteins can moonlight, but that needs to be a substantiated,
   not just hypothetical, exception).
-- If either protein is a galectin (LGALS1/2/3/4/7/8/9/12/13/14): its
-  physiological binding is fundamentally glycan-mediated. A real AF3 fold
+- If the contradiction names a protein whose own UniProt FUNCTION text
+  describes a carbohydrate-binding mechanism — a galectin, a siglec or any
+  other lectin whose annotation says it binds beta-galactoside / sialic
+  acid / a glycan, which is how the check actually decides this rather than
+  by matching a fixed gene list, so do not expect only LGALS genes here —
+  its physiological binding is fundamentally glycan-mediated. A real AF3 fold
   showing "no annotated PTM/glycosylation site on the specific interface
   residues modeled" does NOT clear this concern — AF3 never represents
   glycans at all, so the true binding mode may not be the modeled bare-
@@ -158,15 +162,24 @@ async def reconsider_one(client: AsyncAnthropic, row: dict, facts: dict, contrad
     return {**row, **tool_block.input}
 
 
-async def run_gate_reconsideration(csv_path: Path, log_dir: Path, fold_summary_path: Path, concurrency: int = 4) -> int:
+async def run_gate_reconsideration(csv_path: Path, log_dir: Path, fold_summary_path: Path, concurrency: int = 4) -> dict:
     """Runs the deterministic gate over every row in csv_path, reconsiders
-    only the flagged candidates, and rewrites csv_path in place. Returns the
-    number of candidates flagged/reconsidered."""
+    only the flagged candidates, and rewrites csv_path in place.
+
+    Returns {"flagged", "reconsidered", "failed"}. These are deliberately
+    three separate numbers: a failed reconsideration leaves the ORIGINAL
+    verdict in place, so reporting only the flagged count (as this used to)
+    would describe a batch where every call refused exactly the same way it
+    describes a clean one — the same confusion the refusal check inside
+    reconsider_one exists to prevent, one level up."""
     client = make_client()
 
     with open(csv_path, newline="") as f:
         rows = list(csv.DictReader(f))
-        fieldnames = list(rows[0].keys())
+    if not rows:
+        print(f"{csv_path} has no rows — nothing to reconsider.")
+        return {"flagged": 0, "reconsidered": 0, "failed": 0}
+    fieldnames = list(rows[0].keys())
 
     fold_by_pair = load_fold_results(fold_summary_path)
 
@@ -181,6 +194,7 @@ async def run_gate_reconsideration(csv_path: Path, log_dir: Path, fold_summary_p
     print(f"Reconsidering {len(targets)} flagged candidates...")
 
     semaphore = asyncio.Semaphore(concurrency)
+    failed = []
 
     async def worker(row, facts, contradictions):
         async with semaphore:
@@ -190,13 +204,17 @@ async def run_gate_reconsideration(csv_path: Path, log_dir: Path, fold_summary_p
                 return updated
             except Exception as exc:  # noqa: BLE001
                 print(f"  FAILED {row['protein_a']}/{row['protein_b']}: {exc}")
+                failed.append(f"{row['protein_a']}/{row['protein_b']}")
                 return row
 
     updated_rows = await asyncio.gather(*(worker(row, facts, c) for row, facts, c in targets))
     updated_by_pair = {f"{r['protein_a']}/{r['protein_b']}": r for r in updated_rows}
     final_rows = [updated_by_pair.get(f"{r['protein_a']}/{r['protein_b']}", r) for r in rows]
 
-    with open(csv_path, "w", newline="") as f:
+    # Write to a sibling temp file and replace, so an interrupt mid-write
+    # can't leave the run's only copy of every verdict truncated.
+    tmp_path = csv_path.with_suffix(csv_path.suffix + ".tmp")
+    with open(tmp_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for r in final_rows:
@@ -204,9 +222,13 @@ async def run_gate_reconsideration(csv_path: Path, log_dir: Path, fold_summary_p
             if isinstance(out.get("other_subunits"), list):
                 out["other_subunits"] = ";".join(out["other_subunits"])
             writer.writerow(out)
+    tmp_path.replace(csv_path)
 
     print(f"\nUpdated {csv_path}")
-    return len(targets)
+    if failed:
+        print(f"WARNING: {len(failed)} reconsideration(s) did NOT complete and kept their original "
+              f"verdict: {', '.join(failed)}")
+    return {"flagged": len(targets), "reconsidered": len(targets) - len(failed), "failed": len(failed)}
 
 
 async def main():

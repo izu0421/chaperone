@@ -25,7 +25,8 @@ from .fold_candidate import fold as fold_sync
 _gpu_cycle_lock = asyncio.Lock()
 
 
-def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter: itertools.cycle, tool_call_log: list = None):
+def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter: itertools.cycle,
+                    tool_call_log: list = None, shared_state: dict = None):
     """Build a fold_complex @beta_async_tool scoped to one candidate.
 
     gpu_counter: a shared itertools.cycle(gpu_devices) so concurrent fold
@@ -35,8 +36,17 @@ def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter:
     report/traceability code needs a record of it too, so we append here
     ourselves in the same {tool, input, output, is_error, elapsed_seconds}
     shape.
+    shared_state: pass a dict in (instead of leaving this to create its own
+    local one) to let a sibling tool — resolve_ptm_artifact_tool.py — see
+    whether fold_complex ran and reuse its FULL structural analysis (this
+    tool only returns/logs the token-budget-friendly summarize()'d version
+    to the LLM; resolve_ptm_artifact needs the full interface_residues_a/b
+    lists to check whether a re-fold's interface still touches the
+    originally-flagged residues, so the unsummarized version is stashed
+    here rather than recomputed from scratch).
     """
-    state = {"used": False}
+    state = shared_state if shared_state is not None else {}
+    state["used"] = False
 
     @beta_async_tool
     async def fold_complex(proteins: list[str], reason: str) -> dict:
@@ -117,7 +127,9 @@ def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter:
                 return json.dumps(err)
         result["reason"] = reason
         try:
-            result["structural_analysis"] = summarize(analyze_fold_result(result))
+            full_analysis = analyze_fold_result(result)
+            result["structural_analysis"] = summarize(full_analysis)
+            state["full_result"] = {**result, "structural_analysis": full_analysis}
         except Exception as exc:  # noqa: BLE001
             result["structural_analysis_error"] = str(exc)
         log(result)

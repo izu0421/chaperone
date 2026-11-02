@@ -104,19 +104,26 @@ def fetch_sequence(identifier: str) -> dict:
     }
 
 
-def build_af3_input(name: str, chains: list[dict], model_seeds: list[int]) -> dict:
-    if len(chains) > len(CHAIN_LETTERS):
-        raise ValueError(f"Too many chains ({len(chains)}) for single-letter chain IDs")
-    return {
+def build_af3_input(
+    name: str, chains: list[dict], model_seeds: list[int],
+    glycan_sequences: list[dict] = (), bonded_atom_pairs: list = (),
+) -> dict:
+    n_chain_slots = len(chains) + len(glycan_sequences)
+    if n_chain_slots > len(CHAIN_LETTERS):
+        raise ValueError(f"Too many chains ({n_chain_slots}) for single-letter chain IDs")
+    af3_input = {
         "name": name,
         "sequences": [
             {"protein": {"id": [CHAIN_LETTERS[i]], "sequence": c["sequence"]}}
             for i, c in enumerate(chains)
-        ],
+        ] + list(glycan_sequences),
         "modelSeeds": model_seeds,
         "dialect": "alphafold3",
         "version": 1,
     }
+    if bonded_atom_pairs:
+        af3_input["bondedAtomPairs"] = bonded_atom_pairs
+    return af3_input
 
 
 @contextmanager
@@ -196,12 +203,32 @@ def parse_confidences(output_dir: Path, name: str) -> dict:
 
 
 def fold(proteins: list[str], name: str, output_root: Path = None, gpu_device: str = "0",
-         model_seeds: list[int] = (1,)) -> dict:
+         model_seeds: list[int] = (1,), with_glycans: bool = False) -> dict:
     chains = [fetch_sequence(p) for p in proteins]
     for c in chains:
         print(f"  {c['identifier']} -> {c['accession']} ({len(c['sequence'])} aa)", file=sys.stderr)
 
-    af3_input = build_af3_input(name, chains, list(model_seeds))
+    glycan_sequences, bonded_atom_pairs = [], []
+    if with_glycans:
+        from .glycan_lib import build_glycan_chains_and_bonds, fetch_n_glycosylation_sites
+
+        next_letter_idx = len(chains)
+        for i, c in enumerate(chains):
+            protein_chain_id = CHAIN_LETTERS[i]
+            if not c["accession"]:
+                continue
+            sites = fetch_n_glycosylation_sites(c["accession"])
+            if not sites:
+                continue
+            free_letters = CHAIN_LETTERS[next_letter_idx:next_letter_idx + len(sites)]
+            print(f"  {c['identifier']}: attaching N-glycan core at {sites} "
+                  f"(chains {list(free_letters)})", file=sys.stderr)
+            seqs, bonds = build_glycan_chains_and_bonds(protein_chain_id, sites, list(free_letters))
+            glycan_sequences += seqs
+            bonded_atom_pairs += bonds
+            next_letter_idx += len(sites)
+
+    af3_input = build_af3_input(name, chains, list(model_seeds), glycan_sequences, bonded_atom_pairs)
 
     work_dir = Path(output_root) if output_root else FOLD_RUNS_DIR / name
     input_dir, output_dir = work_dir / "input", work_dir / "output"
@@ -220,6 +247,12 @@ def fold(proteins: list[str], name: str, output_root: Path = None, gpu_device: s
         {"identifier": c["identifier"], "accession": c["accession"], "length": len(c["sequence"])}
         for c in chains
     ]
+    if with_glycans:
+        result["glycan_chains"] = [
+            {"chain_id": s["ligand"]["id"][0], "ccd_codes": s["ligand"]["ccdCodes"]}
+            for s in glycan_sequences
+        ]
+        result["glycan_bonded_atom_pairs"] = bonded_atom_pairs
     return result
 
 

@@ -48,7 +48,7 @@ or a human-proposed test the agent didn't think to run itself.
 ## How to run it
 
 ```bash
-cd /data/yzy21/yy/af/deorphanisation
+cd /data/yzy21/yy/space_agent/deorphanisation
 source .venv/bin/activate
 python -m chaperone.fold_candidate RUNX1 CBFB --name runx1_cbfb
 ```
