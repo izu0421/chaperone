@@ -460,3 +460,36 @@ measure the leak, so it is not done, and the degree test runs inside their bench
 There is no AF3 column anywhere in the deposit. AF3 appears only as a web-server comparison in a
 supplementary figure. **AF3 + omicMSA does not exist in their data**, which is the independent
 confirmation of the reframing — read off their files rather than their prose.
+
+## HuRI is the independent set, and here is the number that says so
+
+HuRI/HI-union (Luck et al., Nature 2020) downloaded from `interactome-atlas.org` — note the bare
+hostname, the certificate does not cover `www.`. 64,006 pairs, 62,473 mapping to heteromeric
+UniProt pairs. It is a systematic all-by-all Y2H screen, so which pairs are tested does not
+depend on which proteins anyone has studied.
+
+Mean pair degree, all measured in the same independent literature graph (our 23,659 positives):
+
+| set | mean pair degree |
+|---|---|
+| our literature positives | 50.5 |
+| RF2-PPI benchmark positives | 37.5 |
+| RF2-PPI benchmark negatives | 4.1 |
+| **HI-union positives** | **6.1** |
+
+HuRI's positives sit at the level of the *negatives*. That is the whole point of an all-by-all
+screen and it is why HuRI is the independent arm: the study-bias axis that separates positives
+from negatives in every literature-derived benchmark is simply absent. Only 1,203 of 62,473
+HI-union pairs appear among our literature positives, so the sets are 98% disjoint.
+
+This also sharpens the omicMSA question rather than just adding a dataset. HuRI positives are
+low-degree, less-studied proteins, which is exactly where alignments are shallowest. If omicMSA
+depth is a real mechanism it should still help there; if its advantage on literature benchmarks
+came from well-studied proteins having deep alignments, HuRI is where that disappears. The
+AF2 degree-matching test inside their benchmark found no such effect (-1.0% AUCPR), but that test
+could only lift negatives from 4.1 to 12.4. HuRI tests the same thing at the other end, on
+positives, with no matching required.
+
+Evaluation arms are therefore three: their benchmark (harness check), our degree-matched
+literature benchmark, and HuRI (independent, systematic, study-bias-free). PrePPI `str_score`
+stays as the structural baseline on the pairs it covers.
