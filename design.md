@@ -388,3 +388,75 @@ hosts, identical bytes.
 
 Dryad itself returns a bare nginx 403 to non-browser clients — a bot block, not an access
 restriction; the dataset is open and the landing page says so.
+
+## Their validation set: homomers, and a confound that turns out not to bite
+
+### Near-homomers (the user's point, measured)
+
+Neither benchmark file contains a literal self-pair: 0 of 33,000 and 0 of 5,715. But identity
+between the two members of a "heteromeric" positive tells a different story
+(`scripts/04_near_homomers.py`, 5-mer screen then global alignment):
+
+| set | near-homomers (≥30% id) | rate |
+|---|---|---|
+| positives (3,000) | 77 | **2.6%** |
+| negatives (29,185 mapped) | 0 | **0.0%** |
+
+The asymmetry is absolute: not one negative pair is a near-homomer, because negatives are random
+pairs. 255 near-homomers across both files, **16 at ≥99% identity** — those are homodimers filed
+as heteromers. The clearest case is `P0DP23_P0DP24`, `P0DP23_P0DP25`, `P0DP24_P0DP25`: CALM1,
+CALM2 and CALM3 encode an *identical* calmodulin sequence, so all three "interactions" are one
+homodimer counted three times. Also at 100%: the AMY1A/AMY1B/AMY1C amylases and HSPA1A/HSPA1B.
+
+This matters more than 2.6% suggests, because it is concentrated where the paper makes its
+strongest claim:
+
+| interface class | near-homomer rate |
+|---|---|
+| **large (strong)** | **5.8%** (103/1,782) |
+| medium | 1.7% (62/3,669) |
+| small (weak) | 4.9% (13/264) |
+
+"AF2 is better for strong interactions with large interfaces" is argued on the class with the
+highest near-homomer load. For a paired-MSA method a near-identical pair is degenerate — the two
+chains draw on the same homolog families, so cross-chain coevolution is really within-family
+covariation, and the pair is detectable by sequence identity alone with no interaction biology.
+Near-homomers are therefore excluded from the primary evaluation here and reported as their own
+stratum.
+
+### The degree confound does NOT bite AF2 — my prediction was wrong
+
+The previous section predicted that AF2 + omicMSA's advantage would shrink under degree matching,
+on the reasoning that omicMSA depth tracks how studied a protein is. Tested with their own
+deposited AF2 scores (`scripts/05_af2_on_both_benchmarks.py`), it does not:
+
+| evaluation | AUCPR | AUROC |
+|---|---|---|
+| their benchmark as published | 0.2914 | 0.6611 |
+| same pairs, negatives degree-matched to positives | **0.2885** | 0.6798 |
+
+−1.0% in AUCPR, and AUROC goes *up*. Same pairs, same scores, only which negatives are kept has
+changed. The degree asymmetry in their benchmark is real (positives 37.5, negatives 4.1 on an
+independent graph) but AF2 does not cash it in. **The published AF2 number is more robust than I
+claimed it would be, and that correction stands on the record.**
+
+Two limits on that test. The matching is partial — their negatives simply do not contain enough
+high-degree pairs to reach the positives' mean, so matching lifts negatives from 4.1 to 12.4
+against 37.5, and the top degree decile stays unmatched. And AF2 here is AF2+omicMSA together, so
+this bounds the combination, not omicMSA alone.
+
+### Why their AF2 scores cannot be used on our benchmark
+
+`AF_scores.gz` covers their own benchmark completely (1.000 / 1.000) but only 88% of our
+positives and 2–7% of our negatives. AF2 was run on whatever the DCA → RF2-PPI cascade shortlisted
+*plus*, per the file header, every pair "from PPI databases, BioGrid, STRING (physical), and
+UniProt". So having an AF2 score is itself a restatement of being in a PPI database — the same
+membership leak that made PrePPI look skilful. Scoring our benchmark with these numbers would
+measure the leak, so it is not done, and the degree test runs inside their benchmark instead.
+
+### The deposit confirms the unfilled cell
+
+`AF_scores.gz` has exactly one score column, `AF2_interaction_probability`, over 3,381,654 pairs.
+There is no AF3 column anywhere in the deposit. AF3 appears only as a web-server comparison in a
+supplementary figure. **AF3 + omicMSA does not exist in their data**, which is the independent
+confirmation of the reframing — read off their files rather than their prose.

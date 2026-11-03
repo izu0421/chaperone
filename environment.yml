@@ -1,0 +1,18 @@
+# Analysis env for structural_modelling. The folding arms do NOT run here: AlphaFast ships its
+# own container (alphafast.sif) and RF2-PPI ships SE3nv-20230612.sif, so this env is only for
+# building benchmarks, scoring and figures. Keeping it separate from those containers is what
+# lets the same analysis code read outputs from both engines.
+name: structmod
+channels: [conda-forge]
+dependencies:
+  - python=3.12
+  - pandas
+  - numpy
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - biopython
+  - pyarrow
+  - h5py
+  - jupyterlab
+  - ipykernel
