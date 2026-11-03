@@ -30,11 +30,44 @@ of this module wrong:
    only slightly beat the ColabFold pipeline.
 2. **AFmm and AF3 were WORSE than RF2-PPI at 1:1000 prevalence**, and better at 1:10. So "use
    AF3, it is the newest" is contradicted by the only published measurement, and the direction
-   of the effect depends on prevalence.
+   of the effect depends on prevalence. **But see below: AF3 was run on a different MSA from AF2, so that comparison does not isolate the engine.**
 3. **The gain came from the MSA, not the engine.** Their `omicMSAs`, assembled from unassembled
    genomic and transcriptomic data, are ~7× deeper than UniRef-based alignments.
 4. **Evaluation is AUCPR at 1:1000**, with positives down-weighted ×0.01. They do not report
    AUROC, for the reason an AUROC at 1:1000 is close to uninformative.
+
+### The cell nobody filled: AF3 + omicMSA
+
+Checked against the text, the paper's method comparison does not hold the alignment fixed:
+
+- AF2 was run **with omicMSAs** — "The best performance for a de novo PPI screen is achieved when
+  AF2 is used in combination with omicMSAs." AF3 is not named in that sentence.
+- AF3 was run through the **"AF3 web server widely used by the scientific community"**, i.e. on
+  its own MSA pipeline, not on omicMSAs.
+- The paper states plainly that "all the tools we tested were trained using MSAs built from
+  UniRef and metagenomic sequences, and they are not adapted to work with omicMSA."
+
+So "AF3 is worse than RF2-PPI at 1:1000" is a measurement of **AF3-with-its-own-MSA** against
+RF2-PPI-with-omicMSA. Engine and alignment moved together. Given the paper's own conclusion that
+the alignment carries the gain, AF3's poor showing may be an MSA artefact rather than a property
+of AF3 — and **AF3 + omicMSA is simply not in the literature.**
+
+That is the experiment this module exists to run, and AlphaFast is what makes it runnable:
+`src/alphafold3/common/folding_input.py` exposes `paired_msa` and `unpaired_msa` as per-chain
+A3M strings, so an omicMSA can be injected into AF3 directly and `run_data_pipeline.py` bypassed.
+AF2 needed a Colab notebook for the same trick; AF3 needs a JSON field.
+
+**The honest prior is not that AF3 + omicMSA wins.** The paper's own caveat cuts the other way:
+AF3 was trained on UniRef-and-metagenome alignments, so a 7x deeper omicMSA is out of
+distribution for it. This project has also already seen a deeper-is-worse result —
+`finding_stcrdab_benchmark_contaminated` found depth-saturation flipping to rho +0.34, deeper
+AIRR being WORSE, once contamination was controlled. Three outcomes are all informative:
+
+| outcome | what it means |
+|---|---|
+| AF3 + omicMSA > AF2 + omicMSA | AF3's published deficit was an MSA artefact and the field is quoting the wrong comparison |
+| AF3 + omicMSA ≈ AF3 native | AF3 cannot exploit depth it was not trained on; the alignment advice is engine-specific |
+| AF3 + omicMSA < AF3 native | depth is actively harmful out of distribution, as on the TCR benchmark |
 
 Point 3 is the same shape as this project's own result on TCR–pMHC
 (`finding_native_dbs_carry_discrimination`): **databases contributed +0.138 AUC and the engine
@@ -60,15 +93,21 @@ whose scores mean nothing.
 The paper varies engine and MSA together, so their comparison cannot attribute the difference.
 A factorial does:
 
-|                | AlphaFast MMseqs2-GPU MSA | omicMSA (theirs, precomputed) |
-|----------------|---------------------------|-------------------------------|
-| **AF3** (alphafast) | A — the fast pipeline     | B — engine held, MSA swapped  |
-| **RF2-PPI**    | C — MSA held, engine swapped | D — their published setting |
+|                     | AlphaFast MMseqs2-GPU MSA    | omicMSA (theirs, precomputed) |
+|---------------------|------------------------------|-------------------------------|
+| **AF3** (alphafast) | A — the fast pipeline        | **B — the unfilled cell**     |
+| **RF2-PPI**         | C — MSA held, engine swapped | D — their published setting   |
 
-- **B − A** isolates the MSA at fixed engine. This is the headline number.
-- **C − A** isolates the engine at fixed MSA.
-- **D** reproduces the paper, and is the check that the harness is right before any claim about
+- **B** is the number that does not exist yet: AF3 on omicMSAs. Everything else is context for it.
+- **B − A** isolates the alignment at fixed engine, and answers whether AlphaFast's 68x speedup
+  costs discrimination.
+- **C − A** isolates the engine at fixed alignment.
+- **B − D** is the engine comparison the paper reports but did not actually make, because its AF3
+  arm ran on the web server's own MSA.
+- **D** reproduces the paper and is the check that the harness is right before any claim about
   A–C. If D does not land near the published AUCPR, nothing else here is interpretable.
+- **A′ = AF3 on its own native MSA pipeline** is a fifth arm reproducing the paper's AF3
+  condition, so that B − A′ is measured on this benchmark rather than inferred across papers.
 
 RF2-PPI consumes *paired* MSAs (`predict_list_PPI.py`, a list of `msa_path, len_chain_A`), so arm
 C needs AlphaFast's MSAs re-paired by organism in their format. That conversion is the main piece
@@ -264,3 +303,29 @@ is strongly enriched and the rest is noise.
 Tie mass is reported with every number: `str_score` takes 245 distinct values over 1.55M pairs,
 and the single tie block at 997.34 moves precision@1000 noticeably, which is why `precision_at_k`
 sorts with a stable kind and prints `min_score_in_k`.
+
+## Getting the omicMSAs — blocked, needs the user
+
+Arm B needs `protein_omicMSAs.tar.gz`. Both published routes refuse an automated fetch:
+
+| route | result |
+|---|---|
+| `conglab.swmed.edu/humanPPI/humanPPI_download.html` | TLS chain does not verify (no local issuer). Fetching it would mean disabling certificate checking |
+| Dryad `doi:10.5061/dryad.15dv41p84`, `/downloads/file_stream/<id>` | HTTP 403 to curl, 401 to the v2 API. The page itself says the data is open with no embargo, so this is a bot check |
+
+Neither should be worked around from here: one means turning off TLS verification and the other
+means pretending to be a browser. The dataset is open, so a manual download is the clean fix.
+
+Dryad file ids (`https://datadryad.org/downloads/file_stream/<id>`):
+
+| id | file | size | why it is needed |
+|---|---|---|---|
+| 4357019 | `benchmarks.tar.gz` | 286 KB | **their benchmark pair sets — needed for arm D** |
+| 4357022 | `RF2-PPI.pt` | 310 MB | RF2-PPI weights, arms C and D |
+| 4357024 | `AF_scores.gz` | 32 MB | their per-pair AF scores; lets arm A′ be checked against their AF3 numbers without rerunning |
+| 4357026 | `RF2-PPI_scores.gz` | 444 MB | their per-pair RF2-PPI scores, same purpose for arm D |
+| 4357017 | `protein_omicMSAs.tar.gz` | 17.2 GB | **arm B** |
+| 4357018 | `segment_omicMSAs.tar.gz` | 12.8 GB | segment-level MSAs, only if domain-level scoring is added |
+
+Disk is not the constraint (5.8 TB free). The 286 KB `benchmarks.tar.gz` alone unblocks arm D,
+which is the gate on everything else, so it is worth fetching first.
