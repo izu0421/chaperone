@@ -9,3 +9,7 @@ folds/
 *.pt
 __pycache__/
 .ipynb_checkpoints/
+
+# External code and containers: cloned/downloaded, not ours to vendor.
+# RoseTTAFold2-PPI is GPL-3.0 from CongLabCode; SE3nv-20230612.sif is 14.4 GB.
+ext/
