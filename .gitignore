@@ -1,0 +1,11 @@
+data/
+results/*.h5
+results/*.cif
+results/*.npz
+logs/
+msa/
+folds/
+*.sif
+*.pt
+__pycache__/
+.ipynb_checkpoints/
