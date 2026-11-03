@@ -329,3 +329,62 @@ Dryad file ids (`https://datadryad.org/downloads/file_stream/<id>`):
 
 Disk is not the constraint (5.8 TB free). The 286 KB `benchmarks.tar.gz` alone unblocks arm D,
 which is the gate on everything else, so it is worth fetching first.
+
+## The RF2-PPI benchmark has the degree confound too
+
+`benchmarks.tar.gz` (CC BY 4.0) is 3,000 positives and 30,000 negatives as UniProt pairs,
+matching the paper. Scored against an **independent** degree reference — my 23,659-positive
+graph from BioGRID MV ∩ STRING physical > 700, which shares no construction with theirs:
+
+| set | mean pair degree | median |
+|---|---|---|
+| their positives | 37.5 | 26 |
+| their negatives | **4.1** | **0** |
+
+The median negative pair contains proteins appearing in *no* known interaction at all. This is the
+same ~9× confound my own random-negative arm had (50.5 vs 5.1) before it was replaced with a
+configuration-model draw, and it is not a criticism that needed a new experiment to make — it is
+the paper's stated design, "random human protein pairs with no evidence of interaction".
+
+**Why this matters specifically for the omicMSA claim.** omicMSAs are assembled from genomic and
+transcriptomic data, so their depth is a function of how much sequence exists for a protein's
+homologs — which correlates with how studied the protein is, which is the very axis separating
+these positives from these negatives. An MSA-depth advantage and a study-bias advantage are
+confounded in this benchmark, and the conclusion drawn from it ("AF2 + omicMSA is best for a de
+novo screen") is the one most exposed to that.
+
+This is testable rather than rhetorical, and costs nothing extra: every arm is run on **both**
+their benchmark and the degree-matched one. If the omicMSA advantage survives degree matching it
+is real; if it shrinks, part of what omicMSA buys is knowing which proteins are well studied.
+
+Their benchmark is kept as a third evaluation arm regardless, because reproducing their numbers on
+their own pairs is what makes arm D a valid harness check.
+
+## Getting the data — SOLVED
+
+`conglab.swmed.edu` serves everything, and the TLS failure was never a reason to disable
+verification. The chain is:
+
+```
+conglab.swmed.edu  <-  InCommon Intermediate CA - OVG2C (Internet2)  <-  emSign Root TLS CA - G1
+```
+
+The server omits the intermediate, and the OS bundle (`/etc/ssl/certs/ca-certificates.crt`) does
+not carry the emSign root — but **certifi does**, because emSign is in the Mozilla root program.
+So the fix is to complete the chain, not to bypass it: certifi's roots plus the published
+intermediate (fetched from certificate transparency, the AIA URL in the cert returns empty) gives
+a bundle that verifies the server fully.
+
+```bash
+python -c "import certifi; print(certifi.where())"           # Mozilla roots, has emSign
+curl -o inter.pem "https://crt.sh/?d=25849656014"            # InCommon OVG2C intermediate
+cat "$(python -c 'import certifi;print(certifi.where())')" inter.pem > chain_bundle.pem
+curl --cacert chain_bundle.pem https://conglab.swmed.edu/humanPPI/downloads/<file>
+```
+
+Verified end to end: `AF_scores.gz` downloaded this way has sha-256
+`4f2b931b...f643ed6`, which matches the digest Dryad records for the same file. Two independent
+hosts, identical bytes.
+
+Dryad itself returns a bare nginx 403 to non-browser clients — a bot block, not an access
+restriction; the dataset is open and the landing page says so.
