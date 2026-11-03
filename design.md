@@ -493,3 +493,53 @@ positives, with no matching required.
 Evaluation arms are therefore three: their benchmark (harness check), our degree-matched
 literature benchmark, and HuRI (independent, systematic, study-bias-free). PrePPI `str_score`
 stays as the structural baseline on the pairs it covers.
+
+## Arm D: the harness reproduces, and the noise is structured
+
+`scripts/run_armD_example.sh` ran RF2-PPI in the SE3nv container on the authors' own pre-paired
+example MSAs, three times, against the expected output they ship.
+
+| pair | expected | rep1 | rep2 | rep3 | mean | sd |
+|---|---|---|---|---|---|---|
+| P50395_P62820 | 0.0833 | 0.1077 | 0.0688 | 0.0659 | 0.0808 | 0.023 |
+| Q13153_Q9H4E5 | 0.4895 | 0.7820 | 0.5173 | 0.3728 | 0.5574 | **0.208** |
+| A1L188_Q5TEU4 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 0.000 |
+| P11802_P30279 | 0.9998 | 0.9997 | 0.9996 | 0.9998 | 0.9997 | 0.0001 |
+| Q8TAE8_Q96DV4 | 0.0399 | 0.1059 | 0.0462 | 0.0426 | 0.0649 | 0.036 |
+
+Mean |mean − expected| = **0.0191**. Three of five expected values fall inside the replicate
+range; the two that do not miss by 0.0001 (a saturated pair) and 0.0251. **The harness
+reproduces**, which is the precondition for reading anything from arms A–C.
+
+**The noise is not uniform, and that is the useful part.** Replicate sd by probability level:
+
+| level | sd |
+|---|---|
+| saturated (> 0.95) | 0.0000 |
+| low (< 0.15) | 0.0295 |
+| **intermediate** | **0.2075** |
+
+Saturated predictions are deterministic; the informative middle is not. The README warns of
+sd > 0.1 for about 5% of cases, and this is the same phenomenon seen directly. Taken naively it
+would mean no two arms can be compared — on a single pair, they cannot.
+
+**But it averages out at the metric level, and that was measured rather than hoped.** Injecting
+logit-scale noise calibrated to reproduce sd 0.21 at p = 0.5 into their deposited RF2-PPI scores
+and recomputing AUCPR 30 times:
+
+| noise | AUCPR |
+|---|---|
+| none | 0.2560 |
+| matched to arm D | 0.2520 ± **0.0025** |
+| 2× measured | 0.2172 ± 0.0167 |
+
+So single-run arms are comparable at the AUCPR level provided the difference exceeds roughly
+0.005 (2 sd), with a small downward bias. Differences smaller than that need replicates.
+(The absolute 0.2560 is not their published figure: the deposited RF2-PPI scores cover all 3,000
+benchmark positives but only 5,983 of 30,000 negatives, so this is a subset — fine for a noise
+simulation, which is relative, and not quotable as their result.)
+
+**Throughput.** Steady state is 4.1 s per pair against the 9.2 s in their own logs, i.e. about
+2.2× faster, despite all three GPUs sitting at 100% utilisation from other jobs. The first call
+took 375 s (JIT plus model load under contention) and must be excluded from any throughput
+estimate.
