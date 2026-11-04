@@ -124,15 +124,38 @@ def hhfilter_pairs(qA, qB, rowsA, rowsB, ident=90):
             elif name:
                 kept.append((name, line.strip()))
                 name = None
+    # Split at QUERY POSITION l1, not at character l1. The rows still carry lowercase
+    # insertions (an insertion survives when both flanking query positions are good), so a raw
+    # slice shifts the frame -- exactly the trap scripts/06 was written to avoid, which the
+    # first version of this function walked into anyway. The assertion then used was
+    # len(sa) == l1, which counts CHARACTERS and therefore passed while the split was wrong;
+    # AF3 caught it instead, with "all strings must have the same number of non-lowercase
+    # characters; First string has 445 ... but ... has 443". Assert on query positions.
     l1 = len(qA)
-    keptA = [(n, s[:l1]) for n, s in kept]
-    keptB = [(n, s[l1:]) for n, s in kept]
-    # The concatenated rows are gap-padded to the full query frame, so a plain slice at l1 is
-    # correct here -- unlike the general case in scripts/06, where lowercase insertions shift it.
-    for (n, s), (_, sa), (_, sb) in zip(kept, keptA, keptB):
+    keptA, keptB = [], []
+    for n, s in kept:
+        pos = 0
+        cut = len(s)
+        for i, ch in enumerate(s):
+            if pos == l1 and not ch.islower():
+                cut = i
+                break
+            if not ch.islower():
+                pos += 1
+        sa, sb = s[:cut], s[cut:]
         assert sa + sb == s, f"split lost characters in {n}"
-        assert len(sa) == l1, f"{n}: chain A is {len(sa)} not {l1}"
+        assert qlen(sa) == l1, f"{n}: chain A has {qlen(sa)} query positions, not {l1}"
+        keptA.append((n, sa))
+        keptB.append((n, sb))
+    l2 = qlen(keptB[0][1]) if keptB else 0
+    for n, s in keptB:
+        assert qlen(s) == l2, f"{n}: chain B has {qlen(s)} query positions, not {l2}"
     return keptA, keptB
+
+
+def qlen(s: str) -> int:
+    """Query positions in an A3M row: uppercase and '-' count, lowercase insertions do not."""
+    return sum(1 for c in s if not c.islower())
 
 
 def a3m(rows) -> str:
@@ -140,6 +163,14 @@ def a3m(rows) -> str:
 
 
 def af3_json(name, qA, qB, rowsA, rowsB, seed=1, templates=False) -> dict:
+    # AF3 requires every row of an MSA to have the same number of non-lowercase characters as
+    # the query. Check it here rather than discovering it from a featurisation error.
+    for cid, seq, rows in (("A", qA, rowsA), ("B", qB, rowsB)):
+        bad = [n for n, s in rows if qlen(s) != len(seq)]
+        if bad:
+            raise AssertionError(f"{name} chain {cid}: {len(bad)} rows do not match the query's "
+                                 f"{len(seq)} query positions, e.g. {bad[:3]}")
+
     def chain(cid, seq, rows):
         p = {"id": cid, "sequence": seq,
              "pairedMsa": a3m([("query", seq)] + rows),

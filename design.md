@@ -585,3 +585,61 @@ cost this project once (`finding_stcrdab_benchmark_contaminated`).
 
 `scripts/07_build_af3_inputs.py --validate` reproduces their masking rule exactly on all five
 shipped example pairs, which is what licenses reading the parser's output.
+
+## Arm B runs. First AF3 + omicMSA numbers, and the pilot sizing
+
+AF3 accepts the gap-masked, accession-paired omicMSAs with `--norun_data_pipeline`, so arm B's
+input path works end to end. All five of their example pairs fold cleanly.
+
+| pair | AF3+omicMSA ipTM | pTM | RF2-PPI | tokens |
+|---|---|---|---|---|
+| A1L188_Q5TEU4 | 0.720 | 0.650 | 1.000 | 419 |
+| P11802_P30279 | 0.800 | 0.830 | 1.000 | 592 |
+| P50395_P62820 | 0.400 | 0.730 | 0.083 | 650 |
+| Q13153_Q9H4E5 | 0.710 | 0.470 | 0.489 | 759 |
+| Q8TAE8_Q96DV4 | 0.210 | 0.460 | 0.040 | 602 |
+
+Five pairs is a direction, not a result. The direction is that the two **rank** these almost
+identically (Spearman 0.9) on a very different **scale**: RF2-PPI saturates at 0.04 and 1.00
+where AF3 spans 0.21 to 0.80. Given that RF2-PPI's tie mass is what made PrePPI's `str_score`
+unrankable in S0, a non-saturating score may matter more for AUCPR than the ranking agreement
+suggests. That is a hypothesis for the pilot to test, not a finding.
+
+**Two bugs found here, both mine, both silent.**
+
+1. `hhfilter_pairs` split the concatenated alignment with `s[:l1]` — a raw character slice —
+   having written the correct query-position splitter in `scripts/06` and documented exactly why
+   a raw slice is wrong. The assertion used was `len(sa) == l1`, which counts characters and so
+   passed. AF3 caught it: "all strings must have the same number of non-lowercase characters;
+   First string has 445 ... but ... has 443". Four of five pairs failed; the fifth succeeded
+   because it happened to have no insertions before the boundary, which was enough to make the
+   pipeline look like it worked. Fixed, and `af3_json()` now refuses to write any pair whose
+   rows do not match the query's query-position count.
+2. The sizing script assigned a fresh default-indexed Series into a row-filtered DataFrame, so
+   pandas aligned on index and scrambled the keys. The merge still returned 8,983 rows, so
+   coverage looked right while the scores belonged to other pairs, and AUCPR sat at the 0.001
+   prevalence floor and *fell* as n grew. Caught by that impossible monotonicity, not by any
+   check. Fixed with `reset_index(drop=True)`, and a positives-vs-negatives mean-score sanity
+   line now prints beside every such join.
+
+**Throughput.** After the first JIT compile, 33–46 s inference plus 10–15 s featurisation per
+pair at bucket 768, so ~55 s per pair, one job per GPU (66.6 GB for a 419-token pair). Faster
+than the 124.5 s the first, uncached fold suggested.
+
+**Pilot size**, bootstrapped from their deposited RF2-PPI scores on their benchmark:
+
+| n_pos | n_neg | total | AUCPR | subsample sd | GPU-hours |
+|---|---|---|---|---|---|
+| 100 | 400 | 500 | 0.271 | 0.050 | 7.6 |
+| 200 | 800 | 1,000 | 0.276 | 0.024 | 15.3 |
+| **500** | **2,000** | **2,500** | **0.260** | **0.0154** | **38** |
+| 1,000 | 4,000 | 5,000 | 0.256 | 0.0094 | 76 |
+| 3,000 | 5,983 | 8,983 | 0.256 | 0 | 137 |
+
+Subsample noise (0.015 at n=2,500) dominates the score-replicate noise (±0.0025) by sixfold, so
+sample size, not model stochasticity, is the binding constraint. **But the arms share their
+pairs**, so the comparison is paired and most of the sampling noise cancels: the quantity that
+matters is the sd of the arm-to-arm *difference* on the same subsample, which is far smaller
+than the per-arm sd above. The pilot is therefore 500 positives and 2,000 negatives, ~38 GPU-hours
+per arm, with the paired difference as the read-out and the per-arm AUCPR reported with its
+subsample interval so the two are not confused.
