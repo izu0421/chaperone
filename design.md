@@ -543,3 +543,45 @@ simulation, which is relative, and not quotable as their result.)
 2.2× faster, despite all three GPUs sitting at 100% utilisation from other jobs. The first call
 took 375 s (JIT plus model load under contention) and must be excluded from any throughput
 estimate.
+
+## The omicMSA quality mask forks the design
+
+The omicMSA README says to use only positions marked `*` in the `mask` record, "as we did in our
+work", and `generate_protein_pair_MSA.py` implements that by **deleting** the masked positions
+from the query and every row.
+
+For RF2-PPI that is harmless — it consumes an alignment and never emits a structure, so deleting
+columns deletes evidence and nothing else. **For AF3 it is not, because AF3 folds the query.**
+Measured over 400 randomly sampled omicMSAs:
+
+| fraction of positions kept | proteins |
+|---|---|
+| 100% | 3.8% |
+| ≥ 95% | 17.5% |
+| ≥ 90% | 34.5% |
+| ≥ 75% | 68.2% |
+| **< 75%** | **31.8%** |
+
+Median kept 83.3%. On their own five example pairs the effect ranges from 5 residues (1%) to
+**179 of 545 residues, 33%**, for Q13153. Handing AF3 the masked query would mean folding a
+protein with a third of its residues deleted and then reporting the interface of whatever that
+produced.
+
+So arm B applies the mask **as gaps, not as deletions**: the query keeps every residue, and each
+homolog row carries its aligned residue at high-quality positions and `-` at low-quality ones.
+This expresses exactly what the mask means — the aligned residue here is untrustworthy — without
+truncating the thing being folded, and the evidence AF3 sees at masked positions is then the same
+as what RF2-PPI sees, namely none. The insertion rule is theirs: an insertion is kept only when
+both flanking query positions are high quality.
+
+Pairing is by genome-accession intersection, unchanged from their script, which is well defined
+because an omicMSA carries one sequence per genome. Redundancy filtering is hhfilter at 90% on
+the *concatenated* alignment, also as theirs — filtering the chains separately would keep
+different rows for each and destroy the row-index pairing AF3 relies on.
+
+Templates are disabled for arm B. RF2-PPI is MSA-only, so leaving AF3's template search on would
+confound the engine comparison with a structural-database lookup, and PDB leakage has already
+cost this project once (`finding_stcrdab_benchmark_contaminated`).
+
+`scripts/07_build_af3_inputs.py --validate` reproduces their masking rule exactly on all five
+shipped example pairs, which is what licenses reading the parser's output.
