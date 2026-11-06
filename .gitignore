@@ -13,3 +13,15 @@ __pycache__/
 # External code and containers: cloned/downloaded, not ours to vendor.
 # RoseTTAFold2-PPI is GPL-3.0 from CongLabCode; SE3nv-20230612.sif is 14.4 GB.
 ext/
+
+# Fold outputs: 114 GB across 52,500 files in armB_out alone. The patterns above
+# ("results/*.cif") only match directly inside results/, so the per-pair output
+# directories escaped them entirely and a plain `git add -A` would have staged
+# the lot. Exclude the output trees themselves, and keep the small score tables.
+results/armA_out/
+results/armB_out/
+results/armD_out/
+results/armA_smoke_out/
+results/armD_example/
+work/
+tmplog
