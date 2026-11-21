@@ -14,8 +14,9 @@ from mcp.client.stdio import StdioServerParameters, stdio_client
 from .fold_tool import make_fold_tool
 from .resolve_ptm_artifact_tool import make_resolve_ptm_artifact_tool
 from .verdict_tool import make_record_verdict_tool
+from .models import AGENT_MODEL
 
-MODEL = "claude-fable-5"
+MODEL = AGENT_MODEL
 
 # Default fold-capable GPUs for the agent's own fold_complex tool calls.
 # Deliberately excludes GPU 2 by default on this box — it's frequently used
@@ -56,17 +57,28 @@ class LoggingSession:
         return result
 
 SYSTEM_PROMPT = """\
-You are triaging a candidate protein-protein interaction (PPI) predicted by \
-AlphaFold3, using evidence from the Human Protein Atlas (HPA) and PubMed via \
-your tools.
+You are triaging a candidate interaction predicted by AlphaFold3, using \
+evidence from the Human Protein Atlas (HPA), PubMed, STRING, CellPhoneDB, \
+UniProt and ChEMBL via your tools.
 
-You have nine evidence tools: hpa_expression, hpa_subcellular_location, \
-hpa_protein_class, pubmed_ptm_glycosylation, pubmed_cooccurrence, \
-string_known_interaction, cellphonedb_known_interaction, \
+A candidate is a protein and a partner. The partner is EITHER a second \
+protein OR a small molecule (a metabolite or drug), and the prompt tells you \
+which. The two are triaged differently — the small-molecule rules are in \
+their own section below, and where they differ they override the \
+protein-protein guidance, not add to it.
+
+You have nine protein evidence tools: hpa_expression, \
+hpa_subcellular_location, hpa_protein_class, pubmed_ptm_glycosylation, \
+pubmed_cooccurrence, string_known_interaction, cellphonedb_known_interaction, \
 cellphonedb_complex_members, and uniprot_annotation. You do NOT yet have \
 CORUM (general complex database) — cellphonedb_complex_members only covers \
 cell-surface/adhesion complexes, so a miss there doesn't rule out a larger \
 complex for intracellular proteins.
+
+You have three small-molecule tools: resolve_small_molecule (name -> ChEMBL \
+id, SMILES, InChIKey), chembl_known_activity (measured affinity of one \
+molecule at one protein target) and chembl_ligand_promiscuity (how many \
+distinct targets that molecule is already active at).
 
 You ALSO have fold_complex: it actually runs a real AlphaFold3 fold (via \
 AlphaFast, on this box's own GPUs) on any protein list you give it, and \
@@ -225,6 +237,72 @@ exists). Don't overreact to any PTM literature/keyword existing somewhere \
 on a large well-studied protein that's clearly unrelated to this specific \
 interface — judge plausible relevance, don't just pattern-match on presence.
 
+SMALL-MOLECULE PARTNERS (metabolite or drug). Everything below applies only \
+when the prompt says the partner is a small molecule.
+
+The confidence of the fold is NOT evidence that this molecule binds THIS \
+receptor. AlphaFold3 places a small molecule in a receptor pocket \
+confidently almost regardless of which receptor it is given: in this \
+project's own orphan screen, 12 of 21 metabolite candidates reached an \
+interface pTM of 0.5 against EVERY receptor they were folded against, while \
+no protein partner of 419 did. This is the published consensus, not a local \
+quirk. Kim et al. (eLife 2026) found AF3 ligand confidence separated true \
+ligands from docking false positives at AUC 46.1-60.5 across three \
+prospective screens, at chance for the one GPCR among them, where docking \
+scores reached 71-79. Ferguson et al. (Molecular Cell 2026) modelled 99.8% \
+of true GPCR agonist peptides and 96.6% of NON-agonists inside the pocket, a \
+3.2-point gap. Shamir et al. (JACS 2026), whose headline is that AF3 \
+covalent screening works, ran the cross-target control and concluded AF3 is \
+"currently not suitable for selectivity prediction". Median interface pTM was 0.85 for metabolite \
+candidates and 0.21 for protein candidates, so the two are not even on a \
+common scale — never compare them, and never read a high value for a \
+metabolite as the same evidence it would be for a protein pair. A confident \
+pose is the expected result here, not a finding.
+
+What does discriminate:
+- chembl_known_activity at THIS receptor. A measured Ki/Kd/IC50/EC50 is \
+real, curated pharmacology for this exact pair: treat it as ALREADY_KNOWN, \
+the small-molecule equivalent of a CellPhoneDB hit. Zero activities is \
+genuine novelty, in the same sense as a STRING/CellPhoneDB miss.
+- chembl_ligand_promiscuity. A molecule already measured at dozens of \
+distinct, unrelated targets will also fold confidently into one more pocket. \
+Say the number in ligand_evidence and let it set your confidence.
+- Treat the fold's confidence as a filter and not a verdict: low confidence \
+is a reason to drop a pose, high confidence is a reason to keep checking.
+- Whether the pocket is the right one. If the receptor has a known \
+endogenous ligand of a different chemical class, or the modeled contacts are \
+not the orthosteric pocket, say so.
+
+Use fold_complex for a small-molecule partner by passing the receptor in \
+`proteins` and the molecule in `ligand_smiles` (the SMILES that \
+resolve_small_molecule returned) or `ligand_ccd`. The fold tells you whether \
+the molecule sits in the pocket and which residues line it — not whether it \
+belongs there. Because confidence alone cannot settle specificity, and you \
+only get one fold per candidate, prefer spending it where the pose itself is \
+in question, and put the counter-screen in follow_up: the same molecule \
+folded against two or three unrelated receptors, which is the experiment \
+that would actually establish specificity.
+
+Verdicts for a small-molecule partner:
+- ALREADY_KNOWN — chembl_known_activity returns measured affinity at this \
+receptor.
+- LIKELY_PROMISCUOUS_POCKET — the fold is confident but the confidence is \
+not specific to this receptor: a promiscuous molecule, or a pocket that \
+would accept it whichever receptor were supplied. This is the usual answer \
+for a confident metabolite fold with nothing else behind it, and is NOT the \
+same as IMPLAUSIBLE: the molecule may well bind, but this evidence does not \
+show it.
+- CONFIRMED_NOVEL — only with something beyond the fold: the receptor is \
+expressed where the molecule is produced, the molecule is not promiscuous, \
+and no ChEMBL activity exists. Say in follow_up that a counter-screen is \
+still required.
+- IMPLAUSIBLE — the receptor cannot meet the molecule (compartment, or a \
+pocket that chemically cannot accept it).
+The PTM and glycosylation rules concern the PROTEIN side only. A metabolite \
+is not glycosylated, so LIKELY_ARTIFACT_PTM is about the receptor's own \
+modifications, not the partner's. Record what the ChEMBL tools returned in \
+ligand_evidence.
+
 You MUST end by calling record_verdict exactly once, citing the actual tool \
 results you saw."""
 
@@ -271,9 +349,39 @@ async def evaluate_candidate(
     extra_lines = "\n".join(
         f"{k}={v}" for k, v in candidate.extra.items() if v not in (None, "") and not k.endswith("_sequence")
     )
+    is_ligand = getattr(candidate, "is_ligand", False)
+    if is_ligand:
+        # Say the kind first and name the structure the agent has, so it does
+        # not spend its first tool calls asking the protein tools about a
+        # metabolite that has no gene.
+        given = [f"{k}={v}" for k, v in (("SMILES", candidate.ligand_smiles),
+                                          ("CCD code", candidate.ligand_ccd)) if v]
+        header = (
+            f"Candidate PROTEIN-LIGAND interaction.\n"
+            f"Receptor (protein): {candidate.protein_a}\n"
+            f"Partner (SMALL MOLECULE): {candidate.partner_label}\n"
+            + ("".join(f"  {g}\n" for g in given) if given else
+               "  No structure supplied — resolve_small_molecule first.\n")
+        )
+        instruction = (
+            "The partner is a small molecule, so the small-molecule section of "
+            "your instructions applies and overrides the protein-protein "
+            "guidance where they differ. Resolve the molecule, check "
+            "chembl_known_activity at this receptor and "
+            "chembl_ligand_promiscuity, pull the HPA/UniProt evidence for the "
+            "receptor, and record your verdict. Remember that a confident fold "
+            "is the expected result for a small molecule in a pocket and is not "
+            "on its own evidence of a specific interaction."
+        )
+    else:
+        header = f"Candidate PPI: {candidate.protein_a} <-> {candidate.protein_b}\n"
+        instruction = (
+            "Pull HPA/PubMed/STRING/CellPhoneDB evidence for both proteins and "
+            "record your verdict."
+        )
     user_prompt = (
-        f"Candidate PPI: {candidate.protein_a} <-> {candidate.protein_b}\n"
-        f"AF3 confidence: ipTM={candidate.iptm}, pTM={candidate.ptm}, "
+        header
+        + f"AF3 confidence: ipTM={candidate.iptm}, pTM={candidate.ptm}, "
         f"PAE_interaction={candidate.pae_interaction}\n"
         + (f"Additional supplied evidence:\n{extra_lines}\n" if extra_lines else "")
         + "\nNote: n_samples_colocalized/prop_samples_colocalized, if given, are "
@@ -282,8 +390,7 @@ async def evaluate_candidate(
         "enrichment heuristics and should anchor your coexpression reasoning "
         "when present; use the HPA tools to add compartment/plausibility "
         "context around it, not to override it.\n\n"
-        "Pull HPA/PubMed/STRING/CellPhoneDB evidence for both proteins and "
-        "record your verdict."
+        + instruction
     )
 
     messages = [{"role": "user", "content": user_prompt}]
@@ -305,7 +412,7 @@ async def evaluate_candidate(
 
     if "verdict" not in sink:
         return {
-            "pair": [candidate.protein_a, candidate.protein_b],
+            "pair": [candidate.protein_a, candidate.partner_label],
             "verdict": "INSUFFICIENT_EVIDENCE",
             "confidence": "low",
             "rationale": "Agent did not call record_verdict.",
@@ -318,7 +425,7 @@ async def evaluate_candidate(
         }
 
     result = {
-        "pair": [candidate.protein_a, candidate.protein_b],
+        "pair": [candidate.protein_a, candidate.partner_label],
         **sink["verdict"],
         "_transcript": transcript,
         "_tool_calls": tool_calls,

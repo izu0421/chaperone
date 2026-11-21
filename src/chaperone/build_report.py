@@ -21,6 +21,7 @@ VERDICT_COLORS = {
     "LIKELY_SUBCOMPLEX": "#5B8DEF",
     "ALREADY_KNOWN": "#8A8A8A",
     "LIKELY_ARTIFACT_PTM": "#FF9F1C",
+    "LIKELY_PROMISCUOUS_POCKET": "#C77DFF",
     "IMPLAUSIBLE": "#E05D5D",
     "INSUFFICIENT_EVIDENCE": "#B0B7C3",
 }
@@ -31,6 +32,7 @@ EVIDENCE_FIELDS = [
     ("ptm_glycosylation_evidence", "PTM / glycosylation"),
     ("cooccurrence_evidence", "PubMed co-occurrence"),
     ("known_interaction_evidence", "STRING / CellPhoneDB"),
+    ("ligand_evidence", "Small molecule (ChEMBL)"),
 ]
 
 CSS = """
@@ -198,6 +200,11 @@ VALIDATION_TIERS = {
         "color": "#FF9F1C",
         "reason": "May be a modeling artifact (unmodeled glycan/PTM at the interface) — check structurally (fold_complex) before committing wet-lab time.",
     },
+    "LIKELY_PROMISCUOUS_POCKET": {
+        "label": "Counter-screen before believing the pose",
+        "color": "#C77DFF",
+        "reason": "A small molecule sits confidently in a receptor pocket almost regardless of which receptor it is given, so this fold's confidence is not evidence of specificity — counter-screen against unrelated receptors first.",
+    },
 }
 
 
@@ -316,7 +323,8 @@ def render_validation_summary(enriched_rows: list, strategies: dict = None) -> s
 
     def sort_key(row_v):
         row, v = row_v
-        tier_order = {"CONFIRMED_NOVEL": 0, "LIKELY_SUBCOMPLEX": 1, "LIKELY_ARTIFACT_PTM": 2}
+        tier_order = {"CONFIRMED_NOVEL": 0, "LIKELY_SUBCOMPLEX": 1, "LIKELY_ARTIFACT_PTM": 2,
+                      "LIKELY_PROMISCUOUS_POCKET": 3}
         worth_rank = 0 if v else 1
         return (worth_rank, tier_order.get(v["tier"], 9) if v else 0, -_safe_float(row.get("iptm")))
 

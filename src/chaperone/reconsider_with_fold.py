@@ -25,8 +25,9 @@ from dotenv import load_dotenv
 from anthropic import AsyncAnthropic  # noqa: E402
 from .verdict_tool import make_record_verdict_tool  # noqa: E402
 from .paths import PROJECT_ROOT as ROOT  # noqa: E402
+from .models import AGENT_MODEL
 
-MODEL = "claude-fable-5"
+MODEL = AGENT_MODEL
 
 SYSTEM_PROMPT = """\
 You previously (in an earlier, separate step) triaged a candidate \

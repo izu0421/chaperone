@@ -33,6 +33,7 @@ from .build_report import (  # noqa: E402
 from .sources.hpa_client import fetch_gene_profile  # noqa: E402
 from .strategy_utils import normalize_str_list  # noqa: E402
 from .paths import PROJECT_ROOT as ROOT  # noqa: E402
+from .models import AUDIT_MODEL
 
 DEFAULT_FOLD_SUMMARY = ROOT / "fold_runs" / "followups" / "_summary.json"
 DEFAULT_LOG_DIR = ROOT / "log"
@@ -46,12 +47,13 @@ def make_client() -> AsyncAnthropic:
     # httpx user in the process (HPA/UniProt/etc. clients keep using it).
     return AsyncAnthropic(http_client=httpx.AsyncClient(trust_env=False))
 
-# claude-fable-5's bio-safety classifier deterministically refuses ANY wet-lab
-# validation-protocol request for a named protein pair (confirmed: even a bare
-# "what experiment would show X and Y interact?" with no system prompt, no
-# tools, no PTM/glycosylation phrasing refuses). sonnet-5/opus-5 do not, so
-# this task runs on sonnet-5 instead of the rest of the pipeline's fable-5.
-MODEL = "claude-sonnet-5"
+# The Fable family's bio-safety classifier deterministically refuses ANY
+# wet-lab validation-protocol request for a named protein pair (confirmed on
+# Fable 5: even a bare "what experiment would show X and Y interact?" with no
+# system prompt, no tools, no PTM/glycosylation phrasing refuses). The Sonnet
+# and Opus families do not, so this task runs on AUDIT_MODEL instead of the
+# AGENT_MODEL the rest of the pipeline uses.
+MODEL = AUDIT_MODEL
 
 SYSTEM_PROMPT = """\
 You are designing a concrete, practical experimental validation strategy for \

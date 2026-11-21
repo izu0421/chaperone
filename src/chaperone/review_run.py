@@ -40,8 +40,9 @@ from .design_validation import summarize_hpa  # noqa: E402
 from .sources.hpa_client import fetch_gene_profile  # noqa: E402
 from .strategy_utils import normalize_str_list  # noqa: E402
 from .paths import PROJECT_ROOT as ROOT  # noqa: E402
+from .models import AUDIT_MODEL
 
-MODEL = "claude-sonnet-5"
+MODEL = AUDIT_MODEL
 VALID_METHODS = {"PLA", "stimulation_assay", "co_ip", "other"}
 FREE_TEXT_FIELDS = ["method_rationale", "tissue_rationale", "protocol_notes", "controls", "caveats"]
 DEFAULT_FOLD_SUMMARY = ROOT / "fold_runs" / "followups" / "_summary.json"

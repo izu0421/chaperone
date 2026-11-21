@@ -73,7 +73,7 @@ async def run_batch(csv_path: str, concurrency: int, fold_gpus: list = None) -> 
                         break
                 if result is None:
                     result = {
-                        "pair": [candidate.protein_a, candidate.protein_b],
+                        "pair": [candidate.protein_a, candidate.partner_label],
                         "verdict": "INSUFFICIENT_EVIDENCE",
                         "confidence": "low",
                         "rationale": f"Agent run failed: {last_exc}",
@@ -83,7 +83,11 @@ async def run_batch(csv_path: str, concurrency: int, fold_gpus: list = None) -> 
                     }
                 LOG_DIR.mkdir(parents=True, exist_ok=True)
                 (LOG_DIR / f"{candidate.pair_id}.json").write_text(json.dumps(result, indent=2))
-                results[i] = {**result, "iptm": candidate.iptm, "ptm": candidate.ptm}
+                results[i] = {**result, "iptm": candidate.iptm, "ptm": candidate.ptm,
+                              "partner_kind": candidate.partner_kind,
+                              "ligand_name": candidate.ligand_name,
+                              "ligand_smiles": candidate.ligand_smiles,
+                              "ligand_ccd": candidate.ligand_ccd}
 
         await asyncio.gather(*(worker(i, c) for i, c in enumerate(candidates)))
 
@@ -102,6 +106,8 @@ def write_report(results: list[dict], out_path: Path) -> None:
         "ptm_glycosylation_evidence",
         "cooccurrence_evidence",
         "known_interaction_evidence",
+        "ligand_evidence",
+        "partner_kind",
         "other_subunits",
         "follow_up",
     ]
@@ -121,6 +127,8 @@ def write_report(results: list[dict], out_path: Path) -> None:
                     "ptm_glycosylation_evidence": r.get("ptm_glycosylation_evidence"),
                     "cooccurrence_evidence": r.get("cooccurrence_evidence"),
                     "known_interaction_evidence": r.get("known_interaction_evidence"),
+                    "ligand_evidence": r.get("ligand_evidence"),
+                    "partner_kind": r.get("partner_kind", "protein"),
                     "other_subunits": ";".join(r.get("other_subunits") or []),
                     "follow_up": r.get("follow_up"),
                 }

@@ -8,6 +8,7 @@ VERDICTS = [
     "ALREADY_KNOWN",
     "IMPLAUSIBLE",
     "LIKELY_ARTIFACT_PTM",
+    "LIKELY_PROMISCUOUS_POCKET",
     "INSUFFICIENT_EVIDENCE",
 ]
 
@@ -25,6 +26,7 @@ def make_record_verdict_tool(sink: dict):
             "ALREADY_KNOWN",
             "IMPLAUSIBLE",
             "LIKELY_ARTIFACT_PTM",
+            "LIKELY_PROMISCUOUS_POCKET",
             "INSUFFICIENT_EVIDENCE",
         ],
         confidence: Literal["high", "medium", "low"],
@@ -34,12 +36,12 @@ def make_record_verdict_tool(sink: dict):
         ptm_glycosylation_evidence: Optional[str] = None,
         cooccurrence_evidence: Optional[str] = None,
         known_interaction_evidence: Optional[str] = None,
+        ligand_evidence: Optional[str] = None,
         other_subunits: Optional[List[str]] = None,
         follow_up: Optional[str] = None,
     ) -> str:
-        """Record the final verdict for this PPI candidate. Call this
-        exactly once, as your last action, after you've pulled the HPA and
-        PubMed evidence you need.
+        """Record the final verdict for this candidate. Call this exactly
+        once, as your last action, after you've pulled the evidence you need.
 
         Args:
             verdict: overall classification of the candidate PPI. Use
@@ -48,6 +50,13 @@ def make_record_verdict_tool(sink: dict):
                 normally glycosylated or carry PTMs that AF3's bare-sequence
                 model wouldn't represent, and that plausibly affects this
                 interaction (not just any PTM anywhere on the protein).
+                SMALL-MOLECULE partners only: use LIKELY_PROMISCUOUS_POCKET
+                when the fold is confident but the confidence is not specific
+                to this receptor — a molecule ChEMBL already shows at many
+                unrelated targets, or a pocket that accepts it whichever
+                receptor is supplied. A confident pose is the expected result
+                for a small molecule in a pocket, so it is not on its own
+                evidence of a specific interaction.
             confidence: confidence in this verdict given the evidence pulled.
             rationale: 1-3 sentences citing the actual evidence pulled from tools.
             coexpression_evidence: what tissue/cell-type expression data showed.
@@ -72,6 +81,12 @@ def make_record_verdict_tool(sink: dict):
                 not ALREADY_KNOWN. A STRING hit driven only by "textmining"
                 is the same weak co-mention caveat as PubMed, not
                 confirmation, regardless of pubmed_cooccurrence.
+            ligand_evidence: SMALL-MOLECULE partners only: what
+                resolve_small_molecule, chembl_known_activity and
+                chembl_ligand_promiscuity returned — the structure the
+                molecule was folded as, whether ChEMBL already records
+                measured affinity at this receptor, and at how many distinct
+                targets it is active.
             other_subunits: gene symbols of other known complex members this
                 pair should be re-modeled with, if any — from
                 cellphonedb_complex_members when it covers this gene
@@ -91,6 +106,7 @@ def make_record_verdict_tool(sink: dict):
             "ptm_glycosylation_evidence": ptm_glycosylation_evidence,
             "cooccurrence_evidence": cooccurrence_evidence,
             "known_interaction_evidence": known_interaction_evidence,
+            "ligand_evidence": ligand_evidence,
             "other_subunits": other_subunits or [],
             "follow_up": follow_up,
         }

@@ -5,7 +5,7 @@ Consumed by chaperone.agent over stdio via the MCP client.
 """
 from mcp.server.fastmcp import FastMCP
 
-from . import cellphonedb_client, string_client
+from . import cellphonedb_client, chembl_client, string_client
 from .hpa_client import fetch_gene_profile
 from .pubmed_client import pubmed_search
 from .uniprot_client import fetch_uniprot_annotation
@@ -198,6 +198,67 @@ def uniprot_annotation(gene: str) -> dict:
         gene: HGNC gene symbol, e.g. "LGALS1".
     """
     return fetch_uniprot_annotation(gene)
+
+
+# ---------------------------------------------------------------------------
+# The small-molecule side of a protein-ligand candidate. STRING, CellPhoneDB
+# and the HPA tools are all protein-to-protein, so without these a metabolite
+# candidate would be triaged on the fold's confidence alone — which is the one
+# thing that does not discriminate for a small molecule in a pocket.
+# ---------------------------------------------------------------------------
+
+
+@mcp.tool()
+def resolve_small_molecule(name: str) -> dict:
+    """Resolve a metabolite or drug name to a structure: ChEMBL id, SMILES
+    and InChIKey, from ChEMBL and falling back to PubChem.
+
+    Call this first for any small-molecule partner — the ChEMBL id it returns
+    is what chembl_known_activity and chembl_ligand_promiscuity need, and an
+    unresolvable name means the candidate cannot be folded as drawn.
+
+    Args:
+        name: a metabolite or drug name, e.g. "serotonin", "kynurenic acid".
+    """
+    return chembl_client.resolve_molecule(name)
+
+
+@mcp.tool()
+def chembl_known_activity(uniprot_accession: str, molecule_chembl_id: str) -> dict:
+    """Curated ChEMBL bioactivities (Ki, Kd, IC50, EC50) of one small
+    molecule at one protein target — the pharmacology literature's own record
+    of whether this pair is already known.
+
+    This is the small-molecule analogue of string_known_interaction and
+    cellphonedb_known_interaction, neither of which indexes a metabolite
+    against a receptor. A measured affinity is strong ALREADY_KNOWN evidence.
+    Activities recorded against a protein FAMILY target are excluded, since
+    they do not say which member was measured.
+
+    Args:
+        uniprot_accession: the receptor's accession, e.g. "P08908".
+        molecule_chembl_id: from resolve_small_molecule, e.g. "CHEMBL39".
+    """
+    return chembl_client.known_activity(uniprot_accession, molecule_chembl_id)
+
+
+@mcp.tool()
+def chembl_ligand_promiscuity(molecule_chembl_id: str) -> dict:
+    """How many DISTINCT protein targets this small molecule already has
+    measured affinity at.
+
+    Read this before treating a confident fold as evidence of a specific
+    interaction. Co-folding confidence does not discriminate for a small
+    molecule in a pocket: in this project's own orphan screen, 12 of 21
+    metabolite candidates reached interface pTM 0.5 against EVERY receptor
+    they were folded against, where no protein partner of 419 did. A molecule
+    already measured at dozens of unrelated targets is a promiscuous binder,
+    and a confident fold against one more receptor adds nothing.
+
+    Args:
+        molecule_chembl_id: from resolve_small_molecule, e.g. "CHEMBL39".
+    """
+    return chembl_client.promiscuity(molecule_chembl_id)
 
 
 if __name__ == "__main__":

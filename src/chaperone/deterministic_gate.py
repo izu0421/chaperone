@@ -331,16 +331,73 @@ def fold_evidence_status(fold_results: list) -> dict:
     return {"status": "pass", "trace": "Real fold executed; no PTM/glycosylation site at the interface and no membrane-topology violation."}
 
 
+
+# A molecule this many distinct protein targets deep in ChEMBL will fold
+# confidently into one more pocket whatever that pocket is. The number is a
+# flag for reconsideration, not an auto-relabel: the gate's own rule is that
+# code flags what is checkable and an LLM call decides the replacement.
+PROMISCUOUS_TARGET_COUNT = 20
+
+
+def ligand_evidence_status(tool_calls: list) -> dict:
+    """What the ChEMBL tools actually returned for a small-molecule partner.
+
+    Returns `checked=False` when they were never called, which is itself a
+    finding: for a small-molecule candidate the fold's confidence cannot
+    establish specificity, so a verdict reached without them rests on the one
+    signal that does not discriminate.
+    """
+    activity = _tool_outputs(tool_calls, "chembl_known_activity")
+    promiscuity = _tool_outputs(tool_calls, "chembl_ligand_promiscuity")
+    resolved = _tool_outputs(tool_calls, "resolve_small_molecule")
+    n_activities = max(
+        [o.get("n_activities", 0) for o in activity if isinstance(o, dict)] or [0])
+    # A promiscuity call that errored, or that returned no usable target
+    # count, is NOT a count of zero: zero reads as "selective", which is the
+    # one direction that would wave a promiscuous molecule through.
+    target_counts = [o["n_distinct_targets_sampled"] for o in promiscuity
+                     if isinstance(o, dict) and not o.get("error")
+                     and o.get("n_distinct_targets_sampled") is not None]
+    n_targets = max(target_counts) if target_counts else None
+    trace = []
+    if activity:
+        trace.append(f"chembl_known_activity: {n_activities} measured activities at this receptor")
+    if n_targets is not None:
+        trace.append(f"chembl_ligand_promiscuity: active at {n_targets} distinct targets")
+    elif promiscuity:
+        trace.append("chembl_ligand_promiscuity returned no usable target count")
+    if not resolved and not activity and not promiscuity:
+        trace.append("no ChEMBL/PubChem tool was called for the small-molecule partner")
+    return {
+        "checked": bool(activity) and n_targets is not None,
+        "resolved": bool(resolved),
+        "n_activities_at_target": n_activities,
+        "n_distinct_targets": n_targets,
+        "promiscuous": n_targets is not None and n_targets >= PROMISCUOUS_TARGET_COUNT,
+        "trace": "; ".join(trace),
+    }
+
+
 def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
     gene_a, gene_b = row["protein_a"], row["protein_b"]
+    is_ligand = (row.get("partner_kind") or "protein") == "ligand"
     known = known_interaction_strength(tool_calls)
-    hpa = hpa_plausibility(tool_calls, gene_a, gene_b)
+    # the protein-protein plausibility and glycan checks compare two genes;
+    # for a small-molecule partner gene_b is a molecule name, so running them
+    # would query the protein tools for a gene that does not exist
+    hpa = ({"plausibility": "not_applicable", "trace": "small-molecule partner"}
+           if is_ligand else hpa_plausibility(tool_calls, gene_a, gene_b))
     fold = fold_evidence_status(fold_results)
-    glycan_binding_gene = _glycan_binding_gene(gene_a, gene_b)
-    return {"known_interaction_strength": known["strength"], "known_interaction_trace": known["trace"],
-            "hpa_plausibility": hpa["plausibility"], "hpa_trace": hpa["trace"],
-            "fold_evidence_status": fold["status"], "fold_trace": fold["trace"],
-            "glycan_binding_gene": glycan_binding_gene}
+    glycan_binding_gene = None if is_ligand else _glycan_binding_gene(gene_a, gene_b)
+    ligand = ligand_evidence_status(tool_calls) if is_ligand else None
+    facts = {"known_interaction_strength": known["strength"], "known_interaction_trace": known["trace"],
+             "hpa_plausibility": hpa["plausibility"], "hpa_trace": hpa["trace"],
+             "fold_evidence_status": fold["status"], "fold_trace": fold["trace"],
+             "glycan_binding_gene": glycan_binding_gene,
+             "partner_kind": "ligand" if is_ligand else "protein"}
+    if ligand:
+        facts["ligand"] = ligand
+    return facts
 
 
 def find_contradictions(row: dict, facts: dict) -> list[str]:
@@ -373,6 +430,31 @@ def find_contradictions(row: dict, facts: dict) -> list[str]:
     verdict = row.get("verdict")
     contradictions = []
 
+    # ---- small-molecule partner -------------------------------------------
+    ligand = facts.get("ligand")
+    if ligand:
+        if ligand["n_activities_at_target"] > 0 and verdict != "ALREADY_KNOWN":
+            contradictions.append(
+                f"ChEMBL records {ligand['n_activities_at_target']} measured bioactivities of this "
+                f"molecule AT this receptor — curated pharmacology for this exact pair, the "
+                f"small-molecule equivalent of a CellPhoneDB hit — but verdict is {verdict}, not "
+                f"ALREADY_KNOWN. {ligand['trace']}")
+        if ligand["promiscuous"] and verdict == "CONFIRMED_NOVEL":
+            contradictions.append(
+                f"Verdict is CONFIRMED_NOVEL, but ChEMBL already shows this molecule active at "
+                f"{ligand['n_distinct_targets']} distinct protein targets. A small molecule folds "
+                f"confidently into a receptor pocket almost regardless of which receptor it is given "
+                f"(12 of 21 metabolites in this project's own screen cleared interface pTM 0.5 against "
+                f"EVERY receptor tested, where 0 of 419 proteins did), so a confident pose for a "
+                f"promiscuous molecule is the expected result and not evidence of a specific "
+                f"interaction — LIKELY_PROMISCUOUS_POCKET fits this evidence. {ligand['trace']}")
+        if not ligand["checked"] and verdict in ("CONFIRMED_NOVEL", "ALREADY_KNOWN", "IMPLAUSIBLE"):
+            contradictions.append(
+                f"Verdict is {verdict} for a small-molecule partner, but neither "
+                f"chembl_known_activity nor chembl_ligand_promiscuity was called, so neither whether "
+                f"this pair is already measured nor whether the molecule binds everything was "
+                f"checked. The fold's confidence cannot settle either question. {ligand['trace']}")
+
     if facts.get("glycan_binding_gene") and verdict not in ("LIKELY_ARTIFACT_PTM", "IMPLAUSIBLE", "ALREADY_KNOWN"):
         contradictions.append(
             f"{facts['glycan_binding_gene']}'s real UniProt FUNCTION text describes a carbohydrate-binding "
@@ -389,7 +471,7 @@ def find_contradictions(row: dict, facts: dict) -> list[str]:
     if verdict == "ALREADY_KNOWN" and facts["known_interaction_strength"] == "weak":
         contradictions.append(f"Verdict is ALREADY_KNOWN but the only STRING hit found is weak (textmining/coexpression-driven, no database/experiments backing) — a co-mention signal, not proof of a known interaction. {facts['known_interaction_trace']}")
 
-    if facts["hpa_plausibility"] == "implausible" and verdict != "IMPLAUSIBLE":
+    if facts["hpa_plausibility"] == "implausible" and verdict != "IMPLAUSIBLE":  # noqa: E501
         contradictions.append(f"HPA shows no plausible route for these two proteins to physically meet, but verdict is {verdict}, not IMPLAUSIBLE. {facts['hpa_trace']}")
 
     # Deliberately does NOT try to force IMPLAUSIBLE vs LIKELY_ARTIFACT_PTM

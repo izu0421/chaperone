@@ -1,5 +1,5 @@
 """Gives the triage agent itself the ability to actually run a fold, not just
-recommend one. Wraps chaperone.fold_candidate.fold() as a tool the Fable 5
+recommend one. Wraps chaperone.fold_candidate.fold() as a tool the triage
 agent can call mid-reasoning, so a "this looks like it needs subunit X"
 hypothesis gets tested immediately with a real AF3 result — the finding goes
 into the verdict as evidence, not into `follow_up` as a deferred suggestion.
@@ -49,7 +49,9 @@ def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter:
     state["used"] = False
 
     @beta_async_tool
-    async def fold_complex(proteins: list[str], reason: str) -> dict:
+    async def fold_complex(proteins: list[str], reason: str,
+                           ligand_smiles: str = None, ligand_ccd: str = None,
+                           ligand_name: str = None) -> dict:
         """Actually fold a proposed protein complex with AlphaFast (real
         AlphaFold 3, running on this box's GPUs) and return real ipTM/pTM/
         ranking_score — not a guess. Use this when you've proposed a
@@ -87,14 +89,35 @@ def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter:
         for every LIKELY_SUBCOMPLEX candidate reflexively. You get exactly
         one call; a second call in this conversation will be refused.
 
+        For a SMALL-MOLECULE partner, pass the receptor in `proteins` and the
+        molecule in `ligand_smiles` (from resolve_small_molecule) or
+        `ligand_ccd` — it is folded into the complex as its own chain, which
+        is what a metabolite candidate actually is. Read the result with the
+        pocket caveat in mind: AF3 places a small molecule in a receptor
+        pocket confidently almost regardless of which receptor it is given,
+        so a high interface pTM here is NOT evidence of a specific
+        interaction the way it is for a protein-protein interface. What the
+        fold can still tell you is whether the molecule sits in the pocket at
+        all and which residues line it.
+
         Args:
             proteins: gene symbols (or UniProt accessions) to fold together
-                as one complex, 2-6 chains, in the order they should be
-                assigned chain IDs A, B, C...
+                as one complex, 1-6 chains, in the order they should be
+                assigned chain IDs A, B, C... A small-molecule candidate
+                normally passes the single receptor here.
             reason: one sentence on what hypothesis this tests.
+            ligand_smiles: SMILES of a small molecule to co-fold as its own
+                chain, e.g. the `smiles` returned by resolve_small_molecule.
+            ligand_ccd: PDB chemical-component code of the molecule instead
+                of a SMILES string, e.g. "ATP". Use one or the other.
+            ligand_name: how to label the molecule in the report.
         """
         call_t0 = time.time()
-        input_args = {"proteins": proteins, "reason": reason}
+        ligands = []
+        if ligand_ccd or ligand_smiles:
+            ligands.append({"ccd": ligand_ccd, "smiles": ligand_smiles,
+                            "name": ligand_name or ligand_ccd})
+        input_args = {"proteins": proteins, "reason": reason, "ligands": ligands}
 
         def log(output, is_error=False):
             if tool_call_log is not None:
@@ -119,7 +142,7 @@ def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter:
             t0 = time.time()
             try:
                 result = await asyncio.to_thread(
-                    fold_sync, proteins, job_name, None, gpu_device, (1,)
+                    fold_sync, proteins, job_name, None, gpu_device, (1,), False, ligands
                 )
             except Exception as exc:  # noqa: BLE001
                 err = {"error": f"fold failed: {exc}", "elapsed_seconds": round(time.time() - t0, 1)}

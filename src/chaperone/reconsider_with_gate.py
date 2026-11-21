@@ -21,8 +21,9 @@ from .paths import PROJECT_ROOT as ROOT  # noqa: E402
 from .deterministic_gate import (  # noqa: E402
     compute_gate_facts, find_contradictions, load_tool_calls, load_fold_results, gather_fold_results,
 )
+from .models import AUDIT_MODEL  # noqa: E402
 
-# claude-fable-5's bio-safety classifier silently REFUSED reconsideration
+# The Fable family's bio-safety classifier silently REFUSED reconsideration
 # calls whose contradiction text discusses glycan-mediated binding
 # mechanisms (stop_reason="refusal", empty tool input {}) — the same
 # classifier behavior already found and worked around in
@@ -31,9 +32,9 @@ from .deterministic_gate import (  # noqa: E402
 # the row unchanged, masquerading as "reconsideration decided nothing
 # needed to change" for potentially many candidates in a batch. Fixed two
 # ways: detect refusal explicitly (see reconsider_one) AND run this script
-# on sonnet-5, which doesn't refuse this content, matching the established
+# on AUDIT_MODEL, which doesn't refuse this content, matching the established
 # mitigation used elsewhere in this project.
-MODEL = "claude-sonnet-5"
+MODEL = AUDIT_MODEL
 
 SYSTEM_PROMPT = """\
 You previously triaged a candidate protein-protein interaction (PPI) \

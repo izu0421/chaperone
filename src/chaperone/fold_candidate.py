@@ -16,6 +16,7 @@ multimer with subunit X" — it actually runs it, rather than just suggesting it
 Usage:
     python -m chaperone.fold_candidate RUNX1 CBFB --name runx1_cbfb
     python -m chaperone.fold_candidate Q01196 Q13951 --name runx1_cbfb_by_accession
+    python -m chaperone.fold_candidate HTR1A --ligand_smiles 'NCCc1c[nH]c2ccc(O)cc12' --name htr1a_serotonin
 """
 import argparse
 import fcntl
@@ -107,16 +108,34 @@ def fetch_sequence(identifier: str) -> dict:
 def build_af3_input(
     name: str, chains: list[dict], model_seeds: list[int],
     glycan_sequences: list[dict] = (), bonded_atom_pairs: list = (),
+    ligands: list[dict] = (),
 ) -> dict:
-    n_chain_slots = len(chains) + len(glycan_sequences)
+    """AF3 input for `chains` (proteins) plus any small-molecule `ligands`.
+
+    Ligand chains take the letters after the proteins, so a result's chain
+    list stays index-aligned with its protein chains and analyze_fold's
+    chain-to-accession map is unaffected.
+    """
+    n_chain_slots = len(chains) + len(glycan_sequences) + len(ligands)
     if n_chain_slots > len(CHAIN_LETTERS):
         raise ValueError(f"Too many chains ({n_chain_slots}) for single-letter chain IDs")
+    ligand_entries = []
+    for j, lig in enumerate(ligands):
+        chain_id = CHAIN_LETTERS[len(chains) + j]
+        if lig.get("ccd"):
+            # a CCD code is the PDB's own definition of the molecule, so AF3
+            # builds it from a known template; a SMILES string is parsed fresh
+            ligand_entries.append({"ligand": {"id": [chain_id], "ccdCodes": [lig["ccd"]]}})
+        elif lig.get("smiles"):
+            ligand_entries.append({"ligand": {"id": [chain_id], "smiles": lig["smiles"]}})
+        else:
+            raise ValueError(f"ligand {lig.get('name') or j} has neither a ccd code nor a smiles string")
     af3_input = {
         "name": name,
         "sequences": [
             {"protein": {"id": [CHAIN_LETTERS[i]], "sequence": c["sequence"]}}
             for i, c in enumerate(chains)
-        ] + list(glycan_sequences),
+        ] + ligand_entries + list(glycan_sequences),
         "modelSeeds": model_seeds,
         "dialect": "alphafold3",
         "version": 1,
@@ -203,16 +222,34 @@ def parse_confidences(output_dir: Path, name: str) -> dict:
 
 
 def fold(proteins: list[str], name: str, output_root: Path = None, gpu_device: str = "0",
-         model_seeds: list[int] = (1,), with_glycans: bool = False) -> dict:
+         model_seeds: list[int] = (1,), with_glycans: bool = False,
+         ligands: list[dict] = ()) -> dict:
+    """Fold `proteins` (gene symbols or accessions) with any small-molecule
+    `ligands` as one complex.
+
+    Each ligand is a dict with a `ccd` code or a `smiles` string, and an
+    optional `name` for the report. A protein-ligand candidate is folded with
+    one protein chain and one ligand; the receptor still needs its own
+    sequence, so `proteins` is never empty.
+    """
+    if not proteins:
+        raise ValueError("at least one protein chain is required")
+    ligands = [dict(l) for l in ligands]
+    for lig in ligands:
+        if not (lig.get("ccd") or lig.get("smiles")):
+            raise ValueError(f"ligand {lig.get('name') or lig} has neither a ccd code nor a smiles string")
     chains = [fetch_sequence(p) for p in proteins]
     for c in chains:
         print(f"  {c['identifier']} -> {c['accession']} ({len(c['sequence'])} aa)", file=sys.stderr)
+    for lig in ligands:
+        print(f"  ligand {lig.get('name') or ''} -> "
+              f"{lig.get('ccd') or lig.get('smiles')}", file=sys.stderr)
 
     glycan_sequences, bonded_atom_pairs = [], []
     if with_glycans:
         from .glycan_lib import build_glycan_chains_and_bonds, fetch_n_glycosylation_sites
 
-        next_letter_idx = len(chains)
+        next_letter_idx = len(chains) + len(ligands)
         for i, c in enumerate(chains):
             protein_chain_id = CHAIN_LETTERS[i]
             if not c["accession"]:
@@ -228,7 +265,8 @@ def fold(proteins: list[str], name: str, output_root: Path = None, gpu_device: s
             bonded_atom_pairs += bonds
             next_letter_idx += len(sites)
 
-    af3_input = build_af3_input(name, chains, list(model_seeds), glycan_sequences, bonded_atom_pairs)
+    af3_input = build_af3_input(name, chains, list(model_seeds), glycan_sequences,
+                                bonded_atom_pairs, ligands)
 
     work_dir = Path(output_root) if output_root else FOLD_RUNS_DIR / name
     input_dir, output_dir = work_dir / "input", work_dir / "output"
@@ -247,6 +285,12 @@ def fold(proteins: list[str], name: str, output_root: Path = None, gpu_device: s
         {"identifier": c["identifier"], "accession": c["accession"], "length": len(c["sequence"])}
         for c in chains
     ]
+    if ligands:
+        result["ligand_chains"] = [
+            {"chain_id": CHAIN_LETTERS[len(chains) + j], "name": lig.get("name"),
+             "ccd": lig.get("ccd"), "smiles": lig.get("smiles")}
+            for j, lig in enumerate(ligands)
+        ]
     if with_glycans:
         result["glycan_chains"] = [
             {"chain_id": s["ligand"]["id"][0], "ccd_codes": s["ligand"]["ccdCodes"]}
@@ -263,14 +307,21 @@ def main():
     ap.add_argument("--output_dir", default=None, help="Override the default fold_runs/<name>/ location")
     ap.add_argument("--gpu_device", default=os.environ.get("GPU_DEVICE", "0"))
     ap.add_argument("--model_seeds", default="1", help="Comma-separated seed list, e.g. 1,2,3")
+    ap.add_argument("--ligand_ccd", action="append", default=[],
+                    help="PDB CCD code of a small molecule to co-fold, e.g. ATP (repeatable)")
+    ap.add_argument("--ligand_smiles", action="append", default=[],
+                    help="SMILES of a small molecule to co-fold (repeatable)")
     args = ap.parse_args()
 
+    ligands = ([{"ccd": c, "name": c} for c in args.ligand_ccd]
+               + [{"smiles": s} for s in args.ligand_smiles])
     result = fold(
         args.proteins,
         args.name,
         output_root=args.output_dir,
         gpu_device=args.gpu_device,
         model_seeds=[int(s) for s in args.model_seeds.split(",")],
+        ligands=ligands,
     )
     print(json.dumps(result, indent=2))
 

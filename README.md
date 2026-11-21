@@ -46,6 +46,23 @@ Then, across the whole batch:
    tool-call ledger behind every verdict and (when available) an embedded
    3D viewer of the real folded structure.
 
+## Protein-ligand candidates
+
+A candidate's partner can be a small molecule instead of a second protein.
+Give the CSV a `metabolite`, `ligand_smiles` or `ligand_ccd` column (or set
+`partner_kind` per row to mix both kinds in one file) and the molecule is
+resolved against ChEMBL/PubChem, co-folded as its own AF3 chain, and checked
+for measured affinity at that receptor and for promiscuity across all targets.
+
+This path exists because co-folding confidence does not discriminate for a
+small molecule in a pocket. AlphaFold3 places one confidently almost whatever
+receptor it is given, so the agent is told to treat a confident pose as the
+expected result and to decide novelty from pharmacology instead: a measured
+Ki/Kd/IC50 at this receptor means ALREADY_KNOWN, and a molecule already active
+at dozens of unrelated targets gets LIKELY_PROMISCUOUS_POCKET however
+confident the fold. The evidence behind that is collected in
+`../structural_modelling/LITERATURE_cofolding_screening.md`.
+
 ## Setup
 
 ```bash
