@@ -36,7 +36,13 @@ EVIDENCE_FIELDS = [
 ]
 
 CSS = """
-:root { --navy:#1B2A4A; --teal:#2EC4B6; --gold:#FF9F1C; --grey:#6B7280; --light:#F4F6F8; }
+/* --grey was #6B7280 and carried every secondary line in the report: the stat
+   captions, the field keys, the metrics strip, the validation note. Grey reads as
+   specification, as though those lines were annotations on the result instead of
+   part of it, and it is the first thing to go on a projector. It is now the body
+   colour; --rule keeps the old grey for the borders that should still recede. */
+:root { --navy:#1B2A4A; --teal:#2EC4B6; --gold:#FF9F1C; --grey:#1A1A1F;
+        --rule:#6B7280; --light:#F4F6F8; }
 * { box-sizing: border-box; }
 body { font-family: -apple-system, Calibri, Helvetica, Arial, sans-serif; margin:0; background:#fff; color:var(--navy); }
 header { background:var(--navy); color:#fff; padding:28px 40px; }
@@ -52,7 +58,7 @@ main { padding: 10px 40px 60px; }
 .card-head:hover { background:var(--light); }
 .pair { font-size:17px; font-weight:700; }
 .badge { color:#fff; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.02em; }
-.conf { font-size:12px; color:var(--grey); border:1px solid #ddd; border-radius:999px; padding:3px 10px; }
+.conf { font-size:12px; color:var(--grey); border:1px solid var(--rule); border-radius:999px; padding:3px 10px; }
 .metrics { font-size:12px; color:var(--grey); margin-left:auto; }
 .card-body { padding: 4px 18px 18px; border-top:1px solid #eee; display:none; }
 .card.open .card-body { display:block; }
