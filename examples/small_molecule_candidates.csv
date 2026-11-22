@@ -1,0 +1,13 @@
+receptor,metabolite,af3_iptm,af3_ptm
+HTR1A,serotonin,0.89,0.85
+DRD2,dopamine,0.91,0.86
+ADORA2A,adenosine,0.88,0.84
+GPR17,serotonin,0.86,0.81
+SUCNR1,dopamine,0.84,0.80
+GPR35,kynurenic acid,0.87,0.83
+HCAR2,nicotinic acid,0.90,0.85
+FFAR2,propionic acid,0.82,0.79
+CNR1,anandamide,0.88,0.83
+LPAR1,serotonin,0.85,0.80
+GPBAR1,lithocholic acid,0.89,0.84
+CYSLTR1,succinic acid,0.83,0.79
