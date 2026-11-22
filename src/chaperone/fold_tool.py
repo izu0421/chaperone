@@ -98,7 +98,13 @@ def make_fold_tool(pair_id: str, fold_semaphore: asyncio.Semaphore, gpu_counter:
         so a high interface pTM here is NOT evidence of a specific
         interaction the way it is for a protein-protein interface. What the
         fold can still tell you is whether the molecule sits in the pocket at
-        all and which residues line it.
+        all and which residues line it. Its `ligands` block measures the
+        pose instead of scoring it: `buried_fraction` (a real pocket buries
+        a molecule, around 0.7 and above), `pocket.<chain>.topology` (which
+        part of the receptor the contacts fall on -- a GPCR's orthosteric
+        site is inside the transmembrane bundle, so Cytoplasmic-only
+        contacts mean the molecule is not in it), `ligand_plddt_mean`, and
+        `clash` with `min_separation_A`.
 
         Args:
             proteins: gene symbols (or UniProt accessions) to fold together

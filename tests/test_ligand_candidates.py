@@ -174,3 +174,74 @@ def test_unusable_promiscuity_count_is_not_read_as_selective():
     assert facts["ligand"]["checked"] is False
     assert any("chembl_known_activity" in f or "promiscuity" in f
                for f in find_contradictions(row, facts))
+
+
+# ------------------------------------------------- ligand pose geometry ----
+
+def test_sasa_matches_the_analytic_sphere():
+    """The Shrake-Rupley implementation is written here rather than imported,
+    so it needs its own check against a case with a closed form."""
+    import numpy as np
+    from chaperone.analyze_fold import _sasa, PROBE
+    area = _sasa(np.array([[0.0, 0.0, 0.0]]), np.array([1.70]))[0]
+    assert abs(area - 4 * np.pi * (1.70 + PROBE) ** 2) / area < 0.01
+
+
+def test_two_coincident_atoms_do_not_double_count_surface():
+    import numpy as np
+    from chaperone.analyze_fold import _sasa
+    coords = np.array([[0.0, 0.0, 0.0], [0.0, 0.0, 0.01]])
+    one = _sasa(np.array([[0.0, 0.0, 0.0]]), np.array([1.70]))[0]
+    assert abs(_sasa(coords, np.array([1.70, 1.70])).sum() - one) / one < 0.05
+
+
+def test_ligand_geometry_reports_burial_clash_and_pocket():
+    """A molecule enclosed by a shell of protein atoms should read as buried,
+    unclashed, and in contact with the residues that enclose it."""
+    import numpy as np
+    from chaperone.analyze_fold import ligand_geometry
+    # a shell at 4.4 A: close enough that each atom's probe-expanded sphere
+    # (1.70 + 1.4) reaches past the ligand's own, which is what burial means.
+    # A sparser cage at 4 A on the diagonal sits 6.9 A out and occludes
+    # nothing, which is the right answer for a cage, not a pocket.
+    directions = []
+    for ax in range(3):
+        for sign in (-1.0, 1.0):
+            v = [0.0, 0.0, 0.0]
+            v[ax] = sign
+            directions.append(v)
+    for x in (-1, 1):
+        for y in (-1, 1):
+            for z in (-1, 1):
+                n = 3 ** 0.5
+                directions.append([x / n, y / n, z / n])
+    shell = np.array(directions) * 4.4
+    chains = {
+        "A": {"coords": shell, "radii": np.full(len(shell), 1.70),
+              "res_index": np.arange(1, len(shell) + 1), "n_atoms": len(shell),
+              "plddt": np.full(len(shell), 80.0), "is_ligand": False},
+        "B": {"coords": np.array([[0.0, 0.0, 0.0]]), "radii": np.array([1.70]),
+              "res_index": np.array([1]), "n_atoms": 1,
+              "plddt": np.array([72.0]), "is_ligand": True},
+    }
+    g = ligand_geometry(chains, "B", {"A": []})
+    assert g["ligand_chain"] == "B" and g["n_ligand_atoms"] == 1
+    assert g["ligand_plddt_mean"] == 72.0
+    assert g["buried_fraction"] > 0.5          # enclosed by the shell
+    assert g["clash"] is False                 # nearest shell atom is ~6.9 A
+    assert g["pocket"]["A"]["n_contacting_residues"] > 0
+
+
+def test_ligand_geometry_flags_a_clash():
+    import numpy as np
+    from chaperone.analyze_fold import ligand_geometry
+    chains = {
+        "A": {"coords": np.array([[1.0, 0.0, 0.0]]), "radii": np.array([1.70]),
+              "res_index": np.array([1]), "n_atoms": 1,
+              "plddt": np.array([80.0]), "is_ligand": False},
+        "B": {"coords": np.array([[0.0, 0.0, 0.0]]), "radii": np.array([1.70]),
+              "res_index": np.array([1]), "n_atoms": 1,
+              "plddt": np.array([60.0]), "is_ligand": True},
+    }
+    g = ligand_geometry(chains, "B", {"A": []})
+    assert g["min_separation_A"] == 1.0 and g["clash"] is True

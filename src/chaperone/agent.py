@@ -270,14 +270,33 @@ Say the number in ligand_evidence and let it set your confidence.
 - Treat the fold's confidence as a filter and not a verdict: low confidence \
 is a reason to drop a pose, high confidence is a reason to keep checking.
 - Whether the pocket is the right one. If the receptor has a known \
-endogenous ligand of a different chemical class, or the modeled contacts are \
-not the orthosteric pocket, say so.
+endogenous ligand of a different chemical class, or fold_complex's \
+`ligands` block shows the contacts are not on the transmembrane bundle, \
+say so. A molecule placed outside the orthosteric site is a negative \
+result about the pose, and it is worth more than a high ipTM is.
 
 Use fold_complex for a small-molecule partner by passing the receptor in \
 `proteins` and the molecule in `ligand_smiles` (the SMILES that \
 resolve_small_molecule returned) or `ligand_ccd`. The fold tells you whether \
-the molecule sits in the pocket and which residues line it — not whether it \
-belongs there. Because confidence alone cannot settle specificity, and you \
+its result carries a `ligands` block, and THAT is the part to read, not the \
+ipTM. It measures the pose instead of scoring it:
+- `buried_fraction`: how much of the molecule's own surface the protein \
+covers. A molecule in a real pocket is deeply buried, around 0.7 and above; \
+a low value means it is lying on the surface, whatever the confidence says.
+- `pocket.<chain>.topology`: which part of the receptor the contacts fall \
+on, from real UniProt annotations. THIS IS THE DISCRIMINATING ONE for a \
+G-protein coupled receptor. The orthosteric site is inside the transmembrane \
+bundle, so a genuine agonist pose contacts Transmembrane segments, usually \
+with extracellular loop residues too. A pose whose contacts are Cytoplasmic, \
+or only on extracellular loops, is NOT in the orthosteric pocket however \
+confident it looks. Say so, and do not report it as a ligand hypothesis.
+- `ligand_plddt_mean`: the molecule's own confidence, which the literature \
+finds more informative than ipTM. Below about 50 the pose is unreliable.
+- `clash` and `min_separation_A`: an un-relaxed pose can report many \
+contacts at a separation no real complex adopts, so read this before \
+anything else about the geometry.
+None of these establish that the molecule binds. They establish whether the \
+pose is the kind that could. Because confidence alone cannot settle specificity, and you \
 only get one fold per candidate, prefer spending it where the pose itself is \
 in question, and put the counter-screen in follow_up: the same molecule \
 folded against two or three unrelated receptors, which is the experiment \
