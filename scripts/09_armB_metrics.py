@@ -32,7 +32,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 log = logging.getLogger("m")
 ROOT = Path(__file__).resolve().parent.parent
 
-d = pd.read_csv(ROOT / "results" / "armB_scores.csv")
+import argparse
+# B - A is a paired difference, so both arms run through THIS file, not a copy.
+_ap = argparse.ArgumentParser(); _ap.add_argument("--arm", default="B", choices=["A", "B"])
+_ARM = _ap.parse_args().arm
+
+d = pd.read_csv(ROOT / "results" / f"arm{_ARM}_scores.csv")
 pil = pd.read_csv(ROOT / "bench" / "pilot_pairs.csv")
 log.info("%d scored, %d in the pilot manifest", len(d), len(pil))
 
@@ -51,7 +56,7 @@ prev = d.y.mean()
 log.info("\n%s", d.cat.value_counts().to_string())
 log.info("prevalence %.3f (AUPRC baseline)", prev)
 
-log.info("\n--- arm B: AF3 + omicMSA, standalone discrimination (n=%d) ---", len(d))
+log.info("\n--- arm %s: %s, standalone discrimination (n=%d) ---", _ARM, {"A": "AF3 + AlphaFast MSA", "B": "AF3 + omicMSA"}[_ARM], len(d))
 rows = []
 for col in ["iptm", "iptm_AB", "ptm", "ranking_score", "pae_min_AB",
             "n_contact", "n_res_iface", "bsa", "iface_plddt", "mean_plddt",
@@ -75,6 +80,6 @@ log.info("\nclash check: %d of %d models have min_sep < 1.5 A "
          100 * (d.loc[d.y == 1, "min_sep"] < 1.5).mean(),
          100 * (d.loc[d.y == 0, "min_sep"] < 1.5).mean())
 
-d.drop(columns=["key"]).to_csv(ROOT / "results" / "armB_scores_labelled.csv", index=False)
-m.to_csv(ROOT / "results" / "armB_feature_auc.csv", index=False)
-log.info("wrote %s", ROOT / "results" / "armB_scores_labelled.csv")
+d.drop(columns=["key"]).to_csv(ROOT / "results" / f"arm{_ARM}_scores_labelled.csv", index=False)
+m.to_csv(ROOT / "results" / f"arm{_ARM}_feature_auc.csv", index=False)
+log.info("wrote %s", ROOT / "results" / f"arm{_ARM}_scores_labelled.csv")

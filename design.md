@@ -42,8 +42,10 @@ Checked against the text, the paper's method comparison does not hold the alignm
 
 - AF2 was run **with omicMSAs** — "The best performance for a de novo PPI screen is achieved when
   AF2 is used in combination with omicMSAs." AF3 is not named in that sentence.
-- AF3 was run through the **"AF3 web server widely used by the scientific community"**, i.e. on
-  its own MSA pipeline, not on omicMSAs.
+- AF3 was run through the **"AF3 web server widely used by the scientific community"**.
+  *Checked 2026-11-19: the paper never states which MSA AF3 used in fig. 2D.* That it was AF3's
+  own pipeline is an inference — a strong one, because the AF3 server accepts no custom
+  alignment — but it is an inference, not a quoted fact.
 - The paper states plainly that "all the tools we tested were trained using MSAs built from
   UniRef and metagenomic sequences, and they are not adapted to work with omicMSA."
 
@@ -291,8 +293,13 @@ is strongly enriched and the rest is noise.
 
 **Three consequences for the folding arms.**
 
-1. **The metric is top-k precision and AUCPR at 1:1000, never AUROC.** The RF2-PPI paper made the
-   same choice; panel **c** shows it is forced by the data rather than a convention.
+1. **The metric is top-k precision and AUCPR at 1:1000, never AUROC.** Panel **c** shows it is
+   forced by the data rather than a convention.
+   *Checked against the paper (2026-11-19).* The paper reports **AUCPR** ("Using area under the
+   precision and recall curve (AUCPR) as a metric", fig. 2D) and **precision at fixed recall**
+   ("substantially improved recall at high precision (80% or 90%)"). **AUROC appears nowhere in
+   it.** So it agrees on excluding AUROC, but it does not use top-k precision — that part is ours,
+   adopted because top-k is the quantity a screen actually spends GPU-hours on.
 2. **The bar is ~15–24× enrichment in the top 1,000**, at essentially zero recall. "Beating
    PrePPI" means beating that, and a method that merely ranks the whole set better is not
    obviously more useful.
@@ -643,3 +650,21 @@ matters is the sd of the arm-to-arm *difference* on the same subsample, which is
 than the per-arm sd above. The pilot is therefore 500 positives and 2,000 negatives, ~38 GPU-hours
 per arm, with the paired difference as the read-out and the per-arm AUCPR reported with its
 subsample interval so the two are not confused.
+
+## Co-folding as a screening score: the literature
+
+`LITERATURE_cofolding_screening.md` collects what other groups have found, added
+2026-11-21 after the orphan screen's metabolite result. The short version: four
+independent groups report that co-folding beats docking at placing a ligand and loses to
+docking at deciding whether the ligand belongs there, so our result is corroborated and
+not new. Three of them also find ipTM the weakest of the available confidence metrics for
+the ligand side — the metric this screen used.
+
+Nearest analogue: DeorphaNN (Molecular Cell 2026) modelled 99.8% of true GPCR agonist
+peptides and 96.6% of non-agonists in the pocket, a 3.2-point gap, under the heading
+"AF-Multimer positions peptides in GPCR binding pocket with minimal discrimination".
+
+Two consequences, both actionable without re-folding anything: re-score the orphan folds
+on ligand-pLDDT instead of ipTM, and treat the counter-screen as required and not
+optional — Shamir et al. (JACS 2026) ran the equivalent control against non-cognate
+kinases and concluded AF3 is "currently not suitable for selectivity prediction".

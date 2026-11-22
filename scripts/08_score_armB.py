@@ -106,10 +106,16 @@ def one(d: Path) -> dict:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=16)
+    # Arm A is scored by THIS file, not a copy of it. B - A is a paired difference,
+    # so the two arms must pass through identical scoring code; a forked scorer is
+    # the obvious way for a difference to appear that is about the code and not the
+    # alignment.
+    ap.add_argument("--arm", default="B", choices=["A", "B"])
     a = ap.parse_args()
 
-    dirs = sorted(d for d in OUT.iterdir() if d.is_dir())
-    log.info("%d arm B output directories", len(dirs))
+    out_dir = ROOT / "results" / f"arm{a.arm}_out"
+    dirs = sorted(d for d in out_dir.iterdir() if d.is_dir())
+    log.info("%d arm %s output directories", len(dirs), a.arm)
 
     rows, done = [], 0
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
@@ -129,8 +135,9 @@ def main():
     d["label"] = [k[0] for k in kk]
     d["neg_set"] = [k[1] for k in kk]
 
-    d.to_csv(ROOT / "results" / "armB_scores.csv", index=False)
-    log.info("wrote %s", ROOT / "results" / "armB_scores.csv")
+    dest = ROOT / "results" / f"arm{a.arm}_scores.csv"
+    d.to_csv(dest, index=False)
+    log.info("wrote %s", dest)
 
     bad = d[d.note.ne("")]
     log.info("\n%d pairs with a note:\n%s", len(bad),
