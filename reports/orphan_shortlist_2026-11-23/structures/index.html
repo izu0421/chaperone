@@ -69,6 +69,8 @@ with, and the candidates.</p>
   <span><i style="background:var(--cyt)"></i>cytoplasmic &mdash; the wrong side</span>
   <span><i style="background:var(--lig)"></i>the molecule</span>
   <span>grey surface &mdash; the residues it contacts</span>
+  <span><i style="background:var(--cyt);clip-path:polygon(50% 100%,0 0,100% 0)"></i>arrow
+  &mdash; points to the cytoplasmic side</span>
 </div>
 </div></div>
 
@@ -119,6 +121,7 @@ function card(job, m){
    <div class="ctrls">
      <button data-act="surface" aria-pressed="true">contact surface</button>
      <button data-act="topology" aria-pressed="true">topology</button>
+     <button data-act="axis" aria-pressed="true">membrane axis</button>
      <button data-act="spin" aria-pressed="false">spin</button>
    </div>
    <div class="facts">
@@ -154,6 +157,40 @@ function paint(job){
     V.addSurface($3Dmol.SurfaceType.MS, {color: '#9a9aa2', opacity: 0.55},
                  {chain: m.receptor_chain, resi: m.contacts}, R);
   }
+  // Which way is down. Without it the red cytoplasmic colouring is just a colour:
+  // in an arbitrary 3D view a reader cannot tell the intracellular face from the
+  // extracellular one, and that is the distinction the pose argument rests on.
+  // The axis runs between the centroids of the annotated domains, drawn off to the
+  // side of the receptor so it does not sit across the pocket.
+  if (p.axis && m.axis){
+    const e = m.axis.ext, c = m.axis.cyt;
+    const d = [c[0]-e[0], c[1]-e[1], c[2]-e[2]];
+    const len = Math.hypot(...d) || 1;
+    const u = d.map(v => v / len);
+    // a lateral offset, any direction perpendicular to the axis
+    let t = Math.abs(u[0]) < 0.9 ? [1,0,0] : [0,1,0];
+    let o = [u[1]*t[2]-u[2]*t[1], u[2]*t[0]-u[0]*t[2], u[0]*t[1]-u[1]*t[0]];
+    const ol = Math.hypot(...o) || 1;
+    o = o.map(v => v / ol * 26);
+    const mid = [(e[0]+c[0])/2+o[0], (e[1]+c[1])/2+o[1], (e[2]+c[2])/2+o[2]];
+    // A FIXED arrow length, not the centroid separation. That separation runs 34 to
+    // 67 A across these eight because disordered tails -- ADRB2's C-terminus, DRD2's
+    // third intracellular loop -- drag a domain centroid well past the bilayer. The
+    // direction is unaffected and is what the arrow is for; its length would
+    // otherwise vary between panels for a reason that has nothing to do with the
+    // pose.
+    const half = u.map(v => v * 19);
+    const tail = {x: mid[0]-half[0], y: mid[1]-half[1], z: mid[2]-half[2]};
+    const head = {x: mid[0]+half[0], y: mid[1]+half[1], z: mid[2]+half[2]};
+    V.addArrow({start: tail, end: head, radius: 0.55, radiusRatio: 2.6,
+                mid: 0.72, color: css('--cyt')});
+    V.addLabel('cytoplasm', {position: head, fontSize: 11,
+      fontColor: css('--cyt'), backgroundColor: css('--surface-2'),
+      backgroundOpacity: 0.85, borderThickness: 0, inFront: true});
+    V.addLabel('outside', {position: tail, fontSize: 10,
+      fontColor: css('--ext'), backgroundColor: css('--surface-2'),
+      backgroundOpacity: 0.85, borderThickness: 0, inFront: true});
+  }
   V.render();
 }
 
@@ -173,7 +210,7 @@ Promise.all([
       const el = document.querySelector(`.vp[data-job="${job}"]`);
       const V = $3Dmol.createViewer(el, {backgroundAlpha: 0, antialias: true});
       V.addModel(txt, 'pdb');
-      panes[job] = {V, surface: true, topology: true};
+      panes[job] = {V, surface: true, topology: true, axis: true};
       paint(job);
       V.zoomTo({chain: META[job].ligand_chain});
       V.zoom(0.45);
