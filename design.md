@@ -285,3 +285,86 @@ on every one of a large batch.
   (simplest) or through existing MCP connectors once authorized.
 - Species scope (HPA is human-only — confirm all candidates are human
   proteins, or need a fallback for non-human).
+
+## The orphan shortlist run, and three faults it exposed (2026-11-23)
+
+102 candidates from the AlphaFold3 orphan GPCR screen, triaged end to end. The
+verdicts are in `reports/orphan_shortlist_2026-11-23/`. The scientific result is
+clean: **every metabolite candidate that received a structural verdict was called
+`LIKELY_PROMISCUOUS_POCKET`, and none was confirmed** — reached from ChEMBL target
+counts and UniProt function text, independently of the screen's own finding that
+interface pTM is saturated on that arm (97% of metabolite folds clear 0.5).
+
+The run also exposed three faults, each of which failed quietly.
+
+### 1. Forced tool choice is rejected by both models this package uses
+
+`tool_choice={"type": "tool", "name": ...}` returns a 400 —
+`tool_choice: type "tool" and "any" are not supported for this model` — on
+`claude-fable-5-2` and `claude-sonnet-5-5`. Four modules used it, and the failure was
+invisible from the outside: the gate flagged 7 verdicts and reconsidered **0**, the
+designer wrote **0** strategies for 22 `CONFIRMED_NOVEL` candidates, and the run
+exited 0 with a report that looked complete.
+
+The documented replacement is `{"type": "auto"}` plus an instruction naming the tool
+(all four prompts already had one) plus `disable_parallel_tool_use` so at most one
+call comes back. Every caller already raised when no `tool_use` block arrived, so
+`auto` degrades loudly rather than silently.
+
+**It was not cosmetic.** With the gate working it changed 5 of 102 verdicts and
+**downgraded 3 of the 22 `CONFIRMED_NOVEL` calls** — ROR2/MRGPRF and SEMA4C/GPR37 to
+`IMPLAUSIBLE`, FPR2/GPR183 to `INSUFFICIENT_EVIDENCE`. The broken gate was leaving
+three false positives standing. ROR2/MRGPRF had a well-argued rationale and the gate
+called it implausible anyway, which is the whole reason the gate is code and not the
+agent.
+
+A first attempt at the fix passed `disable_parallel_tool_use` as a top-level argument,
+where it is a field *of* `tool_choice`. Every call still failed, with a different
+error. Verifying the two stages on existing verdicts caught it; re-running all 102
+candidates to test a fix costs 35 minutes and tells you nothing extra.
+
+### 2. There was no promiscuity check for a protein partner
+
+`ligand_evidence_status` flags a small molecule that ChEMBL shows binding 20+ targets.
+Nothing did the equivalent for a protein that folds confidently against many receptors
+in the same screen, because every verdict is reached per pair and never sees the
+partner's other folds. **PPIA (cyclophilin A) accounted for 4 of the 22
+`CONFIRMED_NOVEL` calls while being confident against 4 of the 11 receptors it was
+folded with.** That fold is evidence about PPIA, not about any one of those receptors.
+
+`partner_breadth_status` now flags a partner confident against at least 30% of at
+least 5 receptors. It fires on 4 of 102 rows — the four PPIA pairs and nothing else,
+which is the firing rate this project's own rule asks to be checked before a
+heuristic is trusted. It flags for reconsideration rather than relabelling: a partner
+can have many real receptors.
+
+### 3. Supplied evidence reached the agent and stopped there
+
+The breadth rule was written, unit-tested, passing, and **completely inert in the real
+pipeline**. The counts live on the candidate CSV, `Candidate.extra` carries them into
+the agent's prompt, and the gate reads its facts off the *verdict* row — where they
+had never been written. `partner_breadth_status` returned `checked: false` for every
+candidate and the rule never fired once.
+
+Both columns are now carried out of the agent with the verdict and written by
+`write_report`. Verified on the real 102-row file rather than in a test: 4 rows
+marked promiscuous, 4 flagged by the gate.
+
+This is the general shape to watch for in this package: a check that reads from a
+different stage's output than the one the data was put into will pass its own tests
+and do nothing.
+
+### Token cost: it was the system prompt, not the prose
+
+Measured across the 50-candidate run in `log/`: the ~4,600-token system prompt was
+re-sent on every turn of every candidate, so 102 candidates paid roughly **1.9M input
+tokens** for text that is byte-identical every time — about 85% of input. Tool output
+accounted for ~14%, the agent's narration between tool calls ~400 output tokens per
+candidate, and the recorded verdict fields ~730.
+
+The prompt is now cached with `cache_control`, and `_usage` records
+`cache_read_input_tokens` per candidate so the saving is checkable rather than
+asserted: if cache reads stay at 0 across a batch, something in the prefix is varying.
+The vendored `skills/caveman/` skill addresses the narration only, and deliberately
+not the recorded verdict fields — those are the product, and caveman's own rules
+exempt anything persisted outside chat.

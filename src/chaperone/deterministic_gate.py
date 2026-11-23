@@ -378,6 +378,54 @@ def ligand_evidence_status(tool_calls: list) -> dict:
     }
 
 
+# A PROTEIN partner has the same failure mode as a promiscuous small molecule,
+# and nothing here was checking for it. `ligand_evidence_status` catches a
+# molecule that ChEMBL shows binding 20+ targets, but a protein that folds
+# confidently against many receptors in the SAME screen got no equivalent
+# treatment, because every verdict is reached per pair and never sees the
+# partner's other folds. Caught live: PPIA (cyclophilin A) accounted for 4 of
+# the 22 CONFIRMED_NOVEL calls on the orphan shortlist while being confident
+# against 4 of the 11 receptors it was folded with — the fold is evidence about
+# PPIA, not about any one of those receptors.
+#
+# The screen knows this and the triage agent does not, so the numbers are
+# supplied on the candidate row rather than fetched: `partner_receptors_tested`
+# and `partner_receptors_confident`. Absent, the check reports checked=False
+# instead of a reassuring zero.
+PROMISCUOUS_PARTNER_FRACTION = 0.30
+PROMISCUOUS_PARTNER_MIN_TESTED = 5
+
+
+def partner_breadth_status(row: dict) -> dict:
+    """How many other receptors in the same screen this protein partner binds."""
+    def _int(key):
+        v = row.get(key)
+        if v in (None, "", "nan"):
+            return None
+        try:
+            return int(float(v))
+        except (TypeError, ValueError):
+            return None
+
+    tested, confident = _int("partner_receptors_tested"), _int("partner_receptors_confident")
+    if tested is None or confident is None or tested <= 0:
+        return {"checked": False, "promiscuous": False,
+                "trace": "the partner's cross-receptor hit rate was not supplied on the "
+                         "candidate row, so breadth could not be checked"}
+    frac = confident / tested
+    return {
+        "checked": tested >= PROMISCUOUS_PARTNER_MIN_TESTED,
+        "receptors_tested": tested,
+        "receptors_confident": confident,
+        "fraction": round(frac, 3),
+        "promiscuous": tested >= PROMISCUOUS_PARTNER_MIN_TESTED
+                       and frac >= PROMISCUOUS_PARTNER_FRACTION,
+        "trace": f"this partner was folded against {tested} receptors in the same screen "
+                 f"and reached the confidence gate against {confident} of them "
+                 f"({frac:.0%})",
+    }
+
+
 def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
     gene_a, gene_b = row["protein_a"], row["protein_b"]
     is_ligand = (row.get("partner_kind") or "protein") == "ligand"
@@ -390,6 +438,7 @@ def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
     fold = fold_evidence_status(fold_results)
     glycan_binding_gene = None if is_ligand else _glycan_binding_gene(gene_a, gene_b)
     ligand = ligand_evidence_status(tool_calls) if is_ligand else None
+    breadth = None if is_ligand else partner_breadth_status(row)
     facts = {"known_interaction_strength": known["strength"], "known_interaction_trace": known["trace"],
              "hpa_plausibility": hpa["plausibility"], "hpa_trace": hpa["trace"],
              "fold_evidence_status": fold["status"], "fold_trace": fold["trace"],
@@ -397,6 +446,8 @@ def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
              "partner_kind": "ligand" if is_ligand else "protein"}
     if ligand:
         facts["ligand"] = ligand
+    if breadth:
+        facts["partner_breadth"] = breadth
     return facts
 
 
@@ -493,6 +544,22 @@ def find_contradictions(row: dict, facts: dict) -> list[str]:
     # than, any one fold's residue-level finding (caught live: LGALS1/CLEC2D
     # would otherwise have been pushed to downgrade off LIKELY_ARTIFACT_PTM
     # despite LGALS1 being a genuine carbohydrate-binding lectin).
+    # ---- a protein partner that binds half the screen ----------------------
+    # Flagged, not relabelled: a partner CAN have many real receptors (a
+    # chemokine, a shared co-receptor), so the replacement label is a judgement
+    # the reconsideration call makes, with the number in front of it.
+    breadth = facts.get("partner_breadth")
+    if (breadth and breadth.get("promiscuous")
+            and verdict in ("CONFIRMED_NOVEL", "ALREADY_KNOWN")):
+        contradictions.append(
+            f"The verdict is {verdict}, which treats this fold as evidence about THIS "
+            f"receptor, but {breadth['trace']}. A partner confident against that share of "
+            f"a receptor panel is telling us about the partner, in the same way a "
+            f"small molecule active at many targets is: the fold does not establish "
+            f"specificity for this pair. Decide whether the breadth is biologically "
+            f"real (a shared co-receptor or a chemokine with many receptors) or "
+            f"whether it makes this one pair uninformative.")
+
     if facts["fold_evidence_status"] == "pass" and verdict == "LIKELY_ARTIFACT_PTM" and not facts.get("glycan_binding_gene"):
         contradictions.append(f"A real AF3 fold was executed specifically to check the PTM/topology concern behind this LIKELY_ARTIFACT_PTM verdict, and found no problem — the concern this verdict is based on has been directly tested and not confirmed. {facts['fold_trace']}")
 

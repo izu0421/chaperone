@@ -130,7 +130,18 @@ async def reconsider_one(client: AsyncAnthropic, row: dict, facts: dict, contrad
                 max_tokens=2000,
                 system=SYSTEM_PROMPT,
                 tools=[record_verdict.to_dict()],
-                tool_choice={"type": "tool", "name": "record_verdict"},
+                # Forced tool choice is rejected by both models this package uses:
+                # `tool_choice: {"type": "tool"}` and `"any"` return a 400
+                # ("not supported for this model") on claude-fable-5-2 and
+                # claude-sonnet-5-5. It failed silently per stage: the gate
+                # flagged 7 verdicts and reconsidered 0, and the designer wrote
+                # 0 strategies for 22 CONFIRMED_NOVEL candidates, while the run
+                # exited 0 and the report looked complete. The documented
+                # replacement is "auto" plus naming the tool in the prompt (every
+                # prompt here already does) and disable_parallel_tool_use so at
+                # most one call comes back. Every caller below already raises
+                # when no tool_use block arrives, so "auto" degrades loudly.
+                tool_choice={"type": "auto", "disable_parallel_tool_use": True},
                 messages=[{"role": "user", "content": user_prompt}],
             )
             break

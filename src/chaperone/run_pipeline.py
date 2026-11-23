@@ -110,6 +110,9 @@ def write_report(results: list[dict], out_path: Path) -> None:
         "partner_kind",
         "other_subunits",
         "follow_up",
+        # read back by deterministic_gate.partner_breadth_status
+        "partner_receptors_tested",
+        "partner_receptors_confident",
     ]
     with open(out_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
@@ -131,6 +134,8 @@ def write_report(results: list[dict], out_path: Path) -> None:
                     "partner_kind": r.get("partner_kind", "protein"),
                     "other_subunits": ";".join(r.get("other_subunits") or []),
                     "follow_up": r.get("follow_up"),
+                    "partner_receptors_tested": r.get("partner_receptors_tested"),
+                    "partner_receptors_confident": r.get("partner_receptors_confident"),
                 }
             )
 

@@ -133,7 +133,11 @@ async def reconsider_one(client: AsyncAnthropic, row: dict, fold_result: dict) -
         betas=["server-side-fallback-2026-07-01"],
         fallbacks="default",
         tools=[tool_schema],
-        tool_choice={"type": "tool", "name": "record_verdict"},
+        # Forced tool choice (`{"type": "tool"}` / `"any"`) returns a 400 on
+        # claude-fable-5-2 and claude-sonnet-5-5. Use "auto" plus the prompt
+        # instruction naming the tool, and cap it at one call. The caller
+        # below already raises when no tool_use block arrives.
+        tool_choice={"type": "auto", "disable_parallel_tool_use": True},
         messages=[{"role": "user", "content": user_prompt}],
     )
 

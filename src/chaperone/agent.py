@@ -323,7 +323,22 @@ modifications, not the partner's. Record what the ChEMBL tools returned in \
 ligand_evidence.
 
 You MUST end by calling record_verdict exactly once, citing the actual tool \
-results you saw."""
+results you saw.
+
+NARRATION. Write no prose between tool calls. Do not announce which tool you \
+are about to call, restate what one returned, or summarise progress: nothing \
+downstream reads it, and every one of those tokens is billed and then re-sent \
+as context on each later turn of this same candidate. Call the tools you need, \
+then call record_verdict. Text between calls is warranted only to flag a \
+contradiction you are about to act on, or to say why you are NOT calling a \
+tool the instructions above would otherwise require.
+
+This applies to your narration ONLY. The fields you pass to record_verdict are \
+the product: someone reads rationale and the *_evidence fields to decide \
+whether to spend bench time on this candidate, and they are quoted verbatim \
+into a report. Write those in full, plain sentences, with the numbers, \
+accessions and units intact. Do not compress them, do not drop a negation, and \
+do not replace a measurement with a characterisation of it."""
 
 
 @asynccontextmanager
@@ -415,10 +430,20 @@ async def evaluate_candidate(
     messages = [{"role": "user", "content": user_prompt}]
     transcript = []
 
+    # Cache the system prompt and the tool schemas. They are byte-identical for every
+    # candidate in a batch and were being re-sent on every turn of every candidate:
+    # measured on a 50-candidate run, the prompt is ~4,550 tokens over a median of 4
+    # API turns, so 102 candidates paid ~1.9M input tokens for text that never changes.
+    # A cache read costs a tenth of that. The cache_control marker goes on the LAST
+    # tool as well, because the cached prefix is prompt + tools in that order and a
+    # marker only caches what precedes it.
+    cached_system = [{"type": "text", "text": SYSTEM_PROMPT,
+                      "cache_control": {"type": "ephemeral"}}]
+
     runner = client.beta.messages.tool_runner(
         model=MODEL,
         max_tokens=8000,
-        system=SYSTEM_PROMPT,
+        system=cached_system,
         output_config={"effort": "medium"},
         betas=["server-side-fallback-2026-07-01"],
         fallbacks="default",
@@ -426,11 +451,26 @@ async def evaluate_candidate(
         messages=messages,
     )
 
+    # Token accounting, per candidate. The system prompt is ~4,600 tokens and was
+    # being re-sent on every turn of every candidate, which is where this
+    # package's cost actually went -- 102 candidates paid roughly 1.9M input
+    # tokens for text that is byte-identical every time. It is cached now, and a
+    # claim like that should be checkable rather than asserted: if
+    # cache_read_input_tokens stays at 0 across a batch, the cache is not being
+    # hit and something in the prefix is varying.
+    usage = {"input": 0, "output": 0, "cache_read": 0, "cache_write": 0}
     async for message in runner:
         transcript.append(message.model_dump(mode="json"))
+        u = getattr(message, "usage", None)
+        if u is not None:
+            usage["input"] += getattr(u, "input_tokens", 0) or 0
+            usage["output"] += getattr(u, "output_tokens", 0) or 0
+            usage["cache_read"] += getattr(u, "cache_read_input_tokens", 0) or 0
+            usage["cache_write"] += getattr(u, "cache_creation_input_tokens", 0) or 0
 
     if "verdict" not in sink:
         return {
+            "_usage": usage,
             "pair": [candidate.protein_a, candidate.partner_label],
             "verdict": "INSUFFICIENT_EVIDENCE",
             "confidence": "low",
@@ -446,6 +486,15 @@ async def evaluate_candidate(
     result = {
         "pair": [candidate.protein_a, candidate.partner_label],
         **sink["verdict"],
+        # The deterministic gate's partner-breadth rule reads these off the
+        # verdict row, so they have to survive the trip from the candidate CSV
+        # through here. Supplied evidence otherwise reaches the agent's prompt
+        # and stops: the rule was written, unit-tested and completely inert in
+        # the real pipeline because the columns never arrived.
+        **{k: candidate.extra[k] for k in
+           ("partner_receptors_tested", "partner_receptors_confident")
+           if k in candidate.extra},
+        "_usage": usage,
         "_transcript": transcript,
         "_tool_calls": tool_calls,
     }

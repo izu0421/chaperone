@@ -1,0 +1,134 @@
+[
+  {
+    "severity": "info",
+    "pair": null,
+    "check": "recommended_tier_ratio",
+    "detail": "33/102 candidates (32%) are tiered 'recommended for validation'. If this is most of the dataset, the tiers are excluding little and may not feel like a real prioritization \u2014 worth a human sanity check on whether the tier boundaries are too permissive."
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR151/4-aminobutanoic acid",
+    "check": "possibly_truncated_field",
+    "detail": "controls is very short or doesn't end in sentence-ending punctuation: ''"
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR151/4-aminobutanoic acid",
+    "check": "possibly_truncated_field",
+    "detail": "caveats is very short or doesn't end in sentence-ending punctuation: ''"
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR151/L-glutamic acid",
+    "check": "llm_audit",
+    "detail": "Target tissue 'Habenula/brain (GPR151-enriched region)' does not appear in the HPA data provided. For GPR151, tissue RNA and protein fields are None and the only cell-type signal is cone photoreceptor cells. The strategy itself says the habenula is 'not in the supplied HPA data', and the tissue rationale gives no evidence-based reason to include it. This is a tissue claim from outside the evidence. It should be dropped or clearly labelled as an external-knowledge hypothesis."
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR151/L-glutamic acid",
+    "check": "llm_audit",
+    "detail": "The tissue rationale says there is no real tissue overlap and that the assay should run in HEK293 or CHO cells. The target-tissue list nonetheless names a brain region with no support, which leaves the list and its rationale slightly at odds."
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR151/4-aminobutanoic acid",
+    "check": "llm_audit",
+    "detail": "Target tissue 'Brain (habenula / habenulo-interpeduncular axis; GABA side)' does not appear in the HPA data provided. GPR151 has no tissue-level RNA or protein data, and its only single-cell signal is in cone photoreceptor cells. GABA has no HPA data. The tissue rationale never justifies the habenula or brain. It says there is no true tissue overlap and that the only evidence is cone photoreceptors. The habenula entry looks like it came from outside knowledge, not from the evidence."
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR151/4-aminobutanoic acid",
+    "check": "llm_audit",
+    "detail": "The method choice (stimulation_assay with a GPCR-expressing vs. mock cell counter-screen) fits a small soluble metabolite and a 7TM membrane receptor. The method rationale is also specific to this pair. No problem there. The only inconsistency is the unsupported brain/habenula tissue."
+  },
+  {
+    "severity": "warning",
+    "pair": "IL2/GPR171",
+    "check": "llm_audit",
+    "detail": "Target tissues 'lymph node', 'tonsil' and 'spleen' do not appear anywhere in the HPA data given. The only tissue-level evidence is GPR171 RNA in 'lymphoid tissue' (20.1 nTPM), and IL2 has no tissue-level data. The tissue rationale admits these three are the author's own suggestions and are not supported by the numbers, yet they are still listed as validation targets. Only 'lymphoid tissue' is grounded in the evidence."
+  },
+  {
+    "severity": "warning",
+    "pair": "IL2/GPR171",
+    "check": "llm_audit",
+    "detail": "The method and its rationale are consistent with the evidence: IL2 is secreted to blood and GPR171 is a plasma-membrane GPCR, so a stimulation assay fits. The rationale is specific to these two proteins and uses the T-cell, NK-cell and ILC single-cell data correctly. The tissue list is the only real problem."
+  },
+  {
+    "severity": "warning",
+    "pair": "P2RY10/prostaglandin D2",
+    "check": "llm_audit",
+    "detail": "Target tissues 'tonsil', 'lymph node' and 'spleen' do not appear in the HPA data given. The only tissue-level evidence is the aggregate 'lymphoid tissue' (25.7 nTPM) for P2RY10, and the tissue rationale cites only that. These three sub-tissues are an unsupported expansion and no tissue-specific expression is shown for them. Only 'lymphoid tissue' and the single-cell types (B-cells, T-cells, etc.) are grounded."
+  },
+  {
+    "severity": "warning",
+    "pair": "P2RY10/prostaglandin D2",
+    "check": "llm_audit",
+    "detail": "The method choice and the rationale are otherwise consistent. A stimulation_assay with a counter-screen fits a diffusible lipid and a GPCR, and PLA is correctly rejected for a metabolite. The rationale is specific to PGD2 and P2RY10 and engages with the promiscuous-pocket verdict."
+  },
+  {
+    "severity": "warning",
+    "pair": "PPIA/GPR3",
+    "check": "llm_audit",
+    "detail": "Target tissue 'Colon' is not supported by the HPA data given. The only cell-type signals are gastric progenitor cells (PPIA, stomach) and Paneth cells (GPR3, small intestine). Colon is never mentioned and appears to be an extrapolation from 'GI tract'. Stomach and small intestine are defensible, but colon is not."
+  },
+  {
+    "severity": "warning",
+    "pair": "PPIA/GPR3",
+    "check": "llm_audit",
+    "detail": "The method rationale says 'The AF3 complex also includes BSG', but the triage evidence never says this. It describes only a PPIA\u2013GPR3 AF3 result (ipTM 0.62) and names BSG/CD147 as PPIA's known extracellular partner. It does not say BSG is in the modeled complex. The BSG co-expression/knockdown arm therefore rests on an unsupported claim."
+  },
+  {
+    "severity": "warning",
+    "pair": "CCL11/GPR132",
+    "check": "llm_audit",
+    "detail": "Target tissue/cell-type 'Immune cells such as macrophages and eosinophils (GPR132 candidate side)' does not appear anywhere in the HPA data. GPR132 has no tissue, single-cell or subcellular data (all None), and CCL11's only cell-type signal is fibroblasts. These cell types come from outside the evidence. The strategy's own tissue rationale says there is no GPR132 expression data, so listing them as target cells is unsupported. The 'to be confirmed experimentally' hedge does not change that. They should be dropped, or relabelled as an untested hypothesis, with a GPR132-expressing responder cell chosen by qPCR or by an engineered line."
+  },
+  {
+    "severity": "warning",
+    "pair": "CCL11/GPR132",
+    "check": "llm_audit",
+    "detail": "The other two tissues are supported: Fibroblasts (CCL11 nCPM 44.2) and Blood (secretome location: secreted to blood). The method (stimulation_assay) fits a secreted chemokine and a 7-TM GPCR, and the rationale is specific to these two proteins (CCR3 control, glycosylation arm, low-confidence caveats). No method or compartment mismatch was found."
+  },
+  {
+    "severity": "warning",
+    "pair": "LAIR1/GPR65",
+    "check": "llm_audit",
+    "detail": "The method rationale says both proteins are membrane proteins in the same membrane, so a cis interaction is possible. The HPA data don't support that. LAIR1's main location is Plasma membrane, but GPR65's is Vesicles. PLA needs the two proteins within about 40 nm, and the rationale never addresses this difference. It doesn't suggest GPR65 traffics to the surface, and it doesn't say how a vesicular GPR65 pool would sit near plasma-membrane LAIR1. PLA is therefore justified by a same-membrane premise that the subcellular evidence contradicts."
+  },
+  {
+    "severity": "warning",
+    "pair": "LAIR1/GPR65",
+    "check": "llm_audit",
+    "detail": "The rationale says both proteins are 'expected in the same immune cell'. The single-cell HPA data point to different cell types: LAIR1 peaks in Microglia (86.5 nCPM) and GPR65 peaks in Mast cells (495.1 nCPM). No shared cell type is shown. The same-cell premise that PLA depends on is unsupported, and the rationale doesn't acknowledge this."
+  },
+  {
+    "severity": "warning",
+    "pair": "LAIR1/GPR65",
+    "check": "llm_audit",
+    "detail": "Lung is included as a target tissue, but the HPA data show no GPR65 signal there. GPR65 has RNA only in bone marrow and lymphoid tissue, and no protein data. The claim that lung contains mast cells is outside knowledge, not part of the HPA data supplied. The rationale does admit that GPR65 expression in lung is not shown. Lung is still a weakly justified PLA site, because PLA needs both proteins to be present."
+  },
+  {
+    "severity": "warning",
+    "pair": "LAIR1/GPR65",
+    "check": "llm_audit",
+    "detail": "Bone marrow and lymphoid tissue are supported by the HPA data. Those tissues don't resolve the cell-type and compartment mismatch above."
+  },
+  {
+    "severity": "warning",
+    "pair": "C5AR1/GPR141",
+    "check": "llm_audit",
+    "detail": "Target cell type 'monocytes (isolated)' is not supported for GPR141. HPA gives monocyte expression only for C5AR1 (1283 nCPM). GPR141 single-cell RNA is reported only in neutrophil progenitors. PLA needs both proteins in the same cell, so monocytes have no co-expression evidence. The tissue rationale itself concludes the overlap is the neutrophil lineage, which contradicts including monocytes."
+  },
+  {
+    "severity": "warning",
+    "pair": "C5AR1/GPR141",
+    "check": "llm_audit",
+    "detail": "'Peripheral blood neutrophils (isolated)' do not match the GPR141 evidence. GPR141 is detected in neutrophil progenitors, which are bone-marrow cells, not mature circulating neutrophils. Peripheral blood is not a tissue in the HPA data given. The rationale treats progenitors and mature neutrophils as the same overlap without justifying it."
+  },
+  {
+    "severity": "warning",
+    "pair": "C5AR1/GPR141",
+    "check": "llm_audit",
+    "detail": "Minor: the method rationale says both proteins are 'expected in the same cell membrane'. HPA lists C5AR1's main subcellular location as Golgi apparatus, and GPR141 has no localization data. The rationale does not address this, and it is relevant to whether PLA proximity is expected at the plasma membrane."
+  }
+]

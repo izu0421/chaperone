@@ -1,0 +1,795 @@
+[
+  {
+    "protein_a": "GPR26",
+    "protein_b": "L-glutamic acid",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR26 vs. mock/parental cells and vs. a pocket-mutant GPR26, with a mGluR positive control and structurally related amino acids (D-glutamate, L-aspartate, GABA, L-glutamine) as specificity comparators",
+    "method_rationale": "L-glutamate is a small-molecule soluble ligand and GPR26 is an orphan class A GPCR, so a functional signalling readout is the direct test of whether glutamate activates it. PLA and co-IP are unsuitable for a metabolite. GPR26 is reported to be constitutively active (Gs-coupled), so the assay must be designed to detect modulation of a high basal signal.",
+    "target_tissues": [
+      "Brain (cerebral cortex)",
+      "Retina",
+      "Ovary (oocytes)"
+    ],
+    "tissue_rationale": "HPA shows GPR26 RNA is tissue-enriched only in brain (4.2 nTPM). At the single-cell level it is highest in retinal amacrine cells (7.9 nCPM) and brain excitatory neurons (6.8 nCPM), with oocytes at 4.7. These are glutamatergic environments, so glutamate exposure is physiologically plausible. The assay itself is run in a heterologous cell line, not in tissue. Glutamate has no HPA entry, as it is a metabolite.",
+    "cell_types": [
+      "Brain excitatory neurons",
+      "Retinal amacrine cells",
+      "Retinal horizontal cells",
+      "Oocytes"
+    ],
+    "protocol_notes": "1) Express human GPR26 in HEK293 cells (and in a null-GPCR background) with an N-terminal epitope tag. Confirm surface or total expression by flow or ELISA. Compare to empty-vector cells. 2) Read out the Gs/cAMP axis (GloSensor or HTRF cAMP) and also run a CRE-luciferase reporter. Add Gq (calcium flux/IP1) and \u03b2-arrestin (PathHunter/BRET) readouts to cover alternative coupling. Run a glutamate dose-response from 1 nM to 10 mM in a buffer free of contaminating glutamate, using a glutamate-free medium and dialysed serum. 3) Run a glutamate-pocket mutant. Mutate the 2\u20133 AF3-contacting residues to alanine and check that any response is lost while surface expression is retained. 4) Where possible, run orthogonal binding evidence, such as a thermal shift or radioligand/MST binding on purified membranes. 5) Consider validating in primary neurons or retinal cultures with GPR26 knockdown.",
+    "controls": "Positive: a known glutamate GPCR (mGluR2 or mGluR5, or a class C receptor with Gi/Gq readout) with glutamate. Forskolin for cAMP assay dynamic range. Negative: mock-transfected/parental HEK293 cells, which also reveal endogenous glutamate responses. A non-related class A orphan GPCR expressed to the same level. Specificity: D-glutamate, L-aspartate, GABA and L-glutamine. Pocket mutant GPR26. Inverse-agonist or basal-activity comparison versus a known GPR26 constitutive-activity baseline.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET. The high ipTM/pLDDT is expected for a small molecule in a GPCR pocket and is not evidence of specificity. ChEMBL has no record of glutamate activity at GPR26, and glutamate is active at 76 or more other targets. The established glutamate GPCRs are class C receptors with a Venus-flytrap domain, while GPR26 is class A, so a negative result is the most likely outcome. GPR26 is constitutively active and an orphan, which can mask agonism. Glutamate at high millimolar concentrations can cause nonspecific effects through osmolarity, pH, or endogenous glutamate receptors and transporters in HEK cells. Glutamate also has no HPA data, so tissue choice is based on GPR26 alone. Brain tissue expression is low (4.2 nTPM), and extracellular glutamate in vivo is tightly regulated."
+  },
+  {
+    "protein_a": "GPR26",
+    "protein_b": "acetylcholine",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR26-transfected vs. mock/parental cells, plus a binding-pocket mutant arm and a muscarinic/nicotinic receptor-positive control arm",
+    "method_rationale": "Acetylcholine is a small-molecule neurotransmitter, not a protein that can be probed by PLA or co-IP. GPR26 is an orphan, constitutively active Gs-coupled GPCR, so the testable question is whether acetylcholine changes receptor signalling (cAMP) above the constitutive baseline, compared with a receptor-null background. Because ACh binds 105+ other targets, the counter-screen (parental cells, a pocket mutant, and a structurally unrelated cholinergic ligand) matters more than the positive readout.",
+    "target_tissues": [
+      "Brain (cerebral cortex)",
+      "Retina",
+      "Ovary (oocytes)"
+    ],
+    "tissue_rationale": "HPA shows GPR26 RNA is tissue-enriched in brain (4.2 nTPM). At the single-cell level it is highest in retinal amacrine cells (7.9 nCPM) and brain excitatory neurons (6.8), with lower levels in other brain neurons (5.0), oocytes (4.7), retinal horizontal cells (4.1) and inhibitory neurons (2.7). HPA has no acetylcholine entry because it is a metabolite. The ligand side comes from the SLC10A4 cholinergic-marker co-expression noted in the triage, so brain and retina, where cholinergic neurons (e.g. starburst amacrine cells in retina) sit near GPR26-expressing neurons, are the relevant contexts.",
+    "cell_types": [
+      "Brain excitatory neurons",
+      "Retinal amacrine cells",
+      "Brain inhibitory neurons",
+      "Retinal horizontal cells"
+    ],
+    "protocol_notes": "1) Express human GPR26 (epitope-tagged, with surface expression confirmed by anti-tag flow cytometry or ELISA) in HEK293 cells. Include a mock/parental arm and a GPR26 pocket-mutant arm (alanine substitutions of the residues contacting ACh in the AF3 pose). Use a cAMP readout (GloSensor or HTRF) with an acetylcholine dose-response from 1 nM to 1 mM. Add an acetylcholinesterase inhibitor (e.g. physostigmine or neostigmine) so ACh is not degraded, and add atropine and mecamylamine to block endogenous muscarinic and nicotinic receptors. Because the receptor is constitutively active, also test an inverse-agonist or basal-signalling readout, and a \u03b2-arrestin recruitment assay (e.g. PathHunter or Tango) as an orthogonal, Gs-independent readout. 2) Run a binding orthogonal check on GPR26 membranes: a competition or thermal-shift assay (e.g. cellular thermal shift or nanoDSF on purified receptor) with ACh versus choline and carbachol. 3) Test specificity by comparing with other orphan or aminergic GPCRs expressed to similar levels. 4) Optionally, follow up in primary retinal or cortical neuron cultures with GPR26 knockdown or knockout, measuring cAMP or PKA-substrate phosphorylation (pCREB) after ACh in the presence of cholinergic receptor antagonists.",
+    "controls": "Positive: M-receptor Gs-compatible or Gq control, e.g. M1/M3 with ACh (calcium flux), and forskolin for maximal cAMP. Negative: mock/parental cells, untagged-vector cells, a GPR26 pocket mutant, choline and an unrelated neurotransmitter (e.g. dopamine, serotonin) on GPR26, and heat-inactivated or vehicle-only treatment. Another orphan GPCR expressed at the same level serves as a specificity control.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET: the high ipTM (0.91) and ligand pLDDT (80.5) do not show GPR26-specific binding, because AF3 will likely dock ACh into many pockets and ACh has measured affinity at 105+ targets. The ChEMBL lookup for GPR26 activity failed, so novelty is unverified and should be rechecked by hand. GPR26 is constitutively active, so a small ligand effect may be hard to see over the high basal cAMP; inverse agonism or a modest shift could be the real phenotype. HPA gives no subcellular or protein-level data for GPR26 (RNA only, low expression of about 4\u20138 nCPM), and acetylcholine has no HPA record. Endogenous muscarinic receptors in HEK293 (M3) can create false positives unless blocked or the parental control is used. ACh is unstable (esterase hydrolysis), so fresh stocks and esterase inhibitors are needed."
+  },
+  {
+    "protein_a": "GPR101",
+    "protein_b": "L-glutamic acid",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: dose-response of L-glutamate on GPR101-expressing vs. mock/parental cells, with GPR101 pocket-mutant arm and iGluR/mGluR blockers present",
+    "method_rationale": "Glutamate is a small diffusible metabolite, not a protein, so PLA/co-IP cannot test binding; GPR101 is an orphan class A GPCR that couples constitutively to Gs, so a functional readout (cAMP) is the appropriate test of whether glutamate acts as an agonist or modulator. The 'promiscuous pocket' verdict requires a counter-screen showing specificity versus empty-vector cells and other GPCRs.",
+    "target_tissues": [
+      "brain"
+    ],
+    "tissue_rationale": "HPA shows GPR101 RNA is tissue-specific to brain (11.5 nTPM), with no other tissue enriched. Glutamate has no HPA entry, but it is abundant in brain, so a brain-derived neuronal context is the only one where both could meet. Assays should still be run in recombinant HEK293 cells because endogenous GPR101 is low.",
+    "cell_types": [
+      "Other brain neurons",
+      "Brain inhibitory neurons"
+    ],
+    "protocol_notes": "1) Transfect HEK293 (or CHO) cells with GPR101 or empty vector. Add a tagged-receptor surface-expression check (e.g. FLAG ELISA or flow cytometry). Measure cAMP (HTRF or GloSensor) after a glutamate dose-response from 1 nM to 10 mM, including a pre-incubation with an iGluR/mGluR antagonist cocktail (e.g. MK-801, NBQX, LY341495) to rule out endogenous glutamate receptor effects. 2) Because GPR101 is constitutively active, compare the basal signal GPR101 vs mock and test for inverse agonism or agonism relative to forskolin. Add a second readout (CRE-luciferase or \u03b2-arrestin recruitment, e.g. PathHunter/NanoBiT) to confirm. 3) Mutate the AF3-predicted contact residues in the TM pocket (e.g. alanine scan of the 3-5 residues that contact the carboxylates and amine) and test for loss of response. 4) Optionally confirm binding with a label-free or radioligand method (e.g. [3H]-glutamate binding on membranes, or thermal shift/NanoBRET competition), and test neuronal cultures or iPSC-derived neurons for endogenous responses.",
+    "controls": "Positive: forskolin (cAMP ceiling) and a glutamate-responsive GPCR such as mGluR2 or mGluR5 cells as an assay-validity control. Negative: empty-vector/parental cells; unrelated orphan class A GPCR (e.g. GPR3 or GPR161) as a promiscuity counter-screen; related amino acids (D-glutamate, L-aspartate, L-glutamine, GABA) for selectivity; GPR101 pocket-mutant.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET: AF3 ipTM 0.89 and BSA 451 \u00c52 for a small zwitterion in a GPCR pocket are not specificity evidence, so a negative result is the expected outcome. GPR101 is constitutively active, so the dynamic range for agonism is small and an effect may only be seen as inverse agonism or modulation. Millimolar glutamate may cause nonspecific effects (osmolarity, pH, transporter uptake, endogenous glutamate receptors in HEK cells), so potency should be physiologically plausible (low \u00b5M to sub-mM). HPA has no data for glutamate (a metabolite) and no subcellular location for GPR101, so tissue co-occurrence is inferred only from brain enrichment and from the producer gene SLC1A2 mentioned in the triage. ChEMBL data were unavailable, so literature promiscuity has not been checked. GPR101 is annotated as a glycoprotein, but glycosylation is not expected to matter for a TM-pocket ligand."
+  },
+  {
+    "protein_a": "MRGPRF",
+    "protein_b": "3,3',5-triiodo-L-thyronine",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: dose-response of T3 vs. structural analogs (T4, rT3, Tiratricol, GC-1) on MRGPRF-expressing vs. parental/mock cells, plus a pocket-mutant arm",
+    "method_rationale": "T3 is a small-molecule hormone and MRGPRF is a plasma-membrane orphan GPCR, so PLA/co-IP are poorly suited (no protein partner, and a small-molecule ligand can't be detected by antibody pairs). A functional readout in receptor-expressing cells directly tests agonism and also lets us counter-screen for non-specific pocket binding, which is the verdict's concern.",
+    "target_tissues": [
+      "Fallopian tube",
+      "Smooth muscle (smooth muscle cells / vascular smooth muscle)",
+      "Placenta/decidua (decidual stromal cells)",
+      "Kidney (podocytes, pericytes)"
+    ],
+    "tissue_rationale": "HPA gives no RNA tissue-specific nTPM for MRGPRF; the only protein-level signal is in fallopian tube, and single-cell RNA is highest in smooth muscle cells (161.7 nCPM), decidual stromal cells (139.8), vascular smooth muscle cells (132.8), peritubular myoid cells (104.4) and pericytes (89.0). T3 has no HPA entry (it is a circulating hormone, not a gene product), so the ligand is systemically available to all of these; the receptor-bearing cells define the tissues.",
+    "cell_types": [
+      "Smooth muscle cells",
+      "Vascular smooth muscle cells",
+      "Decidual stromal cells",
+      "Pericytes",
+      "Peritubular myoid cells"
+    ],
+    "protocol_notes": "1) Express human MRGPRF (N-terminal tag, e.g. HA/FLAG, to confirm surface expression by flow or ELISA) in HEK293 or CHO cells. Use parental cells and a related MRGPR (e.g. MRGPRX1 or MRGPRE) as negative-receptor controls. Read out Gi/Gq/Gs signalling in parallel: cAMP (GloSensor/HTRF), Ca2+ flux (Fluo-4/FLIPR), and \u03b2-arrestin recruitment (PathHunter/BRET). MRGPRF is reported to couple to Gi, so include forskolin-stimulated cAMP inhibition.\n2) Run 10-point T3 dose-response (1 nM-100 \u00b5M) in serum-free or charcoal-stripped medium, with BSA carrier to limit nonspecific lipophilic binding. Compare T3 with T4, reverse T3, Tiratricol, and an unrelated iodinated/lipophilic compound to measure the promiscuity that the failed lookup could not.\n3) Mutate 2-3 predicted pocket contact residues from the AF3 pose to Ala and check loss of response. Confirm any hit in a native cell: primary or cultured vascular smooth muscle cells or decidual stromal cells, with MRGPRF siRNA/CRISPR knockdown. Optionally run a thyroid hormone receptor (TR) antagonist or nuclear receptor control to exclude genomic effects. Include a short time-course, since genomic TR effects are slow and GPCR signalling is rapid.\ncontrols=\"Positive: a known MRGPRF agonist (the peptide RFRP/\u03b32-MSH, or angiotensin-(1-7)/\u03b2-alanine reported for MRGPR family members) and forskolin/ATP/ionomycin for assay readiness. Negative: parental cells, empty vector, vehicle/BSA, MRGPRF pocket-mutants, and an unrelated GPCR transfected cell line. Specificity: T4/rT3/Tiratricol and a TR antagonist; compare EC50 with physiological free T3 (~pM-low nM) to judge relevance.",
+    "controls": "Positive: a known MRGPRF agonist (e.g. angiotensin-(1-7) or \u03b32-MSH/RFRP-type peptide as reported for MRGPRF/MRGPR family) plus assay-readiness controls (forskolin, ATP, ionomycin). Negative: parental/empty-vector cells, a different MRGPR family member, vehicle/BSA, and the MRGPRF pocket-mutant. Specificity: T4, reverse T3, Tiratricol and an unrelated lipophilic iodinated compound; compare EC50 to physiological free T3 (pM to low nM) to judge relevance.",
+    "caveats": "Verdict is LIKELY_PROMISCUOUS_POCKET with low confidence: the T3 promiscuity lookup failed, so the number of T3 targets is unknown. A confident fold (ipTM 0.89) with ligand pLDDT 70.3 does not show specificity; T3 is a lipophilic, amphipathic ligand that could fit many hydrophobic pockets. MRGPRF's suggested natural ligand is a neuropeptide (different chemical class). DIO3 as a producer is doubtful, since it inactivates T3 (converting T3 to 3,3'-T2) rather than making it. HPA RNA tissue data are absent, protein data are limited to fallopian tube, and the intensity value looks like a raw/unnormalized number, so expression evidence is weak and cell-type specific. Effects at supraphysiological T3 doses may be nonspecific; T3 also acts through nuclear TRs and via integrin \u03b1v\u03b23, which can confound native-cell readouts. MRGPRF is also annotated in HPA as vesicular as well as plasma membrane, so surface expression must be verified."
+  },
+  {
+    "protein_a": "GPR12",
+    "protein_b": "L-glutamic acid",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: dose-response of L-glutamate on GPR12-expressing vs. mock cells, benchmarked against S1P/SPC, plus pocket-mutant and other-amino-acid specificity arms",
+    "method_rationale": "Glutamate is a small diffusible metabolite, not a protein, so PLA and co-IP can't be used. GPR12 is a constitutively active Gi/o-coupled orphan GPCR, so a functional readout (cAMP change) tests whether glutamate modulates it specifically. The verdict also calls for a counter-screen before believing the pose.",
+    "target_tissues": [
+      "brain",
+      "retina"
+    ],
+    "tissue_rationale": "HPA shows GPR12 RNA is tissue-enriched in brain (11.6 nTPM) and retina (7.8 nTPM), with lower levels in skin (5.1). Both brain and retina are glutamatergic tissues, so glutamate is physiologically present there. The assay itself should run in a heterologous cell line, because no HPA data exists for glutamate and native GPR12 levels are low.",
+    "cell_types": [
+      "HEK293 (heterologous GPR12 expression)",
+      "CHO-K1 (heterologous GPR12 expression)",
+      "cortical/hippocampal neurons (secondary, native context)"
+    ],
+    "protocol_notes": "1) Express GPR12 (with an epitope tag to confirm surface expression by flow or ELISA) in HEK293 or CHO cells. Use mock cells and an unrelated constitutively active Gi/o GPCR as negative controls. Measure cAMP with a GloSensor or HTRF assay, with forskolin to reveal Gi-mediated suppression. Alternatively use a BRET Gi/\u03b2-arrestin assay. The basal constitutive-activity baseline matters, so compare against an inverse agonist or a GPR12 knockdown if one is available.\n2) Run an L-glutamate dose-response (1 nM\u201310 mM). Include D-glutamate, L-aspartate, L-glutamine and GABA as chemical-neighbour specificity controls. Run mGluR/iGluR-null cells, or add mGluR antagonists, to rule out endogenous glutamate receptors.\n3) Test the AF3 pose by mutating 2\u20133 predicted pocket contact residues (for example to Ala) while keeping surface expression equal. Loss of any glutamate effect supports pocket specificity. Optionally add a binding-level orthogonal check such as thermal shift/DSF on purified GPR12 or a radioligand/competition assay.\n4) Counter-screen: test glutamate on 2\u20133 unrelated GPCRs, using the same pocket-type receptors where AF3 also predicts glutamate binding. This directly tests the promiscuous-pocket hypothesis.",
+    "controls": "Positive: SPC and S1P on GPR12 (disputed but the best available), plus forskolin to set the cAMP window. Negative: mock/empty-vector cells, a pocket-mutant GPR12, an unrelated GPCR, and D-Glu, Asp, Gln and GABA as chemical neighbours. Use pH- and osmolarity-matched vehicle (for example NaCl), since glutamate is acidic.",
+    "caveats": "Verdict is LIKELY_PROMISCUOUS_POCKET with low confidence. A confident AF3 pose for a small molecule is expected in any GPCR pocket, and the p_twoway of 0.055 is not significant. The putative GPR12 ligands are lipids (SPC, S1P), and even those are disputed. The ChEMBL novelty and promiscuity checks failed, so prior activity data are unverified and should be re-run. Constitutive GPR12 activity can mask small agonist effects. High-millimolar glutamate may cause nonspecific effects (osmolarity, pH, endogenous glutamate transporters or receptors), so a physiologically relevant response should appear at or below roughly 100 \u00b5M. HPA has no subcellular location or protein-level data for GPR12, and there is no entry for glutamate, so tissue choice rests on RNA only."
+  },
+  {
+    "protein_a": "GPR12",
+    "protein_b": "4-aminobutanoic acid",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR12 vs. parental/mock cells and vs. GABA-A/B receptor-expressing cells, with S1P/SPC as reference agonists and a pocket-mutant arm",
+    "method_rationale": "GABA is a small-molecule ligand, not a protein. PLA and co-IP can't detect it, so a functional readout in a receptor-expressing cell is the only practical test. GPR12 is a constitutively active Gs/Gi-coupled orphan GPCR, so cAMP (Gs/Gi) and \u03b2-arrestin assays in GPR12-transfected cells versus mock cells can show whether GABA modulates it specifically.",
+    "target_tissues": [
+      "brain",
+      "retina",
+      "skin 1"
+    ],
+    "tissue_rationale": "HPA RNA data show GPR12 enriched in brain (11.6 nTPM), retina (7.8) and skin 1 (5.1). Brain is where GABAergic signalling is physiologically relevant, so it is the key tissue for follow-up. There is no HPA data for GABA itself, so the assay is run in recombinant cells first and tissue relevance is inferred from GPR12 expression alone.",
+    "cell_types": [
+      "neurons (cortical/striatal)",
+      "retinal neurons",
+      "HEK293 or CHO cells overexpressing GPR12 (primary assay system)"
+    ],
+    "protocol_notes": "1) Express GPR12 in HEK293 cells with a cAMP biosensor (GloSensor or HTRF cAMP). Run GABA dose-response (1 nM\u20131 mM) against mock-transfected cells and a vector control. Compare with S1P and SPC as reference ligands. Use an inverse agonist or Gi/Gs readout to account for the high basal activity. 2) Run a PathHunter or BRET \u03b2-arrestin recruitment assay in parallel. Test GABA, the GABA-A agonist muscimol, and the GABA-B agonist baclofen to check that any effect is not mediated by endogenous GABA receptors. 3) Mutate the predicted contact residues from the AF3 pose, plus a known S1P-site residue as a comparison. If the response is specific, it should be lost with the pocket mutants. 4) If a signal appears, confirm binding orthogonally, for example with a radioligand/[3H]-GABA competition or SPR/thermal shift on purified receptor in nanodiscs.",
+    "controls": "Positive: S1P or SPC on GPR12 (reference lipid agonists, although reported activity is debated), forskolin for cAMP assay dynamic range. Negative: mock/parental cells, an unrelated Gs/Gi-coupled GPCR (e.g. another orphan receptor) challenged with GABA, a structurally similar inert amino acid (glycine or \u03b2-alanine), vehicle. Use GABA-A/B antagonists (bicuculline, CGP-55845) to exclude endogenous GABA receptor effects.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET. ChEMBL has no measured GABA activity at GPR12, and GABA has activity at at least 75 targets. So the ipTM of 0.87 is weak evidence of specificity. The 386 A2 buried surface area does not show that GABA sits in the orthosteric site. The expected outcome is a negative result, and a negative result should be reported as such. GPR12 is constitutively active, so ligand-induced changes may be small. Overexpression can create artifacts, and HEK293 cells express endogenous GABA-related and other GPCRs. GABA is zwitterionic with likely low affinity, so any effect may only appear at millimolar concentrations, which is not physiologically meaningful. Orphan GPCR ligand assignments are often not reproducible. HPA has no protein-level or single-cell data for GPR12, and no data for GABA as a non-protein."
+  },
+  {
+    "protein_a": "GPR139",
+    "protein_b": "acetylcholine",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR139-expressing vs. parental/mock cells, with L-Trp/L-Phe and the surrogate agonist JNJ-63533054 as references, plus a muscarinic/nicotinic antagonist arm",
+    "method_rationale": "Acetylcholine is a small-molecule ligand, not a protein, so PLA and co-IP don't apply. GPR139 is an orphan Gq/11-coupled GPCR, so a functional readout (Ca2+ flux or IP1) in receptor-expressing cells against a mock control directly tests whether acetylcholine activates it. The same assay can separate specific activation from a promiscuous-pocket artifact.",
+    "target_tissues": [
+      "brain",
+      "pituitary gland"
+    ],
+    "tissue_rationale": "HPA shows GPR139 RNA is tissue-specific to brain (2.2 nTPM). Its single-cell signal is highest in lactotrophs (68.2 nCPM), which are pituitary cells. Acetylcholine has no HPA entry because it is a metabolite. Cholinergic innervation of the brain gives the ligand side, so recombinant GPR139 cells are the practical test system, with habenula or pituitary-derived cells as follow-up.",
+    "cell_types": [
+      "Lactotrophs",
+      "Habenular/striatal neurons (brain)"
+    ],
+    "protocol_notes": "1) Stably or transiently express human GPR139 in HEK293 or CHO-K1 cells, with G\u03b115 or Gqi5 co-expression if coupling is weak. Use mock-transfected parental cells in parallel. Confirm surface expression with an epitope tag (e.g. HA/FLAG). 2) Run a Fluo-4 Ca2+ flux or IP-One HTRF dose-response for acetylcholine (1 nM\u20131 mM), with an acetylcholinesterase inhibitor (e.g. physostigmine or neostigmine) or a stable analogue (carbachol) to prevent hydrolysis. 3) Rule out endogenous muscarinic receptor responses by adding atropine (and mecamylamine for nicotinic) and by checking the mock cells. Run the response in GPR139 cells against the mock cells and compare EC50 with L-Trp/L-Phe (~tens of \u00b5M) and JNJ-63533054 (nM). 4) If there is a hit, check that a GPR139 binding-pocket mutant (e.g. a residue in the aromatic amino-acid site) loses the response, and test a radioligand or label-free binding assay for direct engagement.",
+    "controls": "Positive: L-Trp, L-Phe and JNJ-63533054 on GPR139 cells; carbachol on M1/M3-expressing cells as an assay-validity control. Negative: mock/parental cells, vehicle, atropine pre-treatment, and an unrelated Gq GPCR. Specificity: an unrelated quaternary ammonium compound such as choline, which tests whether any positive effect is specific to acetylcholine.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET. Acetylcholine binds many unrelated targets, so a high ipTM (0.87) is weak evidence of specificity. The known GPR139 activators are aromatic amino acids, a different chemical class, and the ChEMBL lookup for GPR139 activity failed, so novelty is unverified. HEK/CHO cells express endogenous muscarinic receptors that can give false-positive Ca2+ signals. Acetylcholine is rapidly hydrolysed in serum and by cellular esterases. HPA has no subcellular location or protein-level data for GPR139, and RNA expression is low (2.2 nTPM in brain). A negative result in a heterologous system doesn't rule out a native-context effect."
+  },
+  {
+    "protein_a": "GPR151",
+    "protein_b": "4-aminobutanoic acid",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR151-expressing cells vs. parental/mock cells, GABA dose-response, plus pocket-mutant and GABA-receptor antagonist arms",
+    "method_rationale": "GABA is a small soluble metabolite and GPR151 is an orphan class A GPCR, so PLA and co-IP are unsuitable (no protein partner). A functional signalling readout in receptor-expressing cells directly tests agonism and, with proper counter-screens, addresses the promiscuous-pocket concern.",
+    "target_tissues": [
+      "Retina (cone photoreceptor cells, GPR151 side)",
+      "Brain (habenula / habenulo-interpeduncular axis; GABA side)",
+      "Heterologous HEK293 system"
+    ],
+    "tissue_rationale": "HPA gives no tissue-level RNA/protein data for GPR151 and none for GABA (a metabolite); the only evidence is single-cell RNA in cone photoreceptors (2.1 nCPM, weak). There is no true tissue overlap to cite, so a recombinant HEK293/CHO system is the primary platform, with retina as the physiologically relevant context. GABAergic signalling is abundant in the retina, so cone-adjacent exposure is plausible.",
+    "cell_types": [
+      "Cone photoreceptor cells"
+    ],
+    "protocol_notes": "1) Express human GPR151 (N-terminal epitope tag to confirm surface expression by flow/ELISA) in HEK293 or CHO cells; use mock-transfected cells in parallel. Because GPR151 is orphan with unclear G-protein coupling, run several readouts: Gq (Ca2+ flux/IP1), Gi/Gs (cAMP GloSensor, with forskolin for Gi), and \u03b2-arrestin recruitment (PathHunter/BRET). Run in parallel a promiscuous G\u03b116 or Gqi5 chimera setup. 2) GABA dose-response (1 nM\u20131 mM) at neutral pH, with the buffer pH strictly clamped, because GPR151 is annotated as proton-sensing and GABA stock acidity could give false positives. Include a pH-matched vehicle. 3) Counter-screens: GABA-A/B antagonists (bicuculline, CGP55845) to exclude endogenous GABA receptor activity in host cells, and structurally related amino acids (glycine, \u03b2-alanine, 5-aminovaleric acid, glutamate) for specificity. 4) Mutate the AF3-predicted pocket residues contacting GABA (alanine scan of the top 3\u20135 contacts) and confirm loss of response with preserved surface expression. Optionally do orthogonal binding (SPR/thermal shift on purified receptor, or radioligand/[3H]-GABA binding).\", \"controls\": \"Positive: a known agonist of the readout in the same cells (e.g. ATP/carbachol for Ca2+, forskolin for cAMP, an endogenous GPCR agonist for \u03b2-arrestin), plus a GABA-B-expressing cell line as a positive control for GABA responsiveness. Negative: mock/parental cells, vehicle with matched pH, an unrelated orphan GPCR expressed to the same level, and the pocket-mutant GPR151.\", \"caveats\": \"Verdict is LIKELY_PROMISCUOUS_POCKET: the AF3 ipTM 0.87 for a tiny zwitterion is not specific evidence and BSA is only 361 \u00c5\u00b2. No ChEMBL activity data exist for GABA at GPR151, so a negative result is plausible. GPR151 coupling is poorly defined, so a null result in one pathway doesn't rule out agonism. GPR151 is annotated as proton-sensing, so pH artefacts need strict control. HPA has no tissue-level data for GPR151 and none for GABA (not a gene product). Cone expression is low (2.1 nCPM), and HEK/CHO endogenous GABA-related transporters or receptors may confound results.\""
+  },
+  {
+    "protein_a": "GPR151",
+    "protein_b": "L-glutamic acid",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: dose-response of L-glutamate vs. structurally related amino acids/metabolites (D-Glu, L-Asp, L-Gln, GABA) and a pH sweep, in GPR151-expressing vs. parental/empty-vector cells, with a pocket-mutant arm",
+    "method_rationale": "L-glutamate is a small diffusible metabolite, so PLA and co-IP don't apply, because there is no protein partner to tag. GPR151 is a GPCR, so the right test is whether glutamate drives a receptor-dependent signalling response above what other amino acids and parental cells produce.",
+    "target_tissues": [
+      "Retina (cone photoreceptor cells)",
+      "Habenula/brain (GPR151-enriched region, not in the supplied HPA data)"
+    ],
+    "tissue_rationale": "The only HPA signal for GPR151 is in cone photoreceptor cells (rna_single_cell_type_specific_nCPM 2.1), which is very low. No tissue-level RNA or protein enrichment is given. No HPA data exists for glutamate, since it is a metabolite and not a gene product. There is no real tissue overlap to exploit. The assay should therefore run in a heterologous system (HEK293 or CHO cells). Retina or cone-like cells could serve as a secondary, physiologically relevant context.",
+    "cell_types": [
+      "Cone photoreceptor cells"
+    ],
+    "protocol_notes": "1) Make HEK293 cells stably or transiently expressing GPR151 (confirm surface expression with an epitope tag, by flow cytometry or ELISA). Use parental cells or empty vector as the negative background. Because GPR151 is an orphan receptor with unknown G-protein coupling, run a panel of readouts: cAMP (GloSensor), Ca2+ flux (with Gqi5/G\u03b115 co-expression), and \u03b2-arrestin recruitment (PathHunter/NanoBiT). Run these as unbiased first-pass assays.\n2) Run 10-point dose-response curves for L-Glu (nM to 10 mM) alongside D-Glu, L-Asp, L-Gln, GABA, glycine, and a vehicle matched for pH and osmolarity. Buffer carefully, because GPR151 is described as proton-sensing and unbuffered glutamic acid can acidify the medium. Also test a pH series on its own.\n3) If there is a response, mutate the predicted pocket residues (the ones contacting glutamate's carboxylates and amine in the AF3 pose) and check for loss of signal. Optionally, check binding orthogonally by thermal shift (CETSA/nanoDSF) on purified receptor, or by radioligand/competition binding.\n4) Also run endogenous glutamate-receptor and transporter background checks (e.g., mGluR or iGluR antagonist cocktail, glutamate-transporter inhibitor) to rule out signal from endogenous HEK glutamate pathways.",
+    "controls": "Positive: a known glutamate-responsive GPCR (e.g., mGluR1/5 for Ca2+, mGluR2/3 for cAMP) and a validated agonist for each readout (forskolin for cAMP, ATP for Ca2+). Negative: parental or empty-vector cells, an unrelated orphan GPCR expressed at similar surface level, D-Glu and other amino-acid analogs, and a pH-matched vehicle. Specificity: pocket-mutant GPR151.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET at low confidence. A high ipTM for a small polar metabolite in a GPCR pocket is expected and is not evidence of specificity. ChEMBL novelty and promiscuity checks failed (HTTP 500), so they should be re-run before going further. GPR151 is an orphan receptor with no known G-protein coupling, so a negative result in one readout does not rule out activity. Proton sensitivity and the acidity of glutamic acid can give false positives, so buffer carefully. HPA shows very weak GPR151 expression (cone photoreceptors only, 2.1 nCPM), so a physiological relevance argument is weak. This is not a PTM/glycan artifact case."
+  },
+  {
+    "protein_a": "GPR50",
+    "protein_b": "leukotriene D4",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen design: GPR50 vs. empty-vector vs. CysLT1R/CysLT2R (positive control receptors), plus a lipid-specificity panel (LTC4, LTE4, LTB4, other lipids)",
+    "method_rationale": "LTD4 is a small lipid ligand, so a direct functional readout in receptor-expressing cells is more informative than PLA or co-IP, which don't suit a small molecule. The verdict calls for a counter-screen, so specificity must be tested against mock cells, known LTD4 receptors and related lipids.",
+    "target_tissues": [
+      "pituitary gland"
+    ],
+    "tissue_rationale": "HPA shows GPR50 RNA is tissue-enriched only in the pituitary gland (15.6 nTPM), and in lactotrophs (4.4 nCPM) at the single-cell level. LTD4 has no HPA entry because it is a metabolite, not a gene product. The primary assay should use a recombinant heterologous system (HEK293) and be followed up in pituitary lactotroph-like cells (e.g. GH3 or primary pituitary cultures).",
+    "cell_types": [
+      "Lactotrophs"
+    ],
+    "protocol_notes": "1) Transfect HEK293 (or CHO) cells with epitope-tagged GPR50, empty vector, or CysLT1R as a positive control. Confirm surface expression by anti-tag flow cytometry or ELISA. Use a promiscuous G\u03b116 or Gqi5 chimera, or run parallel Gs/Gi/Gq readouts, because GPR50 coupling is unknown. 2) Run LTD4 dose-response curves (1 pM\u201310 \u00b5M) with Ca2+ flux (Fluo-4), cAMP (GloSensor or HTRF) and \u03b2-arrestin recruitment (PathHunter or BRET). Compare GPR50 against mock cells, and test LTC4, LTE4, LTB4 and a non-related lipid in the same panel. 3) Use the CysLT1 antagonist montelukast to test whether any response is receptor-specific. If a response appears, confirm binding with a radioligand ([3H]-LTD4) or a competition-binding assay on membranes. Then repeat in pituitary lactotroph-like cells with GPR50 knockdown or knockout. 4) Use fresh LTD4 stocks with a stability check, because LTD4 is labile and is converted to LTE4. Include a serum-free buffer and a bestatin/serine-borate peptidase inhibitor control, if appropriate.",
+    "controls": "Positive: CysLT1R + LTD4 (Ca2+ flux, EC50 in the low nM range) and a non-GPR50 receptor-specific agonist for assay validity. Negative: empty-vector or parental cells, an unrelated orphan GPCR given the same lipid (to estimate promiscuity), vehicle-only, and montelukast pre-treatment. GPR50 can show constitutive activity or heteromerize with MT1/MT2, so also include melatonin on MT1-expressing cells as a pathway comparator.",
+    "caveats": "The AF3 ipTM of 0.87 for a flexible lipid in a GPCR pocket is expected and does not show specificity. Neither ChEMBL check could be run, so novelty and promiscuity are unmeasured. GPR50 is an orphan receptor with unknown G-protein coupling, and it is reported to heterodimerize with MT1/MT2 and to be constitutively active, which could produce false negatives or confound the readouts. GPR50 RNA expression is low (4.4 nCPM in lactotrophs), and HEK293 cells may endogenously express CysLT receptors, so a CysLT1/2 antagonist or knockout background is needed. LTD4 is unstable, and its metabolites could be responsible for any effect. A negative result in heterologous cells would not exclude a context-dependent interaction."
+  },
+  {
+    "protein_a": "GPR15",
+    "protein_b": "prostaglandin D2",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: PGD2 dose-response vs. GPR15LG (positive ligand) and vs. known PGD2 receptors (DP1/PTGDR, DP2/CRTH2/GPR44) in parallel, with GPR15-null parental cells",
+    "method_rationale": "PGD2 is a small diffusible lipid and GPR15 is a Gi-coupled GPCR, so a functional readout (Gi signalling, \u03b2-arrestin recruitment) tests real receptor activation. PLA and co-IP are poorly suited to a small-molecule lipid, and the main risk is a promiscuous pocket fit, which a counter-screen can address.",
+    "target_tissues": [
+      "intestine (colon/small intestine)",
+      "peripheral blood lymphocytes (T-cells)",
+      "NK-cells and plasma cells (lymphoid/gut-associated)"
+    ],
+    "tissue_rationale": "GPR15 RNA is tissue-specific to intestine (29.4 nTPM). Single-cell data show it in plasma cells (26.2 nCPM), T-cells (19.2) and NK-cells (11.6). HPA has no entry for PGD2, a lipid made by enzymes such as PTGDS and HPGDS. No real overlap is supported, so the primary test uses recombinant GPR15 in a heterologous system and the native cell types serve as a secondary check.",
+    "cell_types": [
+      "T-cells (gut-homing CD4+ / regulatory T cells)",
+      "Plasma cells",
+      "NK-cells",
+      "HEK293 or CHO cells expressing GPR15 (heterologous system)"
+    ],
+    "protocol_notes": "1) Make HEK293 or CHO stable lines expressing GPR15 (with a G\u03b1qi5 chimera or a cAMP biosensor such as GloSensor). Include a parental line and a DP2/CRTH2-expressing line as a PGD2-responsive control. Read out Gi-mediated forskolin-induced cAMP inhibition and \u03b2-arrestin recruitment (PathHunter or NanoBiT) over a PGD2 range of 1 nM to 30 \u00b5M. Use fresh PGD2 stocks, since it degrades quickly to 15d-PGJ2 and other metabolites, and test those metabolites as well. 2) Run the same assay with recombinant GPR15LG as the specific-agonist benchmark. Compare potency and efficacy, and note whether PGD2 only acts at supraphysiological concentrations. 3) Run a structure-guided pocket-mutant test (mutate the residues predicted to contact PGD2) and a competition test against GPR15LG. 4) As a secondary check, treat primary human gut-homing T cells or GPR15+ cell lines with PGD2 and measure chemotaxis or cAMP, with and without GPR15 knockdown or knockout.",
+    "controls": "Positive: GPR15LG, which should give a robust GPR15-dependent response. PGD2 on DP1 or DP2 cells, which should respond. Negative: parental cells without GPR15. Vehicle (ethanol or DMSO) controls. An unrelated lipid such as PGE2 or LTB4 for specificity. An unrelated Gi-coupled GPCR as a transfection control.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET with low confidence. The ChEMBL queries failed, so prior activity data and the molecule's target count are unknown and should be re-queried first. A high ipTM for a small lipid in a GPCR pocket is expected regardless of specificity. UniProt lists GPR15LG, a polypeptide, as the natural ligand. PGD2 is unstable in aqueous media and in serum and gives non-specific effects through endogenous DP1/DP2 or PPAR\u03b3 (via its metabolite 15d-PGJ2). Any response must therefore be shown to be GPR15-dependent. HPA has no data for PGD2, so tissue co-presence cannot be judged. Intestinal GPR15 expression may reflect lymphocytes, not epithelium."
+  },
+  {
+    "protein_a": "GPR174",
+    "protein_b": "prostaglandin D2",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR174-expressing vs. empty-vector/parental cells, with LysoPS as positive-control agonist, PGD2 and related prostanoids (PGE2, 15d-PGJ2, PGD2 metabolites) as specificity panel, and a pocket-mutant arm",
+    "method_rationale": "PGD2 is a small diffusible lipid and GPR174 is a plasma-membrane GPCR, so PLA and co-IP are unsuitable (no protein partner, and low-affinity lipid binding would not survive IP). A functional readout in receptor-expressing cells directly tests whether PGD2 is an agonist or only a promiscuous-pocket artifact, and the panel and mutant arm address the verdict.",
+    "target_tissues": [
+      "lymphoid tissue"
+    ],
+    "tissue_rationale": "HPA shows GPR174 RNA tissue-specific expression only in lymphoid tissue (15.7 nTPM). Single-cell data show highest expression in T-cells (105.1 nCPM), NK-cells (76.4), basophils (59.7) and thymocytes (37.7). PGD2 has no HPA entry (it is a lipid made by PTGDS/HPGDS), so the assay is built around receptor-bearing cells. Basophils are also a PGD2-responsive cell type and make a physiologically relevant context.",
+    "cell_types": [
+      "T-cells",
+      "NK-cells",
+      "Basophils",
+      "Thymocytes",
+      "B-cells"
+    ],
+    "protocol_notes": "1) Heterologous system: HEK293 or CHO cells stably expressing human GPR174, with empty-vector parental cells as the control. Use a Gs-coupled readout (cAMP, e.g. GloSensor or HTRF), since GPR174 couples mainly to Gs. Add a \u03b2-arrestin recruitment assay (e.g. PathHunter/NanoBiT) as an orthogonal readout. Run full 8-10 point dose-response curves for PGD2 from 1 nM to 30 \u00b5M, and compare EC50 and Emax with LysoPS (18:1). Include DP1 and CRTH2 expressing cells as PGD2 positive controls, and use freshly prepared PGD2 because it is unstable and degrades to J-series prostaglandins. 2) Specificity panel: PGE2, PGF2\u03b1, 15d-PGJ2, 9\u03b1,11\u03b2-PGF2 and a fatty-acid or lysophospholipid such as LPA/LPS-lyso. Show whether the response is specific or a general lipid effect. 3) Pocket test: mutate known LysoPS-contacting residues in GPR174 (e.g. the polar/basic residues that coordinate the phosphoserine headgroup, per published cryo-EM structures) and check whether PGD2 activity is lost along with LysoPS activity. Also test whether DP1/CRTH2 antagonists change the response. 4) Physiological follow-up: primary human T or NK cells, or Jurkat, with GPR174 knockdown/CRISPR knockout. Measure cAMP/pCREB (and IL-2 suppression as a downstream readout) after PGD2 stimulation, with DP1/CRTH2 inhibitors present to separate off-target receptor effects.",
+    "controls": "Positive: LysoPS (known GPR174 agonist) in GPR174 cells; PGD2 in DP1/CRTH2-expressing cells; forskolin for total cAMP capacity. Negative: parental/empty-vector cells; GPR174 pocket-dead mutant; vehicle (ethanol/DMSO, matched); structurally unrelated prostanoids (PGE2/PGF2\u03b1); DP1/CRTH2 antagonists in primary cells so their effect is not mistaken for GPR174 signalling.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET: a high ipTM (0.86) for a lipid in a lipid-binding GPCR pocket is expected and does not show specificity, so a null result in the assay is the likely outcome. ChEMBL activity data were unavailable, so prior evidence of PGD2 activity at GPR174 is unchecked. The HPA contains no entry for PGD2, so tissue choice rests only on the receptor. Lymphocytes also express DP1/CRTH2 (CRTH2 on Th2/ILC2), which confound primary-cell experiments, so use knockout or antagonist controls. PGD2 is chemically unstable, and some effects may come from its metabolites. Expression of GPR174 is low in absolute terms (15.7 nTPM), so endogenous signals may be small. Overexpression in HEK/CHO cells can produce artifactual low-potency lipid responses, so only an EC50 in a physiologically plausible range (and lost in the pocket mutant) would support a real interaction."
+  },
+  {
+    "protein_a": "GPR6",
+    "protein_b": "4-aminobutanoic acid",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR6 vs. mock/parental and vs. a closely related receptor (GPR3/GPR12) and a GABA-B positive control, with lipid agonist (S1P) comparator arm",
+    "method_rationale": "GABA is a small soluble metabolite and GPR6 is a constitutively active Gs-coupled GPCR, so PLA/co-IP don't fit (no protein partner, and a low-affinity ligand wouldn't survive IP). A cAMP functional readout directly tests whether GABA modulates GPR6 above its high basal signalling, and the counter-screens address the 'promiscuous pocket' concern.",
+    "target_tissues": [
+      "brain (striatum/caudate)",
+      "brain (cerebral cortex)",
+      "pituitary gland"
+    ],
+    "tissue_rationale": "HPA shows GPR6 RNA is brain-specific (34.4 nTPM), with single-cell expression in brain inhibitory neurons (13.6 nCPM), other brain neurons (4.5) and lactotrophs (4.2). GABA has no HPA entry as a metabolite, but GABAergic inhibitory neurons are the physiologically relevant context. The primary assay is done in recombinant HEK293 cells, with follow-up in neuronal cultures.",
+    "cell_types": [
+      "Brain inhibitory neurons",
+      "Lactotrophs",
+      "Other brain neurons"
+    ],
+    "protocol_notes": "1) Transfect HEK293 cells with GPR6 or empty vector. Use a cAMP readout (GloSensor or HTRF) in a GABA dose-response (1 nM-10 mM) with an osmolarity/pH-matched vehicle. Because GPR6 is constitutively active, use an inverse agonist or titrate GPR6 expression to widen the window, and measure changes in basal cAMP. 2) Run an orthogonal \u03b2-arrestin recruitment (e.g., PathHunter) or CRE-luciferase assay. Confirm surface expression of GPR6 (tagged construct, flow/ELISA). 3) If any activity appears, test pocket-residue mutants predicted by AF3 to contact GABA, and structural analogues (glycine, \u03b2-alanine, taurine, muscimol) to check specificity. Follow up in primary striatal neurons or an inhibitory neuron line with GPR6 knockdown.",
+    "controls": "Positive: forskolin (cAMP max), S1P or a reported GPR6 modulator as the lipid agonist comparator, and GABA on GABA-B (GABBR1/2, Gi) as a ligand-activity control. Negative: mock-transfected cells with GABA, an unrelated Gs GPCR (e.g., one not GABA-responsive), other small zwitterions (glycine, \u03b2-alanine), and a vehicle with matched pH/osmolarity. Also include a GPR3/GPR12 paralog comparison for selectivity.",
+    "caveats": "The ChEMBL novelty and promiscuity checks were not run, so prior activity at GPR6 is unknown. The ipTM of 0.86 is expected for small zwitterions in a GPCR pocket and is weak evidence. Constitutive Gs activity may mask weak agonism, and high-mM GABA may cause osmotic or pH artifacts. HEK293 cells endogenously express some GABA-related and other GPCR machinery. GPR6 has no HPA subcellular location or protein-level data, and GABA has no HPA data, so tissue-level overlap cannot be assessed. GABA is also a physiological brain metabolite, so any response may be indirect."
+  },
+  {
+    "protein_a": "GPR82",
+    "protein_b": "prostaglandin D2",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: PGD2 dose-response vs. related lipids (PGE2, PGJ2/15d-PGJ2, DK-PGD2, LTB4) and vs. known PGD2 receptors (DP1, DP2/CRTH2) as positive-control receptors, in GPR82-expressing vs. parental/empty-vector cells",
+    "method_rationale": "GPR82 is an orphan GPCR and PGD2 is a diffusible lipid, so the question is whether PGD2 functionally activates the receptor. That is best tested with a signalling readout in a receptor-expressing system, not by co-localization. A counter-screen against other lipids and parental cells is needed because a high ipTM for a lipid in a GPCR pocket is the expected result and not evidence of specificity.",
+    "target_tissues": [
+      "lymphoid tissue",
+      "intestine"
+    ],
+    "tissue_rationale": "HPA shows GPR82 RNA only in lymphoid tissue (6.5 nTPM) and intestine (2.5 nTPM), and the single-cell data show Kupffer cells at 65.1 nCPM. PGD2 has no HPA entry. Its producer PTGDS is enriched in testis, epididymis, decidua and RPE, so there is no real tissue overlap. This is a paracrine/exogenous-ligand test: use GPR82-bearing immune cells as the receptor side. PGD2 is also made by other cells, such as mast cells and Th2 cells, in lymphoid and gut tissue.",
+    "cell_types": [
+      "Kupffer cells",
+      "lymphoid cells (T/B lymphocytes)",
+      "recombinant HEK293 or CHO cells expressing GPR82"
+    ],
+    "protocol_notes": "1) Make HEK293 or CHO cells stably expressing epitope-tagged GPR82. Confirm surface expression by flow cytometry or ELISA. Use a promiscuous G\u03b116 or Gqi5 chimera, or run parallel assays: cAMP (GloSensor, Gi-mode with forskolin), Ca2+ flux (Fluo-4), and \u03b2-arrestin recruitment (PathHunter or Tango). 2) Give PGD2 in a dose-response (1 nM\u201310 \u00b5M) using freshly prepared, light-protected, low-temperature stocks, because PGD2 is chemically unstable and dehydrates to J-series prostaglandins. Include a PGD2 stability or LC-MS check, and test the J-series degradation products separately. 3) Counter-screen the same cells with PGE2, PGF2\u03b1, 15d-PGJ2, DK-PGD2 and LTB4, and with parental or empty-vector cells, to exclude endogenous-receptor effects (HEK293 express some prostanoid receptors). 4) Confirm in a native system: primary Kupffer cells or lymphocytes, or macrophage-like cells, with GPR82 knockdown or knockout. Optionally run an orthogonal binding test (radioligand [3H]-PGD2 displacement or a cellular thermal shift assay). Mutating predicted pocket residues should abolish any response.",
+    "controls": "Positive: DP1 (PTGDR) cells or DP2 (CRTH2/GPR44) cells with PGD2, which should respond. A generic GPCR agonist, such as ATP via endogenous P2Y receptors or forskolin, shows the assay is working. Negative: parental or empty-vector cells, a GPR82 pocket-mutant, and vehicle (ethanol or DMSO). Specificity: other prostanoids and an unrelated lipid.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET. The high ipTM (0.86) is the expected result for any lipid in a GPCR pocket, and the PGD2 pLDDT is only moderate (68.7), so the pose is not evidence of specific binding. GPR82 is an orphan receptor with low and sparse HPA expression, and its G-protein coupling is unclear, so a negative result in one readout may be a false negative. Use several readouts. PGD2 is unstable and converts to J-series prostaglandins. HPA has no data for PGD2, and the producer PTGDS has no tissue overlap with GPR82, so physiological relevance is uncertain. Mouse and human GPR82 may differ."
+  },
+  {
+    "protein_a": "GPRC5C",
+    "protein_b": "adenosine",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: parallel dose-response of adenosine on GPRC5C-expressing vs. parental/empty-vector cells, with adenosine deaminase and A1/A2A/A2B/A3 antagonist controls, plus pocket-mutant GPRC5C",
+    "method_rationale": "Adenosine is a small-molecule diffusible ligand and GPRC5C is a plasma-membrane orphan GPCR, so a functional receptor-activation readout tests real engagement better than co-localization (PLA is not applicable to a metabolite). Because the verdict is a promiscuous-pocket flag, the assay must include counter-screens to show specificity rather than just a response.",
+    "target_tissues": [
+      "Liver",
+      "Skin",
+      "Stomach"
+    ],
+    "tissue_rationale": "HPA shows GPRC5C protein-level tissue-enriched staining in skin (~330,655), stomach (~197,982) and liver (~151,993). No RNA tissue-specific or single-cell data were given. Adenosine has no HPA entry, but it is a ubiquitous extracellular metabolite, so the receptor side drives the choice of model. Use HEK293 heterologous expression as the primary system, with an endogenous-expressing line or primary cells from these tissues as a secondary system.",
+    "cell_types": [
+      "Hepatocytes",
+      "Keratinocytes",
+      "Gastric epithelial cells"
+    ],
+    "protocol_notes": "1) Express N-terminally tagged GPRC5C (confirm surface localization by non-permeabilized anti-tag staining, since HPA also reports vesicles) in HEK293 cells. Use parental and empty-vector cells as negative controls. Run a cAMP assay (GloSensor or HTRF) in basal and forskolin-stimulated modes, to capture both Gs and Gi coupling. In parallel, run a G\u03b115/Gqi5 chimera calcium flux assay and a \u03b2-arrestin (PathHunter/NanoBiT) recruitment assay, because GPRC5C is an orphan with uncertain coupling.\n2) Give an adenosine dose-response (1 nM\u20131 mM), with adenosine deaminase pre-treatment to remove the ligand. Add a stable agonist such as NECA, and include an adenosine receptor antagonist cocktail (e.g. DPCPX, ZM241385, MRS1754, MRS1220). This rules out signal from endogenous A2B in HEK293 cells.\n3) Do a biophysical binding check, such as a cellular thermal shift assay or radioligand/competition binding on membranes. Add a structure-guided pocket mutant of GPRC5C at the AF3-predicted contact residues. Test structurally related nucleosides and nucleotides (inosine, AMP, ATP) to measure selectivity.",
+    "controls": "Positive: A2A/A2B receptor-expressing cells with adenosine or NECA (assay validity), and forskolin for cAMP dynamic range. Negative: parental and empty-vector HEK293 cells, a pocket-dead GPRC5C mutant, adenosine deaminase-treated adenosine, an unrelated class C orphan (e.g. GPRC5B) as a specificity control, and a vehicle control.",
+    "caveats": "The promiscuity lookup failed, so the verdict rests on missing evidence and has low confidence. An AF3 ipTM of 0.86 for a small molecule in a GPCR pocket is not evidence of specificity. HEK293 cells express endogenous adenosine receptors (especially A2B), which could produce false positives, hence the antagonist and parental-cell controls. GPRC5C is an orphan with unknown G-protein coupling, so a negative result in one readout does not rule out binding. HPA also lists vesicular localization and the predicted-intracellular class, so surface expression must be confirmed. Physiological adenosine levels (nM\u2013low \u00b5M) may be lower than what a pocket interaction would need, so only high doses may give a response. HPA has no data for adenosine, and the tissue choice comes from the receptor side only."
+  },
+  {
+    "protein_a": "GPR160",
+    "protein_b": "adenosine",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR160-expressing vs. parental/mock cells, with an adenosine-receptor antagonist cocktail and an ADA (adenosine deaminase) control arm",
+    "method_rationale": "Adenosine is a small-molecule ligand and GPR160 is an orphan plasma-membrane GPCR, so PLA and co-IP don't suit it. A functional signalling readout (cAMP, Gi/Gs, \u03b2-arrestin recruitment) in cells with and without GPR160 tests specificity directly, which is what the PROMISCUOUS_POCKET verdict calls for.",
+    "target_tissues": [
+      "parathyroid gland"
+    ],
+    "tissue_rationale": "HPA shows GPR160 RNA is tissue-specific to parathyroid gland (203.7 nTPM), with no protein-level or single-cell data. Adenosine has no HPA entry because it is a metabolite, so it is present wherever extracellular ATP/adenosine is generated. Parathyroid tissue or cells are therefore the most physiological setting, and a heterologous system is the practical one.",
+    "cell_types": [
+      "parathyroid chief cells"
+    ],
+    "protocol_notes": "1) Use HEK293 or CHO cells, preferably an A1/A2A/A2B/A3-null line (CRISPR knockout, or CHO-K1, which has low endogenous adenosine receptors). Transfect with epitope-tagged GPR160 versus empty vector, and confirm surface expression by flow cytometry or surface ELISA. 2) Run dose-response curves (1 nM\u20131 mM adenosine) in several readouts: GloSensor or HTRF cAMP, with and without forskolin to catch Gi coupling; PathHunter \u03b2-arrestin; and G\u03b1i/G\u03b1q/G\u03b1s BRET or TRUPATH. Include adenosine deaminase and an A1/A2A/A2B/A3 antagonist cocktail to exclude endogenous adenosine receptors. Add NECA or a stable analog. 3) If there is a response, confirm binding with a radioligand or NanoBRET competition assay on membranes. Mutate pocket residues predicted by AF3, and check that the response is lost in the mutants and that the receptor is still expressed at the surface. 4) Validate in a parathyroid-relevant model (primary cells or a parathyroid line) with GPR160 siRNA or CRISPR knockdown.",
+    "controls": "Positive: A2A or A1 receptor-transfected cells with adenosine or NECA, which should give a robust cAMP change. Negative: empty-vector or parental cells; an unrelated orphan GPCR; a GPR160 pocket-mutant. Specificity: other purines such as ATP, inosine and AMP, and ADA pre-treatment to remove adenosine.",
+    "caveats": "The fold was not run here, so it is unverified whether the AF3 pose sits in the transmembrane bundle. A confident ipTM for a ligand that binds at least 122 targets is the expected result, so it is not evidence of specificity. Orphan GPCRs often show poor surface expression and uncertain G-protein coupling, so a negative result in one readout does not rule out signalling. Adenosine acts through endogenous A1/A2A/A2B/A3 receptors in most cell lines, which can produce false positives. HPA shows GPR160 in parathyroid gland only at RNA level, with no protein data. Its protein class annotations are also inconsistent, because they list both 'predicted intracellular' and plasma membrane."
+  },
+  {
+    "protein_a": "GPR171",
+    "protein_b": "prostaglandin D2",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: side-by-side dose-response of PGD2 vs. Big LEN (positive ligand) on GPR171-expressing vs. parental/GPR171-KO cells, plus a pocket-mutant arm and comparison with PGD2's known receptors (DP1/PTGDR, DP2/CRTH2) and unrelated lipids (PGE2, PGJ2).",
+    "method_rationale": "PGD2 is a small-molecule lipid and GPR171 is a Gi/o-coupled GPCR, so the question is whether PGD2 actually activates it. A functional readout answers this better than PLA, which can't be used for a non-protein ligand, or co-IP. The counter-screen design tests the verdict's 'promiscuous pocket' concern directly.",
+    "target_tissues": [
+      "Lymphoid tissue",
+      "Spleen",
+      "Lymph node",
+      "Tonsil"
+    ],
+    "tissue_rationale": "HPA shows GPR171 RNA tissue-specific only in lymphoid tissue (20.1 nTPM). At the single-cell level it is in T-cells (143.7 nCPM), NK-cells (43.7) and innate lymphoid cells (33.6). PGD2 has no HPA entry, so no tissue overlap can be judged. The PGD2 source (PTGDS/HPGDS-expressing cells such as mast cells and Th2 cells) is not in the GPR171 data, so use exogenous PGD2 on receptor-bearing cells.",
+    "cell_types": [
+      "T-cells",
+      "NK-cells",
+      "Innate lymphoid cells"
+    ],
+    "protocol_notes": "1) Cell systems: HEK293 or CHO cells stably expressing human GPR171 (plus a G\u03b1i/G\u03b1qi5 chimera or G\u03b2\u03b3-sensitive reporter if needed), with parental cells and GPR171-KO cells as controls. Confirm with primary human T cells or NK cells, or a T-cell line (e.g. Jurkat), with and without GPR171 knockdown. 2) Readouts: forskolin-stimulated cAMP inhibition (Gi), [35S]GTP\u03b3S or BRET G-protein activation, \u03b2-arrestin recruitment (PathHunter/Tango) and pERK. Run 10-point dose-response curves from 1 nM to 100 \u00b5M PGD2, and run Big LEN (proLEN/BigLEN peptide) in parallel. 3) Specificity checks: PGD2 stability (it degrades quickly to PGJ2 species, so use fresh stock, LC-MS to confirm identity and concentration, and a stabilised analogue); the DP1/DP2 antagonists (laropiprant, fevipiprant) to rule out signal from endogenous receptors; and AF3-pose-guided point mutants in the predicted contact residues to see whether activity is lost. 4) If a binding signal appears, confirm it with a radioligand [3H]-PGD2 displacement or thermal-shift/NanoBRET binding assay.",
+    "controls": "Positive: Big LEN (proSAAS-derived peptide) in GPR171 cells, giving Gi-mediated cAMP drop. Negative: parental/GPR171-KO cells, vehicle, and an unrelated lipid (e.g. PGE2/arachidonic acid) at matched concentrations. Assay-validity controls: PGD2 on DP1 (Gs, cAMP rise) and DP2/CRTH2 (Gi, calcium/cAMP) to show the PGD2 batch is active. Promiscuity control: PGD2 on a few unrelated orphan/class A GPCRs with similar AF3 pocket scores.",
+    "caveats": "The verdict is low confidence because both ChEMBL checks failed (HTTP 500), so known activity of PGD2 at GPR171 and PGD2's promiscuity were not measured. Do those lookups manually (ChEMBL, GtoPdb, and the GPR171 deorphanisation literature) before running the wet-lab work. A confident ipTM (0.84) for a small molecule in a GPCR pocket is expected and weak evidence of specificity. PGD2 has no HPA entry, and its producer cells (PTGDS/HPGDS) do not overlap with GPR171-expressing cells in the data, so any physiological relevance would have to be paracrine. PGD2 is chemically unstable and also acts on DP1/DP2 receptors that T/NK cells may express, which could confound responses in primary cells. A null result in recombinant cells would support the 'promiscuous pocket' reading. Surface expression of GPR171 is partly vesicular in HPA, so confirm plasma-membrane localisation of the construct."
+  },
+  {
+    "protein_a": "P2RY10",
+    "protein_b": "prostaglandin D2",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: parallel dose-response of PGD2 vs. structurally related lipids (PGE2, PGF2\u03b1, LPA, S1P) and a DP1/DP2 reference, in P2RY10-expressing vs. empty-vector/parental cells",
+    "method_rationale": "PGD2 is a small diffusible lipid and P2RY10 is a GPCR, so a functional readout in receptor-expressing cells is more informative than co-localization (PLA does not suit a metabolite). The verdict flags a possible promiscuous pocket, so the key question is specificity, which needs a counter-screen against related lipids and a receptor-null background.",
+    "target_tissues": [
+      "lymphoid tissue",
+      "tonsil",
+      "lymph node",
+      "spleen"
+    ],
+    "tissue_rationale": "HPA shows P2RY10 RNA is tissue-enriched only in lymphoid tissue (25.7 nTPM). Single-cell data show it in B-cells (122 nCPM), T-cells (104), basophils (81), plasma cells (67), NK cells (47) and ILCs (49). PGD2 has no HPA entry because it is a metabolite, not a gene. Its producers (e.g. mast cells, via the HPGDS/PTGDS synthases) are not in the data given, so the ligand side is supplied exogenously or by co-culture.",
+    "cell_types": [
+      "B-cells",
+      "T-cells",
+      "Basophils",
+      "NK-cells",
+      "Innate lymphoid cells"
+    ],
+    "protocol_notes": "1) Use HEK293 or CHO cells stably expressing P2RY10, with empty-vector cells as the null background. Co-express a promiscuous G\u03b1 (G\u03b115/Gqi5), or use a \u03b2-arrestin (PathHunter/Tango) assay, because P2RY10's G-protein coupling is unknown. Read out calcium flux (Fluo-4), cAMP (GloSensor, in both Gs and Gi modes) and \u03b2-arrestin recruitment. Confirm surface expression with an N-terminal epitope tag. 2) Run PGD2 dose-response from 1 nM to 30 \u00b5M. Include fresh-prepared PGD2 and its dehydration product 15d-PGJ2, since PGD2 is unstable in aqueous buffer. Run the same lipids on empty-vector cells. 3) Repeat in primary human B or T cells, or in a lymphoid line that endogenously expresses P2RY10. Use P2RY10 siRNA or CRISPR knockout to test whether the response depends on the receptor. 4) If a response appears, do a radioligand or label-free binding check (e.g. [3H]-PGD2 competition) and mutate pocket residues predicted by AF3 to test the pose.",
+    "controls": "Positive: a known PGD2 receptor (DP1/PTGDR or DP2/GPR44/CRTH2) in the same assay format, and a reference P2RY10 ligand if one exists (e.g. LPA or S1P, which have been reported as candidates). Also use a generic G\u03b1-pathway agonist, such as ATP on endogenous P2Y receptors or forskolin for cAMP, to show the cells respond. Negative: empty-vector or parental cells; an unrelated lipid GPCR (e.g. a P2RY receptor not expected to bind PGD2); vehicle (ethanol/DMSO); and a pocket-mutant P2RY10.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET at low confidence. High ipTM for a lipid in a GPCR pocket is expected and is not evidence of specificity. ChEMBL checks were not run, so prior activity data for P2RY10 and PGD2 promiscuity are unknown. Ligand pLDDT is only 62.4, so the pose is uncertain. P2RY10 is only a putative purine receptor with an orphan-like profile. It may lack a clean signalling readout, so a negative result would not exclude binding. Endogenous DP1/DP2 or other prostanoid receptors in primary cells could produce PGD2 responses that are not P2RY10-dependent, hence the knockout and null-cell controls. PGD2 is chemically unstable and spontaneously converts to J-series prostaglandins. HPA has no subcellular location or protein-level data for P2RY10, so antibody validation for any follow-up is not yet established."
+  },
+  {
+    "protein_a": "GPR160",
+    "protein_b": "leukotriene D4",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: parallel dose-response of LTD4 on GPR160-expressing vs. empty-vector/parental cells, with CYSLTR1 as positive receptor control and with a CysLT1 antagonist (montelukast) to exclude signalling through endogenous CysLTRs",
+    "method_rationale": "LTD4 is a small soluble lipid and GPR160 is an orphan plasma-membrane GPCR, so a functional receptor-activation readout is more informative than PLA (no antibody can detect a lipid ligand in situ). The main concern is promiscuous-pocket placement, so a dose-response with receptor-null and known-receptor controls directly tests specificity.",
+    "target_tissues": [
+      "parathyroid gland"
+    ],
+    "tissue_rationale": "HPA shows GPR160 RNA is tissue-specific to parathyroid gland (203.7 nTPM), and there is no protein-level or single-cell data. LTD4 has no HPA entry because it is a metabolite, so no tissue overlap can be assessed. The assay should use a heterologous system (HEK293 or CHO) overexpressing GPR160, with parathyroid cells or tissue as a physiological follow-up.",
+    "cell_types": [
+      "parathyroid chief cells"
+    ],
+    "protocol_notes": "1) Make HEK293 or CHO cells stably expressing epitope-tagged GPR160. Confirm surface expression by flow cytometry or surface ELISA. Use empty-vector cells and CYSLTR1-expressing cells as comparators. 2) Add LTD4 at 1 pM\u201310 \u00b5M and measure several readouts, because the G-protein coupling of GPR160 is unknown: Ca2+ flux (Fluo-4, with G\u03b116 or Gqi5 co-expression), cAMP (GloSensor or HTRF), and \u03b2-arrestin recruitment (PathHunter or NanoBiT). Run a panel of structurally related lipids (LTC4, LTE4, LTB4, and an arachidonic-acid-derived control) to test for selectivity. 3) If there is any signal, confirm direct binding with a radioligand ([3H]-LTD4) competition or a membrane-based binding assay. Test pocket-residue mutants of GPR160 that were predicted to contact LTD4. Also run an LTD4 stability check, since it converts to LTE4 in serum or on prolonged incubation. Use serum-free buffer with a peptidase inhibitor such as serine-borate or acivicin.",
+    "controls": "Positive: LTD4 on CYSLTR1-expressing cells (Ca2+ flux, blocked by montelukast) plus generic readout controls (ATP/ionomycin for Ca2+, forskolin for cAMP). Negative: parental or empty-vector cells, an unrelated orphan GPCR expressed at similar level, vehicle, and non-cognate lipids (e.g. LTB4). Specificity: montelukast and a CysLT2 antagonist pre-treatment, and GPR160 knockout/knockdown in any responsive parathyroid line.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET: AF3 will confidently dock a flexible amphipathic lipid into almost any GPCR bundle, and the ipTM of 0.81 plus LTD4 ligand pLDDT of 62.1 do not show receptor-specific binding. A negative result is the expected outcome. HEK293 and other host cells can endogenously express CysLT receptors or other lipid-responsive GPCRs, which could create false positives, so parental-cell controls are required. No ChEMBL data was available to check prior affinity or selectivity for LTD4 at GPR160. GPR160 coupling is unknown, so a single readout could miss a real response. HPA shows only parathyroid RNA expression and no protein or single-cell data, so the physiological relevance of any positive result is uncertain. LTD4 is unstable and prone to oxidation and metabolism."
+  },
+  {
+    "protein_a": "GNRH2",
+    "protein_b": "MRGPRX2",
+    "method": "stimulation_assay",
+    "method_variant": "Use mature GnRH-II decapeptide (pyroGlu-His-Trp-Ser-His-Gly-Trp-Tyr-Pro-Gly-NH2) and a precursor/GAP-containing fragment side by side, in MRGPRX2-expressing vs. MRGPRX2-knockout/mock cells.",
+    "method_rationale": "GNRH2 is a predicted secreted peptide hormone and MRGPRX2 is a GPCR on mast cells. This is a paracrine ligand-receptor pair, so the two proteins need not be in the same cell, and a functional agonist readout (Ca2+ flux, degranulation) is more informative than co-localization. The low-confidence AF3 model (precursor sprawl, partner pLDDT 37.6) also needs a test of whether the mature decapeptide is the active species.",
+    "target_tissues": [
+      "Stomach (gastric chief cells, GNRH2 side)",
+      "Mast cells (MRGPRX2 side; skin, gastrointestinal mucosa)",
+      "Ovary (oocytes, GNRH2 side)",
+      "Intestine (enteroendocrine cells, GNRH2 side)"
+    ],
+    "tissue_rationale": "HPA gives only single-cell-type data, with no tissue-level overlap. GNRH2 RNA is highest in gastric chief cells (11.1 nCPM), then oocytes (4.7) and enteroendocrine cells (3.8). MRGPRX2 is restricted to mast cells (18.5 nCPM). The plausible in vivo meeting point is the gastric/intestinal mucosa, where mast cells sit near enteroendocrine and chief cells. For the assay itself, use recombinant or synthetic peptide on mast cells or on cell lines expressing the receptor.",
+    "cell_types": [
+      "Mast cells",
+      "Gastric chief cells",
+      "Enteroendocrine cells",
+      "Oocytes"
+    ],
+    "protocol_notes": "1) Receptor cells: HEK293 or CHO-K1 stably expressing MRGPRX2 (with G\u03b115 or a Ca2+ dye such as Fluo-4), with parental cells as the negative control. Also use LAD2 human mast cells (endogenous MRGPRX2), and primary human skin or gut mast cells if possible. 2) Stimulate with a synthetic mature GnRH-II dose range (1 nM\u2013100 \u00b5M). Read out Ca2+ flux in real time, \u03b2-arrestin recruitment (Tango or BRET), and mast cell degranulation (\u03b2-hexosaminidase release, CD63/CD107a flow). Test the GnRH-II precursor or GAP fragment in parallel. 3) For specificity, use MRGPRX2 CRISPR knockout LAD2 cells or the antagonist/inverse agonist C9 (or another MRGPRX2 antagonist), and run GnRH-I and a scrambled GnRH-II peptide to separate GnRH receptor effects and charge-driven nonspecific effects. 4) Confirm direct binding with a labeled-peptide binding assay or SPR/MST on purified receptor, and optionally a co-IP with tagged receptor.",
+    "controls": "Positive: substance P, PAMP-12, or compound 48/80 on MRGPRX2 cells (strong Ca2+ and degranulation). Negative: parental or empty-vector cells, MRGPRX2-KO LAD2 cells, scrambled GnRH-II, and a non-cationic decapeptide. Specificity: GnRH-I (GnRH receptor agonist), and a GnRHR antagonist to rule out classical GnRH receptor signalling. Use ionomycin as the maximum-response control.",
+    "caveats": "AF3 confidence is low (ipTM 0.65, partner pLDDT 37.6, 3673 \u00c5\u00b2 interface). The model probably shows the unprocessed precursor lying across the receptor rather than the mature decapeptide in the orthosteric pocket, so use the processed, amidated peptide and test the precursor separately. MRGPRX2 is promiscuous and responds to many cationic amphiphilic peptides, so a positive response at high micromolar concentrations may be a nonspecific cationic effect. Only activity at physiologically plausible concentrations would be meaningful. HPA shows no tissue-level RNA or protein data for either gene, only single-cell data, and the two proteins are expressed in different cell types. Co-occurrence in vivo is therefore speculative. The mouse ortholog Mrgprb2 differs, so human cells are needed.",
+    "controls_placeholder": ""
+  },
+  {
+    "protein_a": "CHL1",
+    "protein_b": "GPR12",
+    "method": "stimulation_assay",
+    "method_variant": "",
+    "method_rationale": "GPR12 is an orphan class-A GPCR with constitutive Gs/cAMP signalling, and CHL1 is a membrane-anchored adhesion molecule that is also shed or secreted in brain. If CHL1 is a ligand or modulator, the most informative readout is a change in GPR12 cAMP signalling. A functional readout also helps with the low-confidence fold, because it tests for an effect and not just proximity. PLA can be added as a secondary check.",
+    "target_tissues": [
+      "brain (cerebral cortex)",
+      "retina",
+      "ovary"
+    ],
+    "tissue_rationale": "Brain is the only tissue where both proteins are clearly expressed in HPA (CHL1 RNA 62.8 nTPM with strong cerebral cortex protein; GPR12 RNA 11.6 nTPM). CHL1 is annotated as secreted in brain. Retina has GPR12 (7.8 nTPM) and is neural, so it is a reasonable secondary tissue. Ovary has CHL1 (31.9 nTPM) and GPR12 is known for oocyte meiotic arrest, but HPA shows no GPR12 ovary signal, so ovary is exploratory only.",
+    "cell_types": [
+      "cortical neurons",
+      "neurite-extending neurons (e.g. cerebellar granule or hippocampal neurons)",
+      "neuronal cell lines such as SH-SY5Y or Neuro2a"
+    ],
+    "protocol_notes": "1) Use HEK293 cells, or a neuronal line, expressing GPR12 or empty vector. Use a CRE-luciferase or GloSensor cAMP readout. Because GPR12 is constitutively active, measure both baseline elevation and any change on top of it. 2) Treat cells with recombinant CHL1 ectodomain (Fc-tagged, mammalian-expressed so it keeps its glycans) in a dose range, and compare with an Fc-only control. Also try co-culture with CHL1-expressing cells. Run an inverse-agonist/antagonist arm if available (e.g. a Gs pathway inhibitor, or the reported GPR12 ligand S1P as a comparator). 3) Run a neurite outgrowth assay in primary cortical or cerebellar neurons with CHL1 +/- GPR12 knockdown or knockout. Measure outgrowth and cAMP/pCREB. 4) As orthogonal binding evidence, run a cell-surface binding assay of CHL1-Fc on GPR12-expressing versus mock cells, or a PLA with an epitope-tagged GPR12 and anti-CHL1 antibody.",
+    "controls": "Positive: forskolin for maximal cAMP, and a Gs-coupled receptor with its known agonist for assay validity. Negative: Fc-only protein, mock-transfected cells, heat-denatured CHL1 ectodomain, an unrelated L1-family protein (L1CAM or NCAM), and a GPR12-null or knockdown background. Check GPR12 surface expression with an N-terminal tag.",
+    "caveats": "The verdict is CONFIRMED_NOVEL at low confidence, and the fold was not run. The earlier ipTM of 0.63, interface pLDDT of 61.6 and p_twoway of 0.056 are moderate and unverified. The UniProt glycan-binding flag on GPR12 is probably a keyword false positive and could not be re-checked. GPR12 has only 2 N-glycosylation sites and 1 palmitoylation site, but CHL1 has 10 glycosylation sites. Glycans could therefore affect any contact, so recombinant CHL1 should come from a mammalian source, with a PNGase F or glycosylation-mutant arm as an optional extra. Constitutive GPR12 activity can mask small ligand effects. CHL1 is a membrane protein with no HPA subcellular location, and may act in cis on the same cell or by shedding in trans. HPA has no single-cell data for either protein, and GPR12 has no protein-level data, so cell-type assignment is inferred."
+  },
+  {
+    "protein_a": "PPIA",
+    "protein_b": "GPR3",
+    "method": "stimulation_assay",
+    "method_variant": "Include BSG/CD147 co-expression or knockdown arm, and a GPR3 N-glycosylation-site / palmitoylation-site mutant arm (or PNGase F/tunicamycin pretreatment)",
+    "method_rationale": "PPIA is a secreted/plasma protein (HPA \"Secreted to blood\") and GPR3 is a membrane GPCR, so the pair is best framed as an extracellular ligand and receptor. GPR3 is constitutively active through Gs, so the natural readout is a change in cAMP, which shows whether PPIA modulates the receptor. The AF3 complex also includes BSG, so the assay should test whether BSG is needed.",
+    "target_tissues": [
+      "Small intestine",
+      "Stomach",
+      "Colon"
+    ],
+    "tissue_rationale": "The HPA data give only single-cell-type signal. PPIA is very high in gastric progenitor cells (3194 nCPM) and GPR3 is detected in Paneth cells (7.9 nCPM). Both are gastrointestinal epithelial cells, so the GI tract (stomach and small intestine/colon) is the most plausible shared tissue. No tissue-level RNA or protein data were provided. The expression of the two proteins differs by orders of magnitude, and there is no true same-cell overlap. For the assay itself, use HEK293 cells with GPR3 and BSG expressed heterologously, plus an intestinal epithelial or organoid model.",
+    "cell_types": [
+      "Gastric progenitor cells",
+      "Paneth cells"
+    ],
+    "protocol_notes": "1) Use HEK293 cells transfected with GPR3, with or without BSG, and compare against empty vector and a different Gs-coupled GPCR as a specificity control. Treat with 0.1\u20131 \u00b5M recombinant human PPIA (endotoxin-free) for 15\u201360 min. Measure cAMP with a GloSensor or HTRF assay, and measure CREB phosphorylation (pCREB) by western blot. Because GPR3 has high basal cAMP, use a dose\u2013response curve and GPR3 inverse-agonist or knockdown conditions to see the signal window. 2) Confirm binding directly with a pulldown or surface-binding assay: add biotinylated or His-tagged PPIA to GPR3-expressing cells and detect bound PPIA by flow cytometry or an anti-PPIA stain on non-permeabilized cells. 3) Test the mechanism by adding the PPIA isomerase inhibitor cyclosporin A (or a catalytically dead PPIA R55A mutant) and a BSG-blocking antibody or siRNA. 4) Optionally confirm in intestinal organoids, using PPIA from conditioned medium, and check GPR3 transcript first by qPCR.",
+    "controls": "Positive: forskolin for the cAMP readout; PPIA acting on BSG-expressing cells (ERK phosphorylation or NF-kB activation) to confirm that the recombinant PPIA is active. Negative: mock-transfected cells, heat-denatured PPIA or an unrelated cyclophilin (PPIB), and a GPR3 non-signalling or glycosylation-site mutant. Also use a Gs-coupled GPCR that is unrelated to GPR3 as a specificity control.",
+    "caveats": "The AF3 confidence is low (ipTM 0.62, interface pLDDT 74). HPA has no subcellular data for either protein, and it was not checked which side of the membrane the interface sits on. If the modeled interface is intracellular, a secreted-ligand assay will miss it, and co-IP or PLA in permeabilized cells would be needed. GPR3 has one glycosylation site and a palmitoylation site that AF3 does not model, so PTMs could block or change binding. GPR3 is constitutively active, which may mask any ligand effect. PPIA is abundant and sticky and is a housekeeping protein, so non-specific binding is a risk. The GPR3 RNA signal is very low (7.9 nCPM), so endogenous responses may be hard to detect, and overexpression models may not reflect physiology."
+  },
+  {
+    "protein_a": "FN1",
+    "protein_b": "GPR82",
+    "method": "stimulation_assay",
+    "method_variant": "Include integrin-blocking arm (anti-\u03b15\u03b21 / RGD or ATN-161) and a plasma-FN vs. cellular-FN comparison; optional PNGase F / deglycosylated FN arm",
+    "method_rationale": "FN1 is a secreted plasma/ECM protein and GPR82 is an orphan cell-surface GPCR, so the pair is a ligand\u2013receptor (paracrine/endocrine) hypothesis, best tested functionally. The assay checks whether FN1 produces a GPR82-dependent signal, which co-localization could not show for an orphan GPCR. Integrins ITGA5/ITGB1 are listed as other subunits, so the integrin contribution must be separated from GPR82's.",
+    "target_tissues": [
+      "liver",
+      "lymphoid tissue",
+      "intestine"
+    ],
+    "tissue_rationale": "FN1 is made mainly in liver (nTPM about 1614) and secreted to blood, and blood vessel and placenta are also very high (about 2700 nTPM each). GPR82 is low-level and enriched in lymphoid tissue (6.5 nTPM) and intestine (2.5 nTPM). Within liver, Kupffer cells express GPR82 (65.1 nCPM) and sit next to FN1-secreting hepatocytes and sinusoidal endothelium, so liver is the one tissue where both proteins are plausibly present. Lymphoid tissue and intestine are the GPR82-bearing immune settings.",
+    "cell_types": [
+      "Kupffer cells",
+      "Hepatocytes",
+      "Liver sinusoidal endothelial cells",
+      "Lymphoid/myeloid immune cells"
+    ],
+    "protocol_notes": "1) Build the cell system: HEK293 or CHO cells stably expressing tagged GPR82 (HA-GPR82), with empty-vector and a related Gi-coupled GPCR as controls. Also use a macrophage line or primary Kupffer cells / monocyte-derived macrophages with GPR82 CRISPR knockout or siRNA knockdown. Check that the cells lack or have low endogenous \u03b15\u03b21, or block it.\n2) Stimulate with recombinant human plasma FN (and an RGD-containing FN fragment vs. a fragment lacking RGD), in dose response (1\u2013100 \u00b5g/mL) and over time. Read out Gi coupling by forskolin-induced cAMP (GloSensor/HTRF), \u03b2-arrestin recruitment (NanoBiT/PathHunter), pERK1/2 and Ca2+ flux with G\u03b116/Gqi5 co-expression.\n3) Test direct binding with a cell-surface binding assay: biotin/Fc-tagged FN on GPR82-expressing vs. parental cells by flow cytometry. Then follow up with co-IP of GPR82 with FN, \u00b1 ITGA5/ITGB1, to see whether the integrin is a bridge or co-receptor.\n4) Run a co-culture, with FN1-secreting hepatocytes (HepG2/primary) overlaid on GPR82+ Kupffer-like cells, \u00b1 FN1 siRNA.",
+    "controls": "Positive: a known GPR82 or Gi-coupled agonist/receptor pair in the same readout (e.g. forskolin/cAMP assay validation), and FN-induced integrin signalling (pFAK/pERK) in \u03b15\u03b21+ cells. Negative: parental/empty-vector cells, GPR82 KO/knockdown cells, a heat-denatured or BSA/other-ECM protein control (e.g. laminin), an RGD-mutant FN or integrin-blocking antibody to isolate the GPR82 contribution, and a non-related GPCR-expressing line.",
+    "caveats": "Confidence is low: ipTM 0.62, pTM 0.37, interface pLDDT 62.2. No tool was available to check which side of the membrane the interface sits on, so the interface may not be extracellular. FN1 is a sticky hub with 115 partners and may bind nonspecifically, and both proteins are glycoproteins, so the bare-sequence AF3 interface may differ from the glycosylated native one. FN1 also acts through ITGA5/ITGB1, so any signal must be shown to persist when integrins are blocked or absent. GPR82 is an orphan with poor signalling annotation and low RNA expression (\u22646.5 nTPM in tissue, no protein data), so antibodies and endogenous signals may be weak. The HPA tags FN1 as both \"predicted intracellular\" and \"secreted\", and its protein intensity is only reported in blood vessel. Recombinant FN may differ from plasma FN in conformation and glycosylation."
+  },
+  {
+    "protein_a": "IL2",
+    "protein_b": "GPR171",
+    "method": "stimulation_assay",
+    "method_variant": "",
+    "method_rationale": "IL2 is a secreted cytokine and GPR171 is a Gi/o-coupled plasma-membrane GPCR, so a paracrine ligand-receptor test with a functional readout fits better than co-localization. Because T cells co-express the canonical IL2R, the assay must separate IL2R-driven signalling from any GPR171-specific effect.",
+    "target_tissues": [
+      "lymphoid tissue",
+      "lymph node",
+      "tonsil",
+      "spleen"
+    ],
+    "tissue_rationale": "GPR171 RNA is enriched in lymphoid tissue (20.1 nTPM). At the single-cell level it is highest in T-cells (143.7 nCPM), NK-cells (43.7) and innate lymphoid cells (33.6). IL2 is made by T-cells (17.4 nCPM) and ILCs (12.1), so ligand-producing and receptor-bearing cells overlap in lymphoid tissue. Only lymphoid tissue appears in the HPA data given. Lymph node, tonsil and spleen are my own suggestions of other lymphoid organs and are not supported by the numbers provided.",
+    "cell_types": [
+      "T-cells",
+      "NK-cells",
+      "Innate lymphoid cells"
+    ],
+    "protocol_notes": "1) Build a clean receptor system. Use HEK293 or CHO cells stably expressing GPR171, with empty-vector cells as the negative control. Read out Gi/o signalling by cAMP (forskolin-stimulated cAMP decrease, GloSensor or HTRF), by \u03b2-arrestin recruitment (PathHunter or NanoBiT), or by pERK. Dose IL2 from 0.1 nM to 1 \u00b5M. Include BigLEN (the known GPR171 agonist) as the positive control. Also test whether IL2 competes with BigLEN binding or signalling.\n2) Test primary human T cells and NK cells. Use GPR171 knockdown or CRISPR knockout and an IL2R-blocking antibody (anti-CD25, or anti-CD122 plus anti-CD132). Measure cAMP and pERK, and also pSTAT5 as the canonical IL2R readout. A GPR171-dependent response that persists with IL2R blocked would support a real interaction.\n3) Add a direct binding check. Use SPR or BLI with recombinant IL2 and the purified GPR171 extracellular region, or flow cytometry for biotin-IL2 binding on GPR171-overexpressing cells that lack IL2R.",
+    "controls": "Positive: BigLEN peptide on GPR171 cells, and IL2 on IL2R-positive T cells (pSTAT5). Negative: parental or empty-vector cells, GPR171 knockout cells, heat-denatured IL2, an irrelevant cytokine (IL15 or IL4), and a GPR171 antagonist or pertussis toxin to confirm Gi/o dependence. Add an IL2R-blocking condition to isolate GPR171-specific signalling.",
+    "caveats": "Confidence is low: AF3 ipTM is only 0.58. IL2 has a well-defined canonical receptor (IL2RA/IL2RB/IL2RG), so any T-cell signal can be confounded by IL2R, and IL2R-negative systems are needed. GPR171's known ligand is the 16-aa peptide BigLEN, and a folded cytokine may not engage the orthosteric pocket. Each protein has one glycosylation site, and I could not check where it sits relative to the interface. A glycan could block or alter the contact, so this is partly a PTM-artifact concern. Recombinant IL2 made in E. coli lacks the O-glycan, so compare it with a glycosylated, mammalian-expressed IL2. GPR171 is annotated in HPA with vesicular as well as plasma-membrane localization, so surface expression should be confirmed. RNA levels in lymphoid tissue are modest, and no protein-level tissue data are available."
+  },
+  {
+    "protein_a": "VCAM1",
+    "protein_b": "GPR171",
+    "method": "PLA",
+    "method_variant": "Run +/- PNGase F/neuraminidase pre-treatment, and +/- natalizumab or an anti-VCAM1 domain 1 blocking antibody, to test glycan dependence and whether the signal comes from the integrin-binding face.",
+    "method_rationale": "Both proteins are surface-exposed on lymphoid-lineage cells. The question is physical proximity (trans, cell-cell, or cis), and no ligand-receptor signalling relationship is established. A GPCR with a non-Ig-domain ligand makes a stimulation readout hard to choose before binding is shown. PLA gives in situ evidence of proximity at about 40 nm on intact cells.",
+    "target_tissues": [
+      "Lymph node",
+      "Spleen",
+      "Tonsil",
+      "Bone marrow"
+    ],
+    "tissue_rationale": "HPA lists both proteins as lymphoid-tissue elevated (VCAM1 RNA 366.8 nTPM; GPR171 20.1 nTPM). VCAM1 protein intensity is highest in bone marrow. GPR171 is expressed in T cells (143.7 nCPM) and NK cells (43.7 nCPM), which are close to VCAM1-high stromal cells in lymphoid organs and marrow.",
+    "cell_types": [
+      "T-cells",
+      "NK-cells",
+      "Bone marrow MSCs",
+      "Kupffer cells"
+    ],
+    "protocol_notes": "1) Test in two settings: (a) FFPE or frozen lymph node, tonsil and bone marrow sections; (b) co-culture of VCAM1-high stromal cells (TNF\u03b1-activated HUVEC, or MSCs) with GPR171+ T cells (primary CD3+ or Jurkat) and NK cells. Use mouse anti-VCAM1 (extracellular domain) with rabbit anti-GPR171 (extracellular N-terminus or ECL epitope), in non-permeabilised, lightly PFA-fixed cells so that only surface pairs are scored.\n2) Check GPR171 antibody specificity by GPR171 siRNA/CRISPR knockout, since GPCR antibodies are often unreliable. Also test a soluble VCAM1 (sVCAM1) pull-down on GPR171-expressing cells.\n3) Quantify PLA dots per cell by confocal microscopy. Compare cells with and without TNF\u03b1 activation, and with and without anti-VCAM1 domain 1 blocking antibody.\n4) If PLA is positive, confirm by co-IP from GPR171-HA/VCAM1-Fc transfected HEK293 cells, or by surface plasmon resonance or bio-layer interferometry between recombinant VCAM1 ectodomain and purified GPR171.",
+    "controls": "Positive: VCAM1-ITGA4/ITGB1 (VLA-4) PLA on the same T cells, which is a known interaction. Negative: single-antibody PLA, isotype-matched IgG, GPR171-knockout or VCAM1-knockdown cells, and an unrelated abundant T-cell surface protein such as CD3 or CD45 paired with VCAM1 to measure random proximity. Also include a GPR171 and Big LEN peptide competition arm to see whether the orthosteric site is involved.",
+    "caveats": "Confidence is low: ipTM is 0.58, interface pLDDT is 69, and the 1.15 \u00c5 minimum separation suggests clashes. The modeled interface side (extracellular vs cytoplasmic) is unverified. VCAM1 has 6 N-glycosylation sites that were not checked against the interface, so glycans could block the contact; the glycosidase arm addresses this. GPR171's known ligand is the Big LEN neuropeptide, not an Ig-domain protein. VCAM1 is expressed mainly on stroma, endothelium and macrophages and GPR171 on lymphocytes, so any interaction would be trans (cell-cell) or via soluble VCAM1, and PLA distance is about 40 nm, so it may pick up crowded VLA-4/VCAM1 clusters rather than a direct interaction. The HPA subcellular annotation for VCAM1 is cell junctions, and GPR171 is partly vesicular, which could reduce surface overlap. The ITGA4/ITGB1 partners may compete with or mediate the signal."
+  },
+  {
+    "protein_a": "IL12RB1",
+    "protein_b": "GPR174",
+    "method": "PLA",
+    "method_variant": "",
+    "method_rationale": "Both proteins are plasma-membrane receptors that HPA places in lymphoid tissue, and GPR174 is enriched in T and NK cells. The prediction is a cis interaction on the same cell, so in situ proximity detection (<40 nm) fits better than a stimulation assay, because neither protein is a secreted ligand. PLA also avoids detergent solubilisation of a GPCR and a cytokine receptor, which co-IP would require.",
+    "target_tissues": [
+      "Lymphoid tissue (lymph node)",
+      "Tonsil",
+      "Spleen",
+      "Thymus"
+    ],
+    "tissue_rationale": "HPA lists lymphoid tissue as the tissue-specific RNA site for both proteins (IL12RB1 22.7 nTPM, GPR174 15.7 nTPM), so this is the one tissue where both are clearly expressed. HPA single-cell data show GPR174 highest in T-cells (105 nCPM) and NK-cells (76 nCPM), with thymocytes at 38. These are also the cells where IL12RB1 is expected to be functionally relevant. I chose lymph node, tonsil, spleen and thymus as lymphoid tissue sources; this is my inference, since the HPA data provided give only the \"lymphoid tissue\" grouping.",
+    "cell_types": [
+      "T-cells (CD4+ and CD8+)",
+      "NK-cells",
+      "Thymocytes",
+      "Innate lymphoid cells"
+    ],
+    "protocol_notes": "1) Use primary human T and NK cells, ideally after IL-2 or anti-CD3/CD28 activation to induce IL12RB1. Add a Jurkat or NK-92 line as a secondary system. Fix gently with 2\u20134% PFA without permeabilisation, so that only surface epitopes are detected. Also test FFPE tonsil or lymph node sections.\n2) Run Duolink PLA with a mouse anti-IL12RB1 and a rabbit anti-GPR174 that target extracellular regions. Validate each antibody first by IF/flow on overexpressing versus knockout or knockdown cells. Co-stain CD3 or CD56 and a membrane marker to assign the PLA puncta to cell type and to the plasma membrane. Quantify puncta per cell by confocal imaging.\n3) Run a parallel PLA with IL12RB1 against IL12RB2 or IL23R. Also test whether IL-12 or IL-23 stimulation (15\u201330 min) changes the IL12RB1\u2013GPR174 PLA signal, to see whether the interaction depends on the receptor complex. Add a GPR174 ligand (lysophosphatidylserine) condition to test whether ligand engagement modulates proximity.\n4) Confirm orthogonally with HEK293 co-transfection and co-IP, then a functional readout such as pSTAT4 by flow with and without GPR174 knockout.",
+    "controls": "Positive: IL12RB1\u2013IL12RB2 or IL12RB1\u2013IL23R PLA, or a known abundant same-cell surface pair such as CD3\u2013TCR. Negative: single-antibody and no-primary-antibody PLA controls. Also use GPR174 CRISPR-knockout or siRNA-knockdown T cells, IL12RB1-knockout cells, and an irrelevant membrane receptor not expected to interact with IL12RB1 (for example CD45 or a different GPCR). Include an isotype-matched IgG PLA pair. For the expression-dependence control, use a cell line lacking both proteins, then transfect each protein alone and together.",
+    "caveats": "AF3 ipTM is only 0.58, so the model is low confidence. Both proteins are glycoproteins and I could not place the glycosylation sites relative to the predicted interface, so a glycan may block or gate the contact in cells. This pair is not flagged LIKELY_ARTIFACT_PTM, but a glycosidase arm (PNGase F) is a reasonable follow-up if the first PLA is negative. IL12RB1 normally acts with IL12RB2 or IL23R, which were not in the model, so the real interaction may need those subunits or be competed by them. PLA shows proximity only (<40 nm), not direct binding, and crowded T-cell membranes can give false positives. HPA provides no protein-level data for either gene here, only RNA, so antibody availability and protein expression must be checked. Surface expression of IL12RB1 on resting T cells is low."
+  },
+  {
+    "protein_a": "LAIR1",
+    "protein_b": "GPR65",
+    "method": "PLA",
+    "method_variant": "",
+    "method_rationale": "Both are membrane proteins expected in the same immune cell, and the hypothesis is a cis interaction in one membrane. PLA tests in-situ proximity (<40 nm) in native membranes without detergent solubilisation. Detergent could break or create GPCR/TM-helix associations, so co-IP is less suitable. Neither protein is a secreted ligand, so a stimulation assay doesn't fit.",
+    "target_tissues": [
+      "bone marrow",
+      "lymphoid tissue",
+      "lung"
+    ],
+    "tissue_rationale": "Both show RNA in bone marrow and lymphoid tissue (LAIR1 lymphoid 44.5 nTPM; GPR65 bone marrow 11.9 and lymphoid 9.1 nTPM). LAIR1 protein is high in bone marrow, lymphoid tissue and lung. Lung is included as a LAIR1 protein-positive tissue that also contains mast cells (GPR65 single-cell peak, 495 nCPM), but GPR65 expression there is not shown in the data given.",
+    "cell_types": [
+      "Mast cells",
+      "Microglia",
+      "Lymphoid/myeloid immune cells (T cells, monocytes/macrophages)"
+    ],
+    "protocol_notes": "1) Use a cell system that expresses both proteins, such as human mast cell lines (LAD2, HMC-1), primary monocytes/T cells, or tonsil/lymph node sections. Add a HEK293 model with tagged LAIR1 and GPR65 for antibody validation and clean positive/negative arms. 2) Use mild fixation (4% PFA, no permeabilisation or only light permeabilisation) with a mouse anti-LAIR1 extracellular-domain antibody and a rabbit anti-GPR65 antibody. Use species-matched PLA probes, and add anti-tag antibodies in the HEK293 model if the endogenous antibodies are poor. 3) GPR65 is annotated as vesicular in HPA, so co-stain for the plasma membrane (e.g. WGA or CD45) and an endosome marker (EEA1 or LAMP1). Quantify PLA dots per cell at the surface versus in vesicles. 4) Run a pH series (7.4 vs 6.5), since GPR65 is a proton-sensing receptor, and check whether LAIR1 crosslinking with collagen or an agonist antibody changes the signal.",
+    "controls": "Positive: a known LAIR1-proximal pair (LAIR1 with SHP-1 or with itself, via two LAIR1 antibodies) and a known GPR65 partner or a GPR65 homodimer pair. Negative: single-antibody PLA, PLA in LAIR1 or GPR65 CRISPR-KO or siRNA cells, and LAIR1 with an unrelated abundant membrane protein (e.g. CD45 or an unrelated GPCR) to check for crowding artifacts. Extra specificity control: HEK293 cells expressing only one partner, or each partner co-expressed with an unrelated single-TM protein and an unrelated GPCR.",
+    "caveats": "Confidence is low: ipTM 0.58, GPR65 pLDDT 53.5, and a very large interface (4476 \u00c52) that is probably non-specific packing of LAIR1's single TM helix against the GPCR bundle, which AF3 produces without a bilayer. A positive PLA only shows proximity, and abundant membrane proteins can give false positives. LAIR1 (1 N-glycan site) and GPR65 (3 sites) are glycoproteins, and I did not check whether those sites lie on the modelled interface. Glycans could block the interface, so the AF3 pose is not guaranteed in vivo. If PLA is positive, test for a glycan role with PNGase F/Endo H treatment or glycan-site mutants. GPR65 is mainly vesicular in HPA, so it may not meet LAIR1 at the plasma membrane. HPA gives no GPR65 protein-level data, and mast cells are not among LAIR1's listed cell types (microglia), so the cell-level overlap is uncertain. Antibody quality is also a risk."
+  },
+  {
+    "protein_a": "CCL11",
+    "protein_b": "GPR132",
+    "method": "stimulation_assay",
+    "method_variant": "Recombinant CCL11 on GPR132-expressing vs. parental cells, with CCR3 as a positive control for CCL11 and a glycosidase/glycosylation-site mutant arm",
+    "method_rationale": "CCL11 is a secreted chemokine and GPR132 is a 7-TM GPCR, so this is a paracrine ligand-receptor pair. A functional readout (G-protein/\u03b2-arrestin signalling) tests whether CCL11 activates GPR132 and is more informative than co-localization. HPA gives no tissue-level GPR132 data, so a PLA in tissue isn't feasible.",
+    "target_tissues": [
+      "Fibroblasts (CCL11 source; HPA single-cell nCPM 44.2)",
+      "Blood (CCL11 secretome location: secreted to blood)",
+      "Immune cells such as macrophages and eosinophils (GPR132 candidate side; to be confirmed experimentally)"
+    ],
+    "tissue_rationale": "HPA gives no tissue-level RNA or protein specificity for either gene. The only expression data is CCL11 RNA in fibroblasts (44.2 nCPM), and CCL11 is annotated as secreted to blood. There is no real overlap, so the assay uses a recombinant ligand or fibroblast co-culture on a receptor-expressing cell. GPR132 expression in the responder cells must be verified by qPCR first.",
+    "cell_types": [
+      "Fibroblasts (CCL11 secreting)",
+      "GPR132-transfected HEK293 or CHO cells",
+      "Macrophages or other immune cells endogenously expressing GPR132"
+    ],
+    "protocol_notes": "1) Generate HEK293 (or CHO) cells stably expressing tagged GPR132 and parental or empty-vector controls. Confirm surface expression by FLAG/HA staining. Add a CCR3-expressing line as a CCL11 positive control.\n2) Stimulate with recombinant human CCL11 (dose range 1 nM\u20131 \u00b5M, 5\u201360 min). Read out Gi/Gq/Gs signalling (cAMP, Ca2+ flux, or IP1), \u03b2-arrestin recruitment (e.g. PathHunter/BRET), and ERK phosphorylation. Optionally measure transwell chemotaxis.\n3) Test fibroblast-conditioned medium or co-culture, with a CCL11-neutralizing antibody or CCL11 knockdown as a specificity control.\n4) Run a binding check (e.g. fluorescent CCL11 binding or a BRET ligand-binding assay) to separate direct binding from indirect effects. Include the glycosidase arm described in the variant.",
+    "controls": "Positive: CCL11 on CCR3-expressing cells (calcium flux, chemotaxis). Positive for GPR132 function: its known agonist 9-HODE, or acidic pH/proton stimulation. Negative: parental or empty-vector cells, heat-denatured CCL11, an unrelated chemokine (e.g. CCL2), a CCR3 antagonist to rule out endogenous CCR3 signalling, and a GPR132-knockout or siRNA arm in endogenous cells.",
+    "caveats": "Confidence is low: ipTM 0.56 and p_twoway 0.0499 are only marginally above threshold. CCL11's established receptor is CCR3, and GPR132 is known as a receptor for oxidized fatty acids and protons. Any signal could therefore come from endogenous CCR3/ACKR receptors or from pH effects of the buffer, so control the buffer pH. Both proteins have one glycosylation site, and its position relative to the modeled interface was not checked. AF3 may have modeled a bare-sequence interface that a glycan blocks in reality, so a negative result in glycosylated protein, or a positive result only without glycan, would be informative. HPA lists GPR132 as 'predicted intracellular', and it has no tissue or cell-type RNA data, so confirm surface localization and endogenous expression."
+  },
+  {
+    "protein_a": "PPIA",
+    "protein_b": "GPR75",
+    "method": "stimulation_assay",
+    "method_variant": "Recombinant PPIA (+/- CsA/PPIA catalytic-dead R55A, +/- CCL5 and BSG co-stimulation) on GPR75-expressing vs GPR75-knockout cells, with a PNGase F/glycosylation-site mutant arm as a secondary check",
+    "method_rationale": "PPIA is secreted to blood and GPR75 is a plasma-membrane GPCR, so this is an extracellular ligand-receptor hypothesis. A functional GPCR readout is more informative than co-localization for this pair. GPR75 is known to couple to Gq/11 (CCL5 and 20-HETE signalling), so calcium and IP1 readouts are plausible.",
+    "target_tissues": [
+      "brain",
+      "retina"
+    ],
+    "tissue_rationale": "GPR75 RNA is tissue-enriched only in brain (9.8 nTPM) and retina (7.1 nTPM). PPIA is a housekeeping protein with very high, near-ubiquitous expression (e.g. 3194 nCPM in gastric progenitor cells) and is secreted to blood, so PPIA is available wherever GPR75 is. There is no tissue-specific PPIA restriction, so the receptor side determines the tissue choice. For the assay, use GPR75-expressing cells such as HEK293 transfectants, plus a brain/retina-derived line or primary cells, with recombinant PPIA supplied exogenously.",
+    "cell_types": [
+      "Neurons",
+      "Astrocytes",
+      "Retinal pigment epithelial cells",
+      "Photoreceptor/retinal neurons"
+    ],
+    "protocol_notes": "1) Use HEK293 cells stably expressing tagged GPR75 (HA- or FLAP-tagged, to confirm surface expression) and parental or GPR75-KO cells as the control. Optionally add a neuronal or RPE line with endogenous GPR75 (confirm by qPCR). Add a Gq-proximal readout: Fluo-4 calcium flux, IP-One HTRF, or NFAT-luciferase, plus ERK1/2 phosphorylation by western blot at 2-30 min.\n2) Dose-response of endotoxin-free recombinant human PPIA (1 nM-10 \u00b5M), with heat-denatured PPIA as a protein control. Test CCL5 as a positive control for GPR75 activation. Test whether BSG/CD147 is required, by BSG knockdown or anti-CD147 blocking antibody, since PPIA signals via BSG and may produce a GPR75-independent response.\n3) Confirm physical binding orthogonally: surface binding of biotin- or fluorophore-labelled PPIA to GPR75+ vs GPR75-KO cells by flow cytometry, or SPR/BLI with purified GPR75 or membrane preparations. Use cyclosporin A and PPIA R55A to test whether the isomerase active site is involved.",
+    "controls": "Positive: CCL5 (reported GPR75 ligand) and a Gq agonist such as carbachol or ATP for the assay window. Negative: parental/GPR75-KO cells, heat-denatured PPIA, an unrelated cyclophilin (PPIB), a GPCR-unrelated receptor-expressing line, and vehicle. For specificity, include an anti-CD147 blocking arm and a CsA arm.",
+    "caveats": "AF3 support is modest (ipTM 0.56, interface pLDDT 68.2), so the predicted interface may not be real. PPIA is an abundant hub with 195 known interactions, so non-specific binding is likely, and recombinant PPIA at high concentration can act through BSG/CD147 or other routes. GPR75 has 3 glycosylation sites, and their position relative to the predicted interface was not checked. Glycans could occlude or alter the interface, so run a glycosylation-site mutant (N-to-Q) or PNGase F arm for interpretation. The HPA data give no protein-level tissue data for either protein. GPR75 is a poorly characterised, low-expressed receptor, and antibodies and surface expression may be difficult. The proposed CCL5 and BSG partners are candidate co-factors, not confirmed members of a complex."
+  },
+  {
+    "protein_a": "C3",
+    "protein_b": "GPR174",
+    "method": "stimulation_assay",
+    "method_variant": "Compare full-length C3, C3b/iC3b/C3a/C3c/C3d fragments (and optionally PNGase F-deglycosylated C3) on GPR174-expressing vs GPR174-knockout cells, with LysoPS as a reference agonist.",
+    "method_rationale": "C3 is a secreted plasma protein and GPR174 is a plasma-membrane GPCR on lymphocytes, so this is a paracrine/endocrine ligand-receptor pair. Cells need not co-express them, and a signalling readout tests function better than co-localization. GPR174 couples to Gs, so cAMP and pCREB are the plausible readouts.",
+    "target_tissues": [
+      "lymphoid tissue",
+      "liver"
+    ],
+    "tissue_rationale": "There is no real tissue overlap. C3 RNA is almost entirely liver (5062 nTPM, hepatocytes 5036 nCPM) and reaches the receptor through blood. GPR174 RNA is restricted to lymphoid tissue (15.7 nTPM), with the highest single-cell levels in T-cells (105 nCPM), NK-cells (76) and basophils (60). Lymphocytes are therefore the receptor-bearing side, bathed in plasma C3 (liver-derived).",
+    "cell_types": [
+      "T-cells",
+      "NK-cells",
+      "B-cells",
+      "Basophils",
+      "Thymocytes",
+      "Hepatocytes (C3 source)"
+    ],
+    "protocol_notes": "1) Use HEK293 (or CHO) cells stably expressing GPR174, with a CRE-luciferase or cAMP biosensor (GloSensor/HTRF cAMP). Use parental or empty-vector cells as the negative control. Confirm in primary human CD4+ T cells or Jurkat cells, with GPR174 knocked out by CRISPR, by measuring cAMP, pCREB (Ser133) and inhibition of TCR-induced proliferation or IL-2.\n2) Treat with a dose range (1 nM\u201310 \u00b5M) of purified native human C3, C3b, iC3b, C3a, C3c and C3d, and with Hep G2 conditioned medium or co-culture as a physiological C3 source. Include a time course (5\u201360 min for cAMP, 4\u20136 h for the reporter).\n3) Orthogonal binding check: use SPR or a cell-binding assay with tagged C3 on GPR174+ vs GPR174\u2212 cells, plus a \u03b2-arrestin recruitment assay (e.g. PathHunter) in case signalling is Gs-independent.\n4) Run a glycosylation arm: PNGase F or Endo H pre-treated C3, and an N-glycan-site mutant of GPR174 if the interface overlaps a site. Test whether the response is lost, gained or unchanged.",
+    "controls": "Positive: LysoPS (the established GPR174 agonist), and forskolin for the maximal cAMP response. Negative: parental or GPR174-KO cells, heat-denatured C3, and an irrelevant plasma protein such as albumin at the same concentration. Specificity: C3a on C3AR1-expressing cells as a reference, and a C3AR1/C5AR2 co-expression arm to test whether the other subunits modulate the response. Also check LysoPS contamination, since lipid carry-over in plasma-derived C3 could give a false signal. Use delipidated C3 or recombinant C3.",
+    "caveats": "Confidence is low (ipTM 0.55, interface pLDDT 68.7, min PAE 9.1). The AF3 model used the uncleaved full-length C3 precursor, which does not exist in plasma, so the real binder may be a cleavage fragment (C3a, C3b, iC3b, C3d) or none. GPR174's known ligand is a lipid (LysoPS), so a peptide/protein interface is unprecedented. Plasma-purified C3 may carry lipids that activate GPR174 and give false positives. Glycosylation sites on C3 and GPR174 were not checked against the predicted interface, so a glycan could block or alter binding. GPR174 expression is modest (RNA only, no HPA protein data), and the C3AR1/C5AR2 co-subunits could confound the readouts. If no signal appears, consider that C3 may bind without activating (a modulator or antagonist), and follow up with co-IP or a binding assay."
+  },
+  {
+    "protein_a": "C5AR1",
+    "protein_b": "GPR141",
+    "method": "PLA",
+    "method_variant": "with GPR141 knockdown/knockout and single-antibody controls; optionally a C5a-stimulated vs. unstimulated arm",
+    "method_rationale": "Both are 7TM GPCRs expected in the same cell membrane, and the question is whether they sit in close proximity as a heterodimer. PLA tests this in situ in primary myeloid cells at endogenous expression levels. Neither protein is a secreted ligand, so a stimulation assay is not the primary fit.",
+    "target_tissues": [
+      "bone marrow",
+      "peripheral blood neutrophils (isolated)",
+      "monocytes (isolated)"
+    ],
+    "tissue_rationale": "Bone marrow is the only tissue where both are reported. C5AR1 has very high protein intensity there, and GPR141 RNA is 24.5 nTPM. At single-cell level, C5AR1 is high in neutrophils (2004 nCPM) and monocytes (1283 nCPM), and GPR141 is detected in neutrophil progenitors (17.8 nCPM). The overlap is therefore the neutrophil lineage.",
+    "cell_types": [
+      "neutrophils",
+      "neutrophil progenitors (promyelocytes/myelocytes)",
+      "monocytes"
+    ],
+    "protocol_notes": "1) Use bone marrow sections or cytospins of CD34+-derived, differentiating neutrophil-lineage cells (e.g. HL-60 or PLB-985 differentiated toward neutrophils, plus primary bone marrow cells). GPR141 expression is low and is likely restricted to progenitors, so sample the differentiation time course. 2) Use PLA with a validated anti-C5AR1 (e.g. mouse mAb) and an anti-GPR141 (rabbit). Validate the GPR141 antibody first by western blot or immunofluorescence on GPR141-overexpressing versus knockout cells, because it is an orphan with little antibody validation. Use mild fixation (4% PFA) and avoid permeabilisation that disrupts the membrane. 3) Quantify PLA puncta per cell by confocal microscopy and compare with the controls. Run a follow-up with HEK293 cells co-expressing tagged receptors (e.g. NanoBRET or co-IP) to confirm the specificity of the interaction. 4) Optionally test whether C5a changes the PLA signal and whether GPR141 modulates C5a-induced Gi signalling (cAMP, Ca2+ flux) given the GNAI1/GNAO1 partners.",
+    "controls": "Positive: C5AR1 with a known interactor or a known GPCR homodimer pair (e.g. C5AR1 with C5AR2, or CXCR4 with CXCR4) to show PLA works for GPCR dimers. Negative: single-primary-antibody PLA, GPR141 CRISPR KO or siRNA cells, C5AR1 with an unrelated abundant membrane protein (e.g. CD45), and C5AR1 with a non-myeloid GPCR that is not expressed in the same cells. Also a mixed-cell control: C5AR1-only and GPR141-only cells mixed together, which should give no PLA signal.",
+    "caveats": "Confidence is low: ipTM is 0.54, interface pLDDT is about 71, and AF3 may pack 7TM bundles together without a bilayer, so a non-specific association is possible. HPA lists the main location of C5AR1 as Golgi, which probably reflects antibody or biosynthetic-pool staining rather than its functional plasma-membrane location. GPR141 has no HPA localization or protein data and its RNA level is low, so the PLA signal may be near background and antibody specificity is the main risk. Overlap is in bone marrow neutrophil lineage cells only, and GPR141 appears restricted to progenitors, where C5AR1 may be lower. PLA detects proximity of about 40 nm, so crowded receptors in the same membrane can give false positives. Positive results need a second orthogonal method (co-IP or BRET)."
+  },
+  {
+    "protein_a": "RNASET2",
+    "protein_b": "GPR82",
+    "method": "stimulation_assay",
+    "method_variant": "Compare WT RNASET2 vs catalytically dead RNASET2 (H65F/H69F) and, optionally, PNGase F/EndoH-deglycosylated or N-glycan site mutant RNASET2 to test glycan dependence of the interface.",
+    "method_rationale": "RNASET2 is a secreted protein and GPR82 is an orphan cell-surface GPCR, so the natural test is whether recombinant RNASET2 activates GPR82-expressing cells. A functional readout also distinguishes true agonism from non-specific binding, which matters given the borderline ipTM of 0.54.",
+    "target_tissues": [
+      "lymphoid tissue",
+      "intestine",
+      "liver",
+      "endometrium"
+    ],
+    "tissue_rationale": "GPR82 RNA is highest in lymphoid tissue (6.5 nTPM) and intestine (2.5 nTPM), and its single-cell signal is in Kupffer cells (65.1 nCPM), so liver macrophages and lymphoid immune cells are the receptor-bearing side. RNASET2 is secreted to blood and is very high in endometrial luminal cells (742 nCPM). There is no clear tissue overlap, so this is a paracrine/endocrine pairing and is best tested by adding ligand to receptor-bearing cells (co-culture or recombinant protein).",
+    "cell_types": [
+      "Kupffer cells",
+      "Endometrial luminal cells",
+      "Lymphoid/immune cells (macrophages, T cells)"
+    ],
+    "protocol_notes": "1) Use HEK293 or CHO cells stably expressing tagged GPR82 (e.g. N-terminal HA/FLAG) and parental cells as a control. Add recombinant human RNASET2 (mammalian-expressed, glycosylated) at 1 nM\u20131 \u00b5M. Measure cAMP, because GPR82 is reported to be constitutively active and probably Gi/Gs-coupled (GloSensor or HTRF, with forskolin to detect Gi inhibition). Also run a \u03b2-arrestin recruitment assay (PathHunter/NanoBiT) and a Ca2+ flux assay with G\u03b116/Gqi5 co-expression. 2) Confirm binding with a cell-surface binding assay: tagged RNASET2 on GPR82+ vs parental cells by flow cytometry. 3) Confirm in a physiological system: stimulate primary human macrophages or Kupffer-like cells (or THP-1/PBMC-derived macrophages) with RNASET2, with and without GPR82 siRNA/CRISPR knockout, and read out cAMP or ERK phosphorylation. Alternatively co-culture with RNASET2-secreting endometrial epithelial cells such as Ishikawa cells, with RNASET2 knockdown. 4) Run the glycosylation arm: PNGase F-treated or N-glycan-site mutant RNASET2 against WT.",
+    "controls": "Positive: a known agonist or assay-validation ligand for a co-expressed control GPCR (e.g. forskolin for cAMP, or a known ligand of an unrelated receptor in the same cell background). Negative: parental cells lacking GPR82; an irrelevant secreted RNase (e.g. RNase A/RNASE T1) or heat-denatured RNASET2; a mock-transfected receptor such as another orphan GPCR (GPR84 or GPR34); buffer-only vehicle. Also include catalytically dead RNASET2 to separate RNase activity from receptor engagement.",
+    "caveats": "The ipTM of 0.54 is borderline, so the predicted interface is low confidence. Both proteins carry N-glycosylation sites (RNASET2 has 3, GPR82 has 2), and their position relative to the modeled interface has not been checked. The AF3 bare-sequence model could therefore be blocked or altered by glycans, so use glycosylated, mammalian-expressed recombinant protein and test the deglycosylated version. HPA has no subcellular data for either protein, and GPR82 has low RNA expression, so antibody availability is uncertain and native-cell responses may be small. GPR82 is orphan and constitutively active, so a ligand effect may be subtle (inverse agonism or modulation). RNASET2 also has RNase-dependent and independent activities, which could produce receptor-independent effects on cells. RNASET2 is annotated as both predicted intracellular and secreted, so confirm its secretion in the chosen cells."
+  },
+  {
+    "protein_a": "PPIA",
+    "protein_b": "GPR82",
+    "method": "stimulation_assay",
+    "method_variant": "Include BSG/CD147-knockout or CD147-blocking antibody arm, and a PNGase F/tunicamycin arm to test GPR82 glycan role",
+    "method_rationale": "PPIA is a secreted extracellular ligand (HPA: secreted to blood) and GPR82 is an orphan membrane GPCR, so the two do not need to be in the same cell. A functional readout (G-protein/\u03b2-arrestin signalling) on receptor-expressing cells tests whether PPIA actually engages GPR82, which a co-localisation read cannot show.",
+    "target_tissues": [
+      "lymphoid tissue",
+      "intestine",
+      "liver (Kupffer cells)"
+    ],
+    "tissue_rationale": "GPR82 RNA is enriched in lymphoid tissue (6.5 nTPM) and intestine (2.5 nTPM), and in Kupffer cells (65.1 nCPM). PPIA is highly expressed, e.g. 3194 nCPM in gastric progenitor cells, and circulates in blood, so intestinal epithelium can supply the ligand locally while lymphoid and Kupffer cells provide the receptor. The expression overlap is therefore paracrine rather than same-cell. Liver is named only for the Kupffer-cell single-cell signal.",
+    "cell_types": [
+      "Kupffer cells",
+      "Gastric progenitor cells",
+      "Lymphoid immune cells (macrophage/monocyte/T cell)"
+    ],
+    "protocol_notes": "1) Use HEK293 or CHO cells stably expressing tagged GPR82, with parental cells as the control. Optionally add a monocyte/macrophage line or primary Kupffer-like macrophages with endogenous GPR82 (confirm by qPCR). Treat with recombinant human PPIA (1 nM\u20131 \u00b5M, 5\u201360 min). Read out cAMP (GPR82 is reported to be Gi/constitutively active, so use forskolin-stimulated cAMP), a \u03b2-arrestin recruitment assay (e.g. PathHunter/NanoBiT), and pERK. Use a GPR82-orphan-compatible G\u03b116 or Gqi5 chimera calcium flux as a secondary readout. 2) Test dependence on BSG: use BSG-KO cells or an anti-CD147 blocking antibody, and add BSG co-expression, since the pair is flagged with BSG as another subunit. Also test whether PPIA binding is blocked by cyclosporin A, which occupies the PPIA active site. 3) As orthogonal binding evidence, run flow cytometry or a cell-surface binding assay with tagged PPIA on GPR82-expressing versus parental cells, and run a pull-down with PPIA on membrane preparations.",
+    "controls": "Positive: a known GPCR agonist in the assay system (e.g. forskolin for the cAMP window; PPIA on CD147-expressing cells for the known PPIA\u2013BSG pathway, e.g. ERK activation or chemotaxis). Negative: parental or empty-vector cells; heat-denatured PPIA or a PPIA catalytic-dead mutant (R55A); an unrelated cyclophilin (PPIB) or another secreted protein; an unrelated GPCR expressed at equal surface levels; pertussis toxin to test Gi dependence.",
+    "caveats": "Confidence is low (ipTM 0.53). PPIA is an abundant hub protein with 195 known interactions, so a hit could be nonspecific or act through its known receptor BSG/CD147 rather than GPR82 directly. HPA gives no subcellular data for either protein, and I could not check which side of the membrane the modeled interface sits on, or whether GPR82 N-glycosylation sites fall on the interface. If a glycan blocks the interface, the bare-sequence AF3 model would not match reality, hence the deglycosylation/glycosylation-site mutant arm. GPR82 RNA is low in bulk tissue (2.5\u20136.5 nTPM) and there is no protein-level HPA data, so a recombinant overexpression system is needed. Surface expression of tagged GPR82 and the lack of a validated antibody should be confirmed. Endogenous PPIA in conditioned medium may mask the response, so wash the cells or use serum-free medium."
+  },
+  {
+    "protein_a": "CCL28",
+    "protein_b": "GPRC5A",
+    "method": "stimulation_assay",
+    "method_variant": "Include a binding arm: biotinylated or tagged recombinant CCL28 on GPRC5A-overexpressing vs. knockout cells (flow cytometry), plus an optional PNGase F / N-glycan site mutant arm for GPRC5A and CCL28.",
+    "method_rationale": "CCL28 is a secreted chemokine (secreted to blood) and GPRC5A is an orphan class C GPCR, so the pair is a ligand/receptor candidate. HPA shows the two proteins expressed in different tissues, which fits a paracrine stimulation assay with recombinant ligand better than in situ proximity. A functional readout also tests whether binding does anything, which matters because chemokines can dock non-specifically into GPCR bundles.",
+    "target_tissues": [
+      "lung",
+      "urinary bladder",
+      "salivary gland"
+    ],
+    "tissue_rationale": "HPA shows GPRC5A RNA enriched in lung (190 nTPM) and urinary bladder (122 nTPM), with lung protein detected. CCL28 RNA is enriched in salivary gland (283 nTPM), and in salivary and lacrimal acinar cells (about 1260 and 1400 nCPM). The two proteins have no real tissue overlap: the receptor-bearing side is lung/bladder epithelium and the ligand-producing side is salivary/lacrimal acinar cells. Because CCL28 is secreted to blood and mucosal fluids, it can plausibly reach lung epithelium, so use recombinant CCL28 or salivary-acinar-conditioned medium on lung epithelial cells.",
+    "cell_types": [
+      "Lung epithelial cells (alveolar type II / bronchial epithelial)",
+      "Urothelial cells",
+      "Salivary acinar cells (ligand source)",
+      "Lacrimal acinar cells (ligand source)"
+    ],
+    "protocol_notes": "1) Use a GPRC5A-high lung epithelial line (e.g. BEAS-2B, or A549 if expression is confirmed by qPCR/WB) and a CRISPR GPRC5A-KO isogenic line. Also use HEK293 cells with and without GPRC5A overexpression. Confirm that CCR3/CCR10 are low or absent, or block them with antagonists or knock them out, so the response is not read through the known CCL28 receptors.\n2) Stimulate with recombinant human CCL28 (10\u2013500 nM dose-response, 5\u201360 min). Read out Gi/cAMP (forskolin-induced cAMP, or a BRET sensor), ERK1/2 and Src-family/STAT3 phosphorylation by western or AlphaLISA, \u03b2-arrestin recruitment (NanoBiT/Tango), and receptor internalization. GPRC5A localises to vesicles, so image its trafficking after stimulation. Also run a transwell migration assay as a functional readout.\n3) Run a direct binding arm: tagged CCL28 on GPRC5A+ vs. KO cells by flow cytometry. Add a competition arm with excess untagged CCL28 and a heparin/GAG-stripping control, because CCL28 is highly basic and sticks non-specifically to cell-surface GAGs.\n4) For the glycan check, treat cells or ligand with PNGase F, or mutate the predicted N-glycosylation sites on GPRC5A and CCL28 (N\u2192Q), and compare the response with wild type.",
+    "controls": "Positive: CCL28 on CCR10- or CCR3-expressing cells (e.g. CCR10-transfected cells, with Ca2+ flux or migration readout), which confirms the ligand is active. Negative: GPRC5A-KO or parental cells lacking GPRC5A, heat-denatured CCL28, an irrelevant chemokine (e.g. CCL21) and a different class C GPCR (e.g. GPRC5B). Also use a CCL28 binding-interface mutant if the AF3 model suggests one, and pertussis toxin to test Gi dependence.",
+    "caveats": "Low confidence: the AF3 ipTM of 0.53 is borderline, and chemokines often dock non-specifically into GPCR bundles. CCL28 is very basic and binds cell-surface GAGs, so binding must be tested against GAG-stripped and KO controls. HPA lists GPRC5A mainly in vesicles (and also as predicted intracellular), so surface exposure is uncertain and the extracellular accessibility of the modeled interface needs confirming (surface biotinylation or non-permeabilized staining). GPRC5A is an orphan receptor with weak canonical G-protein coupling, so the signalling readout may be negative even if binding occurs. One N-glycosylation site on each protein has not been checked against the interface, so a glycan could block the AF3 bare-sequence interface. The glycosidase/mutant arm addresses this. HPA shows no tissue overlap of the two proteins, so any physiological relevance would be endocrine or paracrine, via mucosal secretion or blood."
+  },
+  {
+    "protein_a": "MST1",
+    "protein_b": "GPR37",
+    "method": "stimulation_assay",
+    "method_variant": "Include MST1R-null/MST1R-blocked arm and a GPR37 vs vector-only arm to separate direct GPR37 signalling from MST1R-mediated effects",
+    "method_rationale": "MST1 (HGF-like protein, MSP) is a secreted-to-blood ligand and GPR37 is a GPCR, so this is an endocrine ligand-receptor pair with no expected same-cell co-expression. A functional readout in receptor-expressing cells fits better than PLA. Because MST1R is named as another subunit, the assay must separate GPR37 effects from canonical MST1R signalling.",
+    "target_tissues": [
+      "liver",
+      "brain",
+      "retina"
+    ],
+    "tissue_rationale": "MST1 RNA is almost exclusively hepatic (liver 864 nTPM; hepatocytes 369 nCPM). GPR37 is in brain (67 nTPM; cerebral cortex protein intensity ~1.08M) and retina (36 nTPM). There is no real tissue overlap, so this would be endocrine signalling from liver to CNS/retina. Test it with recombinant MST1 on GPR37-expressing cells, not in a shared tissue.",
+    "cell_types": [
+      "Hepatocytes (MST1 source)",
+      "Oligodendrocytes (GPR37+)",
+      "M\u00fcller glia (GPR37+)"
+    ],
+    "protocol_notes": "1) Receptor cells: HEK293 or CHO cells stably expressing GPR37 (with and without MST1R), plus a vector-only control. Also test primary oligodendrocyte precursors or M\u00fcller glia/oligodendrocyte-lineage lines, which express GPR37 endogenously. 2) Stimulate with recombinant human MST1 (active, two-chain form, ~1\u2013500 nM dose-response; 5\u201360 min). Active MST1 needs proteolytic cleavage, so compare pro-MST1 with the cleaved form, or use conditioned medium from HepG2 or hepatocytes. 3) Readouts: cAMP (GloSensor), \u03b2-arrestin recruitment (PathHunter/BRET), Ca2+ flux, and pERK1/2 and pAKT by western blot. Use MST1R signalling (pERK, pMET-like phosphorylation) as a reference. 4) Confirm binding orthogonally with a cell-surface binding assay (tagged MST1 on GPR37 cells, flow cytometry) or by co-IP/pulldown. Use an MST1R siRNA or blocking antibody to dissect dependence.",
+    "controls": "Positive: MST1 on MST1R-expressing cells (e.g. macrophages or MST1R-HEK) gives pERK/pRON. For GPR37, use the known ligands prosaposin/prosaptide (TX14(A)) or head activator. Negative: untransfected or vector-only cells, heat-inactivated MST1, an unrelated HGF-family protein (HGF), and a GPR37L1-expressing line for specificity. Verify GPR37 surface expression, for example with an N-terminal tag.",
+    "caveats": "Low confidence: ipTM 0.52, p_twoway 0.050, and the pair has no support in STRING, CellPhoneDB or the literature. The GPR37 N-terminus is heavily glycosylated, and the glycosylation could not be checked against the interface. GPR37 also misfolds and is retained intracellularly (HPA lists nuclear membrane), so surface expression in heterologous cells may be poor. The MST1 UniProt lookup returned STK4 (Q13043), so MST1 has no valid PTM or mechanism data. MST1 is also activated by proteolytic cleavage, which the AF3 model may not reflect. Any response could come via MST1R, so the MST1R arms are needed to interpret it. Tissue separation means any in vivo relevance would be endocrine and would have to cross the blood-brain or blood-retina barrier."
+  },
+  {
+    "protein_a": "B2M",
+    "protein_b": "GPR82",
+    "method": "PLA",
+    "method_variant": "Include a B2M-knockdown/exogenous recombinant B2M add-back arm and a heavy-chain (HLA-ABC) co-stain to distinguish free B2M from MHC-I-bound B2M",
+    "method_rationale": "B2M is ubiquitously expressed on cell surfaces and also circulates, while GPR82 is a plasma-membrane orphan GPCR with no known ligand, so there is no established signalling readout. PLA detects surface proximity in situ. A ligand-style stimulation assay is not suitable because there is no validated GPR82 readout, and orphan GPCR coupling is uncertain.",
+    "target_tissues": [
+      "Lymphoid tissue (spleen, lymph node, tonsil)",
+      "Liver (Kupffer cells)",
+      "Intestine (colon/small intestine)"
+    ],
+    "tissue_rationale": "GPR82 RNA is highest in lymphoid tissue (6.5 nTPM) and intestine (2.5 nTPM). Its single-cell expression is enriched in Kupffer cells (65.1 nCPM). B2M is secreted to blood and is also on the plasma membrane of nearly all nucleated cells, so it overlaps wherever GPR82 is present. HPA gives no tissue-specific B2M numbers, so this overlap is inferred from B2M's broad expression.",
+    "cell_types": [
+      "Kupffer cells",
+      "Lymphoid tissue immune cells (macrophages, T cells)"
+    ],
+    "protocol_notes": "1) Use non-permeabilized or mildly fixed cells and sections so that only surface or extracellular epitopes are probed. Run Duolink PLA with a mouse anti-B2M antibody and a rabbit anti-GPR82 antibody, after checking that the GPR82 antibody works. Check it on HEK293 cells overexpressing tagged GPR82 against parental cells, because GPCR antibodies are often poor. 2) Use HEK293 cells expressing epitope-tagged GPR82 (e.g. HA-GPR82) as a clean system, and run PLA with anti-tag plus anti-B2M. Test the effect of adding recombinant B2M. 3) Counter-stain with anti-HLA-ABC and anti-FCGRT or anti-CD1B. Test whether the PLA signal depends on MHC-I heavy chains, using B2M-null cells with B2M reconstituted. 4) Quantify PLA puncta per cell by confocal imaging in at least 3 biological replicates. If PLA is positive, confirm by co-IP of tagged GPR82 and B2M.",
+    "controls": "Positive: a known surface pair, such as B2M with HLA-A/HLA-B heavy chain, in the same cells (PLA positive control). Negative: single-antibody PLA controls, GPR82-knockout or parental HEK293 cells (no GPR82), an unrelated tagged GPCR with B2M, and a B2M-knockout line. An isotype-matched antibody control is also needed.",
+    "caveats": "Confidence is low: ipTM is 0.51, interface pLDDT is 64.9 and min PAE is 9.3 \u00c5. B2M is nearly always bound to MHC-I-like heavy chains, so a positive PLA signal may reflect nearby MHC-I (a bystander, or an indirect link) instead of a direct B2M\u2013GPR82 contact. It was not checked whether the GPR82 interface is extracellular or lies in a transmembrane or intracellular region, or whether it includes N-glycosylation sites, so it may be inaccessible or glycan-shielded. HPA gives no GPR82 subcellular or protein-level data, and the RNA is low except in Kupffer cells. GPR82 antibody quality is a main risk. PLA only shows proximity of about 40 nm, not a direct interaction or functional effect."
+  },
+  {
+    "protein_a": "ADORA1",
+    "protein_b": "GPR62",
+    "method": "PLA",
+    "method_variant": "",
+    "method_rationale": "Both are plasma-membrane 7TM GPCRs expected in the same membrane, so a lateral heteromer is best tested by in situ proximity (<40 nm) in intact cells. PLA avoids detergent solubilisation, which often creates or destroys GPCR aggregates in co-IP. There is no known ligand pairing, so a stimulation assay has no obvious readout.",
+    "target_tissues": [
+      "brain (cerebral cortex)",
+      "brain (white matter / corpus callosum)",
+      "brain (hippocampus)"
+    ],
+    "tissue_rationale": "HPA lists brain as the only tissue-enriched site for both: ADORA1 at 42.6 nTPM and GPR62 at 22.8 nTPM. Single-cell data do not overlap (ADORA1 in podocytes at 142 nCPM, GPR62 in oligodendrocytes at 29.5 nCPM), so brain regions where oligodendrocyte-lineage cells and ADORA1-positive neurons/glia sit close together are the best tissue targets. Cell-level co-expression must be confirmed first.",
+    "cell_types": [
+      "Oligodendrocytes",
+      "Oligodendrocyte precursor cells",
+      "Neurons (ADORA1-expressing)"
+    ],
+    "protocol_notes": "1) First run RT-qPCR or RNAscope for ADORA1 and GPR62 in human or mouse brain sections and in primary oligodendrocyte/OPC cultures, to find cells that express both. 2) Use a heterologous system as the main test: HEK293 cells transfected with tagged ADORA1 and GPR62 (HA/FLAG), with PLA on non-permeabilised cells using anti-tag antibodies, so only surface pairs are detected. Then do endogenous PLA on PFA-fixed brain sections or primary oligodendrocytes with validated antibodies from different host species. 3) Quantify PLA puncta per cell by confocal imaging. Optionally add MTNR1B co-expression, because UniProt reports GPR62 heteromerising with MTNR1B, to see whether the signal changes in a three-way complex. 4) Optionally follow up with an ADORA1 agonist (CPA) or antagonist (DPCPX) and a cAMP readout, to see whether GPR62 modulates ADORA1 Gi signalling.",
+    "controls": "Positive: a known GPCR heteromer pair, such as ADORA1\u2013P2Y1 or ADORA1\u2013A2A, or GPR62\u2013MTNR1B if antibodies are available. Negative: a single-antibody PLA, cells expressing only one receptor, a non-interacting membrane protein of similar abundance (e.g. ADORA1 + an unrelated 7TM receptor or CD8-tagged construct), and, where possible, GPR62 knockout or siRNA knockdown to confirm the endogenous signal.",
+    "caveats": "Confidence is low: ipTM is about 0.5, and AF3 packing of two 7TM bundles without a lipid bilayer often produces non-specific interfaces. HPA shows no shared cell type (ADORA1 podocytes vs GPR62 oligodendrocytes), so the two may never meet in the same cell in vivo. GPR62 has no HPA localisation data and no validated antibodies, so epitope-tagged constructs may be needed, and overexpression can cause artefactual proximity. PLA shows proximity, not a direct interaction. Because GPCRs are densely packed in membranes, PLA positives need the negative-control receptors above."
+  },
+  {
+    "protein_a": "PPIA",
+    "protein_b": "GPR63",
+    "method": "stimulation_assay",
+    "method_variant": "Recombinant PPIA +/- BSG co-expression and +/- PNGase F / glycosylation-site mutant GPR63 arm",
+    "method_rationale": "PPIA is a secreted protein and GPR63 is an orphan plasma-membrane GPCR, so this is a ligand-receptor hypothesis. A functional signalling readout (rather than proximity) tests whether PPIA actually engages and activates GPR63. Because PPIA is so abundant and sticky, binding alone would be hard to interpret.",
+    "target_tissues": [
+      "Choroid plexus (GPR63 side)",
+      "Stomach (gastric mucosa, PPIA side)",
+      "Blood/plasma (PPIA source)",
+      "Brain"
+    ],
+    "tissue_rationale": "HPA gives no tissue-level overlap for the pair. PPIA is highest in gastric progenitor cells (nCPM ~3194) and is annotated as secreted to blood. GPR63 is enriched only in choroid plexus epithelial cells (nCPM ~115.8), so the pair is paracrine/endocrine, and the assay is run in engineered cells plus a choroid plexus-derived model. Any in vivo overlap would be through circulating or CSF PPIA.",
+    "cell_types": [
+      "Choroid plexus epithelial cells",
+      "Gastric progenitor cells"
+    ],
+    "protocol_notes": "1) Express GPR63 (tagged, e.g. N-terminal HA/FLAG, with surface expression confirmed by flow or ELISA) in HEK293 cells, with and without BSG/CD147 co-expression. Use mock-transfected cells and a parallel BSG-only line as controls. Also test a choroid plexus epithelial line (e.g. HIBCPP or Z310) for endogenous GPR63. 2) Stimulate with endotoxin-free recombinant human PPIA (dose range 1 nM to 1 \u00b5M, 5 to 60 min). Read out GPCR signalling in G-protein-agnostic ways: cAMP (GloSensor/HTRF, because GPR63 is reported to couple Gi/Gs/G12-type pathways), \u03b2-arrestin recruitment (PathHunter/NanoBiT), and SRE/NFAT/CRE reporters, plus pERK as the CD147 pathway readout. 3) Confirm direct binding with a orthogonal check: biotin-PPIA or His-PPIA pulldown from GPR63-expressing membranes, or a NanoBiT/BRET binding assay. Test cyclosporin A (a PPIA active-site inhibitor) and enzyme-dead PPIA R55A to see whether activity depends on the PPIase site. 4) Run the glycosylation arm in parallel: PNGase F or tunicamycin pretreatment, and N-to-Q mutants of the 3 predicted GPR63 N-glycosylation sites.",
+    "controls": "Positive: a known GPCR agonist for assay validity (e.g. forskolin for cAMP, or a reference receptor/ligand pair in the same cells) and PPIA-induced pERK in BSG-expressing cells (established CD147 axis). Negative: mock-transfected or empty-vector cells, heat-denatured PPIA, an unrelated cyclophilin (PPIB) or irrelevant protein at the same concentration, an unrelated GPCR expressed at similar levels, and GPR63 knockout or knockdown in the choroid plexus line.",
+    "caveats": "Confidence is low: ipTM is 0.5, only at threshold, and PPIA is a hub with 195 known interactors, so nonspecific stickiness is plausible. GPR63 has 3 unmodeled N-glycosylation sites, and their position relative to the predicted interface was not checked. A glycan could block or alter the interface, so the glycosidase and N-to-Q mutant arm is needed to interpret negative results. Any PPIA effect may be mediated by endogenous BSG/CD147 rather than GPR63, so BSG controls and GPR63 knockout are essential. GPR63 is an orphan receptor with no validated agonist or coupling assay, so the readout is uncertain. HPA also lists GPR63 in the nucleoplasm and cytosol as well as at the plasma membrane, so surface expression must be verified. HPA provides no tissue overlap, so physiological relevance is untested. Recombinant PPIA can carry endotoxin or tag artifacts."
+  }
+]
