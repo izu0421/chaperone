@@ -25,6 +25,7 @@ Usage:
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -40,6 +41,31 @@ from .paths import PROJECT_ROOT as ROOT, FOLD_RUNS_DIR  # noqa: E402
 # CHAPERONE_HOME (see paths.py); a pip-installed chaperone pointed at a
 # different project directory picks that project's folds up instead.
 BULK_FOLD_RUNS_DIR = FOLD_RUNS_DIR
+
+# Where a SCREEN's folds live, which is not where this package puts its own.
+#
+# discover_bulk_screen_fold looked only for "<a>__<b>_agentfold" under
+# fold_runs/, a convention from an earlier bulk run. fold_runs/ is empty and the
+# orphan screen writes "<A>__<B>/" somewhere else entirely, so the topology rule
+# -- the one that rejects an interface spanning both membrane faces -- could not
+# fire for a single candidate in that screen. It did not fail; it never ran.
+#
+# It would have caught a lot. Of the fourteen protein candidates the evidence
+# agent supported, nine have interface residues on the cytoplasmic face and four
+# span both faces at once. Fibronectin, a secreted protein, is docked with all
+# thirty-one of its interface residues inside the cell.
+#
+# Same shape as the partner-breadth rule earlier the same day: a check reading
+# from a different stage's output than the one its data was written into passes
+# its own tests and does nothing. Both are now pointed at the real directory, and
+# this one takes a list so the next screen adds a path instead of going unchecked.
+SCREEN_FOLD_DIRS = [
+    Path(d) for d in os.environ.get(
+        "CHAPERONE_SCREEN_FOLD_DIRS",
+        "/data/yzy21/yy/space_agent/structural_modelling/results/orphan_out:"
+        "/data/yzy21/yy/space_agent/structural_modelling/results/specificity_out"
+    ).split(":") if d
+]
 
 # STRING channel score at/above this is treated as real curated/experimental
 # backing, not just a co-mention. STRING itself treats >=0.4 as "medium
@@ -718,7 +744,28 @@ def discover_bulk_screen_fold(gene_a: str, gene_b: str):
     Returns a fold_result-shaped dict (with structural_analysis attached and
     cached) or None if no such directory/model exists."""
     name = job_dir = None
+    # the screen's own layout first: <ROOT>/<A>__<B>/<A>__<B>_model.cif, gene case
+    # as the manifest wrote it
+    for root in SCREEN_FOLD_DIRS:
+        if name:
+            break
+        for a, b in ((gene_a, gene_b), (gene_b, gene_a)):
+            cand = f"{a}__{b}"
+            d = root / cand
+            if (d / f"{cand}_model.cif").exists():
+                name, job_dir, first_gene, second_gene = cand, d, a, b
+                break
+    if name is not None:
+        cache_path = job_dir / f"{name}_gate_result.json"
+        if cache_path.exists():
+            try:
+                return json.loads(cache_path.read_text())
+            except json.JSONDecodeError:
+                pass
+
     for a, b in ((gene_a, gene_b), (gene_b, gene_a)):
+        if name:
+            break
         candidate_name = f"{a.lower()}__{b.lower()}_agentfold"
         candidate_dir = BULK_FOLD_RUNS_DIR / candidate_name / "output" / candidate_name
         if (candidate_dir / f"{candidate_name}_model.cif").exists():

@@ -20,6 +20,7 @@ body{margin:0;background:var(--bg);color:var(--ink);
 h1{margin:0 0 6px;font-size:21px;letter-spacing:-.01em}
 .sub{color:var(--mut);max-width:70ch;margin:0}
 .key{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;font-size:12px;color:var(--mut)}
+.stats{color:var(--mut);font-size:12px;margin:8px 0 0}
 .key i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;
        vertical-align:-1px}
 section{margin:26px 0 0}
@@ -44,6 +45,8 @@ h2{font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)
 .t-candidate{background:#0f2a44;color:#8fc3f0}
 .t-non-binder{background:#3a1216;color:#f0a3ab}
 .t-rejected{background:#3a2a10;color:#f0cf8f}
+.t-plausible{background:#13351f;color:#7fd99f}
+.t-impossible{background:#3a1216;color:#f0a3ab}
 .ctrls{display:flex;flex-wrap:wrap;border-top:1px solid var(--rule);background:var(--surface-2)}
 .ctrls button{flex:1 1 auto;background:none;border:0;border-right:1px solid var(--rule);
   color:var(--mut);padding:8px 6px;font:inherit;font-size:11px;cursor:pointer}
@@ -58,39 +61,41 @@ code{background:var(--surface-2);padding:1px 5px;border-radius:3px;font-size:12p
 
 <div class="mast"><div class="wrap">
 <h1>Where the molecule sits</h1>
-<p class="sub">AlphaFold3 places a small molecule somewhere in a receptor whatever receptor it
-is given, so its confidence cannot say whether the molecule belongs there. These are the
-same folds the screen scored, drawn so the pose can be judged directly: two ligands whose
-receptor is known, two molecules known <em>not</em> to bind the receptor they are shown
-with, and the candidates.</p>
+<p class="sub">Ligand and partner poses from the orphan GPCR screen</p>
+<div class="stats">12 models &middot; 4 known answers &middot; 4 small-molecule candidates
+&middot; 4 protein partners</div>
 <div class="key">
   <span><i style="background:var(--tm)"></i>transmembrane</span>
   <span><i style="background:var(--ext)"></i>extracellular</span>
-  <span><i style="background:var(--cyt)"></i>cytoplasmic &mdash; the wrong side</span>
-  <span><i style="background:var(--lig)"></i>the molecule</span>
-  <span>grey surface &mdash; the residues it contacts</span>
+  <span><i style="background:var(--cyt)"></i>cytoplasmic</span>
+  <span><i style="background:var(--lig)"></i>partner</span>
+  <span>grey surface &middot; residues it contacts</span>
   <span><i style="background:var(--cyt);clip-path:polygon(50% 100%,0 0,100% 0)"></i>arrow
-  &mdash; points to the cytoplasmic side</span>
+  &middot; points to cytoplasm</span>
 </div>
 </div></div>
 
 <div class="wrap">
 <section><h2>Known answers</h2><div class="grid" id="g-ref"></div>
-<p class="note">The two on the left are a receptor with its own ligand; the two on the right
-are the same benchmark's known non-binders. Nothing about the confidence separates them
-&mdash; every one of these four folds scores an interface pTM between 0.65 and 0.93. The
-pose does.</p></section>
+<p class="note">Two receptors with their own ligand, two with a molecule known not to bind
+them. Interface pTM 0.65 to 0.93 across all four.</p></section>
 
 <section><h2>Candidates</h2><div class="grid" id="g-cand"></div>
-<p class="note">GPR150 is shown because it fails: enclosed 0.418 of its own surface against a
-minimum of 0.928 across all sixteen known cognate ligands. It is resting on the receptor,
-not sitting in it, and the interface pTM of 0.91 does not see the difference.</p></section>
+<p class="note">0.928 is the lowest enclosure of the 16 known cognate ligands. GPR150 +
+GABA reaches 0.418, at an interface pTM of 0.91.</p></section>
 
-<footer><div>Structures are the top-ranked AlphaFold3 model for each fold, unmodified.
-Contacts are receptor residues within 4.5 &#8491; of any ligand atom. Topological domains
-are UniProt annotations, not inferred from the coordinates. Enclosure is the fraction of
-the molecule's own solvent-accessible surface the receptor covers, by Shrake&ndash;Rupley.
-Built by <code>scripts/23_build_pose_viewer.py</code>.</div></footer>
+<section><h2>Protein partners</h2><div class="grid" id="g-ppi"></div>
+<p class="note">A secreted protein cannot reach the cytoplasmic face, and no interface can
+touch both faces across an intact membrane. Of the 14 protein candidates the evidence agent
+supported, 9 contact the cytoplasmic face and 4 span both. Fibronectin is secreted and
+contacts it with all 31 interface residues. The gate rejects both of these; it had been
+reading the wrong directory, and found no folds at all.</p></section>
+
+<footer><div>AlphaFold3 top-ranked model, unmodified &middot; contacts within 4.5 &#8491;
+&middot; topology from UniProt &middot; enclosure by Shrake-Rupley &middot;
+<code>scripts/23_build_pose_viewer.py</code></div>
+<div style="margin-top:6px">drag to rotate &middot; scroll to zoom &middot; toggles under
+each model</div></footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js"></script>
@@ -99,12 +104,15 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 const ORDER_REF  = ['CNR1__anandamide','ADRB2__adrenaline',
                     'P2RY12__acetylcholine','DRD2__adenosine-diphosphate'];
 const ORDER_CAND = ['GPR153__DBH','GPR85__DBH','GPR26__SLC1A2','GPR150__GAD2'];
+const ORDER_PPI  = ['GPR37__MST1','GPR82__B2M','GPR82__FN1','MRGPRX2__GNRH2'];
 const LABEL = {
   'CNR1__anandamide':'CNR1 + anandamide', 'ADRB2__adrenaline':'ADRB2 + adrenaline',
   'P2RY12__acetylcholine':'P2RY12 + acetylcholine',
   'DRD2__adenosine-diphosphate':'DRD2 + ADP',
   'GPR153__DBH':'GPR153 + noradrenaline', 'GPR85__DBH':'GPR85 + noradrenaline',
-  'GPR26__SLC1A2':'GPR26 + glutamate', 'GPR150__GAD2':'GPR150 + GABA'};
+  'GPR26__SLC1A2':'GPR26 + glutamate', 'GPR150__GAD2':'GPR150 + GABA',
+  'GPR37__MST1':'GPR37 + MST1', 'GPR82__B2M':'GPR82 + B2M',
+  'GPR82__FN1':'GPR82 + fibronectin', 'MRGPRX2__GNRH2':'MRGPRX2 + GNRH2'};
 let META = {};
 const panes = {};
 
@@ -113,6 +121,16 @@ function card(job, m){
   d.className = 'shell';
   const burial = m.buried_fraction === null ? '&mdash;' : m.buried_fraction.toFixed(3);
   const bcol = m.buried_fraction !== null && m.buried_fraction >= 0.92 ? 'var(--ok)' : 'var(--bad)';
+  // a protein partner is judged on WHICH FACE it is docked to, not on enclosure
+  const facts = m.is_ppi
+    ? `<div><span>interface</span><b>${m.n_contacts}</b></div>
+       <div><span>extracellular</span><b>${m.ext_contacts}</b></div>
+       <div><span>on TM</span><b>${m.tm_contacts}</b></div>
+       <div><span>cytoplasmic</span><b style="color:${m.cyt_contacts ? 'var(--bad)' : 'inherit'}">${m.cyt_contacts}</b></div>`
+    : `<div><span>enclosed</span><b style="color:${bcol}">${burial}</b></div>
+       <div><span>contacts</span><b>${m.n_contacts}</b></div>
+       <div><span>on TM</span><b>${m.tm_contacts}</b></div>
+       <div><span>cytoplasmic</span><b style="color:${m.cyt_contacts ? 'var(--bad)' : 'inherit'}">${m.cyt_contacts}</b></div>`;
   d.innerHTML = `
    <div class="hd"><b>${LABEL[job] || job}</b>
      <span class="tag t-${m.role}">${m.role}</span>
@@ -124,13 +142,7 @@ function card(job, m){
      <button data-act="axis" aria-pressed="true">membrane axis</button>
      <button data-act="spin" aria-pressed="false">spin</button>
    </div>
-   <div class="facts">
-     <div><span>enclosed</span><b style="color:${bcol}">${burial}</b></div>
-     <div><span>contacts</span><b>${m.n_contacts}</b></div>
-     <div><span>on TM</span><b>${m.tm_contacts}</b></div>
-     <div><span>cytoplasmic</span>
-       <b style="color:${m.cyt_contacts ? 'var(--bad)' : 'inherit'}">${m.cyt_contacts}</b></div>
-   </div>`;
+   <div class="facts">${facts}</div>`;
   return d;
 }
 
@@ -151,8 +163,12 @@ function paint(job){
   } else {
     V.setStyle(R, {cartoon: {color: '#5a5a62', thickness: 0.3}});
   }
-  V.setStyle(L, {stick: {colorscheme: 'yellowCarbon', radius: 0.21},
-                 sphere: {colorscheme: 'yellowCarbon', scale: 0.26}});
+  if (m.is_ppi){
+    V.setStyle(L, {cartoon: {color: css('--lig'), thickness: 0.4}});
+  } else {
+    V.setStyle(L, {stick: {colorscheme: 'yellowCarbon', radius: 0.21},
+                   sphere: {colorscheme: 'yellowCarbon', scale: 0.26}});
+  }
   if (p.surface && m.contacts.length){
     V.addSurface($3Dmol.SurfaceType.MS, {color: '#9a9aa2', opacity: 0.55},
                  {chain: m.receptor_chain, resi: m.contacts}, R);
@@ -203,8 +219,9 @@ Promise.all([
   });
   mk(document.getElementById('g-ref'), ORDER_REF);
   mk(document.getElementById('g-cand'), ORDER_CAND);
+  mk(document.getElementById('g-ppi'), ORDER_PPI);
 
-  const jobs = [...ORDER_REF, ...ORDER_CAND].filter(j => META[j]);
+  const jobs = [...ORDER_REF, ...ORDER_CAND, ...ORDER_PPI].filter(j => META[j]);
   return Promise.all(jobs.map(job =>
     fetch(META[job].file).then(r => r.text()).then(txt => {
       const el = document.querySelector(`.vp[data-job="${job}"]`);
