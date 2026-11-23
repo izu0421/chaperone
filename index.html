@@ -1,0 +1,74 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chaperone</title>
+<style>
+:root{--bg:#000;--surface:#0c0c0c;--rule:#242428;--ink:#f2f2f4;--mut:#8b8b93;--acc:#2166AC}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:46px 22px 70px}
+h1{font-size:25px;margin:0 0 4px;letter-spacing:-.01em}
+.tag{color:var(--mut);margin:0 0 26px}
+h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);
+  margin:32px 0 10px;font-weight:600}
+p{max-width:70ch}
+a{color:var(--acc)}
+.card{display:block;border:1px solid var(--rule);background:var(--surface);
+  padding:15px 17px;margin:0 0 10px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--acc)}
+.card b{display:block;font-size:15px}
+.card span{color:var(--mut);font-size:13px}
+table{border-collapse:collapse;font-size:13px;margin:6px 0 0}
+td,th{border-bottom:1px solid var(--rule);padding:5px 14px 5px 0;text-align:left}
+th{color:var(--mut);font-weight:600;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+code{background:var(--surface);padding:1px 5px;border-radius:3px;font-size:13px}
+footer{color:var(--mut);font-size:13px;margin-top:40px;border-top:1px solid var(--rule);
+  padding-top:18px}
+</style>
+<div class="wrap">
+<h1>chaperone</h1>
+<p class="tag">Agentic triage of AlphaFold3-predicted interactions against real biological
+evidence.</p>
+
+<p>A confident fold is not an interaction. chaperone takes a predicted pair, has an agent
+assemble orthogonal evidence from six databases, and then hands the judgement to fixed
+code &mdash; because an agent that both assembles evidence and judges it will rationalise
+the hypothesis it was given.</p>
+
+<h2>Runs</h2>
+<a class="card" href="reports/orphan_shortlist_2026-11-23/structures/">
+  <b>Where the molecule sits &rarr;</b>
+  <span>Eight folds in an interactive viewer: two ligands in the receptor they are known to
+  bind, two molecules known <em>not</em> to bind the one they are shown with, and the
+  candidates. Interface pTM does not separate them. The pose does.</span></a>
+<a class="card" href="reports/orphan_shortlist_2026-11-23/">
+  <b>Orphan GPCR shortlist, 2026-11-23 &rarr;</b>
+  <span>102 candidates triaged end to end &mdash; verdicts, the traceable report, 38
+  designed experiments and the review audit.</span></a>
+
+<h2>What that run found</h2>
+<table>
+<tr><th>verdict</th><th>n</th></tr>
+<tr><td>Insufficient evidence</td><td>25</td></tr>
+<tr><td>Likely artifact (PTM/glycan)</td><td>24</td></tr>
+<tr><td>Likely promiscuous pocket</td><td>19</td></tr>
+<tr><td>Confirmed novel</td><td>14</td></tr>
+<tr><td>Likely subcomplex</td><td>10</td></tr>
+<tr><td>Implausible</td><td>10</td></tr>
+</table>
+<p style="margin-top:14px">Every metabolite candidate that received a structural verdict
+came back as a promiscuous pocket, and none was confirmed &mdash; reached from ChEMBL
+target counts and UniProt function text, independently of the screen's own finding that
+interface pTM is saturated on that arm. No candidate is high-confidence; these are triage
+calls, not results.</p>
+
+<h2>Code</h2>
+<p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;
+the pipeline, the deterministic gate and its rules, and the tests.</p>
+
+<footer>Part of the human spatial atlas work:
+<a href="https://www.yizhouyu.com/humanspatialatlas/">the atlas</a> and its
+<a href="https://www.yizhouyu.com/humanspatialatlas/manuscript.html">figures</a>
+(password protected).</footer>
+</div>
