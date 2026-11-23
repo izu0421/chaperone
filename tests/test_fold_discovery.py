@@ -134,3 +134,41 @@ def test_cached_gate_result_is_reused(gate, tmp_path, monkeypatch):
     monkeypatch.setattr(gate, "_get_accession", _boom)
     found = gate.discover_bulk_screen_fold("CFL1", "GRM5")
     assert found["iptm"] == 0.9
+
+
+def _cytoplasmic_only_fold(gate, tmp_path, monkeypatch):
+    """A fold whose whole interface sits on the cytoplasmic face."""
+    _write_agentfold(tmp_path, "SLIT2", "GPR52")
+    monkeypatch.setattr(gate, "_get_accession", lambda gene: f"ACC_{gene}")
+    monkeypatch.setattr(gate, "analyze", lambda cif, accs: {
+        "interfaces": [{
+            "chain_a": "A", "chain_b": "B",
+            "ptm_sites_at_interface_a": [], "ptm_sites_at_interface_b": [],
+            "interface_topology_a": ["Cytoplasmic"], "interface_topology_b": [],
+        }]
+    })
+    row = {"protein_a": "SLIT2", "protein_b": "GPR52"}
+    return gate.gather_fold_results(row, tool_calls=[], fold_by_pair={})
+
+
+def test_secreted_partner_on_the_cytoplasmic_face_is_a_violation(gate, tmp_path, monkeypatch):
+    """The gap the structures exposed: the both-faces rule catches an interface
+    straddling the membrane, but nine of the twelve pairs the gate had just
+    confirmed put a SECRETED partner wholly on the inside, which the rule said
+    nothing about. A secreted protein does not reach the cytoplasm."""
+    results = _cytoplasmic_only_fold(gate, tmp_path, monkeypatch)
+    status = gate.fold_evidence_status(results, secreted_partner=True)
+    assert status["status"] == "topology_violation", (
+        f"a secreted partner docked entirely on the cytoplasmic face was reported "
+        f"as {status['status']!r}"
+    )
+    assert "secreted" in status["trace"]
+
+
+def test_same_geometry_passes_when_nothing_is_secreted(gate, tmp_path, monkeypatch):
+    """The guard on the rule. A membrane protein with a cytoplasmic domain
+    contacting another protein's cytoplasmic face is ordinary biology, and
+    flagging it would re-create the over-firing _protein_class_flags was
+    written to avoid. No secretion evidence, no flag."""
+    results = _cytoplasmic_only_fold(gate, tmp_path, monkeypatch)
+    assert gate.fold_evidence_status(results, secreted_partner=False)["status"] == "pass"

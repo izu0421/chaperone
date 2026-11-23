@@ -8,3 +8,6 @@ log/
 fold_runs/
 .gpu_locks/
 .pytest_cache/
+
+# re-gate backups: git history already holds every published verdicts.csv
+reports/**/verdicts.csv.pre-regate*

@@ -300,7 +300,7 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
     }
 
 
-def fold_evidence_status(fold_results: list) -> dict:
+def fold_evidence_status(fold_results: list, secreted_partner: bool = False) -> dict:
     """Returns {"status": "pass"|"ptm_only_concern"|"topology_violation"|"not_run", "trace": str}.
     Distinguishes two different-severity concerns rather than lumping them:
     a PTM/glycosylation site at the interface is a "might be gated/blocked in
@@ -332,6 +332,21 @@ def fold_evidence_status(fold_results: list) -> dict:
             topo = set(iface.get("interface_topology_a") or []) | set(iface.get("interface_topology_b") or [])
             if "Cytoplasmic" in topo and "Extracellular" in topo:
                 topology_notes.append(f"{iface['chain_a']}-{iface['chain_b']} interface spans both Cytoplasmic and Extracellular residues — topologically impossible across an intact membrane")
+            # The both-faces rule above catches an interface straddling the
+            # membrane. It does NOT catch the commoner failure: a secreted
+            # protein docked entirely on the INSIDE. Caught by extracting the
+            # structures of the shortlist the first rule passed -- 9 of 12
+            # recommended pairs had every annotated interface residue on the
+            # cytoplasmic face, with a secreted partner (GHRL, SLIT2, C3,
+            # CCL28, IL1RN, CTSG, IL2). A secreted protein never reaches the
+            # cytoplasm, so that complex cannot form as modelled either.
+            #
+            # Requires `secreted_partner`, because the same geometry is
+            # ordinary biology when the partner is a membrane protein with a
+            # cytoplasmic domain -- the case the comment in _protein_class_flags
+            # exists to protect. No secretion evidence, no flag.
+            elif secreted_partner and "Cytoplasmic" in topo and "Extracellular" not in topo:
+                topology_notes.append(f"{iface['chain_a']}-{iface['chain_b']} interface lies entirely on the Cytoplasmic face while the partner is secreted — a secreted protein does not reach the cytoplasm")
 
     if topology_notes:
         return {"status": "topology_violation", "trace": "Real fold executed and flagged: " + "; ".join(topology_notes + ptm_notes)}
@@ -533,7 +548,12 @@ def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
     # would query the protein tools for a gene that does not exist
     hpa = ({"plausibility": "not_applicable", "trace": "small-molecule partner"}
            if is_ligand else hpa_plausibility(tool_calls, gene_a, gene_b))
-    fold = fold_evidence_status(fold_results)
+    # the topology rule needs to know whether either protein is secreted, which
+    # only the HPA class flags can say
+    _secreted = (not is_ligand
+                 and (_protein_class_flags(tool_calls, gene_a)["secreted"]
+                      or _protein_class_flags(tool_calls, gene_b)["secreted"]))
+    fold = fold_evidence_status(fold_results, secreted_partner=_secreted)
     glycan_binding_gene = None if is_ligand else _glycan_binding_gene(gene_a, gene_b)
     ligand = ligand_evidence_status(tool_calls) if is_ligand else None
     pose = ligand_pose_status(fold_results) if is_ligand else None

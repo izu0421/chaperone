@@ -38,10 +38,11 @@ the hypothesis it was given.</p>
 
 <h2>Runs</h2>
 <a class="card" href="reports/orphan_shortlist_2026-11-23/structures/">
-  <b>Where the molecule sits &rarr;</b>
-  <span>Eight folds in an interactive viewer: two ligands in the receptor they are known to
-  bind, two molecules known <em>not</em> to bind the one they are shown with, and the
-  candidates. Interface pTM does not separate them. The pose does.</span></a>
+  <b>Where the partner sits &rarr;</b>
+  <span>Every candidate the screen still supports, in an interactive viewer, with the
+  controls it is read against: ligands in the receptor they are known to bind, molecules
+  known <em>not</em> to bind the one they are shown with, and the folds the geometry rules
+  reject. Interface pTM does not separate them. The pose does.</span></a>
 <a class="card" href="reports/orphan_shortlist_2026-11-23/">
   <b>Orphan GPCR shortlist, 2026-11-23 &rarr;</b>
   <span>102 candidates triaged end to end &mdash; verdicts, the traceable report, 38
@@ -50,17 +51,25 @@ the hypothesis it was given.</p>
 <h2>What that run found</h2>
 <table>
 <tr><th>verdict</th><th>n</th></tr>
-<tr><td>Insufficient evidence</td><td>25</td></tr>
-<tr><td>Likely artifact (PTM/glycan)</td><td>24</td></tr>
+<tr><td>Implausible</td><td>49</td></tr>
+<tr><td>Likely artifact (PTM/glycan)</td><td>22</td></tr>
 <tr><td>Likely promiscuous pocket</td><td>19</td></tr>
-<tr><td>Confirmed novel</td><td>14</td></tr>
-<tr><td>Likely subcomplex</td><td>10</td></tr>
-<tr><td>Implausible</td><td>10</td></tr>
+<tr><td>Insufficient evidence</td><td>5</td></tr>
+<tr><td>Confirmed novel</td><td>4</td></tr>
+<tr><td>Likely subcomplex</td><td>3</td></tr>
 </table>
-<p style="margin-top:14px">Every metabolite candidate that received a structural verdict
-came back as a promiscuous pocket, and none was confirmed &mdash; reached from ChEMBL
-target counts and UniProt function text, independently of the screen's own finding that
-interface pTM is saturated on that arm. No candidate is high-confidence; these are triage
+<p style="margin-top:14px">Three faults in the gate were found by auditing what it
+returned, and the table above is the result of fixing them. Two were wiring: a rule read a
+column that only existed upstream, and another searched a fold directory the screen never
+wrote to. The third was found by extracting the structures &mdash; the topology rule
+flagged an interface spanning both faces of the membrane, but said nothing about one
+lying wholly on the <em>cytoplasmic</em> face, which is where nine of the twelve pairs it
+had just confirmed put a secreted partner. 45 of the 102 verdicts differ from the first
+run.</p>
+<p>Every metabolite candidate that received a structural verdict came back as a
+promiscuous pocket, and none was confirmed &mdash; reached from ChEMBL target counts and
+UniProt function text, independently of the screen's own finding that a 0.5 cut on
+interface pTM passes 97% of that arm. No candidate is high-confidence; these are triage
 calls, not results.</p>
 
 <h2>Code</h2>

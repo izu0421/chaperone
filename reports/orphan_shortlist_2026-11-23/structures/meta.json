@@ -4,6 +4,7 @@
   "role": "cognate",
   "why": "a known cognate ligand: anandamide in CNR1",
   "stage": "specificity",
+  "label": "CNR1 + anandamide",
   "receptor": "CNR1",
   "receptor_chain": "A",
   "ligand_chain": "B",
@@ -123,6 +124,7 @@
   "role": "cognate",
   "why": "adrenaline in ADRB2, the adrenoceptor noradrenaline really binds",
   "stage": "specificity",
+  "label": "ADRB2 + adrenaline",
   "receptor": "ADRB2",
   "receptor_chain": "A",
   "ligand_chain": "B",
@@ -218,6 +220,7 @@
   "role": "non-binder",
   "why": "a known non-binder: acetylcholine at P2RY12, outside the bundle entirely",
   "stage": "specificity",
+  "label": "P2RY12 + acetylcholine",
   "receptor": "P2RY12",
   "receptor_chain": "A",
   "ligand_chain": "B",
@@ -279,6 +282,7 @@
   "role": "non-binder",
   "why": "a known non-binder lining the intracellular face",
   "stage": "specificity",
+  "label": "DRD2 + ADP",
   "receptor": "DRD2",
   "receptor_chain": "A",
   "ligand_chain": "B",
@@ -347,569 +351,12 @@
    ]
   ]
  },
- "GPR85__DBH": {
-  "file": "s/GPR85__DBH.pdb",
-  "role": "candidate",
-  "why": "GPR85 with noradrenaline",
-  "stage": "orphan",
-  "receptor": "GPR85",
-  "receptor_chain": "A",
-  "ligand_chain": "B",
-  "contacts": [
-   101,
-   102,
-   105,
-   106,
-   173,
-   174,
-   176,
-   187,
-   188,
-   191,
-   298,
-   301,
-   302,
-   305
-  ],
-  "n_contacts": 14,
-  "spans": {
-   "TM": [
-    101,
-    102,
-    105,
-    106,
-    191,
-    298,
-    301,
-    302,
-    305
-   ],
-   "EXT": [
-    173,
-    174,
-    176,
-    187,
-    188
-   ]
-  },
-  "tm_contacts": 9,
-  "cyt_contacts": 0,
-  "is_ppi": false,
-  "ext_contacts": 5,
-  "spans_both_faces": false,
-  "buried_fraction": 0.973,
-  "iptm": 0.93,
-  "axis": {
-   "ext": [
-    7.76,
-    26.71,
-    -10.75
-   ],
-   "cyt": [
-    -4.37,
-    -23.38,
-    12.46
-   ]
-  },
-  "tm_spans": [
-   [
-    26,
-    46
-   ],
-   [
-    58,
-    78
-   ],
-   [
-    97,
-    117
-   ],
-   [
-    138,
-    158
-   ],
-   [
-    189,
-    209
-   ],
-   [
-    287,
-    307
-   ],
-   [
-    314,
-    334
-   ]
-  ]
- },
- "GPR153__DBH": {
-  "file": "s/GPR153__DBH.pdb",
-  "role": "candidate",
-  "why": "GPR153 with noradrenaline",
-  "stage": "orphan",
-  "receptor": "GPR153",
-  "receptor_chain": "A",
-  "ligand_chain": "B",
-  "contacts": [
-   94,
-   97,
-   98,
-   101,
-   102,
-   180,
-   184,
-   253,
-   254,
-   257,
-   258,
-   261,
-   289
-  ],
-  "n_contacts": 13,
-  "spans": {
-   "TM": [
-    94,
-    97,
-    98,
-    101,
-    102,
-    180,
-    184,
-    253,
-    254,
-    257,
-    258,
-    261,
-    289
-   ]
-  },
-  "tm_contacts": 13,
-  "cyt_contacts": 0,
-  "is_ppi": false,
-  "ext_contacts": 0,
-  "spans_both_faces": false,
-  "buried_fraction": 1.0,
-  "iptm": 0.92,
-  "axis": {
-   "ext": [
-    25.96,
-    5.1,
-    -1.43
-   ],
-   "cyt": [
-    -8.02,
-    1.33,
-    0.93
-   ]
-  },
-  "tm_spans": [
-   [
-    12,
-    32
-   ],
-   [
-    42,
-    62
-   ],
-   [
-    85,
-    105
-   ],
-   [
-    127,
-    147
-   ],
-   [
-    176,
-    196
-   ],
-   [
-    244,
-    264
-   ],
-   [
-    277,
-    297
-   ]
-  ]
- },
- "GPR26__SLC1A2": {
-  "file": "s/GPR26__SLC1A2.pdb",
-  "role": "candidate",
-  "why": "GPR26 with glutamate: a good pose in a pocket that also takes two other molecules",
-  "stage": "orphan",
-  "receptor": "GPR26",
-  "receptor_chain": "A",
-  "ligand_chain": "B",
-  "contacts": [
-   86,
-   87,
-   90,
-   94,
-   157,
-   158,
-   173,
-   176,
-   177,
-   257,
-   261,
-   280,
-   283
-  ],
-  "n_contacts": 13,
-  "spans": {
-   "TM": [
-    86,
-    87,
-    90,
-    94,
-    173,
-    176,
-    177,
-    257,
-    261,
-    280,
-    283
-   ],
-   "EXT": [
-    157,
-    158
-   ]
-  },
-  "tm_contacts": 11,
-  "cyt_contacts": 0,
-  "is_ppi": false,
-  "ext_contacts": 2,
-  "spans_both_faces": false,
-  "buried_fraction": 0.973,
-  "iptm": 0.94,
-  "axis": {
-   "ext": [
-    9.78,
-    11.25,
-    21.15
-   ],
-   "cyt": [
-    -7.56,
-    -8.08,
-    -13.02
-   ]
-  },
-  "tm_spans": [
-   [
-    11,
-    31
-   ],
-   [
-    48,
-    68
-   ],
-   [
-    82,
-    102
-   ],
-   [
-    124,
-    144
-   ],
-   [
-    169,
-    189
-   ],
-   [
-    246,
-    266
-   ],
-   [
-    277,
-    297
-   ]
-  ]
- },
- "GPR150__GAD2": {
-  "file": "s/GPR150__GAD2.pdb",
-  "role": "rejected",
-  "why": "GPR150 with GABA: enclosed only 0.418, resting on the surface",
-  "stage": "orphan",
-  "receptor": "GPR150",
-  "receptor_chain": "A",
-  "ligand_chain": "B",
-  "contacts": [
-   55,
-   58,
-   62,
-   350
-  ],
-  "n_contacts": 4,
-  "spans": {
-   "TM": [
-    55,
-    58,
-    62,
-    350
-   ]
-  },
-  "tm_contacts": 4,
-  "cyt_contacts": 0,
-  "is_ppi": false,
-  "ext_contacts": 0,
-  "spans_both_faces": false,
-  "buried_fraction": 0.418,
-  "iptm": 0.91,
-  "axis": {
-   "ext": [
-    -21.3,
-    9.18,
-    -17.03
-   ],
-   "cyt": [
-    12.24,
-    -7.49,
-    11.8
-   ]
-  },
-  "tm_spans": [
-   [
-    4,
-    24
-   ],
-   [
-    44,
-    64
-   ],
-   [
-    82,
-    102
-   ],
-   [
-    163,
-    183
-   ],
-   [
-    238,
-    258
-   ],
-   [
-    294,
-    314
-   ],
-   [
-    335,
-    355
-   ]
-  ]
- },
- "GPR37__MST1": {
-  "file": "s/GPR37__MST1.pdb",
-  "role": "plausible",
-  "why": "MST1, secreted, on the extracellular face: 20 of 20 interface residues",
-  "stage": "orphan",
-  "receptor": "GPR37",
-  "receptor_chain": "A",
-  "ligand_chain": "B",
-  "contacts": [
-   137,
-   138,
-   139,
-   141,
-   142,
-   143,
-   144,
-   145,
-   146,
-   148,
-   149,
-   150,
-   152,
-   425,
-   427,
-   428,
-   429,
-   432,
-   433,
-   436
-  ],
-  "n_contacts": 20,
-  "spans": {
-   "EXT": [
-    137,
-    138,
-    139,
-    141,
-    142,
-    143,
-    144,
-    145,
-    146,
-    148,
-    149,
-    150,
-    152,
-    425,
-    427,
-    428,
-    429,
-    432,
-    433,
-    436
-   ]
-  },
-  "tm_contacts": 0,
-  "cyt_contacts": 0,
-  "is_ppi": true,
-  "ext_contacts": 20,
-  "spans_both_faces": false,
-  "buried_fraction": null,
-  "iptm": null,
-  "axis": {
-   "ext": [
-    -4.99,
-    13.23,
-    0.88
-   ],
-   "cyt": [
-    -31.07,
-    33.68,
-    65.45
-   ]
-  },
-  "tm_spans": [
-   [
-    266,
-    286
-   ],
-   [
-    300,
-    320
-   ],
-   [
-    336,
-    356
-   ],
-   [
-    380,
-    400
-   ],
-   [
-    444,
-    464
-   ],
-   [
-    494,
-    514
-   ],
-   [
-    532,
-    552
-   ]
-  ]
- },
- "GPR82__B2M": {
-  "file": "s/GPR82__B2M.pdb",
-  "role": "plausible",
-  "why": "B2M, secreted, extracellular: 18 of 19",
-  "stage": "orphan",
-  "receptor": "GPR82",
-  "receptor_chain": "A",
-  "ligand_chain": "B",
-  "contacts": [
-   1,
-   3,
-   4,
-   5,
-   6,
-   7,
-   9,
-   10,
-   11,
-   12,
-   181,
-   183,
-   184,
-   191,
-   279,
-   280,
-   281,
-   282,
-   285
-  ],
-  "n_contacts": 19,
-  "spans": {
-   "EXT": [
-    1,
-    3,
-    4,
-    5,
-    6,
-    7,
-    9,
-    10,
-    11,
-    181,
-    183,
-    184,
-    191,
-    279,
-    280,
-    281,
-    282,
-    285
-   ],
-   "TM": [
-    12
-   ]
-  },
-  "tm_contacts": 1,
-  "cyt_contacts": 0,
-  "is_ppi": true,
-  "ext_contacts": 18,
-  "spans_both_faces": false,
-  "buried_fraction": null,
-  "iptm": null,
-  "axis": {
-   "ext": [
-    -1.41,
-    0.31,
-    -6.65
-   ],
-   "cyt": [
-    2.47,
-    29.66,
-    7.24
-   ]
-  },
-  "tm_spans": [
-   [
-    12,
-    32
-   ],
-   [
-    56,
-    76
-   ],
-   [
-    93,
-    115
-   ],
-   [
-    157,
-    177
-   ],
-   [
-    198,
-    218
-   ],
-   [
-    252,
-    272
-   ]
-  ]
- },
  "GPR82__FN1": {
   "file": "s/GPR82__FN1.pdb",
-  "role": "impossible",
+  "role": "rejected",
   "why": "fibronectin is secreted, yet all 31 interface residues are cytoplasmic",
   "stage": "orphan",
+  "label": "GPR82 + fibronectin",
   "receptor": "GPR82",
   "receptor_chain": "A",
   "ligand_chain": "B",
@@ -1030,9 +477,10 @@
  },
  "MRGPRX2__GNRH2": {
   "file": "s/MRGPRX2__GNRH2.pdb",
-  "role": "impossible",
+  "role": "rejected",
   "why": "the interface spans both faces at once, which no intact membrane allows",
   "stage": "orphan",
+  "label": "MRGPRX2 + GNRH2",
   "receptor": "MRGPRX2",
   "receptor_chain": "A",
   "ligand_chain": "B",
@@ -1192,6 +640,1047 @@
    [
     257,
     283
+   ]
+  ]
+ },
+ "GPR52__SLIT2": {
+  "file": "s/GPR52__SLIT2.pdb",
+  "role": "rejected",
+  "why": "SLIT2 is secreted and every one of its 19 interface residues is cytoplasmic: the fold the topology rule was added to catch",
+  "stage": "orphan",
+  "label": "GPR52 + SLIT2",
+  "receptor": "GPR52",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   70,
+   73,
+   74,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   233,
+   240,
+   243,
+   244,
+   245,
+   246,
+   248,
+   259,
+   260,
+   326
+  ],
+  "n_contacts": 19,
+  "spans": {
+   "CYT": [
+    70,
+    73,
+    74,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    233,
+    240,
+    243,
+    244,
+    245,
+    246,
+    248,
+    259,
+    260,
+    326
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 19,
+  "is_ppi": true,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    71.08,
+    -42.8,
+    0.73
+   ],
+   "cyt": [
+    35.5,
+    -25.29,
+    3.51
+   ]
+  },
+  "tm_spans": [
+   [
+    45,
+    65
+   ],
+   [
+    88,
+    108
+   ],
+   [
+    117,
+    137
+   ],
+   [
+    160,
+    180
+   ],
+   [
+    204,
+    224
+   ],
+   [
+    266,
+    286
+   ],
+   [
+    297,
+    317
+   ]
+  ]
+ },
+ "GPR132__CCL11": {
+  "file": "s/GPR132__CCL11.pdb",
+  "role": "recommended",
+  "why": "CCL11 against GPR132: interface pTM 0.56, agent confidence low",
+  "stage": "orphan",
+  "label": "GPR132 + CCL11",
+  "receptor": "GPR132",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   33,
+   34,
+   36,
+   37,
+   38,
+   39,
+   45,
+   49,
+   91,
+   98,
+   101,
+   102,
+   105,
+   106,
+   107,
+   122,
+   123,
+   127,
+   173,
+   174,
+   176,
+   177,
+   180,
+   184,
+   185,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   196,
+   199,
+   200,
+   202,
+   203,
+   206,
+   210,
+   258,
+   276,
+   277,
+   280,
+   283,
+   284,
+   285,
+   287,
+   288,
+   294
+  ],
+  "n_contacts": 48,
+  "spans": {},
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "is_ppi": true,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": null,
+  "tm_spans": []
+ },
+ "GPR37__MST1": {
+  "file": "s/GPR37__MST1.pdb",
+  "role": "recommended",
+  "why": "MST1 against GPR37: interface pTM 0.52, agent confidence low",
+  "stage": "orphan",
+  "label": "GPR37 + MST1",
+  "receptor": "GPR37",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   137,
+   138,
+   139,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   148,
+   149,
+   150,
+   152,
+   425,
+   427,
+   428,
+   429,
+   432,
+   433,
+   436
+  ],
+  "n_contacts": 20,
+  "spans": {
+   "EXT": [
+    137,
+    138,
+    139,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    148,
+    149,
+    150,
+    152,
+    425,
+    427,
+    428,
+    429,
+    432,
+    433,
+    436
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "is_ppi": true,
+  "ext_contacts": 20,
+  "spans_both_faces": false,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -4.99,
+    13.23,
+    0.88
+   ],
+   "cyt": [
+    -31.07,
+    33.68,
+    65.45
+   ]
+  },
+  "tm_spans": [
+   [
+    266,
+    286
+   ],
+   [
+    300,
+    320
+   ],
+   [
+    336,
+    356
+   ],
+   [
+    380,
+    400
+   ],
+   [
+    444,
+    464
+   ],
+   [
+    494,
+    514
+   ],
+   [
+    532,
+    552
+   ]
+  ]
+ },
+ "GPR34__CTSG": {
+  "file": "s/GPR34__CTSG.pdb",
+  "role": "recommended",
+  "why": "CTSG against GPR34: interface pTM 0.50, agent confidence low",
+  "stage": "orphan",
+  "label": "GPR34 + CTSG",
+  "receptor": "GPR34",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   87,
+   89,
+   90,
+   155,
+   156,
+   159,
+   245,
+   248,
+   252,
+   254,
+   255,
+   256,
+   257,
+   260,
+   261,
+   330,
+   331,
+   332,
+   333,
+   336,
+   340,
+   357,
+   359,
+   362,
+   363,
+   364,
+   365,
+   366,
+   367,
+   368,
+   369,
+   370,
+   372
+  ],
+  "n_contacts": 33,
+  "spans": {
+   "CYT": [
+    87,
+    155,
+    156,
+    159,
+    245,
+    248,
+    252,
+    254,
+    255,
+    256,
+    257,
+    260,
+    261,
+    332,
+    333,
+    336,
+    340,
+    357,
+    359,
+    362,
+    363,
+    364,
+    365,
+    366,
+    367,
+    368,
+    369,
+    370,
+    372
+   ],
+   "TM": [
+    89,
+    90,
+    330,
+    331
+   ]
+  },
+  "tm_contacts": 4,
+  "cyt_contacts": 29,
+  "is_ppi": true,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    12.84,
+    -30.65,
+    -36.44
+   ],
+   "cyt": [
+    -1.85,
+    1.99,
+    8.0
+   ]
+  },
+  "tm_spans": [
+   [
+    62,
+    82
+   ],
+   [
+    89,
+    109
+   ],
+   [
+    129,
+    149
+   ],
+   [
+    172,
+    192
+   ],
+   [
+    217,
+    237
+   ],
+   [
+    270,
+    290
+   ],
+   [
+    311,
+    331
+   ]
+  ]
+ },
+ "GPR62__ADORA1": {
+  "file": "s/GPR62__ADORA1.pdb",
+  "role": "recommended",
+  "why": "ADORA1 against GPR62: interface pTM 0.50, agent confidence low",
+  "stage": "orphan",
+  "label": "GPR62 + ADORA1",
+  "receptor": "GPR62",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   170,
+   171,
+   173,
+   174,
+   175,
+   178,
+   261,
+   262,
+   263,
+   264,
+   265
+  ],
+  "n_contacts": 11,
+  "spans": {
+   "EXT": [
+    170,
+    171,
+    173,
+    174,
+    175,
+    261,
+    262,
+    263,
+    264,
+    265
+   ],
+   "TM": [
+    178
+   ]
+  },
+  "tm_contacts": 1,
+  "cyt_contacts": 0,
+  "is_ppi": true,
+  "ext_contacts": 10,
+  "spans_both_faces": false,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -10.62,
+    25.87,
+    14.03
+   ],
+   "cyt": [
+    15.08,
+    14.56,
+    -26.53
+   ]
+  },
+  "tm_spans": [
+   [
+    19,
+    39
+   ],
+   [
+    54,
+    74
+   ],
+   [
+    92,
+    112
+   ],
+   [
+    130,
+    150
+   ],
+   [
+    178,
+    198
+   ],
+   [
+    240,
+    260
+   ],
+   [
+    273,
+    293
+   ]
+  ]
+ },
+ "GPR26__SLC17A7": {
+  "file": "s/GPR26__SLC17A7.pdb",
+  "role": "candidate",
+  "why": "Glutamate in GPR26: interface pTM 0.94, ligand pLDDT 87",
+  "stage": "orphan",
+  "label": "GPR26 + glutamate",
+  "receptor": "GPR26",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   86,
+   87,
+   90,
+   94,
+   157,
+   158,
+   173,
+   176,
+   177,
+   257,
+   261,
+   280,
+   283
+  ],
+  "n_contacts": 13,
+  "spans": {
+   "TM": [
+    86,
+    87,
+    90,
+    94,
+    173,
+    176,
+    177,
+    257,
+    261,
+    280,
+    283
+   ],
+   "EXT": [
+    157,
+    158
+   ]
+  },
+  "tm_contacts": 11,
+  "cyt_contacts": 0,
+  "is_ppi": false,
+  "ext_contacts": 2,
+  "spans_both_faces": false,
+  "buried_fraction": 0.973,
+  "iptm": 0.94,
+  "axis": {
+   "ext": [
+    9.83,
+    11.18,
+    21.17
+   ],
+   "cyt": [
+    -7.59,
+    -8.04,
+    -13.02
+   ]
+  },
+  "tm_spans": [
+   [
+    11,
+    31
+   ],
+   [
+    48,
+    68
+   ],
+   [
+    82,
+    102
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    169,
+    189
+   ],
+   [
+    246,
+    266
+   ],
+   [
+    277,
+    297
+   ]
+  ]
+ },
+ "GPR85__DBH": {
+  "file": "s/GPR85__DBH.pdb",
+  "role": "candidate",
+  "why": "Noradrenaline in GPR85: interface pTM 0.93, ligand pLDDT 80",
+  "stage": "orphan",
+  "label": "GPR85 + noradrenaline",
+  "receptor": "GPR85",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   101,
+   102,
+   105,
+   106,
+   173,
+   174,
+   176,
+   187,
+   188,
+   191,
+   298,
+   301,
+   302,
+   305
+  ],
+  "n_contacts": 14,
+  "spans": {
+   "TM": [
+    101,
+    102,
+    105,
+    106,
+    191,
+    298,
+    301,
+    302,
+    305
+   ],
+   "EXT": [
+    173,
+    174,
+    176,
+    187,
+    188
+   ]
+  },
+  "tm_contacts": 9,
+  "cyt_contacts": 0,
+  "is_ppi": false,
+  "ext_contacts": 5,
+  "spans_both_faces": false,
+  "buried_fraction": 0.973,
+  "iptm": 0.93,
+  "axis": {
+   "ext": [
+    7.76,
+    26.71,
+    -10.75
+   ],
+   "cyt": [
+    -4.37,
+    -23.38,
+    12.46
+   ]
+  },
+  "tm_spans": [
+   [
+    26,
+    46
+   ],
+   [
+    58,
+    78
+   ],
+   [
+    97,
+    117
+   ],
+   [
+    138,
+    158
+   ],
+   [
+    189,
+    209
+   ],
+   [
+    287,
+    307
+   ],
+   [
+    314,
+    334
+   ]
+  ]
+ },
+ "GPR26__SLC6A1": {
+  "file": "s/GPR26__SLC6A1.pdb",
+  "role": "candidate",
+  "why": "GABA in GPR26: interface pTM 0.92, ligand pLDDT 81",
+  "stage": "orphan",
+  "label": "GPR26 + gaba",
+  "receptor": "GPR26",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   52,
+   55,
+   86,
+   89,
+   90,
+   93,
+   254,
+   280,
+   283,
+   284,
+   287
+  ],
+  "n_contacts": 11,
+  "spans": {
+   "TM": [
+    52,
+    55,
+    86,
+    89,
+    90,
+    93,
+    254,
+    280,
+    283,
+    284,
+    287
+   ]
+  },
+  "tm_contacts": 11,
+  "cyt_contacts": 0,
+  "is_ppi": false,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "buried_fraction": 0.988,
+  "iptm": 0.92,
+  "axis": {
+   "ext": [
+    8.16,
+    12.37,
+    21.14
+   ],
+   "cyt": [
+    -6.47,
+    -8.72,
+    -13.24
+   ]
+  },
+  "tm_spans": [
+   [
+    11,
+    31
+   ],
+   [
+    48,
+    68
+   ],
+   [
+    82,
+    102
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    169,
+    189
+   ],
+   [
+    246,
+    266
+   ],
+   [
+    277,
+    297
+   ]
+  ]
+ },
+ "GPR153__DBH": {
+  "file": "s/GPR153__DBH.pdb",
+  "role": "candidate",
+  "why": "Noradrenaline in GPR153: interface pTM 0.92, ligand pLDDT 79",
+  "stage": "orphan",
+  "label": "GPR153 + noradrenaline",
+  "receptor": "GPR153",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   94,
+   97,
+   98,
+   101,
+   102,
+   180,
+   184,
+   253,
+   254,
+   257,
+   258,
+   261,
+   289
+  ],
+  "n_contacts": 13,
+  "spans": {
+   "TM": [
+    94,
+    97,
+    98,
+    101,
+    102,
+    180,
+    184,
+    253,
+    254,
+    257,
+    258,
+    261,
+    289
+   ]
+  },
+  "tm_contacts": 13,
+  "cyt_contacts": 0,
+  "is_ppi": false,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "buried_fraction": 1.0,
+  "iptm": 0.92,
+  "axis": {
+   "ext": [
+    25.96,
+    5.1,
+    -1.43
+   ],
+   "cyt": [
+    -8.02,
+    1.33,
+    0.93
+   ]
+  },
+  "tm_spans": [
+   [
+    12,
+    32
+   ],
+   [
+    42,
+    62
+   ],
+   [
+    85,
+    105
+   ],
+   [
+    127,
+    147
+   ],
+   [
+    176,
+    196
+   ],
+   [
+    244,
+    264
+   ],
+   [
+    277,
+    297
+   ]
+  ]
+ },
+ "GPR150__GAD2": {
+  "file": "s/GPR150__GAD2.pdb",
+  "role": "candidate",
+  "why": "GABA in GPR150: interface pTM 0.91, ligand pLDDT 79",
+  "stage": "orphan",
+  "label": "GPR150 + gaba",
+  "receptor": "GPR150",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   55,
+   58,
+   62,
+   350
+  ],
+  "n_contacts": 4,
+  "spans": {
+   "TM": [
+    55,
+    58,
+    62,
+    350
+   ]
+  },
+  "tm_contacts": 4,
+  "cyt_contacts": 0,
+  "is_ppi": false,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "buried_fraction": 0.418,
+  "iptm": 0.91,
+  "axis": {
+   "ext": [
+    -21.3,
+    9.18,
+    -17.03
+   ],
+   "cyt": [
+    12.24,
+    -7.49,
+    11.8
+   ]
+  },
+  "tm_spans": [
+   [
+    4,
+    24
+   ],
+   [
+    44,
+    64
+   ],
+   [
+    82,
+    102
+   ],
+   [
+    163,
+    183
+   ],
+   [
+    238,
+    258
+   ],
+   [
+    294,
+    314
+   ],
+   [
+    335,
+    355
+   ]
+  ]
+ },
+ "GPR26__SLC10A4": {
+  "file": "s/GPR26__SLC10A4.pdb",
+  "role": "candidate",
+  "why": "Acetylcholine in GPR26: interface pTM 0.91, ligand pLDDT 81",
+  "stage": "orphan",
+  "label": "GPR26 + acetylcholine",
+  "receptor": "GPR26",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   52,
+   55,
+   86,
+   89,
+   90,
+   93,
+   254,
+   257,
+   280,
+   283,
+   284,
+   286,
+   287
+  ],
+  "n_contacts": 13,
+  "spans": {
+   "TM": [
+    52,
+    55,
+    86,
+    89,
+    90,
+    93,
+    254,
+    257,
+    280,
+    283,
+    284,
+    286,
+    287
+   ]
+  },
+  "tm_contacts": 13,
+  "cyt_contacts": 0,
+  "is_ppi": false,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "buried_fraction": 0.992,
+  "iptm": 0.91,
+  "axis": {
+   "ext": [
+    14.4,
+    10.3,
+    19.42
+   ],
+   "cyt": [
+    -10.33,
+    -7.63,
+    -10.98
+   ]
+  },
+  "tm_spans": [
+   [
+    11,
+    31
+   ],
+   [
+    48,
+    68
+   ],
+   [
+    82,
+    102
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    169,
+    189
+   ],
+   [
+    246,
+    266
+   ],
+   [
+    277,
+    297
    ]
   ]
  }
