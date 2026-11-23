@@ -16,16 +16,19 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import logging
+import os
 import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 log = logging.getLogger("orphan-score")
 ROOT = Path(__file__).resolve().parent.parent
+
+sys.path.insert(0, str(ROOT / "scripts"))
+import score_store as S  # noqa: E402
 
 _spec = importlib.util.spec_from_file_location("score_arm", ROOT / "scripts" / "08_score_armB.py")
 _score_arm = importlib.util.module_from_spec(_spec)
@@ -37,93 +40,152 @@ one = _score_arm.one
 
 
 
-def per_chain_plddt(d: Path) -> dict:
-    """Mean pLDDT of each chain, and of each chain's own interface atoms.
-
-    `one()` returns `iface_plddt` averaged over BOTH chains, which for a
-    metabolite fold mixes the receptor's pocket residues into the number. The
-    literature is consistent that the ligand chain's own confidence is the
-    metric that discriminates and that ipTM is the weakest: Kim et al. (eLife
-    2026) found AF3 ligand-pLDDT their best metric, Ferguson et al. (Molecular
-    Cell 2026) found peptide pLDDT beat both ipTM and pocket PAE, and Shamir
-    et al. (JACS 2026) rejected protein-only metrics outright. Splitting the
-    average by chain costs one extra parse and no re-folding.
-
-    Chain A is the receptor and chain B the partner, so `plddt_B` is the
-    ligand-pLDDT for a metabolite candidate.
-    """
-    import warnings
-
-    name = d.name
-    out = {"pair": name}
-    cif = d / f"{name}_model.cif"
-    if not cif.exists():
-        return out
-    try:
-        from Bio.PDB import MMCIFParser
-        from scipy.spatial import cKDTree
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            st = MMCIFParser(QUIET=True).get_structure(name, str(cif))
-        chains = list(next(iter(st)))
-        if len(chains) != 2:
-            return out
-        heavy = [[a for a in c.get_atoms() if a.element != "H"] for c in chains]
-        if not all(heavy):
-            return out
-        coords = [np.array([a.coord for a in h]) for h in heavy]
-        tree = cKDTree(coords[1])
-        contacts = tree.query_ball_point(coords[0], _score_arm.CUT)
-        iface = [{heavy[0][i].get_parent().id[1] for i, c in enumerate(contacts) if c},
-                 {heavy[1][j].get_parent().id[1] for c in contacts for j in c}]
-        for tag, atoms, res in zip("AB", heavy, iface):
-            out[f"plddt_{tag}"] = float(np.mean([a.get_bfactor() for a in atoms]))
-            at_iface = [a.get_bfactor() for a in atoms if a.get_parent().id[1] in res]
-            out[f"iface_plddt_{tag}"] = float(np.mean(at_iface)) if at_iface else np.nan
-    except Exception as exc:  # noqa: BLE001  — a miss costs the extra columns only
-        out["plddt_note"] = f"{type(exc).__name__} {str(exc)[:40]}"
-    return out
-
-
 def score_one(d: Path) -> dict:
-    """The shared benchmark scoring, plus the per-chain confidences."""
-    return {**one(d), **per_chain_plddt(d)}
+    """The shared benchmark scoring, with the fingerprint of what was scored.
+
+    The per-chain confidences used to be computed here, which parsed the CIF a
+    second time and gave the candidates a metric the benchmark arms did not get.
+    They now come out of `one()` itself, so there is one parse and one definition.
+
+    The fingerprint travels with the row, so a later run can tell a fold whose
+    output has not changed (reuse the row) from one that was re-folded under the
+    same job name (re-score it).
+    """
+    return {**one(d), S.FP_COL: S.fold_fingerprint(d)}
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=16)
+    ap.add_argument("--out", default="orphan_scores.csv",
+                    help="filename under results/; use a different one to score "
+                         "without touching the file the figures read")
+    ap.add_argument("--seed-from", default=None,
+                    help="another scores file under results/ whose still-valid rows "
+                         "should be reused; lets a new output inherit a finished run "
+                         "instead of re-scoring thousands of unchanged folds")
+    ap.add_argument("--full", action="store_true",
+                    help="ignore the cache and re-score every fold")
+    ap.add_argument("--allow-shrink", action="store_true",
+                    help="permit writing fewer folds than the existing result")
+    ap.add_argument("--stage-live", choices=("auto", "yes", "no"), default="auto",
+                    help="is a fold runner still going? 'auto' reads run/orphan_shard*."
+                         "running markers and leaves it unknown if there are none")
+    ap.add_argument("--checkpoint-every", type=int, default=400,
+                    help="write the partial result every N folds, so an interrupted "
+                         "run resumes instead of starting over")
     a = ap.parse_args()
 
     out_dir = ROOT / "results" / "orphan_out"
+    dest = ROOT / "results" / a.out
     manifest = pd.read_csv(ROOT / "work" / "orphan_manifest.csv")
-    dirs = sorted(d for d in out_dir.iterdir() if d.is_dir())
-    log.info("%d of %d folds complete (%.1f%%)", len(dirs), len(manifest),
-             100 * len(dirs) / len(manifest))
+    expected = manifest.job.astype(str).tolist()
+
+    # the denominator is the manifest, never "whatever is on disk": the latter grows
+    # as the screen runs, which makes every fraction computed against it unreadable
+    if a.stage_live == "auto":
+        markers = list((ROOT / "run").glob("orphan_shard*.running")) if (ROOT / "run").is_dir() else []
+        # no marker is NOT evidence that nothing is running: the orphan shards were
+        # started before the marker convention existed. Leave it unknown.
+        live = True if markers else None
+    else:
+        live = a.stage_live == "yes"
+    state = S.classify(out_dir, expected, live)
+    log.info("manifest %d folds: %d ready, %d being written, %d queued, %d absent "
+             "(runner live: %s)", len(expected), len(state["ready"]),
+             len(state["writing"]), len(state["queued"]), len(state["absent"]), live)
+
+    code_fp = S.code_fingerprint([ROOT / "scripts" / f for f in
+                                  ("14_score_orphans.py", "08_score_armB.py",
+                                   "score_store.py")])
+    cache = pd.DataFrame() if a.full else S.load_cache(dest, code_fp)
+    if not a.full and a.seed_from:
+        seed = ROOT / "results" / a.seed_from
+        inherited = S.load_cache(seed, code_fp) if seed.exists() else pd.DataFrame()
+        if len(inherited):
+            log.info("inherited %d valid rows from %s", len(inherited), seed.name)
+            cache = pd.concat([cache, inherited], ignore_index=True).drop_duplicates(
+                subset=["pair"], keep="first")
+        elif seed.exists():
+            log.warning("%s has no rows valid for code %s; scoring from scratch",
+                        seed.name, code_fp)
+        else:
+            log.warning("--seed-from %s does not exist", seed)
+
+    partial = dest.with_suffix(".partial.csv")
+    if not a.full and partial.exists():
+        # an earlier run of this same code was interrupted; its rows are as good
+        # as any, and recovering them is the whole point of checkpointing
+        recovered = S.load_cache(partial, code_fp)
+        if len(recovered):
+            log.info("recovered %d rows from an interrupted run (%s)",
+                     len(recovered), partial.name)
+            cache = pd.concat([cache, recovered], ignore_index=True).drop_duplicates(
+                subset=["pair"], keep="last")
+    todo, reused = S.plan(state["ready"], cache)
+    log.info("scoring %d folds; reusing %d cached rows (code %s)",
+             len(todo), len(reused), code_fp)
+
+    def checkpoint(rows: list[dict]) -> None:
+        """Persist what is scored so far, so an interrupted run is not lost.
+
+        Scoring 5,000 folds takes long enough that it gets interrupted -- by a
+        kill, a reboot, a machine needed for something else. Writing only at the
+        end means every interruption starts over, and a stage that cannot be
+        resumed is a stage that silently never gets re-run after the code
+        changes. The checkpoint carries the fingerprints, so the next run reuses
+        it through the ordinary cache path.
+        """
+        part = pd.DataFrame(rows)
+        if part.empty:
+            return
+        part[S.CODE_COL] = code_fp
+        combined = pd.concat([reused, part], ignore_index=True) if len(reused) else part
+        tmp = dest.with_suffix(".partial.csv")
+        combined.to_csv(tmp.with_suffix(".csv.tmp"), index=False)
+        os.replace(tmp.with_suffix(".csv.tmp"), tmp)
 
     rows, done = [], 0
-    with ProcessPoolExecutor(max_workers=a.workers) as ex:
-        futures = [ex.submit(score_one, d) for d in dirs]
-        for f in as_completed(futures):
-            rows.append(f.result())
-            done += 1
-            if done % 250 == 0:
-                log.info("  scored %d/%d", done, len(dirs))
+    if todo:
+        with ProcessPoolExecutor(max_workers=a.workers) as ex:
+            futures = [ex.submit(score_one, out_dir / n) for n in todo]
+            for f in as_completed(futures):
+                rows.append(f.result())
+                done += 1
+                if done % 250 == 0:
+                    log.info("  scored %d/%d", done, len(todo))
+                if a.checkpoint_every and done % a.checkpoint_every == 0:
+                    checkpoint(rows)
 
-    scored = pd.DataFrame(rows).merge(
-        manifest.rename(columns={"job": "pair"})[
-            ["pair", "receptor", "partner", "kind", "msa_source", "p_twoway", "rank"]],
-        on="pair", how="left")
+    fresh = pd.DataFrame(rows)
+    if not fresh.empty:
+        fresh[S.CODE_COL] = code_fp
+    scored = pd.concat([reused, fresh], ignore_index=True) if len(reused) else fresh
+    if scored.empty:
+        raise SystemExit("no folds scored and no cache to carry over; nothing to write")
 
-    missing = scored.receptor.isna().sum()
+    # a fold that has not finished must not appear as a row at all. A row with NaN
+    # terms is what a genuinely failed fold looks like, and mixing the two is how
+    # "not measured" gets read as "measured absent"
+    scored = scored[scored.pair.isin(state["ready"])].copy()
+
+    meta = ["receptor", "partner", "kind", "msa_source", "p_twoway", "rank"]
+    scored = scored.drop(columns=[c for c in meta if c in scored.columns]).merge(
+        manifest.rename(columns={"job": "pair"})[["pair", *meta]], on="pair", how="left")
+
+    missing = int(scored.receptor.isna().sum())
     if missing:
         log.warning("%d scored folds are not in the manifest", missing)
 
-    dest = ROOT / "results" / "orphan_scores.csv"
-    scored.to_csv(dest, index=False)
-    log.info("wrote %s", dest)
+    by_kind = scored.kind.value_counts().to_dict()
+    S.write(dest, scored, state, code_fp, len(expected),
+            allow_shrink=a.allow_shrink,
+            extra={"scored_by_kind": by_kind,
+                   "reused_rows": int(len(reused)), "newly_scored": int(len(fresh))})
 
-    noted = scored[scored.note.ne("")]
+    partial.unlink(missing_ok=True)   # the full result supersedes the checkpoint
+
+    noted = scored[scored.note.fillna("").ne("")]
     log.info("\n%d folds with a note:\n%s", len(noted),
              noted.note.value_counts().head(6).to_string() if len(noted) else "  none")
 
@@ -139,7 +201,7 @@ def main() -> None:
     # the comparison the literature says to make: does the partner chain's own
     # confidence separate the two candidate kinds differently from ipTM?
     if {"kind", "plddt_B"} <= set(scored.columns):
-        log.info("\nby candidate kind:\n%s",
+        log.info("\nby candidate kind (n = %s):\n%s", by_kind,
                  scored.groupby("kind")[[c for c in ("iptm", "iface_plddt", "plddt_B",
                                                      "iface_plddt_B") if c in scored.columns]]
                  .median().round(3).to_string())

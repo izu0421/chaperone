@@ -89,6 +89,23 @@ def one(d: Path) -> dict:
         rec["iface_plddt"] = float(np.mean(pl)) if pl else np.nan
         rec["mean_plddt"] = float(np.mean([a.get_bfactor() for a in aa + ab]))
 
+        # Per chain as well as pooled. `iface_plddt` averages over BOTH chains,
+        # which for a small-molecule fold mixes the receptor's pocket residues
+        # into the number and hides the ligand's own confidence. The co-folding
+        # literature is consistent that the ligand chain's own pLDDT is the term
+        # that discriminates and that ipTM is the weakest available: Kim et al.
+        # (eLife 2026) found AF3 ligand-pLDDT their best metric, Ferguson et al.
+        # (Mol Cell 2026) found peptide pLDDT beat both ipTM and pocket PAE, and
+        # Shamir et al. (JACS 2026) rejected protein-only metrics outright.
+        # Computed here, inside the shared scorer, so a benchmark pair and a
+        # candidate pair are measured by identical code -- and from the parse
+        # already done, so it costs nothing. Chain A is the receptor, chain B
+        # the partner, so plddt_B is the ligand-pLDDT for a metabolite fold.
+        for tag, atoms, res in (("A", aa, resA), ("B", ab, resB)):
+            rec[f"plddt_{tag}"] = float(np.mean([a.get_bfactor() for a in atoms]))
+            at_if = [a.get_bfactor() for a in atoms if a.get_parent().id[1] in res]
+            rec[f"iface_plddt_{tag}"] = float(np.mean(at_if)) if at_if else np.nan
+
         sr = ShrakeRupley()
         sr.compute(model, level="C")
         comp = sum(c.sasa for c in chains)

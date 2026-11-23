@@ -18,10 +18,15 @@ ext/
 # ("results/*.cif") only match directly inside results/, so the per-pair output
 # directories escaped them entirely and a plain `git add -A` would have staged
 # the lot. Exclude the output trees themselves, and keep the small score tables.
-results/armA_out/
-results/armB_out/
-results/armD_out/
-results/armA_smoke_out/
+#
+# Listing them one directory at a time does not hold: every new stage adds another
+# tree and escapes the list silently. orphan_out (374 GB), huri_pilot_out (21 GB),
+# noradrenaline_out and armA_msa (44 GB) were all untracked and unignored at once,
+# so a plain `git add -A` would have tried to stage about 440 GB. Match the shape
+# instead of the name.
+results/*_out/
+results/*_msa/
 results/armD_example/
+results/af3_pilot/out/
 work/
 tmplog

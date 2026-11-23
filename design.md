@@ -668,3 +668,261 @@ Two consequences, both actionable without re-folding anything: re-score the orph
 on ligand-pLDDT instead of ipTM, and treat the counter-screen as required and not
 optional — Shamir et al. (JACS 2026) ran the equivalent control against non-cognate
 kinases and concluded AF3 is "currently not suitable for selectivity prediction".
+
+## Making the pipeline survive its own growth (2026-11-23)
+
+The screens here are scored while they are still folding, and new benchmarks keep being
+added behind the ones already running. That combination is what produces the failure mode
+this project keeps hitting: not a crash, but a file that looks finished and is not.
+
+Found before changing anything, by checking the artefact rather than the code:
+`results/orphan_scores.csv` held **3,017 folds, was written 2026-11-20, and its own
+scoring code had been edited 2026-11-22** — so it predated both the code that made it and
+1,889 of the folds it was supposed to summarise, with nothing on disk saying so. Figure 4
+and the Results text were computed from it.
+
+### What was wrong, structurally
+
+- **No record of coverage.** A scoring pass over 60% of a screen wrote the same filename
+  as a pass over 100%, so a partial result was indistinguishable from a complete one.
+- **A partial pass could overwrite a fuller one**, which is the normal direction of
+  failure when scoring runs alongside folding.
+- **A changed scorer left the old rows in place.** Editing the scoring function did not
+  invalidate anything; the file simply went on holding numbers no current code produces.
+- **Full recomputation every run**, so re-scoring after new folds landed meant re-parsing
+  every CIF — which is why it was not run often, which is why it went stale.
+- **Nothing written until the end.** An interrupted run lost everything, so a long
+  re-score was something to avoid rather than something to do routinely.
+- **"Not yet folded" scored as "failed".** A fold still being written has no summary
+  JSON, which is exactly what a crashed fold looks like; both got a row with NaN terms.
+- **A partial matrix flattered itself.** `18_score_specificity.py` ranked each ligand's
+  own receptor against however many receptors had landed, while printing chance for a
+  panel of 16. At 6 of 16 folded, a ligand at rank 2 of 6 read as rank 2 of 16.
+
+### What now holds it together
+
+`scripts/score_store.py` — one module all the scorers share:
+
+- `classify()` splits every fold in the manifest into ready / writing / queued / absent,
+  **reading directory contents, not mtime**. The runners create every output directory and
+  drop the AF3 input JSON in it when the shard starts, so a fold queued behind 4,000
+  others has a directory days old; judging liveness by mtime called 95 queued folds
+  stalled. A queued fold is only reported as stalled when no runner is alive, and when
+  that is unknown the distinction is left open instead of guessed.
+- The denominator is always the manifest, never what happens to be on disk. The latter
+  grows as the screen runs, which makes every fraction computed against it unreadable.
+- Every result gets a `.coverage.json` sidecar: folds scored, folds in the manifest,
+  how many are queued, and `complete` true/false. `require_complete()` lets a figure or a
+  report refuse to quote a number from a partial screen, and refuses outright on a CSV
+  that has no sidecar at all.
+- `write()` is atomic and **refuses to shrink** an existing result without
+  `--allow-shrink`, which is recorded in the sidecar when used.
+- Rows carry a fingerprint of the files they were computed from and a hash of the scoring
+  source. A changed scorer drops every stale row; a fold re-run under the same job name is
+  re-scored, because reuse keys on the bytes and never on the name.
+- `--checkpoint-every` persists partial results, so an interrupted run resumes.
+  `--seed-from` lets a new output inherit a finished run's valid rows.
+
+`scripts/00_status.py` — one command for the state of every stage, with a registry so a
+new benchmark is visible the moment its manifest exists. It reports the fold rate over a
+recent window and a **cost-weighted ETA**, because the queues are size-ordered and
+folds/h falls while GPU throughput is constant: on 2026-11-23 the orphan screen's 93
+remaining folds had a median of 3,149 tokens against 819 for the 4,906 done, so the naive
+count-based estimate of 8.5 h and the cost-weighted 7.9 h agreed, but an earlier estimate
+made from the count alone had said 2.7 h. It also flags a scores file older than its own
+scoring code, and a stage with work queued and no shard alive.
+
+`scripts/check_scorer_regression.py` — `one()` is deliberately shared by every arm and
+every screen, so a benchmark pair and a candidate pair pass through identical code. The
+cost is that an edit for one stage silently moves numbers already published from another.
+24 folds spanning ipTM 0.03–0.95 are pinned in `tests/golden_armB_sample.csv`; the guard
+re-scores them and exits non-zero if any existing column moves. Adding a column is fine.
+
+`tests/test_score_store.py` — 11 tests, one per guarantee above.
+
+### Also done, and it changes a number
+
+The per-chain confidences the literature review called for are now computed inside `one()`
+from the parse it already did, instead of in a second parse in the orphan scorer only.
+That removes a duplicated CIF parse, and it means the benchmark arms get `plddt_B` on the
+same definition as the candidates. Verified against 24 pinned folds: every existing column
+bit-identical, `plddt_B` populated on all of them. The arms' published numbers, including
+the B − A engine difference, are unaffected.
+
+### Provenance: is the fold on disk the fold the manifest describes?
+
+The builders rewrite every input JSON unconditionally, and the runners skip any job whose
+summary JSON exists. Together those two reasonable behaviours mean an input that changes
+after its fold has run — a new UniProt release, a different isoform, a corrected SMILES, a
+re-picked candidate list — leaves the old structure in place while the manifest describes
+something else. Nothing errors.
+
+A job name is not proof of what is in the file. AlphaFold3 writes the sequences it actually
+used into `<job>_data.json` beside the model, so `scripts/check_fold_provenance.py` checks
+by content, after the fact, with no change to the runners. It screens on mtime first (an
+input older than its own fold cannot have drifted) and compares content only for the rest,
+because each record embeds its MSAs and reading 5,000 of them is slow.
+
+Run 2026-11-23 on the orphan screen: **4,908 folds ready, 4,908 inputs older than their
+fold, 0 drifted, 0 outputs missing from the manifest.** The screen is clean on provenance.
+
+Covered: per-chain sequences, chain ids, ligand CCD codes and SMILES. Not covered: MSA
+content, which is large and legitimately varies between builds. Verified to catch a
+single-residue change and a chain-id swap, and to be stable to a reordering of the
+sequence list (`tests/test_fold_provenance.py`, 9 tests).
+
+### The audit, and the two things it found that mattered
+
+A 32-agent audit of the scoring scripts, fold runners, input builders and figure
+notebooks, each finding then adversarially verified. Most of what came back was already
+handled by the store above. Two were not, and both were confirmed by hand against the
+logs before anything was changed.
+
+**1. 85 of the 5,000 orphan folds were impossible, not slow.**
+`12_build_orphan_inputs_omic.py` handled a partner with no omicMSA by writing the input
+with no `unpairedMsa` or `pairedMsa` key at all, and flagging it `none_single_sequence`.
+Omitting the key does not mean "fold single sequence": under `--norun_data_pipeline`
+AlphaFold3 cannot build an alignment and rejects the job —
+`ERROR: Fold job GPR101__NRXN1 failed: Protein chain 1 is missing unpaired MSA`,
+**462 such events across exactly 85 distinct jobs, none of which ever produced a
+structure.** They were 85 of the 91 folds still outstanding, so the screen was reporting
+~96 remaining when 6 were real. The ETA I had quoted from that count was meaningless.
+
+The same branch also threw away the **receptor's** alignment, which was never missing —
+all 75 receptors have an omicMSA. It made those folds worse than they needed to be for no
+reason.
+
+Fixed in the builder, and repaired in place by `13_repair_unfoldable_inputs.py`, which
+rewrites only the failing jobs: a full rebuild would make all 5,000 inputs newer than
+their folds, which is exactly the signal the provenance check uses, and would turn 4,909
+clean folds into suspects. All 85 repaired, pre-flight now clean, manifest relabelled
+`partner_single_sequence` because the old label claimed a fold that never happened.
+
+`scripts/check_af3_inputs.py` is the gate that would have caught it in seconds: every
+protein chain must arrive with an embedded MSA, in A3M, with a templates key, and chain
+ids must be unique. The specificity (256) and HuRI (600) input sets pass it today.
+
+**2. The runners measured progress by counting directories, which AlphaFold3 creates up
+front.** `before=$(ls -d "$OUT"/*/ | wc -l)` against a `NO PROGRESS → exit 1` test. AF3
+writes `<job>/` and `<job>_data.json` when a batch *starts*, so the count is wrong in both
+directions:
+
+- **Saturated.** At 5,000 directories against 4,909 finished folds, `after <= before` is
+  true forever, so both shards were going to exit "NO PROGRESS" the moment their current
+  batch returned — with folds having succeeded inside it.
+- **Inverted on a fresh stage.** A batch that runs out of memory on every job still
+  creates every directory, so `after > before` and a total GPU failure reads as healthy
+  progress. This project has the per-item-try/except version of that written down
+  already; this is the same bug in shell.
+
+Now counts `*_summary_confidences.json` in all three runners. `run_orphan_fold.v2.sh` also
+retires a job after three identical failures and writes `run/orphan_retired.txt`, because
+a permanently unfoldable job never left the todo list, so `n` never reached 0 and the
+clean exit was unreachable — the shard could only ever leave through the failure path.
+
+`00_status.py` now separates work that *cannot* be done from work that is *pending*, and
+builds the ETA only on the latter. Checking inputs is scoped to the jobs still queued:
+validating the 4,910 already folded would read ~37 GB of embedded MSAs to learn nothing,
+and a status command that takes minutes does not get run.
+
+**`run_queue.v2.sh`** replaces the queue. It refuses to advance past a stage that did not
+reach a completion bar — the old version advanced whenever the marker files disappeared,
+which is also what happens when a shard dies in its first second, so one early death
+would have scored nothing, logged FAILED, and launched the next stage anyway. It also
+restarts a shard that dies with folds remaining, and runs the provenance check before
+redrawing the figure. Written as a new file because bash reads a script incrementally as
+it executes, so rewriting the one a live shell is reading moves the offset under it.
+
+**Figure 4** now refuses to redraw from a scores file older than its own scoring code
+(`ALLOW_STALE_SCORES=1` to inspect, never to publish), and writes its coverage sentence
+to `results/fig4_coverage.txt` from the data instead of having it typed into the legend.
+An unfinished screen is expected and only has to be stated; a stale one is never
+publishable.
+
+### Three more from the audit, all confirmed by measurement first
+
+**Shards were stealing each other's jobs.** The split was
+`[f for i, f in enumerate(todo) if i % nshard == shard]`, where `todo` is the jobs not yet
+finished. That list shrinks as folds complete, so every remaining job is renumbered on
+each pass and shard membership flips. Measured on the shard logs: **1,403 of 5,000 jobs
+were picked up by both shards** — wasted GPU, and two AlphaFold3 processes able to write
+one output directory. Adding candidates reshuffles it the same way, so it would have got
+worse with every addition.
+
+Now shards on `sha1(job) % nshard`: invariant to completion, to additions, and to the
+manifest's order. sha1 and not Python's `hash()`, which is salted per process, so two
+shards running separately would not even have agreed with each other. Measured after the
+change: overlap 0, balance 0.972, and adding 50 candidates moves no existing job.
+Pinned in `tests/test_sharding.py` (7 tests), including one that reads the rule back out
+of all three runner scripts so the shell and the test cannot drift apart.
+
+**The detection floor was compared against the wrong sample.** `18_score_specificity.py`
+computed one floor from the full cognate and negative counts, while `auroc()` silently
+drops non-finite values — so a metric missing on some folds was measured on fewer pairs
+and then tested against a bar it was never tested at. The floor is 0.711 at the design's
+16 cognates, 0.792 at 8, 0.867 at 5. An AUROC of 0.75 on 8 cognates would have been
+reported as clearing the floor when its real bar is 0.792. Now the floor is recomputed per
+metric from the sample that produced the number, `n_pos`/`n_neg`/`dropped_*` are columns in
+the output, and `beats_floor` is NaN rather than False below 8 positives — False reads as
+"tested and did not clear it".
+
+**The cognate label was positional.** `label = "cognate" if li == ri` is correct only
+while both loops walk the same panel in the same order. A 17th row, a dropped row, or a
+sort, and the diagonal moves while the label does not — so a non-cognate cell becomes the
+ground truth the whole benchmark is scored against. Now labelled by identity
+(`rec.receptor_gene == lig.receptor_gene`, the panel being one row per receptor and its own
+cognate ligand), with asserts that there is exactly one cognate per ligand and per
+receptor, that job names are unique, and that the matrix is the full product. Checked
+against the existing manifest: **0 of 256 labels change**, so the queued benchmark is
+correct as it stands and needs no rebuild.
+
+### Figures: a typed limit is a silent filter
+
+`figstyle.assert_in_view()` refuses to draw a panel that leaves data outside its own axes,
+and `figstyle.view_limits()` derives limits from the data. Figure 4 panel c had
+`ax.set_xlim(-200, 8600)`, a number typed against the data of the day: **96 folds had
+already moved outside it** as the large complexes landed, and the buried-area maximum went
+from 12,263 to 36,736 Å². Those points were not drawn and nothing said so — and they are
+exactly the folds the figure was being redrawn to include. Panel c is now a log axis over
+the data's own range; panel d's y-limit and its annotation anchor follow the data.
+
+Panel d also now carries a `designed` column beside `tested`. `tested` counts the receptors
+a partner has actually been folded against, which is not how many it was designed against
+while the screen is unfinished, and "confident against every receptor" silently merges a
+partner at 3 of 3 with one at 75 of 75. The headline is now reported a second time
+restricted to partners whose full receptor set has been folded: if it only holds on the
+partly-folded ones, it is about coverage and not biology.
+
+### The orphan screen is closed at 4,913 of 5,000 (2026-11-23)
+
+The remaining 87 folds were dropped on the user's decision rather than pursued.
+`scripts/16_drop_unfolded.py` records that as an explicit act: the job names go to
+`run/orphan_retired.txt`, which the fold runner skips and the status command counts as
+dropped, and `results/orphan_dropped.csv` carries one row per job with its reason, size
+and rank. Nothing is deleted; removing a line un-drops a job.
+
+What was given up, and it is not a random sample:
+
+| | dropped | in manifest | share of that arm lost |
+|---|---|---|---|
+| `partner_single_sequence` | 85 | 85 | **100%** |
+| `omic_paired` | 2 | 4,769 | 0.04% |
+| `omic_receptor_only` (metabolites) | 0 | 146 | 0% |
+
+So the cost is one whole arm: the candidates whose partner had no omicMSA have **no data at
+all**, and the single-sequence comparison the screen was designed to support cannot be made.
+The two `omic_paired` losses are CUDA out-of-memory at 1,488 and 3,204 tokens. The
+metabolite arm is complete.
+
+The dropped folds are 3.9x the median size of the folded ones (3,171 against 820 tokens),
+which invites the wrong conclusion. Size is **not** what decided it: of the 4,471
+candidates at or above the smallest dropped size, 4,384 folded (98%). They are large
+because the partners that lack an omicMSA are large proteins — neurexins, teneurins — not
+because large complexes failed. The sentence for the Results should name the arm, not the
+size.
+
+`00_status.py` now separates `dropped_by_decision` from `blocked_bad_input`, because
+conflating them misleads in opposite directions: a bad input is a bug to fix and fold, a
+retired job is a decision to leave alone and report as a gap. It also prints coverage
+against the manifest (98.3%) alongside coverage against what is still in scope (100%), and
+says to quote the first — otherwise dropping work makes the screen look finished.

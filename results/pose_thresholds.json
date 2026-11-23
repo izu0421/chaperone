@@ -1,0 +1,11 @@
+{
+  "burial_cut": 0.92,
+  "cognate_recall": 1.0,
+  "negatives_admitted": 0.381,
+  "cytoplasmic_veto": {
+    "cognates_touching": 0,
+    "negatives_touching": 72,
+    "n_cognate": 16,
+    "n_negative": 189
+  }
+}

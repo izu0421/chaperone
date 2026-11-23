@@ -1,0 +1,100 @@
+{
+  "built_from": "results/specificity_scores.csv",
+  "benchmark": {
+    "cognate": 16,
+    "negative": 189,
+    "ambiguous_excluded": 51,
+    "prevalence": 0.078
+  },
+  "why_not_figure_3": "Figure 3's operating points are fitted on protein-protein pairs. On that scale these small-molecule negatives sit at a median interface pTM of 0.83 and its buried-area cut of ~4,480 A^2 exceeds what any small molecule can bury, so a protein gate rejects this arm by construction.",
+  "points": {
+    "comparable": {
+      "iptm": {
+        "cut": 0.91,
+        "higher_is_better": true,
+        "cognate_recall": 0.75,
+        "precision": 0.5,
+        "cut_p5": 0.91,
+        "cut_p95": 0.93
+      },
+      "plddt_B": {
+        "cut": 77.034,
+        "higher_is_better": true,
+        "cognate_recall": 0.875,
+        "precision": 0.5,
+        "cut_p5": 76.76,
+        "cut_p95": 80.39
+      },
+      "iface_plddt_B": {
+        "cut": 77.034,
+        "higher_is_better": true,
+        "cognate_recall": 0.875,
+        "precision": 0.5,
+        "cut_p5": 76.76,
+        "cut_p95": 80.39
+      },
+      "pae_min_AB": {
+        "cut": 1.86,
+        "higher_is_better": false,
+        "cognate_recall": 0.688,
+        "precision": 0.5,
+        "cut_p5": 1.54,
+        "cut_p95": 2.0
+      }
+    },
+    "sensitive": {
+      "iptm": {
+        "cut": 0.89,
+        "higher_is_better": true,
+        "cognate_recall": 0.938,
+        "precision": 0.385,
+        "cut_p5": 0.85,
+        "cut_p95": 0.91
+      },
+      "plddt_B": {
+        "cut": 71.796,
+        "higher_is_better": true,
+        "cognate_recall": 0.938,
+        "precision": 0.234,
+        "cut_p5": 67.217,
+        "cut_p95": 79.023
+      },
+      "iface_plddt_B": {
+        "cut": 71.796,
+        "higher_is_better": true,
+        "cognate_recall": 0.938,
+        "precision": 0.234,
+        "cut_p5": 67.217,
+        "cut_p95": 79.023
+      },
+      "pae_min_AB": {
+        "cut": 2.24,
+        "higher_is_better": false,
+        "cognate_recall": 0.938,
+        "precision": 0.417,
+        "cut_p5": 1.92,
+        "cut_p95": 2.37
+      },
+      "bsa": {
+        "cut": 319.463,
+        "higher_is_better": true,
+        "cognate_recall": 0.938,
+        "precision": 0.088,
+        "cut_p5": 248.997,
+        "cut_p95": 434.463
+      },
+      "n_contact": {
+        "cut": 113.0,
+        "higher_is_better": true,
+        "cognate_recall": 1.0,
+        "precision": 0.105,
+        "cut_p5": 113.0,
+        "cut_p95": 149.0
+      }
+    }
+  },
+  "orphan_metabolite_folds_surviving": {
+    "comparable": 10,
+    "sensitive": 19
+  }
+}

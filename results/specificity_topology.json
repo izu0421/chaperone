@@ -1,0 +1,1474 @@
+{
+ "FFAR2": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 12,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 13,
+   "end": 33,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 34,
+   "end": 41,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 42,
+   "end": 62,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 63,
+   "end": 84,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 85,
+   "end": 105,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 106,
+   "end": 126,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 127,
+   "end": 147,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 148,
+   "end": 173,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 174,
+   "end": 194,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 195,
+   "end": 219,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 220,
+   "end": 240,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 241,
+   "end": 255,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 256,
+   "end": 276,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 277,
+   "end": 330,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "GPBAR1": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 21,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 22,
+   "end": 41,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 42,
+   "end": 50,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 51,
+   "end": 72,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 73,
+   "end": 85,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 86,
+   "end": 108,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 109,
+   "end": 123,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 124,
+   "end": 144,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 145,
+   "end": 160,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 161,
+   "end": 186,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 187,
+   "end": 225,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 226,
+   "end": 249,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 250,
+   "end": 261,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 262,
+   "end": 283,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 284,
+   "end": 330,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "SUCNR1": [
+  {
+   "type": "Topological domain",
+   "start": 5,
+   "end": 31,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 32,
+   "end": 52,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 53,
+   "end": 59,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 60,
+   "end": 80,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 81,
+   "end": 103,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 104,
+   "end": 124,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 125,
+   "end": 137,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 138,
+   "end": 158,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 159,
+   "end": 185,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 186,
+   "end": 206,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 207,
+   "end": 230,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 231,
+   "end": 251,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 252,
+   "end": 281,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 282,
+   "end": 302,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 303,
+   "end": 334,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "CYSLTR1": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 28,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 29,
+   "end": 49,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 50,
+   "end": 57,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 58,
+   "end": 78,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 79,
+   "end": 106,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 107,
+   "end": 127,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 128,
+   "end": 141,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 142,
+   "end": 162,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 163,
+   "end": 193,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 194,
+   "end": 214,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 215,
+   "end": 230,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 231,
+   "end": 251,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 252,
+   "end": 276,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 277,
+   "end": 297,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 298,
+   "end": 337,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "P2RY12": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 27,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 28,
+   "end": 50,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 51,
+   "end": 61,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 62,
+   "end": 82,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 83,
+   "end": 97,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 98,
+   "end": 118,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 119,
+   "end": 142,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 143,
+   "end": 162,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 163,
+   "end": 185,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 186,
+   "end": 207,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 208,
+   "end": 233,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 234,
+   "end": 259,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 260,
+   "end": 278,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 279,
+   "end": 298,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 299,
+   "end": 342,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "PTGER2": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 23,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 24,
+   "end": 47,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 48,
+   "end": 65,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 66,
+   "end": 91,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 92,
+   "end": 111,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 112,
+   "end": 132,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 133,
+   "end": 151,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 152,
+   "end": 176,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 177,
+   "end": 198,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 199,
+   "end": 223,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 224,
+   "end": 262,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 263,
+   "end": 286,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 287,
+   "end": 299,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 300,
+   "end": 323,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 324,
+   "end": 358,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "HCAR2": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 33,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 34,
+   "end": 54,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 55,
+   "end": 63,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 64,
+   "end": 84,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 85,
+   "end": 102,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 103,
+   "end": 123,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 124,
+   "end": 142,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 143,
+   "end": 163,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 164,
+   "end": 192,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 193,
+   "end": 213,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 214,
+   "end": 229,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 230,
+   "end": 250,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 251,
+   "end": 273,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 274,
+   "end": 294,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 295,
+   "end": 363,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "LPAR1": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 50,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 51,
+   "end": 75,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 76,
+   "end": 83,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 84,
+   "end": 107,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 108,
+   "end": 121,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 122,
+   "end": 144,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 145,
+   "end": 163,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 164,
+   "end": 184,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 185,
+   "end": 204,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 205,
+   "end": 225,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 226,
+   "end": 255,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 256,
+   "end": 280,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 281,
+   "end": 294,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 295,
+   "end": 315,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 316,
+   "end": 364,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "S1PR1": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 46,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 47,
+   "end": 68,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 69,
+   "end": 82,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 83,
+   "end": 104,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 105,
+   "end": 116,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 117,
+   "end": 138,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 139,
+   "end": 160,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 161,
+   "end": 182,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 183,
+   "end": 196,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 197,
+   "end": 224,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 225,
+   "end": 257,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 258,
+   "end": 278,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 279,
+   "end": 289,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 290,
+   "end": 310,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 311,
+   "end": 382,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "ADORA2A": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 7,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 8,
+   "end": 32,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 33,
+   "end": 42,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 43,
+   "end": 66,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 67,
+   "end": 77,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 78,
+   "end": 100,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 101,
+   "end": 120,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 121,
+   "end": 143,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 144,
+   "end": 173,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 174,
+   "end": 198,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 199,
+   "end": 234,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 235,
+   "end": 258,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 259,
+   "end": 266,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 267,
+   "end": 290,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 291,
+   "end": 412,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "ADRB2": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 29,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 30,
+   "end": 56,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 57,
+   "end": 70,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 71,
+   "end": 96,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 97,
+   "end": 103,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 104,
+   "end": 129,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 130,
+   "end": 149,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 150,
+   "end": 171,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 172,
+   "end": 197,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 198,
+   "end": 220,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 221,
+   "end": 274,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 275,
+   "end": 298,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 299,
+   "end": 304,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 305,
+   "end": 326,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 327,
+   "end": 413,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "HTR1A": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 38,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 39,
+   "end": 59,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 60,
+   "end": 73,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 74,
+   "end": 98,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 99,
+   "end": 107,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 108,
+   "end": 132,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 133,
+   "end": 152,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 153,
+   "end": 174,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 175,
+   "end": 193,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 194,
+   "end": 216,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 217,
+   "end": 346,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 347,
+   "end": 370,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 371,
+   "end": 378,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 379,
+   "end": 403,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 404,
+   "end": 422,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "DRD2": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 37,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 38,
+   "end": 60,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 61,
+   "end": 70,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 71,
+   "end": 93,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 94,
+   "end": 108,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 109,
+   "end": 130,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 131,
+   "end": 151,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 152,
+   "end": 172,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 173,
+   "end": 188,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 189,
+   "end": 213,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 214,
+   "end": 373,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 374,
+   "end": 395,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 396,
+   "end": 409,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 410,
+   "end": 431,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 432,
+   "end": 443,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "CHRM1": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 22,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 23,
+   "end": 48,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 49,
+   "end": 62,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 63,
+   "end": 84,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 85,
+   "end": 95,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 96,
+   "end": 121,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 122,
+   "end": 142,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 143,
+   "end": 164,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 165,
+   "end": 185,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 186,
+   "end": 209,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 210,
+   "end": 366,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 367,
+   "end": 390,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 391,
+   "end": 397,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 398,
+   "end": 420,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 421,
+   "end": 460,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "CNR1": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 116,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 117,
+   "end": 142,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 143,
+   "end": 154,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 155,
+   "end": 175,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 176,
+   "end": 187,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 188,
+   "end": 212,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 213,
+   "end": 232,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 233,
+   "end": 255,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 256,
+   "end": 273,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 274,
+   "end": 299,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 300,
+   "end": 344,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 345,
+   "end": 365,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 366,
+   "end": 377,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 378,
+   "end": 399,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 400,
+   "end": 472,
+   "description": "Cytoplasmic"
+  }
+ ],
+ "HRH1": [
+  {
+   "type": "Topological domain",
+   "start": 1,
+   "end": 29,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 30,
+   "end": 50,
+   "description": "Helical; Name=1"
+  },
+  {
+   "type": "Topological domain",
+   "start": 51,
+   "end": 64,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 65,
+   "end": 89,
+   "description": "Helical; Name=2"
+  },
+  {
+   "type": "Topological domain",
+   "start": 90,
+   "end": 97,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 98,
+   "end": 123,
+   "description": "Helical; Name=3"
+  },
+  {
+   "type": "Topological domain",
+   "start": 124,
+   "end": 144,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 145,
+   "end": 164,
+   "description": "Helical; Name=4"
+  },
+  {
+   "type": "Topological domain",
+   "start": 165,
+   "end": 188,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 189,
+   "end": 211,
+   "description": "Helical; Name=5"
+  },
+  {
+   "type": "Topological domain",
+   "start": 212,
+   "end": 416,
+   "description": "Cytoplasmic"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 417,
+   "end": 440,
+   "description": "Helical; Name=6"
+  },
+  {
+   "type": "Topological domain",
+   "start": 441,
+   "end": 446,
+   "description": "Extracellular"
+  },
+  {
+   "type": "Transmembrane",
+   "start": 447,
+   "end": 469,
+   "description": "Helical; Name=7"
+  },
+  {
+   "type": "Topological domain",
+   "start": 470,
+   "end": 487,
+   "description": "Cytoplasmic"
+  }
+ ]
+}

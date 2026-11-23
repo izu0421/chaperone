@@ -25,6 +25,13 @@ IN=$ROOT/work/orphan_inputs_omic
 STAGE=$ROOT/work/orphan_stage_$SHARD
 OUT=$ROOT/results/orphan_out
 mkdir -p "$STAGE" "$OUT" "$ROOT/logs"
+# A marker a watcher can poll. Pattern-matching the process list cannot be
+# trusted here: a shell whose command line merely CONTAINS this script's name
+# matches it, which already fired two watchers early.
+mkdir -p "$ROOT/run"
+RUNMARK="$ROOT/run/orphan_shard$SHARD.running"
+echo $$ > "$RUNMARK"
+trap 'rm -f "$RUNMARK"' EXIT
 
 while true; do
   find "$STAGE" -maxdepth 1 -name '*.json' -delete 2>/dev/null

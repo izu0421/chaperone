@@ -1,0 +1,19 @@
+{
+  "written_utc": "2026-11-23T13:38:51Z",
+  "code_fingerprint": "5d3462a24907",
+  "manifest_folds": 256,
+  "scored": 256,
+  "ready_on_disk": 256,
+  "writing_now": 0,
+  "queued_not_started": 0,
+  "stalled_no_runner": 0,
+  "stage_live": null,
+  "never_started": 0,
+  "unexpected_on_disk": 0,
+  "complete": true,
+  "allow_shrink": false,
+  "ligands_with_full_panel": 16,
+  "ligands_total": 16,
+  "reused_rows": 0,
+  "newly_scored": 256
+}

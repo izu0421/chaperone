@@ -1,0 +1,1 @@
+Counts are from 4,913 of 5,000 folds (98.3% of the screen). Folds were ordered smallest-complex-first, so an unfinished screen is enriched for small candidates and the protein arm is the one affected: the metabolite arm was 100% complete.

@@ -1,0 +1,9 @@
+metric,kind,auroc,n_pos,n_neg
+pae_min_AB,confidence,0.964,16,189
+iptm,confidence,0.951,16,189
+plddt_B,confidence,0.936,16,189
+buried_fraction,pose,0.801,16,189
+n_contacting_residues,pose,0.711,16,189
+frac_tm_terms,pose,0.553,16,188
+n_tm_terms,pose,0.519,16,189
+min_separation,pose,0.479,16,189

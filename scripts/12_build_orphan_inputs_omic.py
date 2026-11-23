@@ -72,13 +72,34 @@ def main():
                 src, size = "omic_paired", len(qA) + len(qB)
                 n_paired += 1
             else:
-                # no omicMSA for the partner: fold single-sequence and FLAG it
+                # No omicMSA for the partner. Two things were wrong here, and both
+                # were silent until the folds were counted:
+                #
+                # 1. Omitting the MSA keys entirely does not mean "fold single
+                #    sequence" -- under --norun_data_pipeline AlphaFold3 has no way
+                #    to build one and rejects the job outright ("Protein chain 1 is
+                #    missing unpaired MSA"). All 85 jobs written by this branch
+                #    failed that way, 462 times, and never produced a structure,
+                #    while the manifest recorded them as a single-sequence arm to
+                #    be read apart. Single sequence has to be stated explicitly, as
+                #    an alignment containing only the query.
+                # 2. It dropped the RECEPTOR's alignment too. Only the partner is
+                #    missing one; all 75 receptors have an omicMSA. Throwing it away
+                #    made the fold worse than it needed to be for no reason.
+                mA, qA, hA = b7.read_omic(ra)
+                gA = {i for i, c in enumerate(mA) if c == "*"}
+                rowsA = [(acc, b7.gap_masked(hA[acc], gA)) for acc in sorted(hA)]
+                a3mA = b7.a3m([("query", qA)] + rowsA)
+                qB = r.partner_seq
+                a3mB = b7.a3m([("query", qB)])     # the query alone: single sequence
                 js = {"name": name, "modelSeeds": [1], "dialect": "alphafold3", "version": 1,
                       "sequences": [
-                          {"protein": {"id": "A", "sequence": r.receptor_seq, "templates": []}},
-                          {"protein": {"id": "B", "sequence": r.partner_seq, "templates": []}}]}
-                src = "none_single_sequence"
-                size = len(r.receptor_seq) + len(r.partner_seq)
+                          {"protein": {"id": "A", "sequence": qA, "pairedMsa": a3mA,
+                                       "unpairedMsa": a3mA, "templates": []}},
+                          {"protein": {"id": "B", "sequence": qB, "pairedMsa": a3mB,
+                                       "unpairedMsa": a3mB, "templates": []}}]}
+                src = "partner_single_sequence"
+                size = len(qA) + len(qB)
                 n_single += 1
         except Exception as e:
             n_fail += 1

@@ -85,7 +85,15 @@ def main() -> None:
                       {"ligand": {"id": "B", "smiles": lig.ligand_smiles}}]}
             (OUT / f"{name}.json").write_text(json.dumps(js))
             n = counts[li][ri]
-            label = ("cognate" if li == ri else "ambiguous" if n > 0 else "negative")
+            # Label by identity, not by position. The panel is one row per
+            # receptor and its own cognate ligand, so `lig.receptor_gene` IS the
+            # cognate receptor for this ligand -- which makes `li == ri` correct
+            # only while both loops walk the same list in the same order. Add a
+            # 17th row, drop one, or sort the panel, and the diagonal moves while
+            # the label does not, so a non-cognate cell becomes the ground truth
+            # the whole benchmark is scored against. Identity cannot drift.
+            label = ("cognate" if rec.receptor_gene == lig.receptor_gene
+                     else "ambiguous" if n > 0 else "negative")
             rows.append({
                 "job": name, "receptor": rec.receptor_gene,
                 "receptor_uniprot": rec.receptor_uniprot, "ligand": lig.ligand_name,
@@ -96,6 +104,21 @@ def main() -> None:
                 "size": len(query)})
 
     man = pd.DataFrame(rows).sort_values("size").reset_index(drop=True)
+
+    # The ground truth has to be exactly one cognate receptor per ligand and one
+    # cognate ligand per receptor. A matrix where that is not true is not a
+    # specificity benchmark, and the failure is silent: every rank and every
+    # AUROC below would be computed against the wrong positives.
+    n_lig, n_rec = man.ligand.nunique(), man.receptor.nunique()
+    cog = man[man.label.eq("cognate")]
+    assert len(cog) == n_lig, f"{len(cog)} cognate cells for {n_lig} ligands"
+    assert cog.ligand.nunique() == n_lig, "a ligand has no cognate receptor in the panel"
+    assert cog.receptor.nunique() == n_rec, "a receptor has no cognate ligand in the panel"
+    assert man.job.is_unique, "job names collide; one input would overwrite another"
+    assert len(man) == n_lig * n_rec, f"{len(man)} cells for a {n_lig}x{n_rec} matrix"
+    log.info("ground truth checks passed: %d x %d matrix, %d cognate cells, "
+             "one per ligand and per receptor", n_rec, n_lig, len(cog))
+
     man["fold_order"] = man.index + 1
     dest = ROOT / "work" / "specificity_manifest.csv"
     man.to_csv(dest, index=False)
