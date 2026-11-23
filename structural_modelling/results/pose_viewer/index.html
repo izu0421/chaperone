@@ -1,0 +1,197 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where the molecule sits</title>
+<style>
+:root{
+  --bg:#000; --surface:#000; --surface-2:#0c0c0c; --rule:#242428;
+  --ink:#f2f2f4; --mut:#8b8b93;
+  --tm:#2166AC;        /* transmembrane: where an orthosteric ligand belongs */
+  --ext:#6A8FB5;       /* extracellular */
+  --cyt:#B2182B;       /* cytoplasmic: the wrong side of the membrane */
+  --lig:#E8C547;       /* the molecule itself */
+  --ok:#2E8B57; --bad:#B2182B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+     font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.mast{background:var(--surface);border-bottom:1px solid var(--rule);padding:22px 20px 18px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1{margin:0 0 6px;font-size:21px;letter-spacing:-.01em}
+.sub{color:var(--mut);max-width:70ch;margin:0}
+.key{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;font-size:12px;color:var(--mut)}
+.key i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;
+       vertical-align:-1px}
+section{margin:26px 0 0}
+h2{font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);
+   margin:0 0 10px;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.shell{border:1px solid var(--rule);background:var(--surface)}
+.hd{padding:11px 13px 9px;border-bottom:1px solid var(--rule)}
+.hd b{font-size:14px}
+.hd .why{color:var(--mut);font-size:12px;display:block;margin-top:3px}
+.vp{position:relative;height:290px;background:var(--surface-2)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);
+       font-size:11px}
+.facts>div{padding:8px 10px;border-right:1px solid var(--rule)}
+.facts>div:last-child{border-right:0}
+.facts span{display:block;color:var(--mut);font-size:10px;letter-spacing:.04em;
+            text-transform:uppercase}
+.facts b{font-size:15px;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:9px;
+     text-transform:uppercase;letter-spacing:.06em;vertical-align:1px;margin-left:7px}
+.t-cognate{background:#13351f;color:#7fd99f}
+.t-candidate{background:#0f2a44;color:#8fc3f0}
+.t-non-binder{background:#3a1216;color:#f0a3ab}
+.t-rejected{background:#3a2a10;color:#f0cf8f}
+.ctrls{display:flex;flex-wrap:wrap;border-top:1px solid var(--rule);background:var(--surface-2)}
+.ctrls button{flex:1 1 auto;background:none;border:0;border-right:1px solid var(--rule);
+  color:var(--mut);padding:8px 6px;font:inherit;font-size:11px;cursor:pointer}
+.ctrls button:last-child{border-right:0}
+.ctrls button:hover{color:var(--ink);background:var(--surface)}
+.ctrls button[aria-pressed="true"]{color:var(--ink);background:var(--surface);
+  box-shadow:inset 0 2px 0 var(--tm)}
+.note{color:var(--mut);font-size:12px;margin:10px 0 0;max-width:78ch}
+footer{color:var(--mut);font-size:12px;padding:30px 0 50px}
+code{background:var(--surface-2);padding:1px 5px;border-radius:3px;font-size:12px}
+</style>
+
+<div class="mast"><div class="wrap">
+<h1>Where the molecule sits</h1>
+<p class="sub">AlphaFold3 places a small molecule somewhere in a receptor whatever receptor it
+is given, so its confidence cannot say whether the molecule belongs there. These are the
+same folds the screen scored, drawn so the pose can be judged directly: two ligands whose
+receptor is known, two molecules known <em>not</em> to bind the receptor they are shown
+with, and the candidates.</p>
+<div class="key">
+  <span><i style="background:var(--tm)"></i>transmembrane</span>
+  <span><i style="background:var(--ext)"></i>extracellular</span>
+  <span><i style="background:var(--cyt)"></i>cytoplasmic &mdash; the wrong side</span>
+  <span><i style="background:var(--lig)"></i>the molecule</span>
+  <span>grey surface &mdash; the residues it contacts</span>
+</div>
+</div></div>
+
+<div class="wrap">
+<section><h2>Known answers</h2><div class="grid" id="g-ref"></div>
+<p class="note">The two on the left are a receptor with its own ligand; the two on the right
+are the same benchmark's known non-binders. Nothing about the confidence separates them
+&mdash; every one of these four folds scores an interface pTM between 0.65 and 0.93. The
+pose does.</p></section>
+
+<section><h2>Candidates</h2><div class="grid" id="g-cand"></div>
+<p class="note">GPR150 is shown because it fails: enclosed 0.418 of its own surface against a
+minimum of 0.928 across all sixteen known cognate ligands. It is resting on the receptor,
+not sitting in it, and the interface pTM of 0.91 does not see the difference.</p></section>
+
+<footer><div>Structures are the top-ranked AlphaFold3 model for each fold, unmodified.
+Contacts are receptor residues within 4.5 &#8491; of any ligand atom. Topological domains
+are UniProt annotations, not inferred from the coordinates. Enclosure is the fraction of
+the molecule's own solvent-accessible surface the receptor covers, by Shrake&ndash;Rupley.
+Built by <code>scripts/23_build_pose_viewer.py</code>.</div></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js"></script>
+<script>
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const ORDER_REF  = ['CNR1__anandamide','ADRB2__adrenaline',
+                    'P2RY12__acetylcholine','DRD2__adenosine-diphosphate'];
+const ORDER_CAND = ['GPR153__DBH','GPR85__DBH','GPR26__SLC1A2','GPR150__GAD2'];
+const LABEL = {
+  'CNR1__anandamide':'CNR1 + anandamide', 'ADRB2__adrenaline':'ADRB2 + adrenaline',
+  'P2RY12__acetylcholine':'P2RY12 + acetylcholine',
+  'DRD2__adenosine-diphosphate':'DRD2 + ADP',
+  'GPR153__DBH':'GPR153 + noradrenaline', 'GPR85__DBH':'GPR85 + noradrenaline',
+  'GPR26__SLC1A2':'GPR26 + glutamate', 'GPR150__GAD2':'GPR150 + GABA'};
+let META = {};
+const panes = {};
+
+function card(job, m){
+  const d = document.createElement('div');
+  d.className = 'shell';
+  const burial = m.buried_fraction === null ? '&mdash;' : m.buried_fraction.toFixed(3);
+  const bcol = m.buried_fraction !== null && m.buried_fraction >= 0.92 ? 'var(--ok)' : 'var(--bad)';
+  d.innerHTML = `
+   <div class="hd"><b>${LABEL[job] || job}</b>
+     <span class="tag t-${m.role}">${m.role}</span>
+     <span class="why">${m.why}</span></div>
+   <div class="vp" data-job="${job}"></div>
+   <div class="ctrls">
+     <button data-act="surface" aria-pressed="true">contact surface</button>
+     <button data-act="topology" aria-pressed="true">topology</button>
+     <button data-act="spin" aria-pressed="false">spin</button>
+   </div>
+   <div class="facts">
+     <div><span>enclosed</span><b style="color:${bcol}">${burial}</b></div>
+     <div><span>contacts</span><b>${m.n_contacts}</b></div>
+     <div><span>on TM</span><b>${m.tm_contacts}</b></div>
+     <div><span>cytoplasmic</span>
+       <b style="color:${m.cyt_contacts ? 'var(--bad)' : 'inherit'}">${m.cyt_contacts}</b></div>
+   </div>`;
+  return d;
+}
+
+function paint(job){
+  const p = panes[job], m = META[job], V = p.V;
+  V.removeAllSurfaces(); V.setStyle({}, {});
+  const R = {chain: m.receptor_chain}, L = {chain: m.ligand_chain};
+  if (p.topology){
+    // colour each residue by the topological domain it belongs to, so "inside the
+    // bundle" and "on the cytoplasmic face" are visible without reading a number
+    const tm = new Set(), cyt = new Set(), ext = new Set();
+    (m.tm_spans || []).forEach(([a, b]) => { for (let i = a; i <= b; i++) tm.add(i); });
+    (m.spans.CYT || []).forEach(n => cyt.add(n));
+    (m.spans.EXT || []).forEach(n => ext.add(n));
+    V.setStyle(R, {cartoon: {colorfunc: at =>
+      cyt.has(at.resi) ? css('--cyt') : tm.has(at.resi) ? css('--tm')
+      : ext.has(at.resi) ? css('--ext') : '#4a4a52', thickness: 0.35}});
+  } else {
+    V.setStyle(R, {cartoon: {color: '#5a5a62', thickness: 0.3}});
+  }
+  V.setStyle(L, {stick: {colorscheme: 'yellowCarbon', radius: 0.21},
+                 sphere: {colorscheme: 'yellowCarbon', scale: 0.26}});
+  if (p.surface && m.contacts.length){
+    V.addSurface($3Dmol.SurfaceType.MS, {color: '#9a9aa2', opacity: 0.55},
+                 {chain: m.receptor_chain, resi: m.contacts}, R);
+  }
+  V.render();
+}
+
+Promise.all([
+  fetch('meta.json').then(r => r.json()),
+]).then(([meta]) => {
+  META = meta;
+  const mk = (host, order) => order.filter(j => META[j]).forEach(job => {
+    host.appendChild(card(job, META[job]));
+  });
+  mk(document.getElementById('g-ref'), ORDER_REF);
+  mk(document.getElementById('g-cand'), ORDER_CAND);
+
+  const jobs = [...ORDER_REF, ...ORDER_CAND].filter(j => META[j]);
+  return Promise.all(jobs.map(job =>
+    fetch(META[job].file).then(r => r.text()).then(txt => {
+      const el = document.querySelector(`.vp[data-job="${job}"]`);
+      const V = $3Dmol.createViewer(el, {backgroundAlpha: 0, antialias: true});
+      V.addModel(txt, 'pdb');
+      panes[job] = {V, surface: true, topology: true};
+      paint(job);
+      V.zoomTo({chain: META[job].ligand_chain});
+      V.zoom(0.45);
+      V.render();
+    })
+  ));
+}).then(() => {
+  document.querySelectorAll('.ctrls button').forEach(b => b.addEventListener('click', () => {
+    const job = b.closest('.shell').querySelector('.vp').dataset.job;
+    const act = b.dataset.act, p = panes[job];
+    if (act === 'spin'){
+      p.spin = !p.spin; p.V.spin(p.spin ? 'y' : false);
+      b.setAttribute('aria-pressed', String(p.spin));
+      return;
+    }
+    p[act] = !p[act];
+    b.setAttribute('aria-pressed', String(p[act]));
+    paint(job);
+  }));
+});
+</script>

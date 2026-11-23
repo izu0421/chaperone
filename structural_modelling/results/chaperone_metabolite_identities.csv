@@ -1,0 +1,9 @@
+screen_name,standard_name,smiles,inchikey,formula
+Glutamate,L-glutamic acid,C(CC(=O)O)[C@@H](C(=O)O)N,WHUUTDBJXJRKMK-VKHMYHEASA-N,C5H9NO4
+GABA,4-aminobutanoic acid,C(CC(=O)O)CN,BTCSSZJGUNDROE-UHFFFAOYSA-N,C4H9NO2
+Acetylcholine,acetylcholine,CC(=O)OCC[N+](C)(C)C,OIPILFWXSMYKGL-UHFFFAOYSA-N,C7H16NO2+
+Triiodothyronine,"3,3',5-triiodo-L-thyronine",C1=CC(=C(C=C1OC2=C(C=C(C=C2I)C[C@@H](C(=O)O)N)I)I)O,AUYYCJSJGJYCDS-LBPRGKRZSA-N,C15H12I3NO4
+LTD4|LeukotrieneD4,leukotriene D4,CCCCC/C=C\C/C=C\C=C\C=C\[C@H]([C@H](CCCC(=O)O)O)SC[C@@H](C(=O)NCC(=O)O)N,YEESKJGWJFYOOK-IJHYULJSSA-N,C25H40N2O6S
+PGD2,prostaglandin D2,CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O,BHMBVRSPMRCCGG-OUTUXVNYSA-N,C20H32O5
+Adenosine,adenosine,C1=NC(=C2C(=N1)N(C=N2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO)O)O)N,OIRDTQYFTABQOQ-KQYNXXCUSA-N,C10H13N5O4
+2arachidonoylglycerol,2-arachidonoylglycerol,CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCC(=O)OC(CO)CO,RCRCTBLIHCHWDZ-DOFZRALJSA-N,C23H38O4

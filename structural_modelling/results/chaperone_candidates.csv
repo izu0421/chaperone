@@ -1,0 +1,103 @@
+receptor,ligand,metabolite,ligand_ccd,ligand_smiles,kind,af3_iptm,af3_ptm,source_shortlist,bsa_A2,n_contact,min_sep_A,partner_plddt,iface_plddt,pae_min_A,complex_tokens,p_twoway,producer_gene,n_producer_genes,screen_label,inchikey,partner_receptors_tested,partner_receptors_confident
+GPR26,,L-glutamic acid,GLU,C(CC(=O)O)[C@@H](C(=O)O)N,metabolite,0.94,0.82,analysis_shortlist,412.0,168,2.38,87.5,94.5,1.39,337,0.018348,SLC17A7;SLC1A1;SLC1A2;SLC1A6,4,Glutamate,WHUUTDBJXJRKMK-VKHMYHEASA-N,8,6
+GPR26,,4-aminobutanoic acid,ABU,C(CC(=O)O)CN,metabolite,0.92,0.82,analysis_shortlist,371.0,92,2.54,81.1,94.8,1.69,337,0.01383,SLC6A1;SLC6A11,2,GABA,BTCSSZJGUNDROE-UHFFFAOYSA-N,7,7
+GPR26,,acetylcholine,ACH,CC(=O)OCC[N+](C)(C)C,metabolite,0.91,0.81,analysis_shortlist,450.0,133,2.23,80.5,93.5,2.01,337,0.019131,SLC10A4,1,Acetylcholine,OIPILFWXSMYKGL-UHFFFAOYSA-N,4,4
+GPR101,,L-glutamic acid,GLU,C(CC(=O)O)[C@@H](C(=O)O)N,metabolite,0.89,0.63,analysis_shortlist,451.0,124,2.61,75.1,88.0,2.68,508,0.026542,SLC1A2,1,Glutamate,WHUUTDBJXJRKMK-VKHMYHEASA-N,12,10
+MRGPRF,,"3,3',5-triiodo-L-thyronine",T3,C1=CC(=C(C=C1OC2=C(C=C(C=C2I)C[C@@H](C(=O)O)N)I)I)O,metabolite,0.89,0.76,analysis_shortlist+figure_gates,841.0,174,3.01,70.3,86.6,1.99,343,0.01709,DIO3,1,Triiodothyronine,AUYYCJSJGJYCDS-LBPRGKRZSA-N,2,2
+GPR12,,L-glutamic acid,GLU,C(CC(=O)O)[C@@H](C(=O)O)N,metabolite,0.88,0.77,analysis_shortlist,438.0,119,3.14,83.8,94.5,2.62,334,0.055238,SLC17A6;SLC1A6,2,Glutamate,WHUUTDBJXJRKMK-VKHMYHEASA-N,6,6
+GPR12,,4-aminobutanoic acid,ABU,C(CC(=O)O)CN,metabolite,0.87,0.78,analysis_shortlist,386.0,62,3.28,75.3,93.3,2.63,334,0.055194,GAD2,1,GABA,BTCSSZJGUNDROE-UHFFFAOYSA-N,6,6
+GPR139,,acetylcholine,ACH,CC(=O)OCC[N+](C)(C)C,metabolite,0.87,0.76,analysis_shortlist,438.0,175,2.96,71.9,90.4,2.97,353,0.014111,SLC10A4,1,Acetylcholine,OIPILFWXSMYKGL-UHFFFAOYSA-N,4,4
+GPR151,,4-aminobutanoic acid,ABU,C(CC(=O)O)CN,metabolite,0.87,0.68,analysis_shortlist,361.0,121,2.97,77.3,92.1,3.2,419,0.038586,SLC6A1,1,GABA,BTCSSZJGUNDROE-UHFFFAOYSA-N,7,7
+GPR151,,L-glutamic acid,GLU,C(CC(=O)O)[C@@H](C(=O)O)N,metabolite,0.87,0.68,analysis_shortlist,415.0,181,2.26,82.6,92.9,3.11,419,0.006882,SLC17A7;SLC1A2,2,Glutamate,WHUUTDBJXJRKMK-VKHMYHEASA-N,8,6
+GPR50,,leukotriene D4,,CCCCC/C=C\C/C=C\C=C\C=C\[C@H]([C@H](CCCC(=O)O)O)SC[C@@H](C(=O)NCC(=O)O)N,metabolite,0.87,0.54,figure_gates,865.0,224,2.59,63.1,85.7,3.59,617,0.047634,GGT1,1,LTD4|LeukotrieneD4,YEESKJGWJFYOOK-IJHYULJSSA-N,5,5
+GPR15,,prostaglandin D2,PG2,CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O,metabolite,0.86,0.78,figure_gates,900.0,230,2.52,62.0,85.8,2.45,360,0.041149,PTGDS,1,PGD2,BHMBVRSPMRCCGG-OUTUXVNYSA-N,11,11
+GPR174,,prostaglandin D2,PG2,CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O,metabolite,0.86,0.8,figure_gates,818.0,263,2.4,70.5,82.5,2.46,333,0.016283,PTGDS,1,PGD2,BHMBVRSPMRCCGG-OUTUXVNYSA-N,11,11
+GPR6,,4-aminobutanoic acid,ABU,C(CC(=O)O)CN,metabolite,0.86,0.71,analysis_shortlist,370.0,53,3.49,76.3,93.6,3.2,362,0.007768,SLC6A1;SLC6A11,2,GABA,BTCSSZJGUNDROE-UHFFFAOYSA-N,7,7
+GPR82,,prostaglandin D2,PG2,CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O,metabolite,0.86,0.83,figure_gates,942.0,358,2.28,68.7,85.4,2.3,336,0.001627,PTGDS,1,PGD2,BHMBVRSPMRCCGG-OUTUXVNYSA-N,11,11
+GPRC5C,,adenosine,ADN,C1=NC(=C2C(=N1)N(C=N2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO)O)O)N,metabolite,0.86,0.58,analysis_shortlist,476.0,364,1.99,72.5,78.6,2.85,441,0.01056,SLC29A2,1,Adenosine,OIRDTQYFTABQOQ-KQYNXXCUSA-N,5,5
+GPR160,,adenosine,ADN,C1=NC(=C2C(=N1)N(C=N2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO)O)O)N,metabolite,0.85,0.76,analysis_shortlist,528.0,220,2.12,75.6,88.2,3.14,338,0.04504,SLC29A2,1,Adenosine,OIRDTQYFTABQOQ-KQYNXXCUSA-N,5,5
+GPR75,,2-arachidonoylglycerol,ECB,CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCC(=O)OC(CO)CO,metabolite,0.85,0.63,figure_gates,875.0,293,1.97,61.7,79.2,2.98,540,0.056482,DAGLB,1,2arachidonoylglycerol,RCRCTBLIHCHWDZ-DOFZRALJSA-N,3,3
+GPR171,,prostaglandin D2,PG2,CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O,metabolite,0.84,0.84,figure_gates,815.0,403,2.14,64.6,85.1,2.72,319,0.036895,PTGDS,1,PGD2,BHMBVRSPMRCCGG-OUTUXVNYSA-N,11,11
+P2RY10,,prostaglandin D2,PG2,CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O,metabolite,0.82,0.83,figure_gates,922.0,366,2.03,62.4,82.0,3.39,339,0.0231,PTGDS,1,PGD2,BHMBVRSPMRCCGG-OUTUXVNYSA-N,11,11
+GPR160,,leukotriene D4,,CCCCC/C=C\C/C=C\C=C\C=C\[C@H]([C@H](CCCC(=O)O)O)SC[C@@H](C(=O)NCC(=O)O)N,metabolite,0.81,0.77,figure_gates,868.0,163,2.59,62.1,83.5,3.77,338,0.008196,GGT1,1,LTD4|LeukotrieneD4,YEESKJGWJFYOOK-IJHYULJSSA-N,5,5
+GPR141,IL21R,,,,protein,0.7,0.54,figure_gates+size_adjusted,2101.0,501,2.17,54.4,75.3,3.05,843,0.027238,,1,,,11,2
+GPR21,FGFR3,,,,protein,0.67,0.53,figure_gates+size_adjusted,4107.0,891,1.96,68.4,71.6,3.28,1155,0.053658,,1,,,5,1
+GPR6,GRIN2D,,,,protein,0.67,0.5,size_adjusted,3225.0,639,2.04,55.5,63.7,2.02,1698,0.053006,,1,,,3,1
+GPR87,IL36RN,,,,protein,0.67,0.73,analysis_shortlist+figure_gates+size_adjusted,2618.0,526,2.41,82.2,70.2,3.57,513,0.045161,,1,,,5,1
+GPR65,TNFRSF8,,,,protein,0.66,0.43,size_adjusted,5561.0,1149,2.01,45.5,68.8,2.95,932,0.02798,,1,,,4,1
+MRGPRF,ROR2,,,,protein,0.66,0.49,size_adjusted,6079.0,1200,2.17,60.5,60.3,2.56,1286,0.049359,,1,,,1,1
+MRGPRX2,GRM8,,,,protein,0.66,0.5,analysis_shortlist+size_adjusted,3883.0,1007,2.04,74.2,60.5,4.43,1238,0.044989,,1,,,4,1
+GPR37,HEBP1,,,,protein,0.65,0.54,analysis_shortlist+size_adjusted,1220.0,290,2.14,80.0,68.7,5.79,802,0.054599,,1,,,5,1
+MRGPRX2,GNRH2,,,,protein,0.65,0.64,size_adjusted,3673.0,763,1.91,37.6,65.9,2.2,450,0.011551,,1,,,2,1
+MRGPRX4,GHRL,,,,protein,0.65,0.66,figure_gates+size_adjusted,3046.0,533,2.43,47.7,72.4,2.33,439,0.047802,,1,,,11,2
+GPR141,CD226,,,,protein,0.64,0.54,analysis_shortlist+figure_gates+size_adjusted,3242.0,655,2.34,71.4,71.0,3.52,641,0.052919,,1,,,13,2
+GPR141,SIGLEC1,,,,protein,0.64,0.38,analysis_shortlist,2210.0,432,2.0,77.1,61.2,6.48,2014,0.026214,,1,,,10,1
+GPR21,EFNA3,,,,protein,0.64,0.68,size_adjusted,5310.0,1124,1.88,58.0,68.4,2.13,587,0.014503,,1,,,9,1
+GPR12,CHL1,,,,protein,0.63,0.52,analysis_shortlist,5059.0,806,2.2,74.1,61.6,4.08,1542,0.056339,,1,,,8,2
+GPR25,CATSPER2,,,,protein,0.63,0.54,figure_gates+size_adjusted,1185.0,204,2.06,62.0,75.3,3.59,891,0.022757,,1,,,10,1
+MRGPRX1,GHRL,,,,protein,0.63,0.65,figure_gates+size_adjusted,2891.0,547,2.04,46.2,70.5,3.0,439,0.020555,,1,,,11,2
+GPR151,IFNA7,,,,protein,0.62,0.65,size_adjusted,3939.0,740,1.84,69.3,66.2,4.43,608,0.038005,,1,,,4,1
+GPR3,PPIA,,,,protein,0.62,0.61,analysis_shortlist+figure_gates+size_adjusted,1261.0,357,2.45,88.1,74.0,4.23,495,0.033555,,1,,,11,4
+GPR65,HCST,,,,protein,0.62,0.7,figure_gates+size_adjusted,2994.0,574,1.77,44.8,70.4,3.58,430,0.003974,,1,,,11,1
+GPR82,FN1,,,,protein,0.62,0.37,analysis_shortlist,3103.0,596,2.26,70.4,62.2,7.31,2813,0.00273,,1,,,4,1
+GPR12,GRIK1,,,,protein,0.61,0.47,analysis_shortlist,3107.0,591,2.17,72.1,59.0,4.27,1252,0.023299,,1,,,9,1
+P2RY10,ITGAD,,,,protein,0.61,0.47,analysis_shortlist,3982.0,863,1.55,74.5,58.5,4.32,1500,0.034266,,1,,,7,1
+P2RY8,ITGB7,,,,protein,0.61,0.6,analysis_shortlist,2138.0,291,2.25,71.1,69.1,4.19,1157,0.022181,,1,,,10,1
+GPR37,SEMA4C,,,,protein,0.6,0.61,analysis_shortlist,2392.0,411,2.37,72.9,69.0,3.13,1446,0.054756,,1,,,2,1
+GPR82,TREM2,,,,protein,0.59,0.6,size_adjusted,3476.0,654,2.11,59.0,66.3,4.03,566,0.002598,,1,,,6,1
+MRGPRX3,CEACAM1,,,,protein,0.59,0.56,analysis_shortlist,3024.0,524,2.37,71.5,69.4,2.84,848,0.049197,,1,,,7,1
+GPR171,IL2,,,,protein,0.58,0.7,analysis_shortlist,1835.0,437,2.22,73.9,69.6,3.83,472,0.022869,,1,,,6,1
+GPR171,VCAM1,,,,protein,0.58,0.48,size_adjusted,2090.0,492,1.15,74.8,69.0,5.21,1058,0.025265,,1,,,9,1
+GPR174,IL12RB1,,,,protein,0.58,0.5,analysis_shortlist+size_adjusted,2537.0,617,2.66,71.0,68.4,4.91,995,0.000951,,1,,,10,1
+GPR33,CFC1,,,,protein,0.58,0.62,size_adjusted,2846.0,509,2.2,42.1,64.1,3.43,556,0.036943,,1,,,14,2
+GPR4,PLXND1,,,,protein,0.58,0.48,analysis_shortlist,3459.0,732,1.79,77.4,62.7,4.86,2287,0.020325,,1,,,2,1
+GPR52,SORL1,,,,protein,0.58,0.45,analysis_shortlist,4389.0,810,1.92,72.4,61.0,5.69,2575,0.025799,,1,,,4,1
+GPR63,GP1BB,,,,protein,0.58,0.59,figure_gates+size_adjusted,2261.0,455,2.22,68.7,75.2,2.75,625,0.05042,,1,,,1,1
+GPR65,LAIR1,,,,protein,0.58,0.55,size_adjusted,4476.0,995,2.16,53.5,65.7,4.49,624,0.000672,,1,,,10,1
+GPR82,ITGAM,,,,protein,0.58,0.48,analysis_shortlist,2627.0,426,1.53,77.4,64.0,7.68,1488,0.010013,,1,,,10,2
+GPR25,CD22,,,,protein,0.57,0.46,analysis_shortlist,4273.0,1242,1.64,76.1,60.0,5.76,1208,0.041872,,1,,,13,1
+GPR34,CD244,,,,protein,0.57,0.48,size_adjusted,4179.0,866,2.35,58.1,66.5,3.02,751,0.045175,,1,,,7,1
+GPR65,TNFRSF13B,,,,protein,0.57,0.54,figure_gates,3071.0,451,2.57,44.8,72.2,3.09,630,0.005211,,1,,,7,2
+GPR6,LRRC4B,,,,protein,0.57,0.56,figure_gates+size_adjusted,4891.0,810,2.42,62.6,70.1,4.18,1075,0.046201,,1,,,5,1
+GPR6,PLXNA4,,,,protein,0.57,0.46,analysis_shortlist,4175.0,799,1.96,76.9,55.5,8.26,2256,0.024505,,1,,,6,1
+GPR132,CCL11,,,,protein,0.56,0.66,analysis_shortlist+figure_gates,3621.0,1022,2.33,73.7,71.1,3.01,477,0.049907,,1,,,6,1
+GPR171,SELPLG,,,,protein,0.56,0.48,size_adjusted,3300.0,525,2.35,32.5,64.4,6.68,731,0.003631,,1,,,11,1
+GPR183,FPR2,,,,protein,0.56,0.66,analysis_shortlist+figure_gates+size_adjusted,3014.0,528,2.43,73.0,72.6,6.01,712,0.010984,,1,,,2,1
+GPR21,MET,,,,protein,0.56,0.51,analysis_shortlist,3813.0,769,2.0,70.7,49.4,4.94,1739,0.053488,,1,,,4,1
+GPR21,TENM3,,,,protein,0.56,0.69,analysis_shortlist,2447.0,433,2.46,73.1,61.6,8.48,3048,0.029411,,1,,,3,1
+GPR52,ITGA4,,,,protein,0.56,0.61,analysis_shortlist,3805.0,882,1.52,75.1,63.9,5.81,1393,0.018414,,1,,,9,1
+GPR75,PPIA,,,,protein,0.56,0.51,analysis_shortlist+size_adjusted,1626.0,416,2.22,87.4,68.2,4.96,705,0.002333,,1,,,11,4
+GPR87,IL1RN,,,,protein,0.56,0.69,analysis_shortlist+figure_gates,3577.0,678,1.95,74.8,70.1,6.1,535,0.002137,,1,,,3,1
+GPR101,WNT3,,,,protein,0.55,0.59,analysis_shortlist,2361.0,490,2.75,72.9,67.7,2.48,863,0.052801,,1,,,5,1
+GPR146,NPR1,,,,protein,0.55,0.38,analysis_shortlist,2986.0,565,1.76,73.7,60.2,6.34,1394,0.019929,,1,,,4,1
+GPR171,ICAM1,,,,protein,0.55,0.58,analysis_shortlist+figure_gates,1842.0,439,2.4,77.2,72.3,6.05,851,0.030514,,1,,,5,1
+GPR174,C3,,,,protein,0.55,0.66,analysis_shortlist,2672.0,601,2.36,76.6,68.7,9.1,1996,0.026853,,1,,,8,1
+P2RY10,ITGAL,,,,protein,0.55,0.47,analysis_shortlist,2879.0,591,1.81,72.6,59.6,5.82,1509,0.000228,,1,,,11,1
+P2RY8,PTPRC,,,,protein,0.55,0.55,analysis_shortlist,7151.0,1328,1.73,70.6,60.2,9.22,1665,0.002879,,1,,,12,2
+P2RY8,TNFRSF1B,,,,protein,0.55,0.46,size_adjusted,4962.0,950,2.35,51.3,65.5,5.79,820,0.011932,,1,,,12,1
+GPR141,C5AR1,,,,protein,0.54,0.63,figure_gates,1818.0,311,2.68,69.3,70.7,6.66,655,0.043691,,1,,,6,1
+GPR75,GLG1,,,,protein,0.54,0.59,analysis_shortlist,5550.0,1104,1.89,72.0,62.6,4.19,1719,0.002517,,1,,,6,1
+GPR82,RNASET2,,,,protein,0.54,0.7,analysis_shortlist+figure_gates,1316.0,350,2.42,73.5,70.9,4.39,592,0.000531,,1,,,4,1
+P2RY10,ITGAM,,,,protein,0.54,0.51,analysis_shortlist,3181.0,770,1.79,76.4,61.7,6.19,1491,0.012779,,1,,,10,2
+GPR171,PTPRC,,,,protein,0.53,0.53,analysis_shortlist,5835.0,1054,2.42,70.9,67.7,9.83,1625,0.000371,,1,,,12,2
+GPR33,CEACAM8,,,,protein,0.53,0.63,analysis_shortlist,1654.0,240,2.36,75.7,61.7,5.59,682,0.039459,,1,,,7,1
+GPR39,LGALS3,,,,protein,0.53,0.61,size_adjusted,3905.0,863,2.21,61.8,66.8,2.59,703,0.033054,,1,,,5,1
+GPR52,SLIT2,,,,protein,0.53,0.39,analysis_shortlist,1966.0,381,2.26,75.9,67.2,6.4,1890,0.031933,,1,,,5,1
+GPR82,PPIA,,,,protein,0.53,0.68,analysis_shortlist+figure_gates,1884.0,553,2.25,87.5,70.7,5.44,501,0.000524,,1,,,11,4
+GPRC5A,CCL28,,,,protein,0.53,0.65,figure_gates,1908.0,466,2.06,62.3,72.2,3.82,484,0.040006,,1,,,5,1
+GPR34,ICOSLG,,,,protein,0.52,0.59,figure_gates,2816.0,648,2.21,69.8,70.8,3.21,683,0.009381,,1,,,11,1
+GPR37,MST1,,,,protein,0.52,0.55,analysis_shortlist+figure_gates,2203.0,516,1.98,78.8,70.9,3.22,1324,0.050324,,1,,,3,1
+GPRC5A,CHRNE,,,,protein,0.52,0.61,analysis_shortlist,1452.0,251,2.06,71.4,68.3,4.73,850,0.057008,,1,,,3,1
+GPRC5A,PLXNB3,,,,protein,0.52,0.47,analysis_shortlist,3352.0,491,2.39,74.5,60.2,10.46,2266,0.005086,,1,,,8,1
+P2RY8,TLR8,,,,protein,0.52,0.66,analysis_shortlist+figure_gates,1539.0,363,2.1,77.7,72.1,4.78,1400,0.052541,,1,,,9,1
+GPR6,CHL1,,,,protein,0.51,0.49,analysis_shortlist,2276.0,307,2.31,73.9,64.7,6.77,1570,0.044631,,1,,,8,2
+GPR75,TNC,,,,protein,0.51,0.39,analysis_shortlist,7229.0,1587,1.55,71.4,57.7,6.62,2741,0.012809,,1,,,2,1
+GPR82,B2M,,,,protein,0.51,0.67,analysis_shortlist,1688.0,399,2.54,74.8,64.9,9.3,455,3e-06,,1,,,9,1
+GPR82,IGF2R,,,,protein,0.51,0.66,analysis_shortlist,2832.0,561,1.79,73.9,52.4,8.17,2827,0.020591,,1,,,5,1
+MRGPRF,CSPG4,,,,protein,0.51,0.44,analysis_shortlist,5751.0,1279,2.14,74.2,59.3,12.01,2665,0.012709,,1,,,4,1
+GPR183,CD6,,,,protein,0.5,0.49,figure_gates,4153.0,776,2.38,51.7,71.1,8.42,1029,0.053071,,1,,,8,1
+GPR22,TFR2,,,,protein,0.5,0.67,analysis_shortlist,3204.0,615,1.82,74.1,59.3,5.88,1234,0.050994,,1,,,6,1
+GPR34,CTSG,,,,protein,0.5,0.54,analysis_shortlist,3222.0,925,1.93,76.7,63.3,5.01,636,0.004319,,1,,,5,1
+GPR52,PTPRD,,,,protein,0.5,0.39,analysis_shortlist,4304.0,900,1.86,79.5,64.7,9.34,2273,0.034959,,1,,,3,1
+GPR62,ADORA1,,,,protein,0.5,0.61,analysis_shortlist+figure_gates,919.0,211,2.6,79.5,74.8,6.95,694,0.034572,,1,,,3,1
+GPR63,PPIA,,,,protein,0.5,0.5,analysis_shortlist,1857.0,466,2.62,87.3,69.8,6.7,584,0.032794,,1,,,11,4
