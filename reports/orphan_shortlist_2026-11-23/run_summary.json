@@ -1,0 +1,14 @@
+{
+  "run": "orphan_shortlist_2026-11-23",
+  "candidates": 102,
+  "triage": 102,
+  "pose_measured": 146,
+  "gate_flagged": 8,
+  "gate_reconsidered": 8,
+  "gate_changed": 5,
+  "refolds_executed": 0,
+  "strategies_designed": 38,
+  "review_findings": 22,
+  "recommended": 14,
+  "note": "gate_flagged/reconsidered/changed are from the run log; every other number is counted from the files in this directory"
+}

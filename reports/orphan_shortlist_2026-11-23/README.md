@@ -68,6 +68,34 @@ argument for keeping the judging step as code rather than an agent:
   GPR75 or GPR82 individually.
 - One, CHL1/GPR12, went to `INSUFFICIENT_EVIDENCE` on reconsideration.
 
+## Looking at the poses
+
+`structures/index.html` is an interactive viewer for the folds the pose argument rests on
+(3Dmol.js; open it from a served copy, not `file://`). It shows eight structures, chosen to
+be falsifiable rather than flattering: two ligands in the receptor they are known to bind,
+two molecules known *not* to bind the receptor they are shown with, and the candidates.
+The receptor is coloured by UniProt topological domain, so "inside the bundle" and "on the
+cytoplasmic face" are visible without reading a number, and the residues within 4.5 A of
+the molecule carry a surface.
+
+| fold | role | enclosed | contacts | on TM | cytoplasmic |
+|---|---|---|---|---|---|
+| CNR1 + anandamide | cognate | 0.993 | 26 | 16 | 0 |
+| ADRB2 + adrenaline | cognate | 0.964 | 14 | 13 | 0 |
+| P2RY12 + acetylcholine | non-binder | 0.063 | 0 | 0 | 0 |
+| DRD2 + ADP | non-binder | 0.311 | 3 | 1 | 2 |
+| GPR153 + noradrenaline | candidate | 1.000 | 13 | 13 | 0 |
+| GPR85 + noradrenaline | candidate | 0.973 | 14 | 9 | 0 |
+| GPR26 + glutamate | candidate | 0.973 | 13 | 11 | 0 |
+| GPR150 + GABA | rejected | 0.418 | 4 | 4 | 0 |
+
+Interface pTM does not separate these: all eight score between 0.65 and 0.93, the two known
+non-binders included. The pose does. P2RY12 + acetylcholine has **no contacts at all** --
+the molecule is outside the receptor -- and DRD2 + ADP lines the intracellular face. Of the
+candidates, GPR153 + noradrenaline has the same profile as adrenaline in ADRB2: every
+contact on a transmembrane span, fully enclosed. GPR150 + GABA is included because it
+fails, at 0.418 against a minimum of 0.928 across all sixteen known cognate ligands.
+
 ## Caveats a reader should carry
 
 - Confidence is `low` for the large majority. These are triage calls, not results.

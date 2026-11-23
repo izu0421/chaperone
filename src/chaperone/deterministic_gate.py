@@ -407,7 +407,22 @@ def partner_breadth_status(row: dict) -> dict:
         except (TypeError, ValueError):
             return None
 
+    # A breadth count is only meaningful at a threshold that discriminates on the
+    # arm it came from. Caught live, and it produced a wrong verdict: the counts
+    # supplied for metabolite candidates had been computed at interface pTM >= 0.5,
+    # which passes 97% of all small-molecule folds, so noradrenaline arrived as
+    # "confident against 11 of 11 receptors". The agent used that faithfully and
+    # concluded the fold was "not specific to GPR85". At the threshold calibrated
+    # on receptors with known ligands it is 2 of 11. The caller must supply counts
+    # taken at an arm-appropriate bar, and say which, or the field is refused.
     tested, confident = _int("partner_receptors_tested"), _int("partner_receptors_confident")
+    bar = row.get("partner_breadth_threshold")
+    if tested is not None and confident is not None and tested > 0 and not bar:
+        return {"checked": False, "promiscuous": False,
+                "trace": "breadth counts were supplied without naming the threshold they "
+                         "were counted at (partner_breadth_threshold), so they cannot be "
+                         "interpreted: a count taken at a bar that passes most folds "
+                         "calls every partner promiscuous"}
     if tested is None or confident is None or tested <= 0:
         return {"checked": False, "promiscuous": False,
                 "trace": "the partner's cross-receptor hit rate was not supplied on the "
@@ -420,9 +435,66 @@ def partner_breadth_status(row: dict) -> dict:
         "fraction": round(frac, 3),
         "promiscuous": tested >= PROMISCUOUS_PARTNER_MIN_TESTED
                        and frac >= PROMISCUOUS_PARTNER_FRACTION,
+        "threshold": bar,
         "trace": f"this partner was folded against {tested} receptors in the same screen "
-                 f"and reached the confidence gate against {confident} of them "
-                 f"({frac:.0%})",
+                 f"and reached {bar} against {confident} of them ({frac:.0%})",
+    }
+
+
+# Where the molecule sits, not how sure the model is about it.
+#
+# A permissive pocket is not disqualifying -- AlphaFold3 puts a small molecule
+# somewhere in a receptor whatever receptor it is given, and a receptor really can
+# have several ligands. What disqualifies a pose is being in the wrong place. On
+# the 256-fold benchmark (16 receptors folded against all 16 panel ligands, so 16
+# cells have a known-correct answer) the pose separates the two:
+#
+#   enclosure   every one of the 16 cognate ligands is buried at least 0.928 of its
+#               own surface. A cut at 0.92 keeps 16/16 and removes 62% of the 189
+#               clean negatives -- the single most useful pose criterion, and it
+#               ranks as well (AUROC 0.801) as it filters.
+#   wrong side  no cognate ligand contacts a cytoplasmic domain; 38% of negatives
+#               do. As a veto that is free, but it is ALMOST ENTIRELY SUBSUMED by
+#               enclosure: adding it to the 0.92 cut removes one further negative
+#               out of 189, because a molecule on the cytoplasmic face is usually
+#               poorly enclosed anyway. It is kept as a reason code, not as a
+#               second independent filter, and should not be reported as one.
+#
+# Both are measured by analyze_fold.ligand_geometry, from UniProt topology rather
+# than guessed from coordinates, so a fold that was never run returns checked=False
+# instead of a pose that looks acceptable.
+COGNATE_MIN_BURIAL = 0.92
+
+
+def ligand_pose_status(fold_results: list) -> dict:
+    """Is the small molecule enclosed, and on the right side of the membrane?"""
+    poses = []
+    for fr in fold_results or []:
+        for name, ch in (fr.get("chains") or {}).items():
+            g = ch.get("ligand_geometry") or {}
+            if g.get("buried_fraction") is not None:
+                poses.append((name, g))
+    if not poses:
+        return {"checked": False, "enclosed": None, "wrong_side": None,
+                "trace": "no executed fold with a measured ligand pose, so where the "
+                         "molecule sits is unknown -- not acceptable"}
+    name, g = max(poses, key=lambda x: x[1].get("buried_fraction") or 0)
+    burial = float(g["buried_fraction"])
+    topo = []
+    for pk in (g.get("pocket") or {}).values():
+        topo += [str(t) for t in (pk.get("topology") or [])]
+    wrong_side = any("Cytoplasm" in t for t in topo)
+    return {
+        "checked": True,
+        "buried_fraction": round(burial, 3),
+        "enclosed": burial >= COGNATE_MIN_BURIAL,
+        "wrong_side": wrong_side,
+        "clash": g.get("clash"),
+        "trace": (f"chain {name} is buried {burial:.3f} of its own surface against a "
+                  f"minimum of {min(0.928, COGNATE_MIN_BURIAL):.3f} across all 16 known "
+                  f"cognate ligands"
+                  + ("; and it contacts a cytoplasmic domain, which no cognate ligand "
+                     "does" if wrong_side else "")),
     }
 
 
@@ -438,6 +510,7 @@ def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
     fold = fold_evidence_status(fold_results)
     glycan_binding_gene = None if is_ligand else _glycan_binding_gene(gene_a, gene_b)
     ligand = ligand_evidence_status(tool_calls) if is_ligand else None
+    pose = ligand_pose_status(fold_results) if is_ligand else None
     breadth = None if is_ligand else partner_breadth_status(row)
     facts = {"known_interaction_strength": known["strength"], "known_interaction_trace": known["trace"],
              "hpa_plausibility": hpa["plausibility"], "hpa_trace": hpa["trace"],
@@ -448,6 +521,8 @@ def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
         facts["ligand"] = ligand
     if breadth:
         facts["partner_breadth"] = breadth
+    if pose:
+        facts["ligand_pose"] = pose
     return facts
 
 
@@ -544,6 +619,22 @@ def find_contradictions(row: dict, facts: dict) -> list[str]:
     # than, any one fold's residue-level finding (caught live: LGALS1/CLEC2D
     # would otherwise have been pushed to downgrade off LIKELY_ARTIFACT_PTM
     # despite LGALS1 being a genuine carbohydrate-binding lectin).
+    # ---- a small molecule in the wrong place -------------------------------
+    pose = facts.get("ligand_pose")
+    if pose and pose.get("checked") and verdict in ("CONFIRMED_NOVEL", "ALREADY_KNOWN"):
+        if not pose["enclosed"]:
+            contradictions.append(
+                f"The verdict is {verdict}, but the molecule is not enclosed the way a "
+                f"ligand in an orthosteric pocket is: {pose['trace']}. Every one of the "
+                f"16 known cognate ligands in the benchmark is buried at least 0.928; a "
+                f"pose below that is resting on a surface, not sitting in a site, and "
+                f"the fold's confidence does not see the difference.")
+        elif pose.get("wrong_side"):
+            contradictions.append(
+                f"The verdict is {verdict} and the molecule is enclosed, but {pose['trace']}. "
+                f"A ligand that enters from outside should not line the intracellular "
+                f"face. Decide whether this is a real second site or a misplaced pose.")
+
     # ---- a protein partner that binds half the screen ----------------------
     # Flagged, not relabelled: a partner CAN have many real receptors (a
     # chemokine, a shared co-receptor), so the replacement label is a judgement
