@@ -1,0 +1,326 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where the partner sits</title>
+<style>
+:root{
+  --bg:#000; --surface:#000; --surface-2:#0c0c0c; --rule:#242428;
+  --ink:#f2f2f4; --mut:#8b8b93;
+  --tm:#2166AC;        /* transmembrane: where an orthosteric ligand belongs */
+  --ext:#6A8FB5;       /* extracellular */
+  --cyt:#B2182B;       /* cytoplasmic: the wrong side of the membrane */
+  --lig:#E8C547;       /* the partner itself */
+  --ok:#2E8B57; --bad:#B2182B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+     font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.mast{background:var(--surface);border-bottom:1px solid var(--rule);padding:22px 20px 16px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+h1{margin:0 0 6px;font-size:21px;letter-spacing:-.01em}
+.sub{color:var(--mut);max-width:72ch;margin:0}
+.key{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;font-size:12px;color:var(--mut)}
+.key i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;
+       vertical-align:-1px}
+
+.cols{display:grid;grid-template-columns:330px 1fr;gap:22px;margin:24px 0 0;align-items:start}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+
+h2{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);
+   margin:20px 0 7px;font-weight:600}
+h2:first-child{margin-top:0}
+.list{border:1px solid var(--rule);background:var(--surface)}
+.row{display:flex;align-items:baseline;gap:8px;width:100%;text-align:left;background:none;
+     border:0;border-bottom:1px solid var(--rule);color:var(--ink);font:inherit;
+     padding:9px 12px;cursor:pointer}
+.row:last-child{border-bottom:0}
+.row:hover{background:var(--surface-2)}
+.row[aria-current="true"]{background:var(--surface-2);box-shadow:inset 3px 0 0 var(--tm)}
+.row .nm{flex:1 1 auto;font-size:13px}
+.row .num{color:var(--mut);font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .num.bad{color:var(--bad)}
+.row .num.ok{color:var(--ok)}
+
+.stage{border:1px solid var(--rule);background:var(--surface);position:sticky;top:14px}
+.hd{padding:12px 14px 10px;border-bottom:1px solid var(--rule)}
+.hd b{font-size:15px}
+.hd .why{color:var(--mut);font-size:12px;display:block;margin-top:3px;max-width:72ch}
+.vp{position:relative;height:min(62vh,520px);background:var(--surface-2)}
+.vp.empty::after{content:'select a structure';position:absolute;inset:0;display:grid;
+  place-items:center;color:var(--mut);font-size:12px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);
+       font-size:11px}
+.facts>div{padding:8px 11px;border-right:1px solid var(--rule)}
+.facts>div:last-child{border-right:0}
+.facts span{display:block;color:var(--mut);font-size:10px;letter-spacing:.04em;
+            text-transform:uppercase}
+.facts b{font-size:15px;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:9px;
+     text-transform:uppercase;letter-spacing:.06em;vertical-align:2px;margin-left:7px}
+.t-cognate{background:#13351f;color:#7fd99f}
+.t-candidate{background:#0f2a44;color:#8fc3f0}
+.t-non-binder{background:#3a1216;color:#f0a3ab}
+.t-rejected{background:#3a1216;color:#f0a3ab}
+.t-recommended{background:#13351f;color:#7fd99f}
+.ctrls{display:flex;flex-wrap:wrap;border-top:1px solid var(--rule);background:var(--surface-2)}
+.ctrls button{flex:1 1 auto;background:none;border:0;border-right:1px solid var(--rule);
+  color:var(--mut);padding:8px 6px;font:inherit;font-size:11px;cursor:pointer}
+.ctrls button:last-child{border-right:0}
+.ctrls button:hover{color:var(--ink);background:var(--surface)}
+.ctrls button[aria-pressed="true"]{color:var(--ink);background:var(--surface);
+  box-shadow:inset 0 2px 0 var(--tm)}
+.note{color:var(--mut);font-size:12px;margin:9px 0 0;max-width:80ch}
+footer{color:var(--mut);font-size:12px;padding:28px 0 50px}
+code{background:var(--surface-2);padding:1px 5px;border-radius:3px;font-size:12px}
+</style>
+
+<div class="mast"><div class="wrap">
+<h1>Where the partner sits</h1>
+<p class="sub">Every candidate the orphan GPCR screen still supports, with the controls
+it is read against. The protein arm is gated on interface PAE, fitted on the 2,500-pair
+benchmark; the small-molecule arm on cuts fitted against 16 receptors whose ligand is
+known. Click one to load it.</p>
+<div class="key">
+  <span><i style="background:var(--tm)"></i>transmembrane</span>
+  <span><i style="background:var(--ext)"></i>extracellular</span>
+  <span><i style="background:var(--cyt)"></i>cytoplasmic</span>
+  <span><i style="background:var(--lig)"></i>partner</span>
+  <span>grey surface &middot; residues it contacts</span>
+  <span><i style="background:var(--cyt);clip-path:polygon(50% 100%,0 0,100% 0)"></i>arrow
+  &middot; points to cytoplasm</span>
+</div>
+</div></div>
+
+<div class="wrap"><div class="cols">
+  <div>
+    <div id="menu"></div>
+    <p class="note" id="count"></p>
+  </div>
+  <div>
+    <div class="stage">
+      <div class="hd" id="hd"><b>&nbsp;</b></div>
+      <div class="vp empty" id="vp"></div>
+      <div class="ctrls">
+        <button data-act="surface" aria-pressed="true">contact surface</button>
+        <button data-act="topology" aria-pressed="true">topology</button>
+        <button data-act="axis" aria-pressed="true">membrane axis</button>
+        <button data-act="spin" aria-pressed="false">spin</button>
+      </div>
+      <div class="facts" id="facts"></div>
+    </div>
+    <p class="note" id="groupnote"></p>
+  </div>
+</div>
+
+<footer><div>AlphaFold3 top-ranked model, unmodified &middot; contacts within 4.5 &#8491;
+&middot; topology from UniProt &middot; enclosure by Shrake-Rupley &middot;
+<code>scripts/23_build_pose_viewer.py</code></div>
+<div style="margin-top:6px">drag to rotate &middot; scroll to zoom &middot; one structure
+loads at a time</div></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js"></script>
+<script>
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+// The groups are the argument. A candidate is only readable against a pose whose
+// answer is known, so the controls are on the same page and in the same viewer.
+const GROUPS = [
+  {role: 'candidate',   title: 'Small-molecule candidates',
+   note: '0.928 is the lowest enclosure among the 16 known cognate ligands. Every ' +
+         'candidate here clears the calibrated gate (interface pTM 0.91, ligand pLDDT ' +
+         '77) fitted on those 16 receptors, and none survives what came after. GPR26 ' +
+         'takes three different molecules, which at that threshold is a permissive ' +
+         'pocket and not three ligands; a counter-screen supports neither GPR85 nor ' +
+         'GPR153 on noradrenaline; and the agent, reading only databases, called every ' +
+         'one of them a promiscuous pocket too.'},
+  {role: 'recommended', title: 'Protein shortlist',
+   note: 'The pairs the evidence agent confirms, out of 63 triaged across both arms. ' +
+         'All four are a secreted partner meeting the receptor on the outside, with no ' +
+         'interface residue on the cytoplasmic face, and all four receptors carry ' +
+         'transmembrane annotation \u2014 so none is admitted by a rule that could not ' +
+         'assess it. That check removed the previous shortlist entirely.'},
+  {role: 'rejected',    title: 'Rejected by the gate',
+   note: 'What the geometry rules remove. A partner that never enters the cytosol ' +
+         'cannot meet the inside face, and no interface touches both faces across an ' +
+         'intact membrane. The cytoplasmic-face rule was added after these structures ' +
+         'were extracted, and it caught eight pairs the agent had confirmed.'},
+  {role: 'cognate',     title: 'Known answers: binds',
+   note: 'Two receptors with their own ligand. These are what a real pose looks like.'},
+  {role: 'non-binder',  title: 'Known answers: does not bind',
+   note: 'Two receptors with a molecule known not to bind them, from the same ' +
+         'benchmark and folded by the same code.'},
+];
+
+let META = {}, current = null;
+const state = {surface: true, topology: true, axis: true, spin: false};
+let V = null, loading = null;
+
+function metric(m){
+  // one number per row, the one its class is judged on
+  if (m.is_ppi){
+    const bad = m.cyt_contacts > 0 && m.ext_contacts === 0;
+    return {text: `${m.cyt_contacts}/${m.n_contacts} cyt`,
+            cls: bad ? 'bad' : (m.ext_contacts ? 'ok' : '')};
+  }
+  const b = m.buried_fraction;
+  if (b === null || b === undefined) return {text: '', cls: ''};
+  return {text: b.toFixed(3), cls: b >= 0.92 ? 'ok' : 'bad'};
+}
+
+function buildMenu(){
+  const host = document.getElementById('menu');
+  let n = 0;
+  for (const g of GROUPS){
+    const jobs = Object.keys(META).filter(j => META[j].role === g.role);
+    if (!jobs.length) continue;
+    n += jobs.length;
+    const h = document.createElement('h2');
+    h.textContent = g.title;
+    host.appendChild(h);
+    const list = document.createElement('div');
+    list.className = 'list';
+    for (const job of jobs){
+      const m = META[job], mt = metric(m);
+      const b = document.createElement('button');
+      b.className = 'row';
+      b.dataset.job = job;
+      b.setAttribute('aria-current', 'false');
+      b.innerHTML = `<span class="nm">${m.label || job}</span>
+                     <span class="num ${mt.cls}">${mt.text}</span>`;
+      b.addEventListener('click', () => select(job));
+      list.appendChild(b);
+    }
+    host.appendChild(list);
+  }
+  document.getElementById('count').textContent =
+    `${n} structures. Enclosure for a small molecule, cytoplasmic share of the ` +
+    `interface for a protein partner.`;
+}
+
+function facts(m){
+  const burial = m.buried_fraction === null || m.buried_fraction === undefined
+    ? '&mdash;' : m.buried_fraction.toFixed(3);
+  const bcol = m.buried_fraction >= 0.92 ? 'var(--ok)' : 'var(--bad)';
+  const cytcol = m.cyt_contacts ? 'var(--bad)' : 'inherit';
+  // a protein partner is judged on WHICH FACE it is docked to, not on enclosure
+  return m.is_ppi
+    ? `<div><span>interface</span><b>${m.n_contacts}</b></div>
+       <div><span>extracellular</span><b>${m.ext_contacts}</b></div>
+       <div><span>on TM</span><b>${m.tm_contacts}</b></div>
+       <div><span>cytoplasmic</span><b style="color:${cytcol}">${m.cyt_contacts}</b></div>`
+    : `<div><span>enclosed</span><b style="color:${bcol}">${burial}</b></div>
+       <div><span>contacts</span><b>${m.n_contacts}</b></div>
+       <div><span>on TM</span><b>${m.tm_contacts}</b></div>
+       <div><span>cytoplasmic</span><b style="color:${cytcol}">${m.cyt_contacts}</b></div>`;
+}
+
+function paint(){
+  const m = META[current];
+  if (!V || !m) return;
+  V.removeAllSurfaces(); V.removeAllShapes(); V.removeAllLabels(); V.setStyle({}, {});
+  const R = {chain: m.receptor_chain}, L = {chain: m.ligand_chain};
+  if (state.topology){
+    // colour each residue by the topological domain it belongs to, so "inside the
+    // bundle" and "on the cytoplasmic face" are visible without reading a number
+    const tm = new Set(), cyt = new Set(), ext = new Set();
+    (m.tm_spans || []).forEach(([a, b]) => { for (let i = a; i <= b; i++) tm.add(i); });
+    (m.spans.CYT || []).forEach(n => cyt.add(n));
+    (m.spans.EXT || []).forEach(n => ext.add(n));
+    V.setStyle(R, {cartoon: {colorfunc: at =>
+      cyt.has(at.resi) ? css('--cyt') : tm.has(at.resi) ? css('--tm')
+      : ext.has(at.resi) ? css('--ext') : '#4a4a52', thickness: 0.35}});
+  } else {
+    V.setStyle(R, {cartoon: {color: '#5a5a62', thickness: 0.3}});
+  }
+  if (m.is_ppi){
+    V.setStyle(L, {cartoon: {color: css('--lig'), thickness: 0.4}});
+  } else {
+    V.setStyle(L, {stick: {colorscheme: 'yellowCarbon', radius: 0.21},
+                   sphere: {colorscheme: 'yellowCarbon', scale: 0.26}});
+  }
+  if (state.surface && m.contacts.length){
+    V.addSurface($3Dmol.SurfaceType.MS, {color: '#9a9aa2', opacity: 0.55},
+                 {chain: m.receptor_chain, resi: m.contacts}, R);
+  }
+  // Which way is down. Without it the red cytoplasmic colouring is just a colour:
+  // in an arbitrary 3D view a reader cannot tell the intracellular face from the
+  // extracellular one, and that is the distinction the whole argument rests on.
+  if (state.axis && m.axis){
+    const e = m.axis.ext, c = m.axis.cyt;
+    const d = [c[0]-e[0], c[1]-e[1], c[2]-e[2]];
+    const len = Math.hypot(...d) || 1;
+    const u = d.map(v => v / len);
+    let t = Math.abs(u[0]) < 0.9 ? [1,0,0] : [0,1,0];
+    let o = [u[1]*t[2]-u[2]*t[1], u[2]*t[0]-u[0]*t[2], u[0]*t[1]-u[1]*t[0]];
+    const ol = Math.hypot(...o) || 1;
+    o = o.map(v => v / ol * 26);
+    const mid = [(e[0]+c[0])/2+o[0], (e[1]+c[1])/2+o[1], (e[2]+c[2])/2+o[2]];
+    // A FIXED arrow length, not the centroid separation. That separation runs 34 to
+    // 67 A across these structures because disordered tails -- ADRB2's C-terminus,
+    // DRD2's third intracellular loop -- drag a domain centroid well past the
+    // bilayer. The direction is unaffected and is what the arrow is for.
+    const half = u.map(v => v * 19);
+    const tail = {x: mid[0]-half[0], y: mid[1]-half[1], z: mid[2]-half[2]};
+    const head = {x: mid[0]+half[0], y: mid[1]+half[1], z: mid[2]+half[2]};
+    V.addArrow({start: tail, end: head, radius: 0.55, radiusRatio: 2.6,
+                mid: 0.72, color: css('--cyt')});
+    V.addLabel('cytoplasm', {position: head, fontSize: 11,
+      fontColor: css('--cyt'), backgroundColor: css('--surface-2'),
+      backgroundOpacity: 0.85, borderThickness: 0, inFront: true});
+    V.addLabel('outside', {position: tail, fontSize: 10,
+      fontColor: css('--ext'), backgroundColor: css('--surface-2'),
+      backgroundOpacity: 0.85, borderThickness: 0, inFront: true});
+  }
+  V.render();
+}
+
+function select(job){
+  if (!META[job] || job === current) return;
+  const m = META[job];
+  current = job;
+  document.querySelectorAll('.row').forEach(b =>
+    b.setAttribute('aria-current', String(b.dataset.job === job)));
+  document.getElementById('hd').innerHTML =
+    `<b>${m.label || job}</b><span class="tag t-${m.role}">${m.role}</span>
+     <span class="why">${m.why}</span>`;
+  document.getElementById('facts').innerHTML = facts(m);
+  const g = GROUPS.find(x => x.role === m.role);
+  document.getElementById('groupnote').textContent = g ? g.note : '';
+
+  // one viewer, reused. A fetch in flight for a structure the reader has already
+  // clicked past must not be allowed to paint over the newer one, so each load
+  // checks that it is still the current selection before it touches the viewer.
+  const el = document.getElementById('vp');
+  const token = loading = job;
+  el.classList.remove('empty');
+  fetch(m.file).then(r => r.text()).then(txt => {
+    if (token !== loading) return;
+    if (!V) V = $3Dmol.createViewer(el, {backgroundAlpha: 0, antialias: true});
+    V.removeAllModels();
+    V.addModel(txt, 'pdb');
+    paint();
+    V.zoomTo({chain: m.ligand_chain});
+    V.zoom(0.45);
+    V.spin(state.spin ? 'y' : false);
+    V.render();
+  }).catch(() => {
+    if (token === loading) el.classList.add('empty');
+  });
+}
+
+fetch('meta.json').then(r => r.json()).then(meta => {
+  META = meta;
+  buildMenu();
+  document.querySelectorAll('.ctrls button').forEach(b =>
+    b.addEventListener('click', () => {
+      const act = b.dataset.act;
+      state[act] = !state[act];
+      b.setAttribute('aria-pressed', String(state[act]));
+      if (act === 'spin'){ if (V) V.spin(state.spin ? 'y' : false); }
+      else paint();
+    }));
+  const first = document.querySelector('.row');
+  if (first) select(first.dataset.job);
+});
+</script>
