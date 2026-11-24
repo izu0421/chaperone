@@ -39,7 +39,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # build copy in between: that would be the same 2.2 MB stored twice, and two
 # copies of anything is an invitation to edit the stale one.
 DEST = Path("/data/yzy21/yy/space_agent/chaperone/reports/"
-            "orphan_shortlist_2026-11-23/structures")
+            "protein_pae_2026-11-24/structures")
 CUT = 4.5          # contact distance, angstroms
 
 # Fixed controls. These do not come from the verdicts, because their job is to
@@ -66,8 +66,12 @@ CONTROLS = [
      "the fold the topology rule was added to catch", "GPR52 + SLIT2"),
 ]
 
+# The run whose verdicts the viewer shows. The protein arm was re-gated on
+# interface PAE on 2026-11-24 and re-triaged, so the protein pairs come from
+# that run; the metabolite arm was not re-gated and still comes from the
+# calibrated small-molecule hits, which are read from results/ directly.
 REPORT = Path("/data/yzy21/yy/space_agent/chaperone/reports/"
-              "orphan_shortlist_2026-11-23")
+              "protein_pae_2026-11-24")
 
 
 def _molecule_label(name: str) -> str:

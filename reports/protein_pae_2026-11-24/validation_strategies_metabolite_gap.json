@@ -1,0 +1,39 @@
+[
+  {
+    "protein_a": "GPR85",
+    "protein_b": "Noradrenaline",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GPR85-expressing vs mock/parental cells, with a positive-control adrenergic receptor run in parallel and a pocket-mutant arm",
+    "method_rationale": "Noradrenaline is a small-molecule soluble ligand and GPR85 is an orphan 7TM GPCR, so PLA and co-IP don't apply (no protein partner to pull down). A functional readout in receptor-expressing cells directly tests whether noradrenaline activates GPR85, beyond what a docked pose from AF3 can show.",
+    "target_tissues": [
+      "brain",
+      "retina",
+      "skeletal muscle"
+    ],
+    "tissue_rationale": "HPA RNA shows GPR85 enriched in brain (19.1 nTPM), retina (11.2 nTPM) and skeletal muscle (29.7 nTPM). Brain and retina are also noradrenergic-innervated, so they are physiologically plausible. HPA has no data for noradrenaline, which is a metabolite, so the ligand side relies on known neurotransmitter biology. The assay itself is done in a heterologous cell line (HEK293), with native-tissue follow-up second.",
+    "cell_types": [
+      "Retinal amacrine cells",
+      "Retinal bipolar cells",
+      "Retinal horizontal cells"
+    ],
+    "protocol_notes": "1) Express human GPR85 (N-terminal signal sequence/HA or FLAG tag, confirm surface expression by flow cytometry or ELISA) in HEK293 cells. Use mock-transfected cells as the negative control. Because GPR85 is an orphan with unknown G-protein coupling, run several readouts in parallel: a Gs cAMP assay (GloSensor or HTRF), Gi (forskolin-suppressed cAMP), Gq (Ca2+ flux or IP1), and \u03b2-arrestin recruitment (PRESTO-Tango or BRET). Alternatively, use a promiscuous G\u03b116 or chimeric G\u03b1 (Gqi5, Gqs5) system.\n2) Run a noradrenaline dose-response from 1 nM to 100 \u00b5M, with ascorbate/antioxidant in the buffer to prevent catecholamine oxidation. Test structurally related catecholamines (dopamine, adrenaline, L-DOPA), a non-catechol amine (tyramine) and a non-related amine as specificity controls.\n3) Test a pocket-mutant arm: alanine mutants of the AF3-predicted contact residues. Loss of response would support the predicted pose. Optionally add direct binding by radioligand ([3H]-noradrenaline) or label-free methods (SPR/DSF on purified receptor, or a cellular thermal shift assay).\n4) Follow-up in native tissue: use GPR85-expressing retinal or brain cultures, or iPSC neurons, with GPR85 knockdown/knockout to check response dependence.",
+    "controls": "Positive control: \u03b22-adrenergic receptor (cAMP) or \u03b11A (Ca2+) stimulated with noradrenaline, which validates the assay and the ligand batch. Negative controls: mock/parental HEK293 cells, an irrelevant orphan GPCR expressed at a similar level, vehicle with ascorbate, and adrenergic antagonists (propranolol, prazosin, yohimbine) to rule out endogenous HEK adrenergic receptors (HEK293 expresses endogenous \u03b22). Include a GPR85 pocket-mutant and a non-catechol ligand as specificity controls.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET. A high ipTM (0.93) is expected for a small catecholamine placed in any GPCR bundle and is not evidence of specific binding. The ChEMBL lookups failed, so prior activity at GPR85 is unknown rather than absent. The screen is unstable: only 2 of 11 receptors were confident, and the 0.93/0.92 vs 0.90/0.92 folds straddle the 0.91 gate. GPR85 is a true orphan with unknown G-protein coupling, so a negative result in one pathway doesn't rule out signalling in another. Endogenous adrenergic receptors in host cells can cause false positives. Catecholamine oxidation can produce artefacts. HPA gives no protein-level data or subcellular location for GPR85 (RNA only), and none for noradrenaline. Non-neuronal expression (spermatids, Kupffer cells, Hofbauer cells) suggests a more complex biology."
+  },
+  {
+    "protein_a": "GPR153",
+    "protein_b": "Noradrenaline",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: parallel panel with adrenergic receptor-positive control, structurally related catecholamines (dopamine, adrenaline, L-DOPA), and a pocket-mutant GPR153 arm",
+    "method_rationale": "Noradrenaline is a small-molecule soluble ligand and GPR153 is an orphan class-A-like GPCR, so PLA and co-IP are not applicable (no protein partner, and binding is low-affinity and transient). A functional readout in receptor-expressing cells tests agonism directly and allows counter-screening against promiscuity.",
+    "target_tissues": [
+      "No HPA overlap data available; use heterologous HEK293 cells",
+      "Brain (candidate native context, to be confirmed against HPA/literature)"
+    ],
+    "tissue_rationale": "HPA supplied no tissue RNA/protein or single-cell data for GPR153, and noradrenaline is a metabolite with no HPA entry, so no real tissue overlap can be derived from the data. The assay should therefore use a heterologous system (HEK293 or CHO with low endogenous adrenergic receptor expression) with GPR153 transfected versus mock. Brain is only a speculative follow-up, since noradrenergic innervation is the natural noradrenaline source, and it is not supported by the data given here.",
+    "cell_types": [],
+    "protocol_notes": "1) Express N-terminally tagged (e.g. HA/FLAG) GPR153 in HEK293 cells, confirm surface expression by anti-tag flow cytometry or ELISA, and use mock-transfected cells as the baseline. 2) Run a multi-pathway readout, because the G-protein coupling of GPR153 is unknown: cAMP (GloSensor or HTRF; Gs/Gi), Ca2+ flux with or without Gqi5 chimera, and a PRESTO-Tango or \u03b2-arrestin recruitment assay. Use a noradrenaline dose-response from 1 nM to 100 \u00b5M, with ascorbate or antioxidant in the buffer to prevent catecholamine oxidation. 3) Test dopamine, adrenaline, L-DOPA and an unrelated amine such as serotonin for SAR. Confirm any signal is lost with GPR153 pocket mutants (e.g. Ala mutants of the predicted contact residues, especially the putative Asp/Ser anchor residues from the AF3 pose). 4) Optionally confirm direct binding with a radioligand or label-free approach (e.g. [3H]-noradrenaline binding to membranes, or thermal shift/NanoBRET) if a functional response is seen.",
+    "controls": "Positive: \u03b22-adrenergic receptor or \u03b12A-adrenergic receptor cells with noradrenaline, with the matching antagonist (propranolol or yohimbine) to show blockade. Negative: mock-transfected and empty-vector cells, plus an unrelated orphan GPCR or non-catecholamine-binding class-A receptor treated with noradrenaline. Specificity: an oxidised or degraded noradrenaline control, a vehicle/antioxidant-only control, and the GPR153 pocket-mutant arm.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET: the high ipTM (0.92) and ligand pLDDT (79.4) are expected for any small molecule placed in a GPCR bundle and are not evidence of specificity. The interface pTM straddled the 0.91 gate depending on CCD versus SMILES input, and noradrenaline was confident at only 2 of 11 receptors. HPA has no subcellular, tissue or single-cell data for GPR153 and no entry for noradrenaline, so native-tissue relevance is unsupported. Endogenous adrenergic receptors in HEK293 cells (e.g. \u03b22) can give false-positive cAMP responses, so mock cells and antagonists are essential. Orphan GPCRs often have unknown G-protein coupling and may show poor surface trafficking, so a negative result may not rule out the interaction. Noradrenaline auto-oxidation can generate artifacts."
+  }
+]

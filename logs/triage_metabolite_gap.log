@@ -1,0 +1,83 @@
+/data/yzy21/yy/space_agent/chaperone/.venv/lib/python3.13/site-packages/pydantic_settings/sources/utils.py:51: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(  # noqa: B028  (called from many sources at differing depths, so no stacklevel is correct)
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=4-aminobutanoic+acid&format=json "HTTP/1.1 500 Internal Server Error"
+HTTP Request: GET https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/4-aminobutanoic%20acid/property/SMILES,InChIKey/JSON "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__standard_inchi_key=BTCSSZJGUNDROE-UHFFFAOYSA-N&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=Noradrenaline&format=json "HTTP/1.1 500 Internal Server Error"
+HTTP Request: GET https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Noradrenaline/property/SMILES,InChIKey/JSON "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__standard_inchi_key=SFLSHLFXELFNJZ-QMMMGPOBSA-N&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=Noradrenaline&format=json "HTTP/1.1 500 Internal Server Error"
+HTTP Request: GET https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Noradrenaline/property/SMILES,InChIKey/JSON "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__standard_inchi_key=SFLSHLFXELFNJZ-QMMMGPOBSA-N&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=norepinephrine&format=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=gamma-aminobutyric+acid&format=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=GABA&format=json "HTTP/1.1 500 Internal Server Error"
+HTTP Request: GET https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/GABA/property/SMILES,InChIKey/JSON "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__standard_inchi_key=BTCSSZJGUNDROE-UHFFFAOYSA-N&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=norepinephrine&format=json "HTTP/1.1 500 Internal Server Error"
+HTTP Request: GET https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/norepinephrine/property/SMILES,InChIKey/JSON "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__standard_inchi_key=SFLSHLFXELFNJZ-QMMMGPOBSA-N&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q6NV75&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q8NGU9&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/activity?molecule_chembl_id=CHEMBL1437&standard_type__in=AC50%2CEC50%2CIC50%2CKd%2CKi%2CPotency%2CpA2%2CpD2%2CpEC50%2CpIC50%2CpKi&limit=400&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/activity?molecule_chembl_id=CHEMBL96&standard_type__in=AC50%2CEC50%2CIC50%2CKd%2CKi%2CPotency%2CpA2%2CpD2%2CpEC50%2CpIC50%2CpKi&limit=400&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=levarterenol&format=json "HTTP/1.1 500 Internal Server Error"
+HTTP Request: GET https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/levarterenol/property/SMILES,InChIKey/JSON "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__standard_inchi_key=SFLSHLFXELFNJZ-QMMMGPOBSA-N&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q6NV75&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?pref_name__iexact=L-noradrenaline&format=json "HTTP/1.1 500 Internal Server Error"
+HTTP Request: GET https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/L-noradrenaline/property/SMILES,InChIKey/JSON "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__standard_inchi_key=SFLSHLFXELFNJZ-QMMMGPOBSA-N&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/activity?molecule_chembl_id=CHEMBL1437&standard_type__in=AC50%2CEC50%2CIC50%2CKd%2CKi%2CPotency%2CpA2%2CpD2%2CpEC50%2CpIC50%2CpKi&limit=400&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q8NGU9&format=json "HTTP/1.1 500 Internal Server Error"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.ebi.ac.uk/chembl/api/data/activity?molecule_chembl_id=CHEMBL96&standard_type__in=AC50%2CEC50%2CIC50%2CKd%2CKi%2CPotency%2CpA2%2CpD2%2CpEC50%2CpIC50%2CpKi&limit=400&format=json "HTTP/1.1 500 Internal Server Error"
+Wrote 3 verdicts to reports/protein_pae_2026-11-24/verdicts_metabolite_gap.csv
+Reconsidering 0 flagged candidates...
+
+Updated reports/protein_pae_2026-11-24/verdicts_metabolite_gap.csv
+Deterministic gate: 0 flagged, 0 reconsidered, 0 failed
+Designing validation strategies for 2 recommended candidates...
+  GPR153/Noradrenaline: stimulation_assay in ['No HPA overlap data available; use heterologous HEK293 cells', 'Brain (candidate native context, to be confirmed against HPA/literature)']
+  GPR85/Noradrenaline: stimulation_assay in ['brain', 'retina', 'skeletal muscle']
+
+Wrote 2 strategies to /data/yzy21/yy/space_agent/chaperone/data/validation_strategies.json
+Wrote reports/protein_pae_2026-11-24/report_metabolite_gap.html (3 candidates)
+Review agent: 1 findings ({'info': 1}) -> /data/yzy21/yy/space_agent/chaperone/data/review_findings.json

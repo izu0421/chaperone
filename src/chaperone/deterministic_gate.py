@@ -300,6 +300,22 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
     }
 
 
+def _has_membrane_topology(fold_results: list, gene: str) -> bool:
+    """True when BOTH chains of the fold carry membrane topology.
+
+    Read off the fold rather than from an annotation lookup, because this is
+    asking about the chain that was actually modelled. A soluble partner
+    contributes an empty interface_topology list; a membrane partner does not.
+    """
+    for r in fold_results:
+        for iface in (r.get("structural_analysis") or {}).get("interfaces", []):
+            a = set(iface.get("interface_topology_a") or [])
+            b = set(iface.get("interface_topology_b") or [])
+            if a and b:
+                return True
+    return False
+
+
 def fold_evidence_status(fold_results: list, partner_is_cytosolic: bool = False) -> dict:
     """Returns {"status": "pass"|"ptm_only_concern"|"topology_violation"|"not_run", "trace": str}.
     Distinguishes two different-severity concerns rather than lumping them:
@@ -322,6 +338,17 @@ def fold_evidence_status(fold_results: list, partner_is_cytosolic: bool = False)
     # live when KLRK1/CD69 was flagged for a plain disulfide bond at the
     # interface, not an unmodeled glycan.
     ARTIFACT_RISK_PTM_TYPES = {"Glycosylation", "Lipidation"}
+
+    # Half of "does the partner have a cytosolic surface" is readable from the
+    # fold itself: a chain carrying its own membrane topology has one. Inferring
+    # it here rather than requiring every caller to pass it is what stops the
+    # two other call sites (build_report.classify_validation and
+    # resolve_ptm_artifact) from silently disagreeing with the gate on the same
+    # fold, which they did while this was a caller-supplied default of False.
+    # The caller still supplies the other half, a soluble partner annotated as
+    # cytosolic, because only the HPA classes can say that.
+    partner_is_cytosolic = partner_is_cytosolic or _has_membrane_topology(fold_results, "")
+
     ptm_notes, topology_notes = [], []
     for r in fold_results:
         for iface in (r.get("structural_analysis") or {}).get("interfaces", []):
@@ -547,22 +574,6 @@ def ligand_pose_status(fold_results: list) -> dict:
                   + ("; and it contacts a cytoplasmic domain, which no cognate ligand "
                      "does" if wrong_side else "")),
     }
-
-
-def _has_membrane_topology(fold_results: list, gene: str) -> bool:
-    """True when BOTH chains of the fold carry membrane topology.
-
-    Read off the fold rather than from an annotation lookup, because this is
-    asking about the chain that was actually modelled. A soluble partner
-    contributes an empty interface_topology list; a membrane partner does not.
-    """
-    for r in fold_results:
-        for iface in (r.get("structural_analysis") or {}).get("interfaces", []):
-            a = set(iface.get("interface_topology_a") or [])
-            b = set(iface.get("interface_topology_b") or [])
-            if a and b:
-                return True
-    return False
 
 
 def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:

@@ -1,0 +1,4 @@
+Deterministic checks: 1 findings
+Running LLM consistency audit over 4 recommended candidates...
+
+Wrote 1 findings to reports/protein_pae_2026-11-24/review_findings.json: {'info': 1}

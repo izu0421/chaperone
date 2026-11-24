@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "info",
+    "pair": null,
+    "check": "recommended_tier_ratio",
+    "detail": "2/3 candidates (67%) are tiered 'recommended for validation'. If this is most of the dataset, the tiers are excluding little and may not feel like a real prioritization \u2014 worth a human sanity check on whether the tier boundaries are too permissive."
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "protein_a": "NMS",
+    "protein_b": "GPR158",
+    "method": "stimulation_assay",
+    "method_variant": "Mature amidated NMS-23/NMS-33 peptide vs. full precursor, with and without GPR158 N-glycosylation-site mutants; include RGS7-GNB5 co-expression arm",
+    "method_rationale": "NMS is a secreted neuropeptide and GPR158 is a plasma-membrane GPCR, so this is a paracrine ligand-receptor pair. A functional readout in receptor-expressing cells is more informative than co-localization. GPR158 is an atypical class C orphan that signals through the RGS7-GNB5 complex, so the readout must reflect that.",
+    "target_tissues": [
+      "brain",
+      "cerebral cortex",
+      "retina"
+    ],
+    "tissue_rationale": "GPR158 RNA is highest in brain (10.1 nTPM) and retina (4.2 nTPM), with protein in cerebral cortex. NMS RNA is detected only in brain (1.0 nTPM) and is annotated as secreted in brain, so brain/cortex is the only real overlap. Retina is a GPR158-only counter-tissue. The lymphoid tissue protein signal for GPR158 is likely antibody background and was not used.",
+    "cell_types": [
+      "Other brain neurons",
+      "cortical neurons"
+    ],
+    "protocol_notes": "1) Use HEK293 or CHO cells stably expressing GPR158 plus RGS7 and GNB5. Use mock-transfected cells as the baseline. Stimulate with synthetic mature amidated NMS-23 and NMS-33, and also with a precursor-like longer construct, over a dose range of 1 nM to 10 \u00b5M. Confirm GPR158 surface expression by non-permeabilized staining or surface biotinylation.\n2) Readouts: cAMP (GloSensor or HTRF) for Gi/o-type modulation, since GPR158 is known to act through RGS7-GNB5 to suppress cAMP and GPCR-G\u03b1i/o signalling. Add a BRET assay for G\u03b1o and RGS7 dissociation or recruitment. Add a Ca2+/NFAT reporter with a promiscuous G\u03b116 or Gqi5 chimera as an orthogonal screen.\n3) Binding: run an orthogonal binding assay (labelled NMS ligand on live cells, or SPR/BLI with the purified GPR158 extracellular domain) to separate true binding from nonspecific signalling. Validate in primary cortical neuron cultures or acute slices by testing for an NMS-induced cAMP change that is lost on GPR158 knockdown or knockout.",
+    "controls": "Positive: a known neuromedin U receptor (NMUR1 or NMUR2) with NMS gives a robust response, which shows the peptide is active. Forskolin-induced cAMP in GPR158 cells with a known GPR158 ligand, such as osteocalcin or glycine-conjugated bile acids, serves as a GPR158 positive control. Negative: parental cells lacking GPR158, a scrambled or non-amidated NMS peptide, an unrelated neuropeptide, GPR158 knockout cells or siRNA, and a receptor-dead or truncated GPR158 mutant.",
+    "caveats": "Confidence is low: ipTM is 0.56, interface pLDDT is 56, and only 1 of the 3 receptors tested passed the gate. The 5202 \u00c5\u00b2 interface suggests AF3 folded the full NMS precursor and not the processed, amidated mature peptide, so the modeled interface may not exist for the active ligand. It is unchecked whether the interface faces the extracellular side or overlaps any of GPR158's 5 glycosylation sites, so glycosylation could gate or block binding in reality. GPR158 is an orphan, atypical class C receptor with an unusual signalling mode and a large extracellular domain, so a negative result in a generic readout may be a false negative. NMS expression in HPA is low (1.0 nTPM), and NMS is known to act through NMUR1/NMUR2, so any response could come from an endogenous NMU receptor in the cells. Use NMUR-null cells or an NMUR antagonist."
+  },
+  {
+    "protein_a": "CCL11",
+    "protein_b": "GPR132",
+    "method": "stimulation_assay",
+    "method_variant": "",
+    "method_rationale": "CCL11 is a secreted chemokine (HPA: secreted to blood) and GPR132 is a 7TM GPCR, so a paracrine ligand-receptor model fits. A functional readout in receptor-expressing cells also tests agonism, which co-localization would not, and GPR132 is a lipid/proton sensor, so binding alone would be hard to interpret.",
+    "target_tissues": [
+      "Skin (fibroblast-rich dermis, CCL11 source)",
+      "Lung (fibroblasts, CCL11 source)",
+      "Bone marrow / blood (GPR132-expressing myeloid and macrophage cells, receptor side)",
+      "Spleen / lymphoid tissue (immune cells, receptor side)"
+    ],
+    "tissue_rationale": "HPA gives no tissue-level RNA or protein data for either protein. The only cell-type data is CCL11 RNA in fibroblasts (44.2 nCPM), and GPR132 has no HPA expression entry. There is no demonstrated overlap, so the ligand side is fibroblast-rich tissue and the receptor side is immune cells, where GPR132 (G2A) is reported from prior knowledge, not from HPA. These tissue choices for GPR132 are therefore unverified assumptions. The assay uses recombinant ligand or co-culture, so no shared tissue is required.",
+    "cell_types": [
+      "Fibroblasts (CCL11 source)",
+      "Macrophages / monocytes (candidate GPR132-expressing cells)",
+      "Lymphocytes / T cells (candidate GPR132-expressing cells)"
+    ],
+    "protocol_notes": "1) Make receptor cells: HEK293 or CHO cells stably expressing human GPR132, with parental cells and CCR3-expressing cells as comparators. Use a Tango/PathHunter \u03b2-arrestin recruitment assay as the primary readout, with Ca2+ flux (plus Gqi5 or G\u03b115 co-expression) and cAMP/pERK as secondary readouts. 2) Stimulate with recombinant human CCL11 across a dose range (about 0.1 nM\u20131 \u00b5M, 10 points) and compare with 9-HODE or lactate/low-pH as the GPR132 reference agonist. Also test CCL11 plus a CCR3 antagonist to exclude endogenous CCR3 signalling. 3) Confirm binding with a flow-cytometry or surface-binding assay using tagged or biotinylated CCL11 on GPR132-transfected versus parental cells. 4) If positive, repeat in primary macrophages or in co-culture with CCL11-secreting fibroblasts (IL-4/TNF-stimulated), with GPR132 knockdown.",
+    "controls": "Positive: CCL11 on CCR3-expressing cells (calcium flux/chemotaxis), and 9-HODE or low pH on GPR132 cells. Negative: parental cells, empty-vector cells, heat-denatured CCL11, an unrelated chemokine such as CCL2 on GPR132 cells, and a GPR132 signalling-dead or knockdown line. Include a pH-matched vehicle, because GPR132 is proton-sensitive and buffer pH could cause false positives.",
+    "caveats": "Confidence is low: ipTM 0.56, interface pLDDT 71.1, p_twoway 0.05. GPR132 is a lipid/proton sensor, and CCL11 signals mainly through CCR3, so a negative result is a plausible outcome. Both proteins carry one glycosylation site, and its position relative to the modeled interface was not checked, so AF3 may have modeled a bare-sequence interface. If the response is weak, test deglycosylated CCL11 (PNGase F) or N-glycan site mutants. HPA gives no tissue or protein-level expression for GPR132 and RNA only in fibroblasts for CCL11, so the tissue choices are partly inferred. GPR132 constitutive or proton-driven activity may give a high baseline. Recombinant CCL11 from E. coli lacks glycosylation, while mammalian-expressed CCL11 carries it.",
+    "controls_placeholder": ""
+  },
+  {
+    "protein_a": "CALCB",
+    "protein_b": "MAS1L",
+    "method": "stimulation_assay",
+    "method_variant": "Mature amidated CALCB peptide vs. propeptide-containing precursor, with and without RAMP1 co-expression",
+    "method_rationale": "CALCB is a secreted hormone and MAS1L is an orphan plasma-membrane GPCR, so the two proteins need not sit in the same cell. A functional readout in receptor-expressing cells fits better than co-localization, and it also tests whether the mature peptide is active. RAMP1 is listed as an extra subunit, so it is included as a variable.",
+    "target_tissues": [
+      "thyroid gland",
+      "brain",
+      "cervix",
+      "intestine"
+    ],
+    "tissue_rationale": "CALCB RNA is highest in thyroid gland (19.3 nTPM) and brain (8.7 nTPM), and CALCB protein is detected in intestine. MAS1L RNA is only detected in cervix (2.9 nTPM), so the two have no real tissue overlap. The assay therefore uses a heterologous receptor-expressing cell line (HEK293) with recombinant peptide. Cervix is the physiological receptor side, and thyroid, brain and gut are the ligand sources.",
+    "cell_types": [
+      "HEK293 cells transfected with MAS1L \u00b1 RAMP1",
+      "thyroid C-cells (CALCB source)",
+      "cervical epithelial/stromal cells (MAS1L side)",
+      "enteric neurons/enteroendocrine cells (CALCB source)"
+    ],
+    "protocol_notes": "1) Transfect HEK293 cells with epitope-tagged MAS1L, with or without RAMP1. Confirm surface expression by anti-tag flow cytometry or surface biotinylation, because MAS-related GPCRs often traffic poorly. 2) Stimulate with synthetic mature amidated CALCB (37 aa) over a dose range of 1 pM\u201310 \u00b5M, and in parallel with a propeptide-containing precursor or non-amidated peptide. Read out cAMP (GloSensor or HTRF), Ca2+ flux (Fluo-4/FLIPR, including Gq/G\u03b115 co-expression) and \u03b2-arrestin recruitment (NanoBiT or Tango), since MAS1L G-protein coupling is unknown. 3) Add the CGRP receptor antagonist olcegepant/BIBN4096 and the truncated peptide CGRP8-37 to test specificity. Then test direct binding with a fluorescent or biotinylated CALCB peptide, and optionally follow up with co-IP of tagged MAS1L with CALCB. 4) If a response appears, confirm it in a cell line or primary cells endogenously expressing MAS1L, such as cervical cells, by RT-qPCR and siRNA knockdown.",
+    "controls": "Positive controls: CALCB or \u03b1CGRP on CALCRL+RAMP1 cells (cAMP rise), and a known MAS1L or MRGPR agonist if one exists. For Mas-related receptors, angiotensin-(1-7) on MAS1 is a family control. Negative controls: mock-transfected or empty-vector HEK293 cells, a scrambled or irrelevant peptide, a MAS1L-negative GPCR such as \u03b22-adrenergic receptor stimulated with CALCB, and the vehicle. Include forskolin, ATP or ionomycin as assay-viability controls.",
+    "caveats": "Confidence is low: ipTM is 0.48, interface pLDDT is 61.2 and there was only a single selective hit in the screen. AF3 folded the full CALCB precursor (505 tokens, 5512 \u00c5^2 buried), so part of the predicted interface may involve propeptide that is absent from the circulating mature 37-aa amidated hormone. The mature peptide could therefore fail to activate MAS1L, and the precursor-versus-mature comparison is built in to test this. MAS1L has very low RNA expression (cervix, 2.9 nTPM) and no protein data in HPA, and it may be a pseudogene-like or poorly expressed receptor, so overexpression artifacts are possible. Its signaling pathway is unknown, so the readout may be missed. RAMP1 involvement is hypothetical, and CALCB also acts on the endogenous CGRP receptor in HEK293 cells, so use a CALCRL-null background or CALCRL-targeting antagonist or knockout controls."
+  },
+  {
+    "protein_a": "MST1",
+    "protein_b": "GPR37",
+    "method": "stimulation_assay",
+    "method_variant": "",
+    "method_rationale": "MST1 is a liver-secreted protein found in blood, and GPR37 is a GPCR expressed in brain and retina. The two are unlikely to share a cell, so PLA is a poor fit. A ligand-stimulation readout in receptor-expressing cells tests the paracrine/endocrine model directly.",
+    "target_tissues": [
+      "liver",
+      "brain",
+      "cerebral cortex",
+      "retina"
+    ],
+    "tissue_rationale": "There is no real overlap. MST1 RNA is almost entirely in liver (864 nTPM; hepatocytes 369 nCPM). GPR37 is in brain (67 nTPM; cerebral cortex protein is high) and retina (36 nTPM), with M\u00fcller glia (809 nCPM) and oligodendrocytes (388 nCPM) as the main cell types. The assay therefore uses recombinant or hepatocyte-derived MST1 applied to GPR37-bearing cells. Circulating MST1 could in principle reach the CNS or retina, but only if it crosses the blood-brain or blood-retina barrier.",
+    "cell_types": [
+      "Hepatocytes (MST1 source)",
+      "M\u00fcller glia",
+      "Oligodendrocytes / oligodendrocyte precursor cells"
+    ],
+    "protocol_notes": "1) Use HEK293 cells, which lack endogenous GPR37, transfected with GPR37 versus empty vector. Add a second arm with oligodendrocyte-lineage cells (e.g. MO3.13, or primary OPCs) or M\u00fcller glia (MIO-M1) that express GPR37 endogenously. 2) Stimulate with recombinant human MST1 (full-length, mammalian-expressed; test 1\u2013500 nM; 5\u201360 min). Run an alternative arm with conditioned medium from HepG2 or primary hepatocytes, with and without an MST1 siRNA or neutralising antibody. 3) Readouts: cAMP (GloSensor or HTRF, to test both Gi and Gs coupling), pERK1/2 western blot, and \u03b2-arrestin recruitment (NanoBiT or Tango). Also check surface GPR37 binding with a tagged MST1 (flow cytometry or an AP-fusion binding assay) to separate binding from signalling. 4) Confirm that MST1 is the correct, mature sequence. Test both the pro-form and the processed \u03b1/\u03b2-chain form, because MST1 is cleaved. Express GPR37 with an N-terminal tag, because it is prone to intracellular retention and misfolding.",
+    "controls": "Positive: prosaposin or its peptide TX14(A), the reported GPR37 ligands, in GPR37-transfected cells. A GPCR-generic stimulus such as forskolin gives a cAMP assay control. For MST1 signalling, use MST1 on RON (MST1R)-expressing cells, which should give pERK or pRON. Negative: empty-vector or parental cells, heat-denatured MST1, an unrelated recombinant protein of similar size (e.g. plasminogen or HGF), and GPR37 knockout or siRNA in the endogenous cells. GPR37L1 can serve as a paralog specificity control.",
+    "caveats": "The AF3 confidence is low (ipTM 0.52, interface pLDDT 70.9, p_twoway 0.05), so a negative result is quite likely. The glycosylation check is incomplete, and MST1 is heavily glycosylated and proteolytically processed, so the modelled bare-sequence interface may not be real. The identity of the modelled MST1 sequence also needs confirming. HPA places GPR37 mainly at the nuclear membrane/intracellular compartments, and the protein is known to be retained in the ER, so surface signalling may be weak without optimisation. MST1 is also annotated as both vesicular and secreted. Endogenous MST1 and GPR37 sit in different organs, so any physiological relevance depends on whether circulating MST1 reaches GPR37-expressing CNS or retinal cells. MST1 already has a known receptor, RON, which could confound the readouts in cells that express it."
+  }
+]

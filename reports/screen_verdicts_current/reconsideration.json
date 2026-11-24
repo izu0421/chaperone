@@ -1,0 +1,10 @@
+{
+ "flagged": 37,
+ "reconsidered": 37,
+ "failed": 0,
+ "verdicts_changed": 37,
+ "poses_measured": 5000,
+ "refolds_executed": 0,
+ "source": "backfilled from the run logs by hand; runs after 2026-11-24 write this file themselves from run_pipeline",
+ "poses_note": "folds measured for enclosure and topology, from structural_modelling/results/orphan_pose.csv; was 146 while the UniProt topology cache was missing 18 of 75 receptors"
+}

@@ -146,29 +146,49 @@ def main() -> int:
         acc = {g: acc[g] for g in man.receptor.unique() if g in acc}
     log.info("%d receptors to fetch topology for", len(acc))
 
-    # UniProt topology once per receptor, cached: 256 folds share 16 receptors
-    if CACHE.exists():
-        topo = json.loads(CACHE.read_text())
+    # UniProt topology once per receptor, cached: 256 folds share 16 receptors.
+    #
+    # The cache is REPAIRED, not just loaded. The previous version refused to
+    # write only when EVERY receptor came back empty, and then never retried on
+    # a cache hit -- so a partial failure was permanent and invisible. It
+    # happened: 18 of the 75 orphan receptors (GPR3, GPR4, GPR35, GPR65,
+    # GPR88, GPR132, MAS1L and 11 more) sat in this file with zero terms while
+    # UniProt has full seven-helix annotation for all of them, and anything
+    # reading the cache concluded "no transmembrane annotation" for a class A
+    # GPCR. An all-or-nothing guard protects against total failure and lets
+    # partial failure straight through, which is the commoner case.
+    topo = json.loads(CACHE.read_text()) if CACHE.exists() else {}
+    if topo:
         log.info("topology for %d receptors from cache", len(topo))
-    else:
+    todo = {g: a for g, a in acc.items() if not topo.get(g)}
+    if todo:
+        log.info("re-fetching %d receptors with no cached topology: %s",
+                 len(todo), sorted(todo))
         af = _load_af()
-        topo = {}
-        for gene, ac in acc.items():
-            # the same fetch analyze_fold.analyze() uses, so the topology the pose is
-            # scored against is the topology the triage agent sees
+        for gene, ac in todo.items():
             feats = af.fetch_uniprot_features(ac) if ac else []
             topo[gene] = af._filter_features(feats, af.TOPOLOGY_FEATURE_TYPES)
             log.info("  %s (%s): %d topology features, %d transmembrane", gene, ac,
                      len(topo[gene]),
                      sum(1 for t in topo[gene] if "ransmembrane" in str(t)))
-        # An empty topology for every receptor is indistinguishable, downstream, from
-        # "the ligand never touches a transmembrane segment" -- which would be a
-        # dramatic finding and was in fact a failed API call. Refuse to cache it.
-        if not any(topo.values()):
-            raise SystemExit("no topology for any receptor: the UniProt fetch failed. "
-                             "Zero transmembrane contacts would otherwise be reported "
-                             "as a result.")
+
+        still_empty = sorted(g for g in acc if not topo.get(g))
+        # A per-receptor check, not an any(). These are all seven-pass receptors,
+        # so an empty result is a failed call and not a biological fact, and the
+        # fraction that may be genuinely unannotated is small.
+        if len(still_empty) > 0.1 * len(acc):
+            raise SystemExit(
+                f"{len(still_empty)} of {len(acc)} receptors have no topology after a "
+                f"re-fetch: {still_empty[:12]}. These are seven-pass receptors, so that "
+                f"is a failed fetch and not an annotation gap; refusing to cache it, "
+                f"because downstream it is indistinguishable from 'the ligand never "
+                f"touches a transmembrane segment'.")
+        if still_empty:
+            log.warning("%d receptors still have no topology and are cached as empty: %s",
+                        len(still_empty), still_empty)
         CACHE.write_text(json.dumps(topo, indent=1))
+        log.info("cache repaired: %d receptors, %d with topology",
+                 len(topo), sum(1 for v in topo.values() if v))
 
     jobs = [(r.job, acc.get(r.receptor, ""), topo.get(r.receptor, []))
             for r in man.itertuples()]

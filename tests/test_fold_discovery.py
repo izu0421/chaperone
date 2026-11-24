@@ -190,3 +190,25 @@ def test_a_membrane_partner_is_read_off_the_fold_as_having_a_cytosolic_surface(g
     }]}}]
     assert gate._has_membrane_topology(membrane, "ADORA1") is True
     assert gate._has_membrane_topology(soluble, "CTSG") is False
+
+
+def test_a_membrane_partner_is_inferred_without_the_caller_saying_so(gate, tmp_path, monkeypatch):
+    """The footgun this closes: fold_evidence_status took the cytosolic flag as
+    a caller-supplied default of False, and two other call sites
+    (build_report.classify_validation, resolve_ptm_artifact) take the default.
+    They therefore read the same fold differently from the gate. The membrane
+    half is readable from the fold, so it is inferred rather than required."""
+    _write_agentfold(tmp_path, "ADORA1", "GPR62")
+    monkeypatch.setattr(gate, "_get_accession", lambda gene: f"ACC_{gene}")
+    monkeypatch.setattr(gate, "analyze", lambda cif, accs: {
+        "interfaces": [{
+            "chain_a": "A", "chain_b": "B",
+            "ptm_sites_at_interface_a": [], "ptm_sites_at_interface_b": [],
+            # both chains carry topology: two proteins in the same bilayer
+            "interface_topology_a": ["Cytoplasmic"], "interface_topology_b": ["Cytoplasmic"],
+        }]
+    })
+    row = {"protein_a": "ADORA1", "protein_b": "GPR62"}
+    results = gate.gather_fold_results(row, tool_calls=[], fold_by_pair={})
+    # the caller says nothing, as build_report does
+    assert gate.fold_evidence_status(results)["status"] == "pass"

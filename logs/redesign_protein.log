@@ -1,0 +1,7 @@
+Designing validation strategies for 4 recommended candidates...
+  NMS/GPR158: stimulation_assay in ['brain', 'cerebral cortex', 'retina']
+  CCL11/GPR132: stimulation_assay in ['Skin (fibroblast-rich dermis, CCL11 source)', 'Lung (fibroblasts, CCL11 source)', 'Bone marrow / blood (GPR132-expressing myeloid and macrophage cells, receptor side)', 'Spleen / lymphoid tissue (immune cells, receptor side)']
+  MST1/GPR37: stimulation_assay in ['liver', 'brain', 'cerebral cortex', 'retina']
+  CALCB/MAS1L: stimulation_assay in ['thyroid gland', 'brain', 'cervix', 'intestine']
+
+Wrote 4 strategies to reports/protein_pae_2026-11-24/validation_strategies.json

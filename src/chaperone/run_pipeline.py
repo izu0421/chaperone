@@ -140,6 +140,28 @@ def write_report(results: list[dict], out_path: Path) -> None:
             )
 
 
+def candidate_rows_with_an_executed_fold(csv_path, fold_summary_path):
+    """Pairs for which a real on-demand fold was executed during the run.
+
+    Counted from the fold summary rather than from a flag the agent sets, so a
+    fold the agent claims and did not run cannot inflate it.
+    """
+    try:
+        summary = json.loads(Path(fold_summary_path).read_text())
+    except (OSError, ValueError):
+        return []
+    folded = {str(k) for k in (summary if isinstance(summary, dict) else {})}
+    out = []
+    with open(csv_path, newline="") as fh:
+        for row in csv.DictReader(fh):
+            for key in (f"{row['protein_a']}__{row['protein_b']}",
+                        f"{row['protein_b']}__{row['protein_a']}"):
+                if key in folded:
+                    out.append(key)
+                    break
+    return out
+
+
 def main():
     load_dotenv(ROOT / ".env")
     parser = argparse.ArgumentParser()
@@ -197,17 +219,43 @@ def main():
               f"failed and they were recorded as INSUFFICIENT_EVIDENCE. Re-run those before trusting "
               f"any downstream tier, gate or report.")
 
+    # What the gate did, recorded beside the verdicts and not only printed.
+    # The figure needs these counts and had been reading them out of a run log,
+    # which is a record of the step but not one anything can load.
+    recon = {"flagged": 0, "reconsidered": 0, "failed": 0, "verdicts_changed": 0,
+             "refolds_executed": 0, "skipped": True}
     if not args.skip_gate:
+        before = {}
+        with open(out_path, newline="") as fh:
+            for row in csv.DictReader(fh):
+                before[f"{row['protein_a']}/{row['protein_b']}"] = row.get("verdict")
         gate_stats = asyncio.run(run_gate_reconsideration(out_path, LOG_DIR, Path(args.fold_summary)))
+        changed = 0
+        with open(out_path, newline="") as fh:
+            for row in csv.DictReader(fh):
+                k = f"{row['protein_a']}/{row['protein_b']}"
+                if k in before and before[k] != row.get("verdict"):
+                    changed += 1
+        recon = {**gate_stats, "verdicts_changed": changed, "skipped": False}
         print(f"Deterministic gate: {gate_stats['flagged']} flagged, "
-              f"{gate_stats['reconsidered']} reconsidered, {gate_stats['failed']} failed")
+              f"{gate_stats['reconsidered']} reconsidered, {gate_stats['failed']} failed, "
+              f"{changed} verdicts changed")
 
     if not args.skip_fold_reconsideration:
         asyncio.run(run_fold_reconsideration(out_path, Path(args.fold_summary)))
+    recon["refolds_executed"] = sum(
+        1 for c in candidate_rows_with_an_executed_fold(out_path, Path(args.fold_summary)))
+    (Path(args.out).parent / "reconsideration.json").write_text(
+        json.dumps(recon, indent=1) + "\n")
 
     strategies = []
     if not args.skip_validation_strategies:
-        strategies_path = DATA_DIR / "validation_strategies.json"
+        # Beside the verdicts, not in a fixed data/ path. Two runs in the same
+        # session overwrite each other there: a 3-candidate metabolite run
+        # replaced a 57-candidate protein run's 4 strategies with its own 2,
+        # and the same thing had already happened once before this. The run's
+        # own directory is the only place its outputs cannot collide.
+        strategies_path = Path(args.out).parent / "validation_strategies.json"
         strategies = asyncio.run(run_validation_design(out_path, strategies_path, log_dir=LOG_DIR, fold_summary_path=Path(args.fold_summary)))
 
     if not args.skip_report:
@@ -219,7 +267,7 @@ def main():
         findings = deterministic_checks(rows, strategies, LOG_DIR, Path(args.fold_summary))
         if strategies:
             findings += asyncio.run(llm_audit(rows, strategies))
-        findings_path = DATA_DIR / "review_findings.json"
+        findings_path = Path(args.out).parent / "review_findings.json"
         findings_path.write_text(json.dumps(findings, indent=2))
         by_sev = {}
         for f in findings:
