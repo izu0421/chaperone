@@ -65,6 +65,17 @@ def main():
         if find_contradictions(row, facts):
             flagged.append(key(row))
 
+    # How often the topology rule actually fires, counted on the PUBLISHED
+    # verdicts, because the manuscript quotes it and a number measured in a
+    # shell session traces to nothing.
+    topo = 0
+    for row in new:
+        tool_calls = load_tool_calls(row, LOG_DIR)
+        facts = compute_gate_facts(row, tool_calls,
+                                   gather_fold_results(row, tool_calls, fold_by_pair))
+        if facts["fold_evidence_status"] == "topology_violation":
+            topo += 1
+
     first_by, new_by = {key(r): r for r in first}, {key(r): r for r in new}
     changed = [k for k in first_by if first_by[k]["verdict"] != new_by[k]["verdict"]]
     this_round = [k for k in {key(r): r for r in old}
@@ -73,6 +84,7 @@ def main():
     print(f"against the first published run ({ORIGINAL.name if ORIGINAL.exists() else PUBLISHED.name}):")
     print(f"  gate flags {len(flagged)}/{len(first)} candidates with every rule live")
     print(f"  {len(changed)} verdicts differ, {len(this_round)} of them changed in this round")
+    print(f"  {topo}/{len(new)} carry a membrane-topology violation under the current rule")
     for k in sorted(changed):
         mark = '*' if k in this_round else ' '
         print(f"  {mark} {k}: {first_by[k]['verdict']} -> {new_by[k]['verdict']}")
@@ -97,6 +109,7 @@ def main():
     summary["gate_reconsidered"] = len(flagged)
     summary["gate_changed"] = len(changed)
     summary["gate_rounds"] = 1 + sum(1 for q in REPORT.glob("verdicts.csv.pre-regate*"))
+    summary["topology_violations"] = topo
     summary["recommended"] = sum(r["verdict"] in RECOMMENDED for r in new)
     summary["note"] = ("gate_flagged/reconsidered are the fixed gate run over the "
                        "pre-reconsideration verdicts; gate_changed is a diff of the "

@@ -11,3 +11,6 @@ fold_runs/
 
 # re-gate backups: git history already holds every published verdicts.csv
 reports/**/verdicts.csv.pre-regate*
+
+# third-party interaction tables, fetched not committed (see bench/gtopdb_raw.README.md)
+structural_modelling/bench/gtopdb_raw/

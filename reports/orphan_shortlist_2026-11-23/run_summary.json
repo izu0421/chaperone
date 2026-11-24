@@ -11,5 +11,6 @@
   "review_findings": 22,
   "recommended": 3,
   "note": "gate_flagged/reconsidered are the fixed gate run over the pre-reconsideration verdicts; gate_changed is a diff of the two verdict files; every other number is counted from the files in this directory",
-  "gate_rounds": 4
+  "gate_rounds": 4,
+  "topology_violations": 69
 }
