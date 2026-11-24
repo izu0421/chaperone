@@ -90,6 +90,37 @@ suppressing, not findings. No small-molecule candidate is confirmed: the agent c
 one a promiscuous pocket from database evidence alone, which is what a 256-fold
 counter-screen concluded independently from the folds.</p>
 
+<h2>Two construct corrections, pulling opposite ways</h2>
+<p>A fold can be wrong about <em>where</em> the partner sits without being wrong about
+<em>whether</em> it binds. Two re-folds test that, and they disagree, which is the useful
+outcome.</p>
+
+<p><b>Cutting the receptor to its extracellular domain supports one pair.</b> If a
+secreted partner is modelled against the cytoplasmic face, removing the membrane region
+means the wrong face no longer exists. Only two of fourteen receptors have a real domain
+left after that cut. GPR158 holds neuromedin S at interface PAE 1.40&ndash;1.59 across 25
+models, better than the intact receptor&rsquo;s 2.26, while the same cut domain against
+albumin reaches 22.8&ndash;24.9 and against lysozyme 12.7&ndash;14.3. Every one of the 25
+candidate models beats every one of the 50 decoy models, so the cut face is revealing a
+surface rather than creating one &mdash; which is the failure the decoys are there to
+catch.</p>
+
+<p><b>Cutting the signal peptide off the ligand removes several.</b> Every secreted
+partner entered the screen as its full preprohormone, including the 20&ndash;26 residues
+that are cleaved in the ER and are absent when the ligand meets the receptor. Re-folding
+with the mature chain, at the same single seed so only the construct differs, moves
+interface PAE by a median of +4.6 &#8491; over the first 11 pairs: better for one,
+unchanged for two, worse for seven. CCL11 at GPR132 goes from 3.01 to 23.12 and interface
+pTM from 0.56 to 0.13.</p>
+
+<p>That collapse is not a broken construct: the mature sequences match the UniProt chain
+boundaries, the alignment frame is intact, and both chains still fold &mdash; receptor
+pLDDT moves by a median of &minus;0.4 and partner pLDDT by &minus;0.2. Only the interface
+goes. For most of these pairs the signal peptide was not misplacing the partner, it was
+<em>supplying</em> the interface, and the confidence recorded for them belongs to a
+peptide that does not exist in the cell. One of them is in the confirmed list above. The
+remaining 35 re-folds are running and the shortlist will be re-ranked on them.</p>
+
 <h2>Code</h2>
 <p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;
 the pipeline, the deterministic gate and its rules, and the tests.</p>
