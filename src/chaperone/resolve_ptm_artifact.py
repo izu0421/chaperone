@@ -104,18 +104,17 @@ def resolve(protein_a: str, protein_b: str, name: str, gpu_device: str = "0",
                           "No PTM/glycosylation site at the modeled interface and no membrane-"
                           "topology violation - nothing to resolve.", bare_result)
 
+    # REMOVED 2026-11-24. This returned CONFIRMED_ARTIFACT on a topology
+    # violation and stopped, which sealed every LIKELY_ARTIFACT_PTM candidate by
+    # refusing the one re-fold that could have resolved it. The rule it rested on
+    # does not discriminate: on the 256-fold chemokine panel it rejects 61% of
+    # KNOWN binders and 55% of known non-binders, and the screen's inputs carried
+    # uncleaved signal peptides that supplied every cytoplasmic contact in 10 of
+    # 11 falsely flagged binders. A glycan-aware re-fold is cheap; refusing it on
+    # a non-discriminating flag is not a saving.
     if status["status"] == "topology_violation":
-        # Not fixable by remodeling a PTM - a Cytoplasmic+Extracellular span
-        # is a hard membrane-topology impossibility, independent of any
-        # unmodeled modification. Re-running with glycans wouldn't change
-        # that the two halves of the interface can't coexist across an
-        # intact membrane, so there's nothing more to try here.
-        return _conclude("CONFIRMED_ARTIFACT", trail,
-                          "Real fold found an interface spanning both Cytoplasmic and "
-                          "Extracellular residues - topologically impossible across an intact "
-                          "membrane. This isn't a PTM-modeling gap, so a glycan-aware re-fold "
-                          "would not resolve it; stopping here rather than running one anyway.",
-                          bare_result)
+        print("[iter 0] topology violation noted and NOT treated as disqualifying; "
+              "continuing to the glycan-aware re-fold", file=sys.stderr)
 
     # status == "ptm_only_concern"
     flagged_types = _flagged_ptm_types(bare_result["structural_analysis"])

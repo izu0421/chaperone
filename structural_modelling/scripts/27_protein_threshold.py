@@ -44,7 +44,22 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 log = logging.getLogger("prot-threshold")
 ROOT = Path(__file__).resolve().parent.parent
 N_BOOT = 2000
-MIN_SEP = 1.5                 # the clash check, unchanged from the screen
+# The clash floor. Measured 2026-11-24 on the 2,500-pair benchmark: minimum
+# inter-chain separation is ANTI-predictive as a score (AUROC 0.402), because a
+# real interface is TIGHT -- a floor removes the closest contacts first, and at
+# 1.5 A it removes 12.0% of positives against 8.4% of negatives.
+#
+#   floor   removes pos   removes neg   recall   precision
+#     0.0          0.0%          0.0%    56.0%       85.4%
+#     0.5          1.2%          0.6%    55.4%       85.2%
+#     1.5         12.0%          8.4%    50.2%       83.9%   <- was in use
+#
+# It is kept, because a model with atoms closer than half an angstrom is two
+# atoms in the same place and this project has shipped a design at 0.40 A before.
+# But it is a check on physical possibility, not a confidence term, so it sits
+# where impossible geometry is and not where tight interfaces are. 18 of 2,500
+# benchmark models fall below 0.5 A.
+MIN_SEP = 0.5
 PUBLISHED = dict(iptm=0.5, bsa=800, iface_plddt=70)
 
 

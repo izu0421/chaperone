@@ -1,0 +1,23 @@
+[
+  {
+    "protein_a": "SLITRK2",
+    "protein_b": "GPR22",
+    "method": "PLA",
+    "method_variant": "Optional arm: +/- PNGase F/glycosidase pretreatment of fixed cells, plus NTRK2 co-staining (triple-proximity) to probe the additional subunit",
+    "method_rationale": "Both proteins are cell-membrane proteins expressed in brain neurons, so they could sit on the same cell surface. PLA tests in situ proximity (<40 nm) without solubilising a 7-TM GPCR and a single-pass LRR protein, which co-IP would do. Neither is a secreted ligand, so a stimulation assay doesn't fit without a known ligand or readout for the orphan GPR22.",
+    "target_tissues": [
+      "cerebral cortex",
+      "brain",
+      "retina"
+    ],
+    "tissue_rationale": "SLITRK2 has protein-level expression in cerebral cortex (intensity ~84,626) and RNA in brain (11.5 nTPM) and retina (30.4 nTPM). GPR22 RNA is in brain (6.5 nTPM) and is highest in brain excitatory neurons (42.6 nCPM) and inhibitory neurons (24.7 nCPM). Cerebral cortex/brain is therefore the clear overlap. Retina has SLITRK2 but no GPR22 call in HPA, so it serves only as a SLITRK2-positive comparison tissue.",
+    "cell_types": [
+      "Brain excitatory neurons",
+      "Brain inhibitory neurons",
+      "M\u00fcller glia (SLITRK2-only comparison)"
+    ],
+    "protocol_notes": "1) Use fixed human or mouse cortex sections, or primary cortical neurons and iPSC-derived neurons. Use non-permeabilising or mild fixation to favour surface epitopes. Run PLA with a validated anti-SLITRK2 antibody (e.g. rabbit) and an anti-GPR22 antibody (e.g. mouse). Raise the antibodies against different species and check them by knockdown/KO or in overexpressing HEK293 cells. 2) Run a HEK293 reconstitution PLA with tagged SLITRK2 and GPR22 (HA/FLAG antibodies) to confirm the signal is specific before moving to neurons. Add NTRK2 co-expression and PLA SLITRK2\u2013NTRK2 and GPR22\u2013NTRK2 to see whether NTRK2 bridges or scaffolds the pair. 3) Quantify PLA puncta per cell body or neurite, with DAPI and MAP2 counterstain. Run a +/- glycosidase arm and compare puncta counts. 4) If PLA is positive, follow up with co-IP from transfected HEK293 cells using mild digitonin or DDM lysis.",
+    "controls": "Positive: SLITRK2\u2013NTRK2 PLA, a known interacting pair, assuming the NTRK2 reference interaction holds. A tagged membrane pair with known interaction, e.g. a split-tag dimer, can be used as a technical positive. Negative: single-antibody-only PLA, secondary-only controls, and GPR22 or SLITRK2 KO/siRNA neurons. Use a non-interacting membrane protein pair (e.g. SLITRK2 with an unrelated GPCR such as a different orphan GPCR) to rule out crowding-driven proximity. Use retina or M\u00fcller glia, which lack GPR22, as a tissue-level negative.",
+    "caveats": "Structural support is weak: ipTM is 0.5 (at threshold), interface pLDDT is 63.4 and p_twoway is 0.057, so a negative result is plausible. Both proteins have 2 annotated glycosylation sites, and their position relative to the interface is unchecked, so a bare-sequence interface may be blocked by glycans. The membrane topology of the interface is unverified, and the modelled contact could be on the wrong side of the membrane. HPA gives no subcellular location, and GPR22 has no protein-level tissue data, so antibody validation is a major risk. GPR22 RNA is low (6.5 nTPM). PLA shows proximity only, not direct binding or function. NTRK2 was listed as an additional subunit, so the interaction may need it or may be indirect."
+  }
+]

@@ -52,15 +52,22 @@ def test_subcomplex_not_resolved_without_any_executed_fold():
     assert br.classify_validation(row, []) is None
 
 
-def test_subcomplex_blocked_by_topology_violation_despite_good_plddt():
-    # the exact real bug found this session (KLRK1/KLRD1): every interface
-    # cleared pLDDT >= 50, but the fold also showed an interface spanning
-    # both Cytoplasmic and Extracellular residues at once — topologically
-    # impossible across an intact membrane. That must block resolution,
-    # not just get silently outweighed by decent pLDDT numbers.
+def test_subcomplex_is_NOT_blocked_by_a_topology_violation():
+    # This test asserted the opposite until 2026-11-24, on the reasoning that an
+    # interface spanning both faces is impossible across an intact membrane. The
+    # reasoning is sound and the rule still does not work: measured on 256 folds
+    # of 16 receptors whose ligands are known, it rejects 61% of REAL binders and
+    # 55% of non-binders, so passing it makes a pair LESS likely to be real than
+    # the base rate. AlphaFold3 models no bilayer, and the inputs carried
+    # uncleaved signal peptides that supplied every cytoplasmic contact in 10 of
+    # 11 falsely flagged known binders.
+    #
+    # A LIKELY_SUBCOMPLEX verdict asks whether the named subunit completes the
+    # interface. That is answered by re-folding with it, not by where a
+    # two-chain model put the partner.
     row = _row("LIKELY_SUBCOMPLEX", other_subunits="PARTNER")
     executed = _executed(_interface(plddt_a=80, plddt_b=75, topo_a=["Cytoplasmic"], topo_b=["Extracellular"]))
-    assert br.classify_validation(row, executed) is None
+    assert br.classify_validation(row, executed) is not None
 
 
 def test_subcomplex_not_resolved_with_weak_interface():
@@ -83,10 +90,11 @@ def test_artifact_ptm_not_resolved_when_ptm_at_interface():
     assert br.classify_validation(row, executed) is None
 
 
-def test_artifact_ptm_blocked_by_topology_violation_even_without_ptm_at_its_own_interface():
-    # a topology violation is a stronger, more fundamental problem than the
-    # originally-named PTM concern - it should block resolution too, not
-    # just get ignored because THIS interface happens to lack a PTM site.
+def test_artifact_ptm_is_NOT_blocked_by_a_topology_violation():
+    # Same inversion, same measurement. This mattered more than the subcomplex
+    # case: resolve_ptm_artifact.py returned CONFIRMED_ARTIFACT on a topology
+    # violation and stopped, which sealed every LIKELY_ARTIFACT_PTM candidate by
+    # refusing the one glycan-aware re-fold that could have resolved it.
     row = _row("LIKELY_ARTIFACT_PTM")
     executed = _executed(_interface(topo_a=["Cytoplasmic"], topo_b=["Extracellular"]))
-    assert br.classify_validation(row, executed) is None
+    assert br.classify_validation(row, executed) is not None

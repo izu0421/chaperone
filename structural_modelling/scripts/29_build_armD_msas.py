@@ -153,6 +153,12 @@ def main() -> None:
     ap.add_argument("--validate", type=int, default=0,
                     help="rebuild this many pairs arm D already scored and compare")
     ap.add_argument("--huri", action="store_true", help="build and score the HuRI pilot")
+    ap.add_argument("--chemokine", action="store_true",
+                    help="RF2-PPI on the 256-fold chemokine panel, so the two engines are "
+                         "compared on the same GPCR complexes where AlphaFold3 reaches 0.843")
+    ap.add_argument("--build-only", action="store_true",
+                    help="build the MSAs and stop. hhfilter is CPU work, so it can run "
+                         "while a GPU job finishes; the inference then starts immediately")
     a = ap.parse_args()
 
     if a.validate:
@@ -188,10 +194,26 @@ def main() -> None:
         man = pd.read_csv(ROOT / "work" / "huri_pilot_manifest.csv")
         work = ROOT / "work" / "armD_huri"
         work.mkdir(parents=True, exist_ok=True)
+        # Reuse MSAs already built, so --build-only followed by a scoring run does
+        # not redo twelve minutes of hhfilter. The list file carries L1 per pair,
+        # so it is the thing to reuse, not just the a3m files.
+        existing = {}
+        lf = work / "huri_input"
+        if lf.exists():
+            for line in lf.read_text().splitlines():
+                if "\t" in line:
+                    stem, l1 = line.split("\t")
+                    if (work / stem).exists():
+                        existing[stem.replace(".i90.a3m", "")] = int(l1)
+            log.info("reusing %d MSAs already built", len(existing))
+
         entries, skipped = [], []
         for r in man.itertuples():
             try:
-                l1 = build_one(r.a, r.b, work)
+                key = f"{r.a}_{r.b}"
+                l1 = existing.get(key)
+                if l1 is None:
+                    l1 = build_one(r.a, r.b, work)
             except Exception as exc:                      # noqa: BLE001
                 skipped.append((f"{r.a}_{r.b}", str(exc)[:80])); continue
             if l1:
@@ -206,6 +228,14 @@ def main() -> None:
             raise SystemExit(f"only {len(entries)} of {len(man)} pairs built; a pilot "
                              f"missing that many is a different sample from the one "
                              f"AlphaFold3 was scored on")
+        if a.build_only:
+            depths = [sum(1 for l in (work / e.split('\t')[0]).read_text().splitlines()
+                          if l.startswith('>')) for e in entries[:200]]
+            import statistics
+            log.info("built only. median paired depth after hhfilter: %d rows "
+                     "(the authors' supplied files run ~100-700)",
+                     statistics.median(depths))
+            return
         got = parse_log(run_rf2(work, "huri_input"))
         out = man.assign(key=man.a + "_" + man.b).merge(got, on="key", how="left")
         dest = ROOT / "results" / "armD_huri_scores.csv"
@@ -213,7 +243,60 @@ def main() -> None:
         log.info("scored %d of %d; wrote %s", int(out.prob.notna().sum()), len(out), dest)
         return
 
-    ap.error("pass --validate N or --huri")
+    if a.chemokine:
+        man = pd.read_csv(ROOT / "work" / "protein_counterscreen_manifest.csv")
+        man = man[man.block.eq("A_chemokine")]
+        PANEL = {"CCR1":"P32246","CCR2":"P41597","CCR3":"P51677","CCR5":"P51681",
+                 "CCR6":"P51684","CCR7":"P32248","CXCR1":"P25024","CXCR2":"P25025",
+                 "CXCR3":"P49682","CXCR4":"P61073","CX3CR1":"P49238","ACKR3":"P25106",
+                 "CCR4":"P51679","CCR8":"P51685","CXCR5":"P32302","CXCR6":"O00574",
+                 "CCL2":"P13500","CCL3":"P10147","CCL5":"P13501","CCL11":"P51671",
+                 "CCL19":"Q99731","CCL20":"P78556","CXCL8":"P10145","CXCL10":"P02778",
+                 "CXCL12":"P48061","CX3CL1":"P78423","CCL21":"O00585","CXCL11":"O14625",
+                 "CCL17":"Q92583","CCL1":"P22362","CXCL13":"O43927","CXCL16":"Q9H2A7"}
+        work = ROOT / "work" / "armD_chemokine"
+        work.mkdir(parents=True, exist_ok=True)
+        lf = work / "chemokine_input"
+        existing = {}
+        if lf.exists():
+            for line in lf.read_text().splitlines():
+                if "\t" in line:
+                    stem, l1 = line.split("\t")
+                    if (work / stem).exists():
+                        existing[stem.replace(".i90.a3m", "")] = int(l1)
+            log.info("reusing %d MSAs already built", len(existing))
+        entries, skipped = [], []
+        for r in man.itertuples():
+            a_, b_ = PANEL.get(r.chain_a), PANEL.get(r.chain_b)
+            if not a_ or not b_:
+                skipped.append((r.job, "no accession")); continue
+            key = f"{a_}_{b_}"
+            l1 = existing.get(key)
+            if l1 is None:
+                try:
+                    l1 = build_one(a_, b_, work)
+                except Exception as exc:                      # noqa: BLE001
+                    skipped.append((r.job, str(exc)[:70])); continue
+            if l1:
+                entries.append(f"{key}.i90.a3m\t{l1}")
+            else:
+                skipped.append((r.job, "no usable mask"))
+        (lf).write_text("\n".join(entries) + "\n")
+        log.info("built %d of %d cells, skipped %d", len(entries), len(man), len(skipped))
+        for k, why in skipped[:8]:
+            log.warning("  skipped %s: %s", k, why)
+        if len(entries) < 0.9 * len(man):
+            raise SystemExit(f"only {len(entries)} of {len(man)} built; a panel missing "
+                             f"that many is not the panel AlphaFold3 was scored on")
+        got = parse_log(run_rf2(work, "chemokine_input"))
+        out = man.assign(key=man.chain_a.map(PANEL) + "_" + man.chain_b.map(PANEL)) \
+                 .merge(got, on="key", how="left")
+        dest = ROOT / "results" / "armD_chemokine_scores.csv"
+        out.to_csv(dest, index=False)
+        log.info("scored %d of %d; wrote %s", int(out.prob.notna().sum()), len(out), dest)
+        return
+
+    ap.error("pass --validate N, --huri or --chemokine")
 
 
 if __name__ == "__main__":

@@ -246,13 +246,28 @@ def classify_validation(row: dict, executed_results: list) -> dict:
     # independently flagged topology_violation on the same data (KLRD1's
     # real, disulfide-confirmed partner is KLRC1, not KLRK1).
     fold_status = fold_evidence_status(executed_results)
-    blocked_by_topology = fold_status["status"] == "topology_violation"
+    # Kept for the report's pose-quality note. It is deliberately NOT used to
+    # block a resolution any more -- see the measurement recorded below.
+    has_topology_note = fold_status["status"] == "topology_violation"
 
     if verdict == "LIKELY_SUBCOMPLEX":
         if not row.get("other_subunits"):
             return None  # no concrete subunit(s) even named - nothing to resolve against
-        if blocked_by_topology:
-            return None  # the fold itself argues against this modeled complex, regardless of interface pLDDT
+    # MEASURED 2026-11-24: a topology violation does not predict whether a pair
+    # binds. On the 256-fold chemokine panel the rule rejects 61% of KNOWN
+    # binders and 55% of known non-binders, so passing it makes a pair LESS
+    # likely to be real than the base rate (11.5% against 12.9%). AlphaFold3
+    # models no lipid bilayer, so where it places a partner records its docking
+    # success, about 40% either way. Worse, the inputs carried UNCLEAVED signal
+    # peptides, and in 10 of 11 falsely flagged known binders the signal peptide
+    # supplied every cytoplasmic contact while the mature chain sat correctly in
+    # the pocket -- so the flag was often reporting a residue that does not exist
+    # in vivo.
+    #
+    # So a LIKELY_SUBCOMPLEX is no longer blocked from resolution by it. The
+    # question a subcomplex verdict asks is whether the named subunit completes
+    # the interface, and that is answered by re-folding, not by where a
+    # two-chain model happened to put the partner.
         interfaces = [
             iface
             for r in executed_results
@@ -273,8 +288,10 @@ def classify_validation(row: dict, executed_results: list) -> dict:
         # landed on the modeled interface. A candidate whose mechanism is
         # fundamentally glycan-mediated (e.g. a galectin) isn't something a
         # single fold can clear regardless — it correctly stays unresolved.
-        if blocked_by_topology:
-            return None  # a stronger, more fundamental structural problem than the named PTM concern
+        # Not blocked by a topology violation either, for the reason recorded
+        # above the LIKELY_SUBCOMPLEX branch: the rule does not discriminate,
+        # and it was often reporting contacts made by an uncleaved signal
+        # peptide that is absent in vivo.
         resolved = False
         for r in executed_results:
             for iface in (r.get("structural_analysis") or {}).get("interfaces", []):

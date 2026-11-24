@@ -1,0 +1,1222 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Deorphanisation triage report</title>
+<script src="https://3dmol.org/build/3Dmol-min.js"></script>
+<style>
+/* --grey was #6B7280 and carried every secondary line in the report: the stat
+   captions, the field keys, the metrics strip, the validation note. Grey reads as
+   specification, as though those lines were annotations on the result instead of
+   part of it, and it is the first thing to go on a projector. It is now the body
+   colour; --rule keeps the old grey for the borders that should still recede. */
+:root { --navy:#1B2A4A; --teal:#2EC4B6; --gold:#FF9F1C; --grey:#1A1A1F;
+        --rule:#6B7280; --light:#F4F6F8; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, Calibri, Helvetica, Arial, sans-serif; margin:0; background:#fff; color:var(--navy); }
+header { background:var(--navy); color:#fff; padding:28px 40px; }
+header h1 { margin:0 0 6px 0; font-size:28px; }
+header p { margin:0; color:var(--teal); font-size:14px; }
+.summary { display:flex; gap:16px; padding:24px 40px; flex-wrap:wrap; border-bottom:1px solid #eee; }
+.stat { background:var(--light); border-radius:10px; padding:14px 20px; min-width:120px; text-align:center; }
+.stat .n { font-size:26px; font-weight:700; color:var(--navy); }
+.stat .l { font-size:12px; color:var(--grey); text-transform:uppercase; letter-spacing:.04em; }
+main { padding: 10px 40px 60px; }
+.card { border:1px solid #e3e6ea; border-radius:12px; margin:18px 0; overflow:hidden; }
+.card-head { display:flex; align-items:center; gap:14px; padding:14px 18px; cursor:pointer; background:#fff; }
+.card-head:hover { background:var(--light); }
+.pair { font-size:17px; font-weight:700; }
+.badge { color:#fff; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.02em; }
+.conf { font-size:12px; color:var(--grey); border:1px solid var(--rule); border-radius:999px; padding:3px 10px; }
+.metrics { font-size:12px; color:var(--grey); margin-left:auto; }
+.card-body { padding: 4px 18px 18px; border-top:1px solid #eee; display:none; }
+.card.open .card-body { display:block; }
+.field { margin:10px 0; }
+.field .k { font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--grey); font-weight:700; }
+.field .v { font-size:14px; line-height:1.5; margin-top:2px; }
+.followup { background:#FFF6E8; border-left:3px solid var(--gold); padding:10px 14px; border-radius:6px; margin-top:12px; }
+.executed { background:#EAFBF8; border-left:3px solid var(--teal); padding:10px 14px; border-radius:6px; margin-top:12px; }
+.executed .tag { display:inline-block; background:var(--teal); color:#fff; font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; margin-right:8px; letter-spacing:.04em; }
+.executed .metric { font-family:monospace; font-weight:700; }
+details.tools { margin-top:14px; }
+.validation-strategy { background:#F4F0FF; border-left:3px solid #6C4EE0; padding:10px 14px; border-radius:6px; margin-top:12px; }
+.validation-strategy summary { cursor:pointer; font-weight:600; color:#6C4EE0; }
+.validation-strategy .field { margin-top:8px; }
+details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:var(--navy); padding:6px 0; }
+.toolcall { background:var(--light); border-radius:8px; padding:10px 14px; margin:8px 0; }
+.toolcall .name { font-family: monospace; font-weight:700; color:var(--navy); }
+.toolcall .err { color:var(--grey); font-weight:700; }
+.toolcall pre { white-space:pre-wrap; word-break:break-word; font-size:12px; background:#fff; border:1px solid #e3e6ea; border-radius:6px; padding:8px; margin:6px 0 0; max-height:260px; overflow:auto; }
+.struct-toggle { display:inline-block; margin-top:8px; padding:5px 12px; font-size:12px; font-weight:700; color:var(--navy); background:#fff; border:1px solid var(--teal); border-radius:999px; cursor:pointer; }
+.struct-toggle:hover { background:var(--teal); color:#fff; }
+.viewer-container { margin-top:10px; }
+.viewer { width:100%; height:420px; border:1px solid #e3e6ea; border-radius:8px; position:relative; background:#fafbfc; }
+.viewer-legend { font-size:11px; color:var(--grey); margin-top:4px; }
+.viewer-legend .swatch { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:middle; }
+.validation { margin:0 40px 10px; padding:20px 24px; background:var(--light); border-radius:12px; }
+.validation h2 { margin:0 0 6px; font-size:18px; color:var(--navy); }
+.validation-note { margin:0 0 14px; font-size:13px; color:var(--grey); line-height:1.5; }
+.validation-table { width:100%; border-collapse:collapse; font-size:13px; }
+.validation-table th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--grey); padding:6px 10px; border-bottom:2px solid #ddd; }
+.validation-table td { padding:8px 10px; border-bottom:1px solid #e3e6ea; vertical-align:top; }
+.validation-table tr:hover td { background:#fff; }
+.rejected-group { margin-top:10px; background:#fff; border-radius:8px; padding:2px 12px; }
+.rejected-group summary { cursor:pointer; padding:10px 0; font-size:13px; color:var(--navy); font-weight:600; }
+.rejected-group summary .badge { margin-right:8px; }
+.rejected-group table { margin-bottom:10px; }
+</style></head>
+<body>
+<header>
+  <h1>Deorphanisation — PPI triage report</h1>
+  <p>5 candidates &middot; every verdict below is traceable to the raw tool evidence it cites &mdash; click a row to expand</p>
+</header>
+<div class="summary"><div class='stat'><div class='n'>2</div><div class='l'>LIKELY_ARTIFACT_PTM</div></div><div class='stat'><div class='n'>2</div><div class='l'>INSUFFICIENT_EVIDENCE</div></div><div class='stat'><div class='n'>1</div><div class='l'>CONFIRMED_NOVEL</div></div><div class='stat' style='background:var(--light);'><div class='n'>5</div><div class='l'>No fold run (evidence-only verdict)</div></div></div>
+
+    <section class="validation">
+      <h2>Worth validating experimentally?</h2>
+      <p class="validation-note">1 of 5 candidates are not already proven in the literature, and
+      any open structural/mechanism concern raised has actually been checked and cleared — every candidate is
+      listed, nothing hidden.</p>
+      <table class="validation-table">
+        <thead><tr><th>Pair</th><th>Worth validating?</th><th>Why</th></tr></thead>
+        <tbody>
+        <tr>
+          <td><b>SLITRK2 &harr; GPR22</b></td>
+          <td><span class='badge' style='background:#2EC4B6;'>Yes</span></td>
+          <td style="font-size:12px;color:var(--grey);">No known/curated hit anywhere, and expression/localization support a direct interaction — the strongest class of untested hypothesis here.</td>
+        </tr>
+        <tr>
+          <td><b>L1CAM &harr; GPR61</b></td>
+          <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
+          <td style="font-size:12px;color:var(--grey);">Possible modeling artifact (unmodeled glycan/PTM at the interface) — not yet resolved structurally. The pair is novel (no STRING record, no CellPhoneDB hit, 0 PubMed co-mentions) and both are plasma-membrane proteins, so a cis interaction is topologically possible.</td>
+        </tr>
+        <tr>
+          <td><b>EPHA2 &harr; GPRC5A</b></td>
+          <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
+          <td style="font-size:12px;color:var(--grey);">Data was genuinely too thin to call either way — not rejected, just unresolved. I&#x27;m withdrawing ALREADY_KNOWN.</td>
+        </tr>
+        <tr>
+          <td><b>DSCAM &harr; GPR83</b></td>
+          <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
+          <td style="font-size:12px;color:var(--grey);">Possible modeling artifact (unmodeled glycan/PTM at the interface) — not yet resolved structurally. The pair is unreported (STRING not found, CellPhoneDB not found, 0 PubMed co-mentions) and both are brain-enriched plasma-membrane proteins, so an encounter is plausible.</td>
+        </tr>
+        <tr>
+          <td><b>NCR3LG1 &harr; GPR179</b></td>
+          <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
+          <td style="font-size:12px;color:var(--grey);">Data was genuinely too thin to call either way — not rejected, just unresolved. The pair is novel by every database checked (STRING not found, CellPhoneDB not found, PubMed co-mention count 0), and both are cell-membrane proteins per UniProt, so an ectodomain-ectodomain contact is physically possible.</td>
+        </tr></tbody>
+      </table>
+    </section>
+    
+<main>
+    <div class="card" data-log="SLITRK2__GPR22">
+      <div class="card-head">
+        <span class="pair">SLITRK2 &harr; GPR22</span>
+        <span class="badge" style="background:#2EC4B6">CONFIRMED_NOVEL</span>
+        
+        <span class='badge' style='background:#2EC4B6;opacity:.85;' title='No known/curated hit anywhere, and expression/localization support a direct interaction — the strongest class of untested hypothesis here.'>VALIDATE</span>
+        <span class="conf">low confidence</span>
+        <span class="metrics">ipTM 0.5 &middot; pTM </span>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="k">Rationale</div><div class="v">No prior record of this pair exists: STRING found no association, CellPhoneDB found no curated interaction, and PubMed returned 0 co-mentions. The pair is biologically plausible, since both are cell-membrane proteins per UniProt (SLITRK2 Q9H156 single-pass, GPR22 Q99680 7-TM orphan GPCR) and both are brain-expressed per HPA. The structural support is weak, however: ipTM is 0.5, exactly at the threshold; interface pLDDT is 63.4; the supplied p_twoway is 0.057; both proteins carry 2 annotated glycosylation sites whose position relative to the interface could not be checked; and the membrane side of the interface is unverified. This is a novel, plausible hypothesis, not a supported interaction.</div></div>
+        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>UniProt marks both proteins as glycoproteins with 2 annotated glycosylation sites each. SLITRK2 additionally has 4 disulfide bonds and 1 modified residue and is a phosphoprotein. The PubMed PTM search returned 1 hit for SLITRK2 (PMID 27812321, on Slitrk missense mutations impairing trafficking and synapse formation) and 2 hits for GPR22, neither of which is about GPR22 glycosylation. Neither protein&#x27;s function text describes a glycan- or lipid-mediated binding mechanism. Glycosylation sites on such proteins are typically extracellular, and the supplied interface is very large (buried surface area 6162 Å2, 1280 contacts), so overlap with a glycan site is possible. It could not be checked without per-residue interface data, so this is an unresolved caveat and not evidence of an artifact.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>PubMed co-occurrence for SLITRK2 and GPR22 returned 0 hits.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING returned no association for SLITRK2 and GPR22 (found: false). CellPhoneDB returned no curated interaction (found: false), and GPR22 is not in the CellPhoneDB gene table. PubMed co-occurrence returned 0 papers. There is no hit in any of the three sources, so the pair is novel.</div></div>
+        <div class='field'><div class='k'>Other subunits</div><div class='v'>NTRK2</div></div>
+        <div class='followup'><b>Follow-up (not yet executed):</b> Folding was not available in this run. Recommended next steps: (1) Re-fold SLITRK2 with GPR22 and read the interface topology, to confirm the interface does not touch both cytoplasmic and extracellular residues at once; the very large buried surface area (6162 Å2) with a minimum separation of 1.37 Å and interface pLDDT of only 63.4 could reflect the SLITRK2 leucine-rich-repeat ectodomain wrapping or interleaving non-physically around the 7-TM bundle. (2) Check whether the 2 N-glycosylation sites on each protein fall on the interface, and if so re-fold with glycans attached. (3) Treat the fold itself as marginal until re-folded: ipTM is 0.5 and p_twoway is 0.057, although only 1 of the 4 receptors tested against this partner passed the confidence gate, which argues against a generically sticky partner. (4) If the fold holds up, test by co-immunoprecipitation or a cell-surface binding assay in neurons or HEK cells. NTRK2 is listed under other subunits only because UniProt says SLITRK2 negatively regulates it; it is not a curated complex member, and CellPhoneDB lists no complexes for either protein.</div>
+        
+        <details class="tools">
+          <summary>Full tool-call ledger (15 calls) — raw evidence behind this verdict</summary>
+          <div class='toolcall'><div><span class='name'>1. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.968s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;SLITRK2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;SLITRK2&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;brain&quot;: &quot;11.5&quot;,
+    &quot;retina&quot;: &quot;30.4&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Group enriched&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: {
+    &quot;M\u00fcller glia&quot;: &quot;256.7&quot;
+  },
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: {
+    &quot;cerebral cortex&quot;: &quot;84625.8&quot;
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>2. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.455s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR22&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;brain&quot;: &quot;6.5&quot;,
+    &quot;cervix&quot;: &quot;2.3&quot;,
+    &quot;heart muscle&quot;: &quot;7.7&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Tissue enhanced&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: {
+    &quot;Brain excitatory neurons&quot;: &quot;42.6&quot;,
+    &quot;Brain inhibitory neurons&quot;: &quot;24.7&quot;,
+    &quot;Cardiomyocytes&quot;: &quot;14.8&quot;,
+    &quot;Oligodendrocyte progenitor cells&quot;: &quot;8.3&quot;,
+    &quot;Other brain neurons&quot;: &quot;12.7&quot;
+  },
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>3. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.049s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;SLITRK2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;SLITRK2&quot;,
+  &quot;subcellular_main_location&quot;: null,
+  &quot;subcellular_additional_location&quot;: null,
+  &quot;subcellular_location&quot;: null,
+  &quot;reliability_if&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>4. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.006s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR22&quot;,
+  &quot;subcellular_main_location&quot;: null,
+  &quot;subcellular_additional_location&quot;: null,
+  &quot;subcellular_location&quot;: null,
+  &quot;reliability_if&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>5. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.005s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;SLITRK2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;SLITRK2&quot;,
+  &quot;gene_description&quot;: &quot;SLIT and NTRK like family member 2&quot;,
+  &quot;protein_class&quot;: [
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>6. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.006s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR22&quot;,
+  &quot;gene_description&quot;: &quot;G protein-coupled receptor 22&quot;,
+  &quot;protein_class&quot;: [
+    &quot;G-protein coupled receptors&quot;,
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: 2
+}</pre></div><div class='toolcall'><div><span class='name'>7. string_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.522s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;SLITRK2&quot;, &quot;gene_b&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;found&quot;: false
+}</pre></div><div class='toolcall'><div><span class='name'>8. cellphonedb_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.282s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;SLITRK2&quot;, &quot;gene_b&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;matches&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>9. pubmed_cooccurrence</span> <span style='color:var(--grey);font-size:12px;'>(0.753s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;SLITRK2&quot;, &quot;gene_b&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;count&quot;: 0,
+  &quot;hits&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>10. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(2.209s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;SLITRK2&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>11. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.005s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: [],
+  &quot;note&quot;: &quot;&#x27;GPR22&#x27; not in CellPhoneDB gene table&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>12. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(0.194s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;SLITRK2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;SLITRK2&quot;,
+  &quot;accession&quot;: &quot;Q9H156&quot;,
+  &quot;protein_name&quot;: &quot;SLIT and NTRK-like protein 2&quot;,
+  &quot;function&quot;: &quot;It is involved in synaptogenesis and promotes excitatory synapse differentiation (PubMed:27273464, PubMed:27812321, PubMed:35840571). Suppresses neurite outgrowth (By similarity). Involved in the negative regulation of NTRK2 (PubMed:35840571)&quot;,
+  &quot;keywords&quot;: [
+    &quot;Alternative splicing&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Cell projection&quot;,
+    &quot;Disease variant&quot;,
+    &quot;Disulfide bond&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Intellectual disability&quot;,
+    &quot;Leucine-rich repeat&quot;,
+    &quot;Membrane&quot;,
+    &quot;Phosphoprotein&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Repeat&quot;,
+    &quot;Signal&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 2,
+    &quot;Transmembrane&quot;: 1,
+    &quot;Modified residue&quot;: 1,
+    &quot;Glycosylation&quot;: 2,
+    &quot;Disulfide bond&quot;: 4
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>13. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(1.761s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR22&quot;,
+  &quot;accession&quot;: &quot;Q99680&quot;,
+  &quot;protein_name&quot;: &quot;G protein-coupled receptor 22&quot;,
+  &quot;function&quot;: &quot;Orphan G protein-coupled receptor. Seems to act through a G(i)/G(o) mediated pathway (PubMed:18539757). May be involved in ciliogenesis (By similarity)&quot;,
+  &quot;keywords&quot;: [
+    &quot;Cell membrane&quot;,
+    &quot;Cilium biogenesis/degradation&quot;,
+    &quot;G protein-coupled receptor&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Membrane&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Receptor&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Transducer&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 8,
+    &quot;Transmembrane&quot;: 7,
+    &quot;Glycosylation&quot;: 2
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>14. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(2.791s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;SLITRK2&quot;}</div><pre>{
+  &quot;count&quot;: 1,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;27812321&quot;,
+      &quot;title&quot;: &quot;Slitrk Missense Mutations Associated with Neuropsychiatric Disorders Distinctively Impair Slitrk Trafficking and Synapse Formation.&quot;,
+      &quot;pubdate&quot;: &quot;2016&quot;,
+      &quot;source&quot;: &quot;Front Mol Neurosci&quot;
+    }
+  ]
+}</pre></div><div class='toolcall'><div><span class='name'>15. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(3.435s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR22&quot;}</div><pre>{
+  &quot;count&quot;: 2,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;38816768&quot;,
+      &quot;title&quot;: &quot;Cardiomyocyte-specific overexpression of GPR22 ameliorates cardiac injury in mice with acute myocardial infarction.&quot;,
+      &quot;pubdate&quot;: &quot;2024 May 30&quot;,
+      &quot;source&quot;: &quot;BMC Cardiovasc Disord&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;2841469&quot;,
+      &quot;title&quot;: &quot;Novel glycosylation pathways of retroviral envelope proteins identified with avian reticuloendotheliosis virus.&quot;,
+      &quot;pubdate&quot;: &quot;1988 Sep&quot;,
+      &quot;source&quot;: &quot;J Virol&quot;
+    }
+  ]
+}</pre></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card" data-log="L1CAM__GPR61">
+      <div class="card-head">
+        <span class="pair">L1CAM &harr; GPR61</span>
+        <span class="badge" style="background:#FF9F1C">LIKELY_ARTIFACT_PTM</span>
+        
+        
+        <span class="conf">low confidence</span>
+        <span class="metrics">ipTM 0.61 &middot; pTM </span>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="k">Rationale</div><div class="v">The pair is novel (no STRING record, no CellPhoneDB hit, 0 PubMed co-mentions) and both are plasma-membrane proteins, so a cis interaction is topologically possible. However, L1CAM (P32004) carries 20 annotated glycosylation sites on its ectodomain and GPR61 (Q9BZJ8) has 1 N-glycosylation site on its extracellular N-terminus. The modelled interface is very large (buried surface area 5999 Å2, 1330 contacts) but only modestly confident (interface pLDDT 55.9, ipTM 0.61). An interface of that size on L1CAM very probably covers glycan-bearing surface that AF3 did not model, and may also involve GPR61 surface that is buried in the lipid bilayer; neither could be checked without a fold. Expression overlap in HPA is also weak.</div></div>
+        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>UniProt annotates L1CAM (P32004) with the Glycoprotein and Phosphoprotein keywords, 20 glycosylation sites, 9 modified residues and 6 disulfide bonds. Given its single transmembrane helix, the glycosylation sites are expected to lie on the large extracellular Ig/FnIII ectodomain. UniProt annotates GPR61 (Q9BZJ8) as a Glycoprotein with 1 glycosylation site; PMID 29226084 (&quot;N-glycosylation and expression in human tissues of the orphan GPR61 receptor&quot;) reports its N-glycosylation. The PubMed PTM search returned 85 hits for L1CAM and 2 for GPR61. An interface burying 5999 Å2 on a 20-site glycoprotein ectodomain is likely to overlap glycan positions, but the per-residue overlap was not checked because no fold could be run.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>PubMed co-occurrence for L1CAM and GPR61 returned 0 hits.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING returned no association for L1CAM and GPR61. CellPhoneDB returned no curated interaction, and GPR61 is not in the CellPhoneDB gene table. PubMed co-occurrence returned 0 papers. The pair is therefore novel as far as these sources show.</div></div>
+        <div class='field'><div class='k'>Other subunits</div><div class='v'>EZR</div></div>
+        <div class='followup'><b>Follow-up (not yet executed):</b> A fold could not be run in this triage, so these are recommendations. (1) Re-fold L1CAM with GPR61 and read the structural analysis for interface topology on both chains and for whether L1CAM&#x27;s N-glycosylation sites or the GPR61 N-terminal glycosylation site sit on the interface. If the interface touches both cytoplasmic and extracellular residues, or L1CAM ectodomain contacts the lipid-facing transmembrane surface of GPR61, treat it as an artifact. (2) If glycosylation sites are on the interface, re-fold with core N-glycans attached. (3) Consider folding only the L1CAM cytoplasmic tail against GPR61&#x27;s intracellular loops and C-terminus, and separately the L1CAM Ig1-4 domains against the GPR61 N-terminus, to localise any real contact. (4) The supplied screen data show this partner was confident against only 1 of 6 receptors tested (p_twoway = 0.010437), which argues for some specificity; if the re-fold survives, test by co-immunoprecipitation or BRET in neuronal cells that express both. CellPhoneDB lists EZR as an L1CAM complex partner (pL1:Ezrin), which binds the cytoplasmic tail and is unlikely to be an obligate subunit for this pair.</div>
+        
+        <details class="tools">
+          <summary>Full tool-call ledger (15 calls) — raw evidence behind this verdict</summary>
+          <div class='toolcall'><div><span class='name'>1. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(1.157s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;L1CAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;L1CAM&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;brain&quot;: &quot;133.9&quot;,
+    &quot;intestine&quot;: &quot;47.5&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Tissue enhanced&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: {
+    &quot;Schwann cells&quot;: &quot;202.6&quot;
+  },
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: {
+    &quot;cerebral cortex&quot;: &quot;418505127.5&quot;
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>2. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.244s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR61&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;pituitary gland&quot;: &quot;1.9&quot;,
+    &quot;retina&quot;: &quot;2.3&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Tissue enhanced&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: {
+    &quot;Retinal pigment epithelial cells&quot;: &quot;39.5&quot;
+  },
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>3. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.048s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;L1CAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;L1CAM&quot;,
+  &quot;subcellular_main_location&quot;: [
+    &quot;Nucleoplasm&quot;,
+    &quot;Plasma membrane&quot;
+  ],
+  &quot;subcellular_additional_location&quot;: null,
+  &quot;subcellular_location&quot;: [
+    &quot;Nucleoplasm&quot;,
+    &quot;Plasma membrane&quot;
+  ],
+  &quot;reliability_if&quot;: &quot;Approved&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>4. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.006s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR61&quot;,
+  &quot;subcellular_main_location&quot;: null,
+  &quot;subcellular_additional_location&quot;: null,
+  &quot;subcellular_location&quot;: null,
+  &quot;reliability_if&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>5. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.004s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;L1CAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;L1CAM&quot;,
+  &quot;gene_description&quot;: &quot;L1 cell adhesion molecule&quot;,
+  &quot;protein_class&quot;: [
+    &quot;CD markers&quot;,
+    &quot;Disease related genes&quot;,
+    &quot;Human disease related genes&quot;,
+    &quot;Plasma proteins&quot;,
+    &quot;Predicted intracellular proteins&quot;,
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: 21
+}</pre></div><div class='toolcall'><div><span class='name'>6. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.006s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR61&quot;,
+  &quot;gene_description&quot;: &quot;G protein-coupled receptor 61&quot;,
+  &quot;protein_class&quot;: [
+    &quot;Essential proteins&quot;,
+    &quot;G-protein coupled receptors&quot;,
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: 32
+}</pre></div><div class='toolcall'><div><span class='name'>7. string_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.522s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;L1CAM&quot;, &quot;gene_b&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;found&quot;: false
+}</pre></div><div class='toolcall'><div><span class='name'>8. cellphonedb_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(1.031s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;L1CAM&quot;, &quot;gene_b&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;matches&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>9. pubmed_cooccurrence</span> <span style='color:var(--grey);font-size:12px;'>(1.566s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;L1CAM&quot;, &quot;gene_b&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;count&quot;: 0,
+  &quot;hits&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>10. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.648s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;L1CAM&quot;}</div><pre>{
+  &quot;found&quot;: true,
+  &quot;complexes&quot;: [
+    {
+      &quot;complex_name&quot;: &quot;pL1:Ezrin&quot;,
+      &quot;other_members&quot;: [
+        &quot;EZR&quot;
+      ]
+    }
+  ]
+}</pre></div><div class='toolcall'><div><span class='name'>11. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.197s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: [],
+  &quot;note&quot;: &quot;&#x27;GPR61&#x27; not in CellPhoneDB gene table&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>12. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(0.67s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;L1CAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;L1CAM&quot;,
+  &quot;accession&quot;: &quot;P32004&quot;,
+  &quot;protein_name&quot;: &quot;Neural cell adhesion molecule L1&quot;,
+  &quot;function&quot;: &quot;Neural cell adhesion molecule involved in the dynamics of cell adhesion and in the generation of transmembrane signals at tyrosine kinase receptors. During brain development, critical in multiple processes, including neuronal migration, axonal growth and fasciculation, and synaptogenesis. In the mature brain, plays a role in the dynamics of neuronal structure and function, including synaptic plasticity&quot;,
+  &quot;keywords&quot;: [
+    &quot;3D-structure&quot;,
+    &quot;Alternative splicing&quot;,
+    &quot;Cell adhesion&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Cell projection&quot;,
+    &quot;Developmental protein&quot;,
+    &quot;Differentiation&quot;,
+    &quot;Direct protein sequencing&quot;,
+    &quot;Disease variant&quot;,
+    &quot;Disulfide bond&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Hereditary spastic paraplegia&quot;,
+    &quot;Hirschsprung disease&quot;,
+    &quot;Immunoglobulin domain&quot;,
+    &quot;Intellectual disability&quot;,
+    &quot;Membrane&quot;,
+    &quot;Neurodegeneration&quot;,
+    &quot;Neurogenesis&quot;,
+    &quot;Phosphoprotein&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Repeat&quot;,
+    &quot;Signal&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 2,
+    &quot;Transmembrane&quot;: 1,
+    &quot;Modified residue&quot;: 9,
+    &quot;Glycosylation&quot;: 20,
+    &quot;Disulfide bond&quot;: 6
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>13. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(1.497s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR61&quot;,
+  &quot;accession&quot;: &quot;Q9BZJ8&quot;,
+  &quot;protein_name&quot;: &quot;G protein-coupled receptor 61&quot;,
+  &quot;function&quot;: &quot;Orphan G protein-coupled receptor. Constitutively activates the G(s)-alpha/cAMP signaling pathway (PubMed:28827538). Shows a reciprocal regulatory interaction with the melatonin receptor MTNR1B most likely through receptor heteromerization (PubMed:28827538). May be involved in the regulation of food intake and body weight (By similarity)&quot;,
+  &quot;keywords&quot;: [
+    &quot;3D-structure&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Endosome&quot;,
+    &quot;G protein-coupled receptor&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Membrane&quot;,
+    &quot;Receptor&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Transducer&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 8,
+    &quot;Transmembrane&quot;: 7,
+    &quot;Glycosylation&quot;: 1
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>14. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(2.388s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;L1CAM&quot;}</div><pre>{
+  &quot;count&quot;: 85,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;42814818&quot;,
+      &quot;title&quot;: &quot;Electronic profiling of neuronal extracellular vesicles enables early prediction of Parkinson&#x27;s disease.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Oct 2&quot;,
+      &quot;source&quot;: &quot;Sci Adv&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;42457631&quot;,
+      &quot;title&quot;: &quot;Gallic acid attenuates the malignant phenotype of prostate cancer cells by antagonizing NF-\u03baB/KLF7/L1CAM expression.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Jul 15&quot;,
+      &quot;source&quot;: &quot;Chin Med J (Engl)&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;42071286&quot;,
+      &quot;title&quot;: &quot;A posttranslational proteomic survey of a single anatomically preserved human 20-week postconception brain.&quot;,
+      &quot;pubdate&quot;: &quot;2026 May 3&quot;,
+      &quot;source&quot;: &quot;J Anat&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;41691048&quot;,
+      &quot;title&quot;: &quot;Choline attenuates bilirubin induced effects on tyrosine phosphorylation and distribution in lipid rafts of L1 cell adhesion molecule in vivo.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Feb 14&quot;,
+      &quot;source&quot;: &quot;Pediatr Res&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;41595121&quot;,
+      &quot;title&quot;: &quot;L1CAM Promotes Human Endometrial Cancer Via NF-\u03baB Activation.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Jan 8&quot;,
+      &quot;source&quot;: &quot;Cancers (Basel)&quot;
+    }
+  ]
+}</pre></div><div class='toolcall'><div><span class='name'>15. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(3.458s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR61&quot;}</div><pre>{
+  &quot;count&quot;: 2,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;29226084&quot;,
+      &quot;title&quot;: &quot;N-glycosylation and expression in human tissues of the orphan GPR61 receptor.&quot;,
+      &quot;pubdate&quot;: &quot;2017 Dec&quot;,
+      &quot;source&quot;: &quot;FEBS Open Bio&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;26934370&quot;,
+      &quot;title&quot;: &quot;Neuronal Orphan G-Protein Coupled Receptor Proteins Mediate Plasmalogens-Induced Activation of ERK and Akt Signaling.&quot;,
+      &quot;pubdate&quot;: &quot;2016&quot;,
+      &quot;source&quot;: &quot;PLoS One&quot;
+    }
+  ]
+}</pre></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card" data-log="NCR3LG1__GPR179">
+      <div class="card-head">
+        <span class="pair">NCR3LG1 &harr; GPR179</span>
+        <span class="badge" style="background:#B0B7C3">INSUFFICIENT_EVIDENCE</span>
+        
+        
+        <span class="conf">low confidence</span>
+        <span class="metrics">ipTM 0.52 &middot; pTM </span>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="k">Rationale</div><div class="v">The pair is novel by every database checked (STRING not found, CellPhoneDB not found, PubMed co-mention count 0), and both are cell-membrane proteins per UniProt, so an ectodomain-ectodomain contact is physically possible. However, the evidence cannot support a positive call: HPA has no subcellular localisation for either protein, the AF3 signal is borderline (ipTM 0.52, interface pLDDT 60.7), and without a fold analysis I cannot tell whether the modelled interface is on a topologically consistent side of the membrane or is covered by the 7 N-glycosylation sites annotated on NCR3LG1 (Q68D85) and the 2 on GPR179 (Q6PRD1). There is also no demonstrated biological context in which the retina/neuron-restricted GPR179 meets NCR3LG1.</div></div>
+        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>UniProt annotates NCR3LG1 as a Glycoprotein with 7 glycosylation sites and 2 disulfide bonds, and GPR179 as a Glycoprotein with 2 glycosylation sites and 2 disulfide bonds. The PubMed PTM/glycosylation search returned 0 hits for each gene, so there is no literature on specific sites from that tool. Seven glycosylation sites on a single-pass immunoglobulin-domain protein would normally lie on the ectodomain, which is the only part of NCR3LG1 that could plausibly contact GPR179&#x27;s extracellular region, so glycan occlusion of the modelled interface is a real but unverified concern. Whether any site falls on the modelled contact residues could not be checked because no fold analysis was available in this run.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>PubMed co-occurrence for NCR3LG1 and GPR179 returned a count of 0 with no hits.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING returned no association for NCR3LG1 and GPR179 (found: false). CellPhoneDB has no curated interaction for the pair, and GPR179 is not in the CellPhoneDB gene table at all, so that miss is uninformative for GPR179. PubMed co-occurrence returned 0 papers. The pair is therefore unreported. The only documented function of NCR3LG1 in UniProt is triggering NCR3-dependent natural killer cell activation; GPR179 is an orphan receptor documented to associate with R7 RGS-GNB5 complexes, TRPM1 and GRM6.</div></div>
+        <div class='field'><div class='k'>Other subunits</div><div class='v'>NCR3;GRM6;TRPM1;RGS7;GNB5</div></div>
+        <div class='followup'><b>Follow-up (not yet executed):</b> 1) Fold the NCR3LG1-GPR179 pair with structural analysis to read the interface topology (extracellular versus cytoplasmic residues on each chain) and to check whether any of the 7 NCR3LG1 or 2 GPR179 glycosylation sites sit on the interface; this fold could not be run here. In particular, check whether the large interface (supplied buried surface area 4486 Å2, 1014 contacts, interface pLDDT 60.7, minimum separation 1.47 Å) involves GPR179&#x27;s long, likely disordered cytoplasmic region, which would be topologically impossible for the NCR3LG1 ectodomain. 2) If the interface is ectodomain-to-ectodomain and glycosylation sites land on it, re-fold with glycans attached. 3) Confirm NCR3LG1 protein expression in retina or in ON-bipolar cell neighbours from a full expression matrix, since HPA only reports it as non-specific. 4) The supplied breadth data (1 of 6 partner receptors tested was confident; p_twoway 0.046855) suggests some specificity, but this should be confirmed with a counter-screen. 5) The other_subunits listed are documented partners of each protein from UniProt function text (NCR3 for NCR3LG1; GRM6, TRPM1 and R7 RGS-GNB5 for GPR179), not CellPhoneDB complex members (CellPhoneDB returned no complexes for either gene); they are context for a possible competition or co-complex test, not a confirmed missing subunit.</div>
+        
+        <details class="tools">
+          <summary>Full tool-call ledger (15 calls) — raw evidence behind this verdict</summary>
+          <div class='toolcall'><div><span class='name'>1. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(1.139s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;NCR3LG1&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;NCR3LG1&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: null,
+  &quot;rna_tissue_specificity&quot;: &quot;Low tissue specificity&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: null,
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Low cell type specificity&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>2. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.243s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR179&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;retina&quot;: &quot;12.8&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Tissue enriched&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: {
+    &quot;Brain excitatory neurons&quot;: &quot;1.8&quot;,
+    &quot;Brain inhibitory neurons&quot;: &quot;2.5&quot;,
+    &quot;Other brain neurons&quot;: &quot;3.8&quot;,
+    &quot;Retinal bipolar cells&quot;: &quot;2.3&quot;
+  },
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>3. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.05s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;NCR3LG1&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;NCR3LG1&quot;,
+  &quot;subcellular_main_location&quot;: null,
+  &quot;subcellular_additional_location&quot;: null,
+  &quot;subcellular_location&quot;: null,
+  &quot;reliability_if&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>4. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.005s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR179&quot;,
+  &quot;subcellular_main_location&quot;: null,
+  &quot;subcellular_additional_location&quot;: null,
+  &quot;subcellular_location&quot;: null,
+  &quot;reliability_if&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>5. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.004s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;NCR3LG1&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;NCR3LG1&quot;,
+  &quot;gene_description&quot;: &quot;Natural killer cell cytotoxicity receptor 3 ligand 1&quot;,
+  &quot;protein_class&quot;: [
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: 39
+}</pre></div><div class='toolcall'><div><span class='name'>6. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.257s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR179&quot;,
+  &quot;gene_description&quot;: &quot;G protein-coupled receptor 179&quot;,
+  &quot;protein_class&quot;: [
+    &quot;Human disease related genes&quot;,
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>7. string_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.269s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;NCR3LG1&quot;, &quot;gene_b&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;found&quot;: false
+}</pre></div><div class='toolcall'><div><span class='name'>8. cellphonedb_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(1.032s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;NCR3LG1&quot;, &quot;gene_b&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;matches&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>9. pubmed_cooccurrence</span> <span style='color:var(--grey);font-size:12px;'>(2.191s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;NCR3LG1&quot;, &quot;gene_b&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;count&quot;: 0,
+  &quot;hits&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>10. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.021s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;NCR3LG1&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>11. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.197s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: [],
+  &quot;note&quot;: &quot;&#x27;GPR179&#x27; not in CellPhoneDB gene table&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>12. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(1.632s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;NCR3LG1&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;NCR3LG1&quot;,
+  &quot;accession&quot;: &quot;Q68D85&quot;,
+  &quot;protein_name&quot;: &quot;Natural cytotoxicity triggering receptor 3 ligand 1&quot;,
+  &quot;function&quot;: &quot;Triggers NCR3-dependent natural killer cell activation&quot;,
+  &quot;keywords&quot;: [
+    &quot;3D-structure&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Disulfide bond&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Immunoglobulin domain&quot;,
+    &quot;Membrane&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Repeat&quot;,
+    &quot;Signal&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 2,
+    &quot;Transmembrane&quot;: 1,
+    &quot;Glycosylation&quot;: 7,
+    &quot;Disulfide bond&quot;: 2
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>13. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(2.918s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR179&quot;,
+  &quot;accession&quot;: &quot;Q6PRD1&quot;,
+  &quot;protein_name&quot;: &quot;Probable G protein-coupled receptor 179&quot;,
+  &quot;function&quot;: &quot;Orphan receptor involved in vision (PubMed:22325362, PubMed:24084093). Required for signal transduction through retinal depolarizing bipolar cells (PubMed:22325362). Acts as an atypical G protein-coupled receptor that recruits and regulates the R7 group RGS-GNB5 complexes instead of activating G proteins: promotes the GTPase activator activity of R7 RGS proteins, increasing the GTPase activity of G protein alpha subunits, thereby driving them into their inactive GDP-bound form (By similarity). Associates with components of metabotropic signaling cascade in retina ON-bipolar neurons, such as TRPM1 and GRM6: may control the ability of the GRM6 cascade to gate TRPM1 (By similarity)&quot;,
+  &quot;keywords&quot;: [
+    &quot;3D-structure&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Cell projection&quot;,
+    &quot;Congenital stationary night blindness&quot;,
+    &quot;Disease variant&quot;,
+    &quot;Disulfide bond&quot;,
+    &quot;G protein-coupled receptor&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Membrane&quot;,
+    &quot;Postsynaptic cell membrane&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Receptor&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Sensory transduction&quot;,
+    &quot;Signal&quot;,
+    &quot;Synapse&quot;,
+    &quot;Transducer&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;,
+    &quot;Vision&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 8,
+    &quot;Transmembrane&quot;: 7,
+    &quot;Glycosylation&quot;: 2,
+    &quot;Disulfide bond&quot;: 2
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>14. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(2.908s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;NCR3LG1&quot;}</div><pre>{
+  &quot;count&quot;: 0,
+  &quot;hits&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>15. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(0.58s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR179&quot;}</div><pre>{
+  &quot;count&quot;: 0,
+  &quot;hits&quot;: []
+}</pre></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card" data-log="DSCAM__GPR83">
+      <div class="card-head">
+        <span class="pair">DSCAM &harr; GPR83</span>
+        <span class="badge" style="background:#FF9F1C">LIKELY_ARTIFACT_PTM</span>
+        
+        
+        <span class="conf">low confidence</span>
+        <span class="metrics">ipTM 0.56 &middot; pTM </span>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="k">Rationale</div><div class="v">The pair is unreported (STRING not found, CellPhoneDB not found, 0 PubMed co-mentions) and both are brain-enriched plasma-membrane proteins, so an encounter is plausible. However, both are UniProt glycoproteins (DSCAM O60469 has 18 annotated glycosylation sites; GPR83 Q9NYM4 has 3), and the modeled interface is very large (buried surface area 9734 Å2, 2463 contacts), with only moderate interface pLDDT (59.7), borderline ipTM (0.56) and a minimum separation of 0.8 Å. An interface that extensive on two glycosylated membrane proteins very probably covers glycan sites AF3 did not model, and may span regions on opposite sides of the membrane; neither could be checked per residue because no fold was available in this run. The specificity screen is mildly supportive (confident against 1 of 8 receptors tested, p_twoway 0.047) but does not outweigh these concerns.</div></div>
+        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>UniProt: DSCAM (O60469) carries the Glycoprotein and Phosphoprotein keywords, with 18 annotated glycosylation sites and 10 disulfide bonds in its ectodomain. GPR83 (Q9NYM4) carries the Glycoprotein keyword, with 3 glycosylation sites and 1 disulfide bond. The PubMed PTM searches (10 hits for DSCAM, 2 for GPR83) returned nothing specific to glycosylation of the human proteins. Whether any glycosylation site lies on the modeled interface is unverified; the relevance is inferred from the size of the interface (9734 Å2) and the density of sites on the DSCAM ectodomain.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>PubMed co-occurrence for DSCAM and GPR83 returned 0 hits.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING: no association found. CellPhoneDB: no curated interaction (GPR83 is not in the CellPhoneDB gene table). PubMed co-occurrence: 0 papers. The pair is novel with respect to these sources.</div></div>
+        <div class='field'><div class='k'>Other subunits</div><div class='v'>NTN1;DCC;UNC5C</div></div>
+        <div class='followup'><b>Follow-up (not yet executed):</b> Not run here (fold tools unavailable): re-fold DSCAM + GPR83 and read the structural analysis for (1) whether any of DSCAM&#x27;s 18 or GPR83&#x27;s 3 N-glycosylation sites sit on the interface, and (2) the interface topology, since an interface touching both cytoplasmic and extracellular residues would be physically impossible. If glycan sites are on the interface, re-fold with core glycans attached at those sites. Also inspect the 0.8 Å minimum separation for clashes. Consider folding only the DSCAM ectodomain Ig/FN3 domains against GPR83 to reduce the 2435-token complex. The other_subunits listed are DSCAM&#x27;s netrin-receptor partners from its UniProt function text (NTN1, DCC, UNC5C), not CellPhoneDB complex members (none were found for either protein); they are context for possible co-receptor modeling, not evidence of a missing obligate subunit. GPR83&#x27;s endogenous ligand is uncertain per UniProt (PEN, proCCK56-63, FAM237A and FAM237B are disputed). If the model survives, test by co-immunoprecipitation or a cell-surface binding assay in glycosylation-competent mammalian cells.</div>
+        
+        <details class="tools">
+          <summary>Full tool-call ledger (15 calls) — raw evidence behind this verdict</summary>
+          <div class='toolcall'><div><span class='name'>1. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.537s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;DSCAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;DSCAM&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;brain&quot;: &quot;6.8&quot;,
+    &quot;pituitary gland&quot;: &quot;3.9&quot;,
+    &quot;retina&quot;: &quot;1.7&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Group enriched&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: {
+    &quot;Oligodendrocyte progenitor cells&quot;: &quot;8123.7&quot;,
+    &quot;Pituitary stem cells&quot;: &quot;5399.3&quot;
+  },
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Cell type enhanced&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: {
+    &quot;intestine&quot;: &quot;77853.3&quot;
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>2. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.894s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR83&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;brain&quot;: &quot;15.0&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Tissue enriched&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: {
+    &quot;Brain excitatory neurons&quot;: &quot;6.5&quot;,
+    &quot;Brain inhibitory neurons&quot;: &quot;5.7&quot;,
+    &quot;Endometrial ciliated cells&quot;: &quot;2.9&quot;,
+    &quot;Other brain neurons&quot;: &quot;8.8&quot;,
+    &quot;Schwann cells&quot;: &quot;5.9&quot;
+  },
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Group enriched&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>3. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.047s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;DSCAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;DSCAM&quot;,
+  &quot;subcellular_main_location&quot;: [
+    &quot;Golgi apparatus&quot;
+  ],
+  &quot;subcellular_additional_location&quot;: [
+    &quot;Cytosol&quot;
+  ],
+  &quot;subcellular_location&quot;: [
+    &quot;Golgi apparatus&quot;,
+    &quot;Cytosol&quot;
+  ],
+  &quot;reliability_if&quot;: &quot;Approved&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>4. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.008s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR83&quot;,
+  &quot;subcellular_main_location&quot;: null,
+  &quot;subcellular_additional_location&quot;: null,
+  &quot;subcellular_location&quot;: null,
+  &quot;reliability_if&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>5. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.005s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;DSCAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;DSCAM&quot;,
+  &quot;gene_description&quot;: &quot;DS cell adhesion molecule&quot;,
+  &quot;protein_class&quot;: [
+    &quot;Plasma proteins&quot;,
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: &quot;Intracellular and membrane&quot;,
+  &quot;secretome_function&quot;: &quot;Cell adhesion&quot;,
+  &quot;known_interactions_count&quot;: 24
+}</pre></div><div class='toolcall'><div><span class='name'>6. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.006s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR83&quot;,
+  &quot;gene_description&quot;: &quot;G protein-coupled receptor 83&quot;,
+  &quot;protein_class&quot;: [
+    &quot;G-protein coupled receptors&quot;,
+    &quot;Plasma proteins&quot;,
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: null
+}</pre></div><div class='toolcall'><div><span class='name'>7. string_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.522s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;DSCAM&quot;, &quot;gene_b&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;found&quot;: false
+}</pre></div><div class='toolcall'><div><span class='name'>8. cellphonedb_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.274s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;DSCAM&quot;, &quot;gene_b&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;matches&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>9. pubmed_cooccurrence</span> <span style='color:var(--grey);font-size:12px;'>(0.76s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;DSCAM&quot;, &quot;gene_b&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;count&quot;: 0,
+  &quot;hits&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>10. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(2.21s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;DSCAM&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>11. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.004s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: [],
+  &quot;note&quot;: &quot;&#x27;GPR83&#x27; not in CellPhoneDB gene table&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>12. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(0.195s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;DSCAM&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;DSCAM&quot;,
+  &quot;accession&quot;: &quot;O60469&quot;,
+  &quot;protein_name&quot;: &quot;Cell adhesion molecule DSCAM&quot;,
+  &quot;function&quot;: &quot;Cell adhesion molecule that plays a role in neuronal self-avoidance. Promotes repulsion between specific neuronal processes of either the same cell or the same subtype of cells. Mediates within retinal amacrine and ganglion cell subtypes both isoneuronal self-avoidance for creating an orderly dendritic arborization and heteroneuronal self-avoidance to maintain the mosaic spacing between amacrine and ganglion cell bodies (PubMed:10925149). Receptor for netrin required for axon guidance independently of and in collaboration with the receptor DCC. Might also collaborate with UNC5C in NTN1-mediated axon repulsion independently of DCC (By similarity). In spinal cord development plays a role in guiding commissural axons projection and pathfinding across the ventral midline to reach the floor plate upon ligand binding (PubMed:18585357, PubMed:19196994). Mediates intracellular signaling by stimulating the activation of MAPK8 and MAP kinase p38 (PubMed:18585357, PubMed:19196994). Adhesion molecule that promotes lamina-specific synaptic connections in the retina: expressed in specific subsets of interneurons and retinal ganglion cells (RGCs) and promotes synaptic connectivity via homophilic interactions (By similarity)&quot;,
+  &quot;keywords&quot;: [
+    &quot;3D-structure&quot;,
+    &quot;Alternative splicing&quot;,
+    &quot;Cell adhesion&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Cell projection&quot;,
+    &quot;Disulfide bond&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Immunoglobulin domain&quot;,
+    &quot;Membrane&quot;,
+    &quot;Neurogenesis&quot;,
+    &quot;Phosphoprotein&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Repeat&quot;,
+    &quot;Secreted&quot;,
+    &quot;Signal&quot;,
+    &quot;Synapse&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 2,
+    &quot;Transmembrane&quot;: 1,
+    &quot;Glycosylation&quot;: 18,
+    &quot;Disulfide bond&quot;: 10
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>13. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(1.761s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPR83&quot;,
+  &quot;accession&quot;: &quot;Q9NYM4&quot;,
+  &quot;protein_name&quot;: &quot;G protein-coupled receptor 83&quot;,
+  &quot;function&quot;: &quot;G protein-coupled peptide receptor (PubMed:27117253, PubMed:37689599). Several peptides, PEN, derived from the proSAAS precursor (encoded by PCSK1N), the procholecystokinin-derived peptide proCCK56-63, and the related proteins FAM237A and FAM237B have been reported to activate GPR83 through GNAI1/G(i) and GNAS/G(s)-mediated signaling pathways (PubMed:27117253, PubMed:32713278, PubMed:36853120, PubMed:37689599). However, due to conflicting evidence about the ability of these peptides to bind to and activate the GPR83, the endogenous ligand of GPR83 still remains uncertain (PubMed:36853120, PubMed:37894796). Plays a role in food intake and body weight regulation. May contribute to the regulation of anxiety-related behaviors (By similarity)&quot;,
+  &quot;keywords&quot;: [
+    &quot;Alternative splicing&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Disulfide bond&quot;,
+    &quot;G protein-coupled receptor&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Membrane&quot;,
+    &quot;Receptor&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Signal&quot;,
+    &quot;Transducer&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 8,
+    &quot;Transmembrane&quot;: 7,
+    &quot;Glycosylation&quot;: 3,
+    &quot;Disulfide bond&quot;: 1
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>14. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(2.791s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;DSCAM&quot;}</div><pre>{
+  &quot;count&quot;: 10,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;41991085&quot;,
+      &quot;title&quot;: &quot;DYRK1A and Parkinson&#x27;s disease, facts and hypotheses.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Jul&quot;,
+      &quot;source&quot;: &quot;Neurobiol Dis&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;35301086&quot;,
+      &quot;title&quot;: &quot;Abnormal mitochondria in Down syndrome iPSC-derived GABAergic interneurons and organoids.&quot;,
+      &quot;pubdate&quot;: &quot;2022 Jun 1&quot;,
+      &quot;source&quot;: &quot;Biochim Biophys Acta Mol Basis Dis&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;31537644&quot;,
+      &quot;title&quot;: &quot;Alternatively spliced down syndrome cell adhesion molecule (Dscam) controls innate immunity in crab.&quot;,
+      &quot;pubdate&quot;: &quot;2019 Nov 1&quot;,
+      &quot;source&quot;: &quot;J Biol Chem&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;26966010&quot;,
+      &quot;title&quot;: &quot;Overexpressed Down Syndrome Cell Adhesion Molecule (DSCAM) Deregulates P21-Activated Kinase (PAK) Activity in an In Vitro Neuronal Model of Down Syndrome: Consequences on Cell Process Formation and Extension.&quot;,
+      &quot;pubdate&quot;: &quot;2016 Jul&quot;,
+      &quot;source&quot;: &quot;Neurotox Res&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;24084194&quot;,
+      &quot;title&quot;: &quot;Tyrosine phosphorylation is essential for DSCAML1 to promote dendrite arborization of mouse cortical neurons.&quot;,
+      &quot;pubdate&quot;: &quot;2013 Oct 25&quot;,
+      &quot;source&quot;: &quot;Neurosci Lett&quot;
+    }
+  ]
+}</pre></div><div class='toolcall'><div><span class='name'>15. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(3.404s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPR83&quot;}</div><pre>{
+  &quot;count&quot;: 2,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;34504158&quot;,
+      &quot;title&quot;: &quot;Characterisation of lamina I anterolateral system neurons that express Cre in a Phox2a-Cre mouse line.&quot;,
+      &quot;pubdate&quot;: &quot;2021 Sep 9&quot;,
+      &quot;source&quot;: &quot;Sci Rep&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;35559741&quot;,
+      &quot;title&quot;: &quot;Uterine Gpr83 mRNA is highly expressed during early pregnancy and GPR83 mediates the actions of PEN in endometrial and non-endometrial cells.&quot;,
+      &quot;pubdate&quot;: &quot;2020 Aug&quot;,
+      &quot;source&quot;: &quot;F S Sci&quot;
+    }
+  ]
+}</pre></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card" data-log="EPHA2__GPRC5A">
+      <div class="card-head">
+        <span class="pair">EPHA2 &harr; GPRC5A</span>
+        <span class="badge" style="background:#B0B7C3">INSUFFICIENT_EVIDENCE</span>
+        
+        
+        <span class="conf">low confidence</span>
+        <span class="metrics">ipTM 0.59 &middot; pTM </span>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="k">Rationale</div><div class="v">I&#x27;m withdrawing ALREADY_KNOWN. The check reports known_interaction_strength=none: STRING and CellPhoneDB have no record, and GPRC5A is missing from the CellPhoneDB table. The only support is PMID 32115889, and I read only its title. The title describes an RSK-EphA2-GPRC5A signalling switch, which could be a functional or expression axis and not a physical complex. PMID 27715394 only co-mentions EPHA2. The HPA contradiction is real. Neither protein is secreted, and they share no protein-level tissue expression in HPA, so the data give no normal-tissue route for them to meet. I don&#x27;t call it IMPLAUSIBLE, because both are plasma-membrane proteins and the 2020 paper studies them together in ovarian cancer cells, which HPA&#x27;s normal-tissue data would not capture. The fold status is topology_violation, so any AF3 contact is not a credible direct-binding model. EPHA2 phosphorylation by RSK, which a bare-sequence model omits, may also gate any association. The evidence supports a functional link but neither confirms nor excludes direct binding.</div></div>
+        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>EPHA2 and GPRC5A are both glycoproteins and phosphoproteins. RSK-dependent EphA2 phosphorylation may gate the association, and AF3 does not represent it. Whether any site lies on the modeled interface was not checked.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>2 PubMed hits. PMID 32115889 is a dedicated paper on an RSK-EphA2-GPRC5A signalling axis in ovarian cancer chemoresistance, which is a real pair-specific hit. PMID 27715394 is a GPRC5A/integrin beta-1 adhesion paper that co-mentions EPHA2. Only titles were retrieved, so whether either reports direct binding (for example co-immunoprecipitation) was not verified here.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING and CellPhoneDB: no record (GPRC5A is not in CellPhoneDB, so that miss is uninformative). PubMed: 2 hits. PMID 32115889 is a title-level functional signalling-axis link, not confirmed physical binding. PMID 27715394 is a co-mention only. Known-interaction strength is &#x27;none&#x27;, so ALREADY_KNOWN is not supported.</div></div>
+        <div class='field'><div class='k'>Other subunits</div><div class='v'>RPS6KA1</div></div>
+        <div class='followup'><b>Follow-up (not yet executed):</b> Read the abstract and results of PMID 32115889 to see whether it shows co-IP or proximity evidence for direct EphA2-GPRC5A binding. Re-fold with the correct membrane topology (EPHA2 ectodomain versus GPRC5A extracellular face) and the phosphorylated EphA2 S897 residue represented.</div>
+        
+        <details class="tools">
+          <summary>Full tool-call ledger (15 calls) — raw evidence behind this verdict</summary>
+          <div class='toolcall'><div><span class='name'>1. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(1.356s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;EPHA2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;EPHA2&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;esophagus&quot;: &quot;142.7&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Tissue enhanced&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: null,
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Low cell type specificity&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: {
+    &quot;liver&quot;: &quot;4523042.9&quot;,
+    &quot;lymphoid tissue&quot;: &quot;5624658.0&quot;,
+    &quot;ovary&quot;: &quot;4336054.8&quot;,
+    &quot;salivary gland&quot;: &quot;3331923.1&quot;
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>2. hpa_expression</span> <span style='color:var(--grey);font-size:12px;'>(0.021s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPRC5A&quot;,
+  &quot;rna_tissue_specific_nTPM&quot;: {
+    &quot;lung&quot;: &quot;190.3&quot;,
+    &quot;urinary bladder&quot;: &quot;121.8&quot;
+  },
+  &quot;rna_tissue_specificity&quot;: &quot;Tissue enhanced&quot;,
+  &quot;rna_single_cell_type_specific_nCPM&quot;: null,
+  &quot;rna_single_cell_type_specificity&quot;: &quot;Low cell type specificity&quot;,
+  &quot;protein_tissue_specific_intensity&quot;: {
+    &quot;lung&quot;: &quot;21845199.5&quot;
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>3. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.037s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;EPHA2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;EPHA2&quot;,
+  &quot;subcellular_main_location&quot;: [
+    &quot;Plasma membrane&quot;,
+    &quot;Cell Junctions&quot;
+  ],
+  &quot;subcellular_additional_location&quot;: [
+    &quot;Nuclear speckles&quot;,
+    &quot;Golgi apparatus&quot;
+  ],
+  &quot;subcellular_location&quot;: [
+    &quot;Nuclear speckles&quot;,
+    &quot;Golgi apparatus&quot;,
+    &quot;Plasma membrane&quot;,
+    &quot;Cell Junctions&quot;
+  ],
+  &quot;reliability_if&quot;: &quot;Supported&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>4. hpa_subcellular_location</span> <span style='color:var(--grey);font-size:12px;'>(0.007s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPRC5A&quot;,
+  &quot;subcellular_main_location&quot;: [
+    &quot;Vesicles&quot;
+  ],
+  &quot;subcellular_additional_location&quot;: [
+    &quot;Plasma membrane&quot;,
+    &quot;Primary cilium&quot;,
+    &quot;Primary cilium tip&quot;
+  ],
+  &quot;subcellular_location&quot;: [
+    &quot;Vesicles&quot;,
+    &quot;Plasma membrane&quot;,
+    &quot;Primary cilium&quot;,
+    &quot;Primary cilium tip&quot;
+  ],
+  &quot;reliability_if&quot;: &quot;Supported&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>5. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.004s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;EPHA2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;EPHA2&quot;,
+  &quot;gene_description&quot;: &quot;EPH receptor A2&quot;,
+  &quot;protein_class&quot;: [
+    &quot;Cancer-related genes&quot;,
+    &quot;Disease related genes&quot;,
+    &quot;Enzymes&quot;,
+    &quot;FDA approved drug targets&quot;,
+    &quot;Human disease related genes&quot;,
+    &quot;Predicted membrane proteins&quot;,
+    &quot;RAS pathway related proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: 265
+}</pre></div><div class='toolcall'><div><span class='name'>6. hpa_protein_class</span> <span style='color:var(--grey);font-size:12px;'>(0.515s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPRC5A&quot;,
+  &quot;gene_description&quot;: &quot;G protein-coupled receptor class C group 5 member A&quot;,
+  &quot;protein_class&quot;: [
+    &quot;G-protein coupled receptors&quot;,
+    &quot;Predicted intracellular proteins&quot;,
+    &quot;Predicted membrane proteins&quot;
+  ],
+  &quot;secretome_location&quot;: null,
+  &quot;secretome_function&quot;: null,
+  &quot;known_interactions_count&quot;: 18
+}</pre></div><div class='toolcall'><div><span class='name'>7. string_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.266s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;EPHA2&quot;, &quot;gene_b&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;found&quot;: false
+}</pre></div><div class='toolcall'><div><span class='name'>8. cellphonedb_known_interaction</span> <span style='color:var(--grey);font-size:12px;'>(0.776s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;EPHA2&quot;, &quot;gene_b&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;matches&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>9. pubmed_cooccurrence</span> <span style='color:var(--grey);font-size:12px;'>(2.21s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene_a&quot;: &quot;EPHA2&quot;, &quot;gene_b&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;count&quot;: 2,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;32115889&quot;,
+      &quot;title&quot;: &quot;Adaptive RSK-EphA2-GPRC5A signaling switch triggers chemotherapy resistance in ovarian cancer.&quot;,
+      &quot;pubdate&quot;: &quot;2020 Apr 7&quot;,
+      &quot;source&quot;: &quot;EMBO Mol Med&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;27715394&quot;,
+      &quot;title&quot;: &quot;Orphan G protein-coupled receptor GPRC5A modulates integrin \u03b21-mediated epithelial cell adhesion.&quot;,
+      &quot;pubdate&quot;: &quot;2017 Sep 3&quot;,
+      &quot;source&quot;: &quot;Cell Adh Migr&quot;
+    }
+  ]
+}</pre></div><div class='toolcall'><div><span class='name'>10. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.003s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;EPHA2&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: []
+}</pre></div><div class='toolcall'><div><span class='name'>11. cellphonedb_complex_members</span> <span style='color:var(--grey);font-size:12px;'>(0.196s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;found&quot;: false,
+  &quot;complexes&quot;: [],
+  &quot;note&quot;: &quot;&#x27;GPRC5A&#x27; not in CellPhoneDB gene table&quot;
+}</pre></div><div class='toolcall'><div><span class='name'>12. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(1.758s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;EPHA2&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;EPHA2&quot;,
+  &quot;accession&quot;: &quot;P29317&quot;,
+  &quot;protein_name&quot;: &quot;Ephrin type-A receptor 2&quot;,
+  &quot;function&quot;: &quot;Receptor tyrosine kinase which binds promiscuously membrane-bound ephrin-A family ligands residing on adjacent cells, leading to contact-dependent bidirectional signaling into neighboring cells. The signaling pathway downstream of the receptor is referred to as forward signaling while the signaling pathway downstream of the ephrin ligand is referred to as reverse signaling. Activated by the ligand ephrin-A1/EFNA1 regulates migration, integrin-mediated adhesion, proliferation and differentiation of cells. Regulates cell adhesion and differentiation through DSG1/desmoglein-1 and inhibition of the ERK1/ERK2 (MAPK3/MAPK1, respectively) signaling pathway. May also participate in UV radiation-induced apoptosis and have a ligand-independent stimulatory effect on chemotactic cell migration. During development, may function in distinctive aspects of pattern formation and subsequently in development of several fetal tissues. Involved for instance in angiogenesis, in early hindbrain development and epithelial proliferation and branching morphogenesis during mammary gland development. Engaged by the ligand ephrin-A5/EFNA5 may regulate lens fiber cells shape and interactions and be important for lens transparency development and maintenance. With ephrin-A2/EFNA2 may play a role in bone remodeling through regulation of osteoclastogenesis and osteoblastogenesis (Microbial infection) Acts as a receptor for hepatitis C virus (HCV) in hepatocytes and facilitates its cell entry. Mediates HCV entry by promoting the formation of the CD81-CLDN1 receptor complexes that are essential for HCV entry and by enhancing membrane fusion of cells expressing HCV envelope glycoproteins Acts as a receptor for human cytomegalovirus (HCMV) to mediate viral entry and fusion in glioblastoma cells&quot;,
+  &quot;keywords&quot;: [
+    &quot;3D-structure&quot;,
+    &quot;Alternative splicing&quot;,
+    &quot;Angiogenesis&quot;,
+    &quot;Apoptosis&quot;,
+    &quot;ATP-binding&quot;,
+    &quot;Cataract&quot;,
+    &quot;Cell adhesion&quot;,
+    &quot;Cell junction&quot;,
+    &quot;Cell membrane&quot;,
+    &quot;Cell projection&quot;,
+    &quot;Differentiation&quot;,
+    &quot;Disease variant&quot;,
+    &quot;Disulfide bond&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Host cell receptor for virus entry&quot;,
+    &quot;Host-virus interaction&quot;,
+    &quot;Kinase&quot;,
+    &quot;Membrane&quot;,
+    &quot;Nucleotide-binding&quot;,
+    &quot;Phosphoprotein&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Receptor&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Repeat&quot;,
+    &quot;Signal&quot;,
+    &quot;Transferase&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;,
+    &quot;Tyrosine-protein kinase&quot;,
+    &quot;Ubl conjugation&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 2,
+    &quot;Transmembrane&quot;: 1,
+    &quot;Modified residue&quot;: 15,
+    &quot;Glycosylation&quot;: 2,
+    &quot;Disulfide bond&quot;: 2
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>13. uniprot_annotation</span> <span style='color:var(--grey);font-size:12px;'>(2.793s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;gene&quot;: &quot;GPRC5A&quot;,
+  &quot;accession&quot;: &quot;Q8NFJ5&quot;,
+  &quot;protein_name&quot;: &quot;Retinoic acid-induced protein 3&quot;,
+  &quot;function&quot;: &quot;Orphan receptor. Could be involved in modulating differentiation and maintaining homeostasis of epithelial cells. This retinoic acid-inducible GPCR provide evidence for a possible interaction between retinoid and G protein signaling pathways. Functions as a negative modulator of EGFR signaling (By similarity). May act as a lung tumor suppressor (PubMed:18000218)&quot;,
+  &quot;keywords&quot;: [
+    &quot;Cell membrane&quot;,
+    &quot;Cytoplasmic vesicle&quot;,
+    &quot;G protein-coupled receptor&quot;,
+    &quot;Glycoprotein&quot;,
+    &quot;Membrane&quot;,
+    &quot;Phosphoprotein&quot;,
+    &quot;Proteomics identification&quot;,
+    &quot;Receptor&quot;,
+    &quot;Reference proteome&quot;,
+    &quot;Transducer&quot;,
+    &quot;Transmembrane&quot;,
+    &quot;Transmembrane helix&quot;,
+    &quot;Tumor suppressor&quot;
+  ],
+  &quot;ptm_topology_feature_counts&quot;: {
+    &quot;Topological domain&quot;: 8,
+    &quot;Transmembrane&quot;: 7,
+    &quot;Modified residue&quot;: 6,
+    &quot;Glycosylation&quot;: 1
+  }
+}</pre></div><div class='toolcall'><div><span class='name'>14. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(2.912s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;EPHA2&quot;}</div><pre>{
+  &quot;count&quot;: 324,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;42709684&quot;,
+      &quot;title&quot;: &quot;EPHA2 and WNT reciprocally regulate MAPK-dependent gene expression in a pancreatic cancer model.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Oct 8&quot;,
+      &quot;source&quot;: &quot;JCI Insight&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;42642744&quot;,
+      &quot;title&quot;: &quot;Pseudorabies virus pUL40 drives inflammatory signaling through competitive hijacking of EphA2 from the Akt-EphA2 interaction.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Aug 25&quot;,
+      &quot;source&quot;: &quot;Vet Res&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;42578958&quot;,
+      &quot;title&quot;: &quot;EPHA2/CD44-directed trafficking enhances endosomal leakiness and antisense therapy delivery.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Sep 7&quot;,
+      &quot;source&quot;: &quot;J Cell Biol&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;42480940&quot;,
+      &quot;title&quot;: &quot;FGFR1 induces RSK-dependent non-canonical activation of EphA2 during EMT.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Oct&quot;,
+      &quot;source&quot;: &quot;Biochim Biophys Acta Mol Cell Res&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;42377754&quot;,
+      &quot;title&quot;: &quot;EphA2 as an oncogenic driver: roles and mechanisms of action in cancer.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Jun 30&quot;,
+      &quot;source&quot;: &quot;Mol Biol Rep&quot;
+    }
+  ]
+}</pre></div><div class='toolcall'><div><span class='name'>15. pubmed_ptm_glycosylation</span> <span style='color:var(--grey);font-size:12px;'>(0.6s)</span></div><div style='font-size:12px;color:var(--grey);margin-top:4px;'>input: {&quot;gene&quot;: &quot;GPRC5A&quot;}</div><pre>{
+  &quot;count&quot;: 17,
+  &quot;hits&quot;: [
+    {
+      &quot;pmid&quot;: &quot;42980250&quot;,
+      &quot;title&quot;: &quot;Integrative hdWGCNA and Machine-Learning Analysis Identifies Gastric Cancer Candidate Genes and Supports a Functional Role for KRT18.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Nov 3&quot;,
+      &quot;source&quot;: &quot;J Vis Exp&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;42277459&quot;,
+      &quot;title&quot;: &quot;Down-regulation of GPRC5A Confers Protection Against Periodontitis.&quot;,
+      &quot;pubdate&quot;: &quot;2026 Jun 11&quot;,
+      &quot;source&quot;: &quot;Inflammation&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;41903466&quot;,
+      &quot;title&quot;: &quot;Identification of tumor initiating cells and early marker genes in histologically normal colonic mucosa that lead to neoplastic transformation.&quot;,
+      &quot;pubdate&quot;: &quot;2026 May&quot;,
+      &quot;source&quot;: &quot;Neoplasia&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;41764979&quot;,
+      &quot;title&quot;: &quot;The Hippo pathway in clear cell renal cell carcinoma (ccRCC): a nexus with the VHL disruption?&quot;,
+      &quot;pubdate&quot;: &quot;2026 Apr&quot;,
+      &quot;source&quot;: &quot;Transl Oncol&quot;
+    },
+    {
+      &quot;pmid&quot;: &quot;41282138&quot;,
+      &quot;title&quot;: &quot;Identification of tumor initiating cells and early marker genes in normal colonic epithelium that lead to neoplastic transformation.&quot;,
+      &quot;pubdate&quot;: &quot;2025 Oct 27&quot;,
+      &quot;source&quot;: &quot;Res Sq&quot;
+    }
+  ]
+}</pre></div>
+        </details>
+      </div>
+    </div>
+    </main>
+<script>
+document.querySelectorAll('.card-head').forEach(h => {
+  h.addEventListener('click', () => h.closest('.card').classList.toggle('open'));
+});
+
+const STRUCTURES = {};
+const _viewers = {};
+
+function toggleStructure(id) {
+  const container = document.getElementById('viewer-wrap-' + id);
+  const btn = document.getElementById('struct-btn-' + id);
+  if (container.style.display === 'none' || !container.style.display) {
+    container.style.display = 'block';
+    btn.textContent = 'Hide 3D structure';
+    if (!_viewers[id]) initViewer(id);
+  } else {
+    container.style.display = 'none';
+    btn.textContent = 'Show 3D structure';
+  }
+}
+
+function initViewer(id) {
+  const el = document.getElementById('viewer-' + id);
+  const s = STRUCTURES[id];
+  if (!s) {
+    el.innerHTML = "<p style='color:#E05D5D;padding:12px;'>No structure data found for this candidate (internal error — id '" + id + "' missing from STRUCTURES).</p>";
+    return;
+  }
+  if (typeof $3Dmol === 'undefined') {
+    el.innerHTML = "<p style='color:#E05D5D;padding:12px;'>3D viewer library (3Dmol.js, loaded from 3dmol.org) failed to load — likely no internet access to that domain from wherever this page is being viewed. The structure data itself IS in this file; only the in-browser viewer needs that external script.</p>";
+    return;
+  }
+  try {
+    const viewer = $3Dmol.createViewer(el, {backgroundColor: 'white'});
+    viewer.addModel(s.cif, 'cif');
+    viewer.setStyle({}, {cartoon: {colorscheme: 'chainHetatm'}});
+    if (s.interface_a && s.interface_a.length) {
+      viewer.setStyle({chain: s.chain_a, resi: s.interface_a}, {cartoon: {color: '#FF9F1C'}});
+    }
+    if (s.interface_b && s.interface_b.length) {
+      viewer.setStyle({chain: s.chain_b, resi: s.interface_b}, {cartoon: {color: '#FF9F1C'}});
+    }
+    // Label each chain with its actual gene/protein name at its centroid —
+    // "chain A/B" means nothing on its own; this is the fix for the
+    // user-reported "label the subunits" request.
+    if (s.chain_labels) {
+      const model = viewer.getModel(0);
+      Object.keys(s.chain_labels).forEach(function(chainId) {
+        const atoms = model.selectedAtoms({chain: chainId});
+        if (!atoms.length) return;
+        let sx = 0, sy = 0, sz = 0;
+        atoms.forEach(function(a) { sx += a.x; sy += a.y; sz += a.z; });
+        const n = atoms.length;
+        viewer.addLabel(s.chain_labels[chainId], {
+          position: {x: sx / n, y: sy / n, z: sz / n},
+          backgroundColor: '#1B2A4A', backgroundOpacity: 0.85,
+          fontColor: 'white', fontSize: 14, borderThickness: 0,
+        });
+      });
+    }
+    viewer.zoomTo();
+    viewer.render();
+    _viewers[id] = viewer;
+  } catch (err) {
+    el.innerHTML = "<p style='color:#E05D5D;padding:12px;'>3D viewer failed to render: " + String(err && err.message || err) + "</p>";
+  }
+}
+</script>
+</body></html>
