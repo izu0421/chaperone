@@ -1,0 +1,276 @@
+job,block,chain_a,chain_b,label,action,size,fold_order
+CXCR6__CCL5,A_chemokine,CXCR6,CCL5,negative,,433,1
+CXCR6__CCL3,A_chemokine,CXCR6,CCL3,negative,,434,2
+CXCR6__CXCL12,A_chemokine,CXCR6,CXCL12,negative,,435,3
+CXCR6__CXCL11,A_chemokine,CXCR6,CXCL11,negative,,436,4
+CXCR6__CCL17,A_chemokine,CXCR6,CCL17,negative,,436,5
+CXCR6__CCL20,A_chemokine,CXCR6,CCL20,negative,,438,6
+CXCR6__CCL1,A_chemokine,CXCR6,CCL1,negative,,438,7
+CXCR6__CCL11,A_chemokine,CXCR6,CCL11,negative,,439,8
+CXCR6__CCL19,A_chemokine,CXCR6,CCL19,negative,,440,9
+CXCR6__CXCL10,A_chemokine,CXCR6,CXCL10,negative,,440,10
+CXCR1__CCL5,A_chemokine,CXCR1,CCL5,negative,,441,11
+CXCR6__CXCL8,A_chemokine,CXCR6,CXCL8,negative,,441,12
+CXCR6__CCL2,A_chemokine,CXCR6,CCL2,negative,,441,13
+CXCR1__CCL3,A_chemokine,CXCR1,CCL3,negative,,442,14
+CCR5__CCL5,A_chemokine,CCR5,CCL5,binder,Full agonist,443,15
+CXCR1__CXCL12,A_chemokine,CXCR1,CXCL12,negative,,443,16
+CXCR4__CCL5,A_chemokine,CXCR4,CCL5,negative,,443,17
+CXCR1__CCL17,A_chemokine,CXCR1,CCL17,negative,,444,18
+CXCR4__CCL3,A_chemokine,CXCR4,CCL3,negative,,444,19
+CCR5__CCL3,A_chemokine,CCR5,CCL3,binder,Full agonist,444,20
+CXCR1__CXCL11,A_chemokine,CXCR1,CXCL11,negative,,444,21
+CXCR4__CXCL12,A_chemokine,CXCR4,CXCL12,binder,Full agonist,445,22
+CCR5__CXCL12,A_chemokine,CCR5,CXCL12,negative,,445,23
+CXCR4__CXCL11,A_chemokine,CXCR4,CXCL11,negative,,446,24
+CCR5__CXCL11,A_chemokine,CCR5,CXCL11,negative,,446,25
+CXCR1__CCL20,A_chemokine,CXCR1,CCL20,negative,,446,26
+CXCR1__CCL1,A_chemokine,CXCR1,CCL1,negative,,446,27
+CCR1__CCL5,A_chemokine,CCR1,CCL5,binder,Full agonist,446,28
+CCR8__CCL5,A_chemokine,CCR8,CCL5,negative,,446,29
+CCR5__CCL17,A_chemokine,CCR5,CCL17,negative,,446,30
+CX3CR1__CCL5,A_chemokine,CX3CR1,CCL5,negative,,446,31
+CXCR4__CCL17,A_chemokine,CXCR4,CCL17,negative,,446,32
+CCR3__CCL5,A_chemokine,CCR3,CCL5,binder,Full agonist,446,33
+CXCR1__CCL11,A_chemokine,CXCR1,CCL11,negative,,447,34
+CCR8__CCL3,A_chemokine,CCR8,CCL3,negative,,447,35
+CX3CR1__CCL3,A_chemokine,CX3CR1,CCL3,negative,,447,36
+CCR3__CCL3,A_chemokine,CCR3,CCL3,negative,,447,37
+CCR1__CCL3,A_chemokine,CCR1,CCL3,binder,Full agonist,447,38
+CCR5__CCL20,A_chemokine,CCR5,CCL20,negative,,448,39
+CCR5__CCL1,A_chemokine,CCR5,CCL1,negative,,448,40
+CXCR4__CCL20,A_chemokine,CXCR4,CCL20,negative,,448,41
+CXCR4__CCL1,A_chemokine,CXCR4,CCL1,negative,,448,42
+CCR3__CXCL12,A_chemokine,CCR3,CXCL12,negative,,448,43
+CCR1__CXCL12,A_chemokine,CCR1,CXCL12,negative,,448,44
+CCR8__CXCL12,A_chemokine,CCR8,CXCL12,negative,,448,45
+CXCR1__CXCL10,A_chemokine,CXCR1,CXCL10,negative,,448,46
+CXCR1__CCL19,A_chemokine,CXCR1,CCL19,negative,,448,47
+CX3CR1__CXCL12,A_chemokine,CX3CR1,CXCL12,negative,,448,48
+CCR8__CXCL11,A_chemokine,CCR8,CXCL11,negative,,449,49
+CCR8__CCL17,A_chemokine,CCR8,CCL17,negative,,449,50
+CXCR1__CCL2,A_chemokine,CXCR1,CCL2,negative,,449,51
+CX3CR1__CCL17,A_chemokine,CX3CR1,CCL17,negative,,449,52
+CXCR4__CCL11,A_chemokine,CXCR4,CCL11,negative,,449,53
+CCR1__CXCL11,A_chemokine,CCR1,CXCL11,negative,,449,54
+CCR1__CCL17,A_chemokine,CCR1,CCL17,negative,,449,55
+CX3CR1__CXCL11,A_chemokine,CX3CR1,CXCL11,negative,,449,56
+CXCR1__CXCL8,A_chemokine,CXCR1,CXCL8,binder,Full agonist,449,57
+CCR3__CCL17,A_chemokine,CCR3,CCL17,negative,,449,58
+CCR5__CCL11,A_chemokine,CCR5,CCL11,binder,Full agonist,449,59
+CCR3__CXCL11,A_chemokine,CCR3,CXCL11,binder,Antagonist,449,60
+CCR5__CCL19,A_chemokine,CCR5,CCL19,negative,,450,61
+CCR5__CXCL10,A_chemokine,CCR5,CXCL10,negative,,450,62
+CXCR4__CCL19,A_chemokine,CXCR4,CCL19,negative,,450,63
+CXCR4__CXCL10,A_chemokine,CXCR4,CXCL10,negative,,450,64
+CXCR4__CXCL8,A_chemokine,CXCR4,CXCL8,negative,,451,65
+CCR1__CCL1,A_chemokine,CCR1,CCL1,negative,,451,66
+CXCR2__CCL5,A_chemokine,CXCR2,CCL5,negative,,451,67
+CX3CR1__CCL1,A_chemokine,CX3CR1,CCL1,negative,,451,68
+CCR4__CCL5,A_chemokine,CCR4,CCL5,negative,,451,69
+CCR5__CCL2,A_chemokine,CCR5,CCL2,binder,Full agonist,451,70
+CCR5__CXCL8,A_chemokine,CCR5,CXCL8,negative,,451,71
+CCR1__CCL20,A_chemokine,CCR1,CCL20,negative,,451,72
+CCR8__CCL20,A_chemokine,CCR8,CCL20,negative,,451,73
+CCR8__CCL1,A_chemokine,CCR8,CCL1,binder,Full agonist,451,74
+CCR3__CCL1,A_chemokine,CCR3,CCL1,negative,,451,75
+CXCR4__CCL2,A_chemokine,CXCR4,CCL2,negative,,451,76
+CCR3__CCL20,A_chemokine,CCR3,CCL20,negative,,451,77
+CX3CR1__CCL20,A_chemokine,CX3CR1,CCL20,negative,,451,78
+CXCR6__CXCL13,A_chemokine,CXCR6,CXCL13,negative,,451,79
+CCR8__CCL11,A_chemokine,CCR8,CCL11,negative,,452,80
+CCR3__CCL11,A_chemokine,CCR3,CCL11,binder,Full agonist,452,81
+CXCR2__CCL3,A_chemokine,CXCR2,CCL3,negative,,452,82
+CCR4__CCL3,A_chemokine,CCR4,CCL3,negative,,452,83
+CX3CR1__CCL11,A_chemokine,CX3CR1,CCL11,negative,,452,84
+CCR1__CCL11,A_chemokine,CCR1,CCL11,negative,,452,85
+CCR8__CXCL10,A_chemokine,CCR8,CXCL10,negative,,453,86
+ACKR3__CCL5,A_chemokine,ACKR3,CCL5,negative,,453,87
+CCR1__CXCL10,A_chemokine,CCR1,CXCL10,negative,,453,88
+CCR3__CXCL10,A_chemokine,CCR3,CXCL10,binder,Antagonist,453,89
+CCR3__CCL19,A_chemokine,CCR3,CCL19,negative,,453,90
+CX3CR1__CCL19,A_chemokine,CX3CR1,CCL19,negative,,453,91
+CCR4__CXCL12,A_chemokine,CCR4,CXCL12,negative,,453,92
+CXCR2__CXCL12,A_chemokine,CXCR2,CXCL12,negative,,453,93
+CCR1__CCL19,A_chemokine,CCR1,CCL19,negative,,453,94
+CCR8__CCL19,A_chemokine,CCR8,CCL19,negative,,453,95
+CX3CR1__CXCL10,A_chemokine,CX3CR1,CXCL10,negative,,453,96
+CXCR2__CCL17,A_chemokine,CXCR2,CCL17,negative,,454,97
+CXCR2__CXCL11,A_chemokine,CXCR2,CXCL11,negative,,454,98
+CCR1__CXCL8,A_chemokine,CCR1,CXCL8,negative,,454,99
+CCR3__CCL2,A_chemokine,CCR3,CCL2,binder,Full agonist,454,100
+CX3CR1__CXCL8,A_chemokine,CX3CR1,CXCL8,negative,,454,101
+CX3CR1__CCL2,A_chemokine,CX3CR1,CCL2,negative,,454,102
+CCR3__CXCL8,A_chemokine,CCR3,CXCL8,negative,,454,103
+CCR1__CCL2,A_chemokine,CCR1,CCL2,negative,,454,104
+CCR8__CXCL8,A_chemokine,CCR8,CXCL8,negative,,454,105
+CCR8__CCL2,A_chemokine,CCR8,CCL2,negative,,454,106
+CCR4__CXCL11,A_chemokine,CCR4,CXCL11,negative,,454,107
+CCR4__CCL17,A_chemokine,CCR4,CCL17,binder,Full agonist,454,108
+ACKR3__CCL3,A_chemokine,ACKR3,CCL3,negative,,454,109
+ACKR3__CXCL12,A_chemokine,ACKR3,CXCL12,binder,Agonist,455,110
+ACKR3__CCL17,A_chemokine,ACKR3,CCL17,negative,,456,111
+CCR4__CCL1,A_chemokine,CCR4,CCL1,negative,,456,112
+CXCR2__CCL1,A_chemokine,CXCR2,CCL1,negative,,456,113
+CXCR2__CCL20,A_chemokine,CXCR2,CCL20,negative,,456,114
+ACKR3__CXCL11,A_chemokine,ACKR3,CXCL11,binder,Full agonist,456,115
+CCR4__CCL20,A_chemokine,CCR4,CCL20,negative,,456,116
+CXCR2__CCL11,A_chemokine,CXCR2,CCL11,negative,,457,117
+CCR4__CCL11,A_chemokine,CCR4,CCL11,negative,,457,118
+ACKR3__CCL1,A_chemokine,ACKR3,CCL1,negative,,458,119
+ACKR3__CCL20,A_chemokine,ACKR3,CCL20,negative,,458,120
+CCR4__CXCL10,A_chemokine,CCR4,CXCL10,negative,,458,121
+CXCR2__CXCL10,A_chemokine,CXCR2,CXCL10,negative,,458,122
+CXCR2__CCL19,A_chemokine,CXCR2,CCL19,negative,,458,123
+CCR4__CCL19,A_chemokine,CCR4,CCL19,negative,,458,124
+ACKR3__CCL11,A_chemokine,ACKR3,CCL11,negative,,459,125
+CXCR2__CCL2,A_chemokine,CXCR2,CCL2,negative,,459,126
+CXCR1__CXCL13,A_chemokine,CXCR1,CXCL13,negative,,459,127
+CXCR2__CXCL8,A_chemokine,CXCR2,CXCL8,binder,Full agonist,459,128
+CXCR3__CCL5,A_chemokine,CXCR3,CCL5,binder,Full agonist,459,129
+CCR4__CCL2,A_chemokine,CCR4,CCL2,negative,,459,130
+CCR4__CXCL8,A_chemokine,CCR4,CXCL8,negative,,459,131
+ACKR3__CXCL10,A_chemokine,ACKR3,CXCL10,negative,,460,132
+ACKR3__CCL19,A_chemokine,ACKR3,CCL19,negative,,460,133
+CXCR3__CCL3,A_chemokine,CXCR3,CCL3,negative,,460,134
+CXCR3__CXCL12,A_chemokine,CXCR3,CXCL12,binder,Full agonist,461,135
+ACKR3__CCL2,A_chemokine,ACKR3,CCL2,negative,,461,136
+ACKR3__CXCL8,A_chemokine,ACKR3,CXCL8,negative,,461,137
+CXCR4__CXCL13,A_chemokine,CXCR4,CXCL13,negative,,461,138
+CCR5__CXCL13,A_chemokine,CCR5,CXCL13,negative,,461,139
+CXCR3__CCL17,A_chemokine,CXCR3,CCL17,negative,,462,140
+CXCR3__CXCL11,A_chemokine,CXCR3,CXCL11,binder,Full agonist,462,141
+CXCR5__CCL5,A_chemokine,CXCR5,CCL5,negative,,463,142
+CCR1__CXCL13,A_chemokine,CCR1,CXCL13,negative,,464,143
+CXCR3__CCL1,A_chemokine,CXCR3,CCL1,negative,,464,144
+CCR3__CXCL13,A_chemokine,CCR3,CXCL13,negative,,464,145
+CXCR3__CCL20,A_chemokine,CXCR3,CCL20,binder,Full agonist,464,146
+CX3CR1__CXCL13,A_chemokine,CX3CR1,CXCL13,negative,,464,147
+CCR8__CXCL13,A_chemokine,CCR8,CXCL13,negative,,464,148
+CXCR5__CCL3,A_chemokine,CXCR5,CCL3,negative,,464,149
+CCR6__CCL5,A_chemokine,CCR6,CCL5,negative,,465,150
+CXCR5__CXCL12,A_chemokine,CXCR5,CXCL12,negative,,465,151
+CXCR3__CCL11,A_chemokine,CXCR3,CCL11,binder,Antagonist,465,152
+CCR2__CCL5,A_chemokine,CCR2,CCL5,negative,,465,153
+CXCR5__CXCL11,A_chemokine,CXCR5,CXCL11,negative,,466,154
+CXCR5__CCL17,A_chemokine,CXCR5,CCL17,negative,,466,155
+CCR2__CCL3,A_chemokine,CCR2,CCL3,negative,,466,156
+CXCR3__CCL19,A_chemokine,CXCR3,CCL19,binder,Full agonist,466,157
+CXCR3__CXCL10,A_chemokine,CXCR3,CXCL10,binder,Full agonist,466,158
+CCR6__CCL3,A_chemokine,CCR6,CCL3,negative,,466,159
+CXCR3__CXCL8,A_chemokine,CXCR3,CXCL8,negative,,467,160
+CXCR3__CCL2,A_chemokine,CXCR3,CCL2,negative,,467,161
+CCR6__CXCL12,A_chemokine,CCR6,CXCL12,negative,,467,162
+CCR2__CXCL12,A_chemokine,CCR2,CXCL12,negative,,467,163
+CCR6__CCL17,A_chemokine,CCR6,CCL17,negative,,468,164
+CXCR5__CCL1,A_chemokine,CXCR5,CCL1,negative,,468,165
+CCR2__CCL17,A_chemokine,CCR2,CCL17,negative,,468,166
+CCR2__CXCL11,A_chemokine,CCR2,CXCL11,negative,,468,167
+CCR6__CXCL11,A_chemokine,CCR6,CXCL11,negative,,468,168
+CXCR5__CCL20,A_chemokine,CXCR5,CCL20,negative,,468,169
+CXCR5__CCL11,A_chemokine,CXCR5,CCL11,negative,,469,170
+CCR7__CCL5,A_chemokine,CCR7,CCL5,negative,,469,171
+CXCR2__CXCL13,A_chemokine,CXCR2,CXCL13,negative,,469,172
+CCR4__CXCL13,A_chemokine,CCR4,CXCL13,negative,,469,173
+CCR6__CCL20,A_chemokine,CCR6,CCL20,binder,Full agonist,470,174
+CCR7__CCL3,A_chemokine,CCR7,CCL3,negative,,470,175
+CXCR5__CXCL10,A_chemokine,CXCR5,CXCL10,negative,,470,176
+CCR2__CCL1,A_chemokine,CCR2,CCL1,negative,,470,177
+CCR6__CCL1,A_chemokine,CCR6,CCL1,negative,,470,178
+CXCR5__CCL19,A_chemokine,CXCR5,CCL19,negative,,470,179
+CCR2__CCL20,A_chemokine,CCR2,CCL20,negative,,470,180
+CCR6__CCL11,A_chemokine,CCR6,CCL11,negative,,471,181
+CXCR5__CCL2,A_chemokine,CXCR5,CCL2,negative,,471,182
+CXCR5__CXCL8,A_chemokine,CXCR5,CXCL8,negative,,471,183
+CCR7__CXCL12,A_chemokine,CCR7,CXCL12,negative,,471,184
+ACKR3__CXCL13,A_chemokine,ACKR3,CXCL13,negative,,471,185
+CCR2__CCL11,A_chemokine,CCR2,CCL11,binder,Partial agonist,471,186
+CCR2__CCL19,A_chemokine,CCR2,CCL19,negative,,472,187
+CCR2__CXCL10,A_chemokine,CCR2,CXCL10,negative,,472,188
+CCR7__CXCL11,A_chemokine,CCR7,CXCL11,negative,,472,189
+CCR7__CCL17,A_chemokine,CCR7,CCL17,negative,,472,190
+CCR6__CCL19,A_chemokine,CCR6,CCL19,negative,,472,191
+CCR6__CXCL10,A_chemokine,CCR6,CXCL10,negative,,472,192
+CCR2__CCL2,A_chemokine,CCR2,CCL2,binder,Full agonist,473,193
+CCR2__CXCL8,A_chemokine,CCR2,CXCL8,negative,,473,194
+CCR6__CCL2,A_chemokine,CCR6,CCL2,negative,,473,195
+CCR6__CXCL8,A_chemokine,CCR6,CXCL8,negative,,473,196
+CCR7__CCL1,A_chemokine,CCR7,CCL1,negative,,474,197
+CCR7__CCL20,A_chemokine,CCR7,CCL20,negative,,474,198
+CCR7__CCL11,A_chemokine,CCR7,CCL11,negative,,475,199
+CXCR6__CCL21,A_chemokine,CXCR6,CCL21,negative,,476,200
+CCR7__CCL19,A_chemokine,CCR7,CCL19,binder,Agonist,476,201
+CCR7__CXCL10,A_chemokine,CCR7,CXCL10,negative,,476,202
+CXCR3__CXCL13,A_chemokine,CXCR3,CXCL13,negative,,477,203
+CCR7__CXCL8,A_chemokine,CCR7,CXCL8,negative,,477,204
+CCR7__CCL2,A_chemokine,CCR7,CCL2,negative,,477,205
+CXCR5__CXCL13,A_chemokine,CXCR5,CXCL13,binder,Full agonist,481,206
+CCR2__CXCL13,A_chemokine,CCR2,CXCL13,negative,,483,207
+CCR6__CXCL13,A_chemokine,CCR6,CXCL13,negative,,483,208
+CXCR1__CCL21,A_chemokine,CXCR1,CCL21,negative,,484,209
+CXCR4__CCL21,A_chemokine,CXCR4,CCL21,negative,,486,210
+CCR5__CCL21,A_chemokine,CCR5,CCL21,negative,,486,211
+CCR7__CXCL13,A_chemokine,CCR7,CXCL13,negative,,487,212
+CCR3__CCL21,A_chemokine,CCR3,CCL21,negative,,489,213
+CCR8__CCL21,A_chemokine,CCR8,CCL21,negative,,489,214
+CX3CR1__CCL21,A_chemokine,CX3CR1,CCL21,negative,,489,215
+CCR1__CCL21,A_chemokine,CCR1,CCL21,negative,,489,216
+CCR4__CCL21,A_chemokine,CCR4,CCL21,negative,,494,217
+CXCR2__CCL21,A_chemokine,CXCR2,CCL21,negative,,494,218
+ACKR3__CCL21,A_chemokine,ACKR3,CCL21,negative,,496,219
+CXCR3__CCL21,A_chemokine,CXCR3,CCL21,negative,,502,220
+CXCR5__CCL21,A_chemokine,CXCR5,CCL21,negative,,506,221
+CCR2__CCL21,A_chemokine,CCR2,CCL21,negative,,508,222
+CCR6__CCL21,A_chemokine,CCR6,CCL21,negative,,508,223
+CCR7__CCL21,A_chemokine,CCR7,CCL21,binder,Agonist,512,224
+CXCR6__CXCL16,A_chemokine,CXCR6,CXCL16,binder,Full agonist,596,225
+CXCR1__CXCL16,A_chemokine,CXCR1,CXCL16,negative,,604,226
+CXCR4__CXCL16,A_chemokine,CXCR4,CXCL16,negative,,606,227
+CCR5__CXCL16,A_chemokine,CCR5,CXCL16,negative,,606,228
+CX3CR1__CXCL16,A_chemokine,CX3CR1,CXCL16,negative,,609,229
+CCR1__CXCL16,A_chemokine,CCR1,CXCL16,negative,,609,230
+CCR3__CXCL16,A_chemokine,CCR3,CXCL16,negative,,609,231
+CCR8__CXCL16,A_chemokine,CCR8,CXCL16,negative,,609,232
+CCR4__CXCL16,A_chemokine,CCR4,CXCL16,negative,,614,233
+CXCR2__CXCL16,A_chemokine,CXCR2,CXCL16,negative,,614,234
+ACKR3__CXCL16,A_chemokine,ACKR3,CXCL16,negative,,616,235
+CXCR3__CXCL16,A_chemokine,CXCR3,CXCL16,negative,,622,236
+CXCR5__CXCL16,A_chemokine,CXCR5,CXCL16,negative,,626,237
+CCR6__CXCL16,A_chemokine,CCR6,CXCL16,negative,,628,238
+CCR2__CXCL16,A_chemokine,CCR2,CXCL16,negative,,628,239
+CCR7__CXCL16,A_chemokine,CCR7,CXCL16,negative,,632,240
+GPR62__ADORA1,B_bundle,GPR62,ADORA1,test,,694,241
+MTNR1A__MTNR1B,B_bundle,MTNR1A,MTNR1B,binder,,712,242
+MTNR1A__AGTR2,B_bundle,MTNR1A,AGTR2,negative,,713,243
+AGTR1__AGTR2,B_bundle,AGTR1,AGTR2,binder,,722,244
+CXCR6__CX3CL1,A_chemokine,CXCR6,CX3CL1,negative,,739,245
+CXCR1__CX3CL1,A_chemokine,CXCR1,CX3CL1,negative,,747,246
+CCR5__CX3CL1,A_chemokine,CCR5,CX3CL1,negative,,749,247
+CXCR4__CX3CL1,A_chemokine,CXCR4,CX3CL1,negative,,749,248
+CCR8__CX3CL1,A_chemokine,CCR8,CX3CL1,negative,,752,249
+CX3CR1__CX3CL1,A_chemokine,CX3CR1,CX3CL1,binder,Full agonist,752,250
+CCR1__CX3CL1,A_chemokine,CCR1,CX3CL1,negative,,752,251
+CCR3__CX3CL1,A_chemokine,CCR3,CX3CL1,negative,,752,252
+CCR4__CX3CL1,A_chemokine,CCR4,CX3CL1,negative,,757,253
+CXCR2__CX3CL1,A_chemokine,CXCR2,CX3CL1,negative,,757,254
+ACKR3__CX3CL1,A_chemokine,ACKR3,CX3CL1,negative,,759,255
+CXCR3__CX3CL1,A_chemokine,CXCR3,CX3CL1,negative,,765,256
+CXCR5__CX3CL1,A_chemokine,CXCR5,CX3CL1,negative,,769,257
+CCR6__CX3CL1,A_chemokine,CCR6,CX3CL1,negative,,771,258
+CCR2__CX3CL1,A_chemokine,CCR2,CX3CL1,negative,,771,259
+CCR7__CX3CL1,A_chemokine,CCR7,CX3CL1,negative,,775,260
+DRD2__AGTR1,B_bundle,DRD2,AGTR1,negative,,802,261
+ADORA2A__DRD2,B_bundle,ADORA2A,DRD2,binder,,855,262
+DRD1__DRD2,B_bundle,DRD1,DRD2,binder,,889,263
+GRM2__MTNR1A,B_bundle,GRM2,MTNR1A,negative,,1222,264
+MTNR1B__GRM2,B_bundle,MTNR1B,GRM2,negative,,1234,265
+AGTR2__GRM2,B_bundle,AGTR2,GRM2,negative,,1235,266
+AGTR1__GRM4,B_bundle,AGTR1,GRM4,negative,,1271,267
+ADORA2A__GRM2,B_bundle,ADORA2A,GRM2,negative,,1284,268
+GABBR1__AGTR1,B_bundle,GABBR1,AGTR1,negative,,1320,269
+GRM4__ADORA2A,B_bundle,GRM4,ADORA2A,negative,,1324,270
+DRD1__GRM4,B_bundle,DRD1,GRM4,negative,,1358,271
+GABBR1__ADORA2A,B_bundle,GABBR1,ADORA2A,negative,,1373,272
+GABBR2__DRD1,B_bundle,GABBR2,DRD1,negative,,1387,273
+GRM2__GRM4,B_bundle,GRM2,GRM4,binder,,1784,274
+GABBR1__GABBR2,B_bundle,GABBR1,GABBR2,binder,,1902,275

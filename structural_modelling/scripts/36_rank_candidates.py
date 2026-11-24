@@ -134,8 +134,11 @@ def main() -> None:
                 p = m.pae_min_AB.iloc[0]
                 d["pae_mature"] = p
                 d["d_plddt_min"] = min(m.d_pldA.iloc[0], m.d_pldB.iloc[0])
+                imp = bool(m.impossible_face.iloc[0]) if "impossible_face" in m else False
                 if ctl_state != "usable":
                     d["mature_test"] = f"not readable ({ctl_state})"
+                elif imp:
+                    d["mature_test"] = "FAIL -- cytoplasmic face, partner is secreted"
                 elif p <= GATE:
                     d["mature_test"] = "PASS"
                 elif p <= 8:
@@ -146,22 +149,25 @@ def main() -> None:
                          pd.read_csv(ROOT / "work" / "subcomplex_manifest.csv").job}:
                 d["mature_test"] = "built, not folded yet"
         # arm P: receptor full length against the partner's ectodomain only
+        # arm P's verdict is READ, never recomputed: it carries a requirement the
+        # PAE columns cannot express, namely that the surviving interface is on a
+        # face the partner can reach.
         d["p_test"] = "partner has no ectodomain"
         if P_MAN is not None and f"P_{rec}__{par}" in set(P_MAN.job):
             if P_SC is None:
                 d["p_test"] = "built, not folded yet"
             else:
-                cand = P_SC[P_SC.job.eq(f"P_{rec}__{par}")]
-                perm = P_SC[P_SC.job.str.startswith(f"P_perm_{rec}__")]
-                if not len(cand):
-                    d["p_test"] = "folding"
-                elif not len(perm):
-                    d["p_test"] = f"{cand.pae_min_AB.iloc[0]:.2f} A, no negative yet"
+                for job in (f"P_both_{rec}__{par}", f"P_{rec}__{par}"):
+                    cand = P_SC[P_SC.job.eq(job)]
+                    if len(cand):
+                        d["pae_ecto"] = cand.pae_min_AB.iloc[0]
+                        d["rec_cyto"] = cand.rec_cyto.iloc[0] if "rec_cyto" in cand else np.nan
+                        d["p_test"] = (cand.verdict.iloc[0] if "verdict" in cand
+                                       and pd.notna(cand.verdict.iloc[0])
+                                       else "folded, no verdict")
+                        break
                 else:
-                    d["pae_ecto"] = cand.pae_min_AB.iloc[0]
-                    d["pae_ecto_perm_best"] = perm.pae_min_AB.min()
-                    d["p_test"] = ("PASS" if d["pae_ecto"] < d["pae_ecto_perm_best"]
-                                   else "FAIL -- a permuted ectodomain docks as well")
+                    d["p_test"] = "folding"
         rows.append(d)
 
     t = pd.DataFrame(rows)

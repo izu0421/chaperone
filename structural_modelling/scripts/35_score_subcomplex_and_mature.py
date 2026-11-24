@@ -158,8 +158,21 @@ def main() -> None:
     df.to_csv(dest, index=False)
     log.info("wrote %s (%d rows)", dest, len(df))
 
-    # per job, the best model by interface PAE
-    best = df.sort_values("pae_min_AB").groupby(["job", "arm"], as_index=False).first()
+    # Per job, the best model by interface PAE -- but only over SEED 1. Nine of
+    # the mature jobs were folded before the arm was corrected to one seed and
+    # carry 25 models against the other seventeen's five, and the controls' five.
+    # "Best of" is a maximum over draws, so pooling them would hand those nine
+    # more chances to clear the bar than anything they are compared with: their
+    # collapse rate is 2 of 9 against 9 of 17 for the one-seed jobs. Restricting
+    # every arm to seed 1 makes the draws equal; the extra models stay in
+    # subcomplex_scores.csv for anyone who wants them.
+    seed1 = df[df.model.str.contains("seed-1_") | df.model.eq(df.job)]
+    dropped = df.job.nunique() - seed1.job.nunique()
+    if dropped:
+        log.warning("%d jobs have no seed-1 model and are excluded", dropped)
+    log.info("draws per job after matching: %s",
+             seed1.groupby("job").size().value_counts().to_dict())
+    best = seed1.sort_values("pae_min_AB").groupby(["job", "arm"], as_index=False).first()
     best["receptor"] = best.job.map(dict(zip(man.job, man.receptor)))
     best["partner"] = best.job.map(dict(zip(man.job, man.partner)))
 
@@ -220,15 +233,28 @@ def main() -> None:
         log.info("\nCONTROL: no mature controls folded yet -- arm M is NOT readable")
 
     # ---- arm M: candidate interfaces under the construct that exists ------------
+    # Cutting the signal peptide does nothing to the RECEPTOR, so a mature chain
+    # can clear the gate on the receptor's cytoplasmic face -- which for a
+    # secreted partner is not a weaker claim but an impossible one. Measured on
+    # this arm, 9 of 41 folds do exactly that, GPRC5C+IGF2 at 100%.
+    zf = ROOT / "results" / "mature_interface_zone.csv"
+    mz = (pd.read_csv(zf).set_index("job")[["rec_cyto", "partner_soluble"]].to_dict("index")
+          if zf.exists() else {})
+    if not mz:
+        log.warning("no mature_interface_zone.csv -- run 38_interface_zone.py --arm mature "
+                    "first, or a pose on the cytoplasmic face will read as a pass")
     M = best[best.arm.eq("M_mature")].sort_values("pae_min_AB")
     if len(M):
         log.info("\nMATURE CHAIN vs the screen's preprohormone (interface PAE):")
         log.info("  %-22s %8s %8s   %7s %7s  %s", "pair", "screen", "mature",
                  "d_pldA", "d_pldB", "verdict")
         for r in M.itertuples():
+            z = mz.get(r.job, {})
             v = ("holds" if r.pae_min_AB <= GATE else
                  "weakened" if r.pae_min_AB <= 8 else "collapsed")
-            if min(r.d_pldA, r.d_pldB) < -10:
+            if z.get("partner_soluble") and z.get("rec_cyto", 0) >= 0.3:
+                v = f"IMPOSSIBLE -- {100 * z['rec_cyto']:.0f}% cytoplasmic receptor face"
+            elif min(r.d_pldA, r.d_pldB) < -10:
                 v += " -- but a chain folds worse too"
             log.info("  %-22s %8.2f %8.2f   %+7.1f %+7.1f  %s",
                      f"{r.receptor}+{r.partner}", r.pae_full, r.pae_min_AB,
@@ -277,6 +303,10 @@ def main() -> None:
             log.info("  %-28s %d chains  pae %5.2f (two-chain %5.2f)  %s",
                      r.job.replace("S_", ""), int(r.n_chain), r.pae_min_AB,
                      r.pae_full, v)
+    best["rec_cyto"] = [mz.get(j, {}).get("rec_cyto", np.nan) for j in best.job]
+    best["impossible_face"] = [bool(mz.get(j, {}).get("partner_soluble")
+                                    and mz.get(j, {}).get("rec_cyto", 0) >= 0.3)
+                               for j in best.job]
     best.to_csv(ROOT / "results" / "subcomplex_per_job.csv", index=False)
     log.info("\nwrote results/subcomplex_per_job.csv")
 

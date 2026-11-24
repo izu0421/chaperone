@@ -43,6 +43,18 @@ STAGES = {
                     "results/specificity_out"),
     "huri_pilot": ("huri_pilot_manifest.csv", "work/huri_pilot_inputs",
                    "results/huri_pilot_out"),
+    # The re-fold arms carry the greatest provenance risk in the project: every
+    # one of them folds a CUT sequence, so a wrong boundary or a shifted
+    # alignment frame produces a perfectly valid fold of the wrong molecule and
+    # the error shows up as biology. Each cut was checked against UniProt by
+    # hand when it was built; this is the check that keeps holding afterwards.
+    "rescue": ("rescue_manifest.csv", "work/rescue_inputs", "results/rescue_out"),
+    "subcomplex": ("subcomplex_manifest.csv", "work/subcomplex_inputs",
+                   "results/subcomplex_out"),
+    "mature_control": ("mature_control_manifest.csv", "work/subcomplex_inputs",
+                       "results/subcomplex_out"),
+    "ectodomain": ("ectodomain_manifest.csv", "work/ectodomain_inputs",
+                   "results/ectodomain_out"),
 }
 
 

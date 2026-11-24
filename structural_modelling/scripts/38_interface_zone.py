@@ -26,6 +26,7 @@ Usage:
 """
 from __future__ import annotations
 
+import argparse
 import json
 import logging
 import urllib.request
@@ -113,7 +114,33 @@ def interface_residues(cif: Path):
     return resA, resB
 
 
+def offsets(man_row) -> tuple[int, int]:
+    """How far each chain's residue 1 sits from UniProt residue 1.
+
+    A cut chain is renumbered from 1 by AlphaFold3, so its zone lookup needs the
+    span's start added back. Reading the cut construct against UniProt numbering
+    without this puts every contact in the wrong domain -- and it would do it
+    quietly, because the numbers still land inside the protein.
+    """
+    def start(v) -> int:
+        s = str(v)
+        return int(s.split("-")[0]) - 1 if s and s != "full" and "-" in s else 0
+    return start(getattr(man_row, "rec_ecd", "full")), start(getattr(man_row, "ecd", "full"))
+
+
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--arm", choices=("screen", "ectodomain", "mature"), default="screen",
+                    help="screen: the folds the shortlist came from. ectodomain: arm P. "
+                         "mature: arm M. In both re-fold arms a chain is cut and its "
+                         "numbering is offset, and in both the RECEPTOR's cytoplasmic "
+                         "face is still present, so a surviving interface can still be "
+                         "on a face the partner cannot reach")
+    a = ap.parse_args()
+    if a.arm == "ectodomain":
+        return ectodomain_arm()
+    if a.arm == "mature":
+        return mature_arm()
     t = pd.read_csv(ROOT / "results" / "candidate_ranking.csv")
     topo = json.loads((ROOT / "results" / "orphan_topology.json").read_text())
     sheet = pd.read_csv("/data/yzy21/yy/space_agent/lr_atlas/bench/af3_orphan_sheet_v2.csv")
@@ -205,6 +232,121 @@ def main() -> None:
             log.info("   %s+%s  receptor %.0f%% partner %.0f%% unassigned",
                      r.receptor, r.partner, 100 * r.rec_unassigned, 100 * r.par_unassigned)
     log.info("\nwrote results/candidate_interface_zone.csv")
+
+
+def mature_arm() -> None:
+    """Arm M: the same question the ectodomain arm needed asking.
+
+    Cutting the signal peptide removes 20-26 residues from the partner. It does
+    nothing to the receptor, so a mature chain that still clears the gate may be
+    clearing it on the cytoplasmic face -- which for a SECRETED partner is not a
+    weaker claim but an impossible one.
+    """
+    man = pd.read_csv(ROOT / "work" / "subcomplex_manifest.csv")
+    man = man[man.arm.eq("M_mature")]
+    topo = json.loads((ROOT / "results" / "orphan_topology.json").read_text())
+    sheet = pd.read_csv("/data/yzy21/yy/space_agent/lr_atlas/bench/af3_orphan_sheet_v2.csv")
+    acc = dict(zip(sheet.partner_gene, sheet.partner_uniprot))
+    cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
+    rows = []
+    for r in man.itertuples():
+        d = ROOT / "results" / "subcomplex_out" / r.job
+        cif = sorted(d.glob("*_model.cif")) or sorted(d.glob("seed-1_sample-0/*_model.cif"))
+        if not cif:
+            continue
+        iface = interface_residues(cif[0])
+        if not iface:
+            continue
+        resA, resB = iface
+        # "signal 1-23 removed" -> every partner residue is 23 higher in UniProt
+        offB = 0
+        ex = str(getattr(r, "extras", ""))
+        if "signal 1-" in ex:
+            offB = int(ex.split("signal 1-")[1].split(" ")[0])
+        zA = zones_from_features(topo.get(r.receptor, []))
+        zB = partner_zones(acc.get(r.partner, ""), cache) if r.partner in acc else []
+        cA = pd.Series([zone_of(x, zA) for x in sorted(resA)]).value_counts()
+        cB = pd.Series([zone_of(x + offB, zB) for x in sorted(resB)]).value_counts()
+        f = lambda c, k: c.get(k, 0) / max(1, c.sum())          # noqa: E731
+        rows.append({"job": r.job, "receptor": r.receptor, "partner": r.partner,
+                     "signal_removed": offB,
+                     "rec_extra": f(cA, "extracellular"), "rec_tm": f(cA, "TM"),
+                     "rec_cyto": f(cA, "cytoplasmic"),
+                     "partner_soluble": not any(z == "TM" for _, _, z in zB),
+                     "n_res_A": len(resA), "n_res_B": len(resB)})
+    CACHE.write_text(json.dumps(cache))
+    if not rows:
+        raise SystemExit("no arm-M folds scored yet")
+    z = pd.DataFrame(rows)
+    z.to_csv(ROOT / "results" / "mature_interface_zone.csv", index=False)
+    log.info("ARM M -- where the interface sits once the signal peptide is gone\n")
+    log.info("  %-28s %-9s  receptor: %5s %5s %5s", "job", "partner", "ecto", "TM", "cyto")
+    for r in z.sort_values("rec_cyto").itertuples():
+        flag = ""
+        if r.rec_cyto >= 0.3:
+            flag = ("  <- IMPOSSIBLE, the partner is secreted" if r.partner_soluble
+                    else "  <- cytoplasmic")
+        log.info("  %-28s %-9s            %5.2f %5.2f %5.2f%s", r.job,
+                 "soluble" if r.partner_soluble else "membrane",
+                 r.rec_extra, r.rec_tm, r.rec_cyto, flag)
+    bad = z[z.partner_soluble & z.rec_cyto.ge(0.3)]
+    log.info("\n%d of %d folds put a SECRETED partner on the receptor's cytoplasmic face",
+             len(bad), len(z))
+    log.info("wrote results/mature_interface_zone.csv")
+
+
+def ectodomain_arm() -> None:
+    """Arm P: has the interface moved to a face the partner can actually reach?
+
+    A candidate that beats its permuted negatives in arm P has shown only that
+    SOMETHING docks better than a size-matched stranger. If the surviving
+    interface still sits on the receptor's cytoplasmic face, the construct
+    removed the partner's impossible half and the receptor's is still there.
+    """
+    man = pd.read_csv(ROOT / "work" / "ectodomain_manifest.csv")
+    topo = json.loads((ROOT / "results" / "orphan_topology.json").read_text())
+    sheet = pd.read_csv("/data/yzy21/yy/space_agent/lr_atlas/bench/af3_orphan_sheet_v2.csv")
+    acc = dict(zip(sheet.partner_gene, sheet.partner_uniprot))
+    cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
+    rows = []
+    for r in man.itertuples():
+        d = ROOT / "results" / "ectodomain_out" / r.job
+        cif = sorted(d.glob("*_model.cif")) or sorted(d.glob("seed-*/*_model.cif"))
+        if not cif:
+            continue
+        iface = interface_residues(cif[0])
+        if not iface:
+            continue
+        resA, resB = iface
+        offA, offB = offsets(r)
+        zA = zones_from_features(topo.get(r.receptor, []))
+        zB = partner_zones(acc.get(r.partner, ""), cache) if r.partner in acc else []
+        cA = pd.Series([zone_of(x + offA, zA) for x in sorted(resA)]).value_counts()
+        cB = pd.Series([zone_of(x + offB, zB) for x in sorted(resB)]).value_counts()
+        f = lambda c, k: c.get(k, 0) / max(1, c.sum())          # noqa: E731
+        rows.append({"job": r.job, "arm": r.arm, "receptor": r.receptor,
+                     "partner": r.partner,
+                     "rec_extra": f(cA, "extracellular"), "rec_tm": f(cA, "TM"),
+                     "rec_cyto": f(cA, "cytoplasmic"),
+                     "par_extra": f(cB, "extracellular"), "par_tm": f(cB, "TM"),
+                     "par_cyto": f(cB, "cytoplasmic"),
+                     "n_res_A": len(resA), "n_res_B": len(resB)})
+    CACHE.write_text(json.dumps(cache))
+    if not rows:
+        raise SystemExit("no arm-P folds scored yet")
+    z = pd.DataFrame(rows)
+    z.to_csv(ROOT / "results" / "ectodomain_interface_zone.csv", index=False)
+    log.info("ARM P -- where the surviving interface sits (receptor is full length,")
+    log.info("partner is its ectodomain, so the partner CANNOT be cytoplasmic here)\n")
+    log.info("  %-30s %-14s  receptor: %5s %5s %5s", "job", "arm", "ecto", "TM", "cyto")
+    for r in z.sort_values(["arm", "rec_cyto"]).itertuples():
+        flag = "  <- still on the impossible face" if r.rec_cyto >= 0.3 else ""
+        log.info("  %-30s %-14s            %5.2f %5.2f %5.2f%s", r.job,
+                 r.arm.replace("P_", ""), r.rec_extra, r.rec_tm, r.rec_cyto, flag)
+    bad = z[z.arm.eq("P_candidate") & z.rec_cyto.ge(0.3)]
+    log.info("\n%d of %d candidates keep a mostly cytoplasmic receptor face even after the "
+             "partner's tail is removed", len(bad), int(z.arm.eq("P_candidate").sum()))
+    log.info("wrote results/ectodomain_interface_zone.csv")
 
 
 if __name__ == "__main__":

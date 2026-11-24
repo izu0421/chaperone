@@ -45,7 +45,13 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 log = logging.getLogger("subcomplex")
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "work" / "subcomplex_inputs"
-SEEDS = [1, 2, 3, 4, 5]
+# One seed. The screen folded every candidate once, and these re-folds are read
+# against that fold and against controls folded the same way; five seeds would
+# hand this arm five chances to clear a bar the comparison got one chance at.
+# Measured on the mature arm before it was corrected: the nine jobs left at five
+# seeds collapsed 2 of 9 against 9 of 17 for the one-seed jobs, purely because
+# "best of" is a maximum over draws.
+SEEDS = [1]
 
 _spec = iu.spec_from_file_location("b7", ROOT / "scripts" / "07_build_af3_inputs.py")
 b7 = iu.module_from_spec(_spec)

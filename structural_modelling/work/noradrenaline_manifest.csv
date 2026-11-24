@@ -1,0 +1,51 @@
+job,receptor,ligand,arm,receptor_family,ligand_family,same_family,role,cognate_ligand_of_receptor,size,fold_order
+FFAR2__noradrenaline,FFAR2,noradrenaline,A_noradrenaline_vs_receptors,acid,aminergic,False,negative_control,False,330,1
+GPBAR1__noradrenaline,GPBAR1,noradrenaline,A_noradrenaline_vs_receptors,acid,aminergic,False,negative_control,False,330,2
+SUCNR1__noradrenaline,SUCNR1,noradrenaline,A_noradrenaline_vs_receptors,acid,aminergic,False,negative_control,False,334,3
+CYSLTR1__noradrenaline,CYSLTR1,noradrenaline,A_noradrenaline_vs_receptors,eicosanoid,aminergic,False,negative_control,False,337,4
+P2RY12__noradrenaline,P2RY12,noradrenaline,A_noradrenaline_vs_receptors,purinergic,aminergic,False,negative_control,False,342,5
+PTGER2__noradrenaline,PTGER2,noradrenaline,A_noradrenaline_vs_receptors,eicosanoid,aminergic,False,negative_control,False,358,6
+HCAR2__noradrenaline,HCAR2,noradrenaline,A_noradrenaline_vs_receptors,acid,aminergic,False,negative_control,False,363,7
+LPAR1__noradrenaline,LPAR1,noradrenaline,A_noradrenaline_vs_receptors,lipid,aminergic,False,negative_control,False,364,8
+GPR85__adenosine-diphosphate,GPR85,adenosine diphosphate,B_orphan_receptor_vs_ligands,orphan,purinergic,False,test,False,370,9
+GPR85__acetylcholine,GPR85,acetylcholine,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,370,10
+GPR85__leukotriene-D4,GPR85,leukotriene D4,B_orphan_receptor_vs_ligands,orphan,eicosanoid,False,test,False,370,11
+GPR85__adenosine,GPR85,adenosine,B_orphan_receptor_vs_ligands,orphan,purinergic,False,test,False,370,12
+GPR85__dopamine,GPR85,dopamine,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,370,13
+GPR85__anandamide,GPR85,anandamide,B_orphan_receptor_vs_ligands,orphan,lipid,False,test,False,370,14
+GPR85__histamine,GPR85,histamine,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,370,15
+GPR85__adrenaline,GPR85,adrenaline,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,370,16
+GPR85__lithocholic-acid,GPR85,lithocholic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,370,17
+GPR85__nicotinic-acid,GPR85,nicotinic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,370,18
+GPR85__succinic-acid,GPR85,succinic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,370,19
+GPR85__sphingosine-1-phosphate,GPR85,sphingosine 1-phosphate,B_orphan_receptor_vs_ligands,orphan,lipid,False,test,False,370,20
+GPR85__noradrenaline,GPR85,noradrenaline,A_noradrenaline_vs_receptors,orphan,aminergic,False,test,False,370,21
+GPR85__propionic-acid,GPR85,propionic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,370,22
+GPR85__prostaglandin-E2,GPR85,prostaglandin E2,B_orphan_receptor_vs_ligands,orphan,eicosanoid,False,test,False,370,23
+GPR85__serotonin,GPR85,serotonin,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,370,24
+GPR85__lysophosphatidic-acid,GPR85,lysophosphatidic acid,B_orphan_receptor_vs_ligands,orphan,lipid,False,test,False,370,25
+S1PR1__noradrenaline,S1PR1,noradrenaline,A_noradrenaline_vs_receptors,lipid,aminergic,False,negative_control,False,382,26
+ADORA2A__noradrenaline,ADORA2A,noradrenaline,A_noradrenaline_vs_receptors,purinergic,aminergic,False,negative_control,False,412,27
+ADRB2__noradrenaline,ADRB2,noradrenaline,A_noradrenaline_vs_receptors,aminergic,aminergic,True,positive_control,False,413,28
+HTR1A__noradrenaline,HTR1A,noradrenaline,A_noradrenaline_vs_receptors,aminergic,aminergic,True,negative_control,False,422,29
+DRD2__noradrenaline,DRD2,noradrenaline,A_noradrenaline_vs_receptors,aminergic,aminergic,True,negative_control,False,443,30
+CHRM1__noradrenaline,CHRM1,noradrenaline,A_noradrenaline_vs_receptors,aminergic,aminergic,True,negative_control,False,460,31
+CNR1__noradrenaline,CNR1,noradrenaline,A_noradrenaline_vs_receptors,lipid,aminergic,False,negative_control,False,472,32
+HRH1__noradrenaline,HRH1,noradrenaline,A_noradrenaline_vs_receptors,aminergic,aminergic,True,negative_control,False,487,33
+GPR153__succinic-acid,GPR153,succinic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,609,34
+GPR153__nicotinic-acid,GPR153,nicotinic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,609,35
+GPR153__noradrenaline,GPR153,noradrenaline,A_noradrenaline_vs_receptors,orphan,aminergic,False,test,False,609,36
+GPR153__propionic-acid,GPR153,propionic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,609,37
+GPR153__prostaglandin-E2,GPR153,prostaglandin E2,B_orphan_receptor_vs_ligands,orphan,eicosanoid,False,test,False,609,38
+GPR153__serotonin,GPR153,serotonin,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,609,39
+GPR153__sphingosine-1-phosphate,GPR153,sphingosine 1-phosphate,B_orphan_receptor_vs_ligands,orphan,lipid,False,test,False,609,40
+GPR153__lithocholic-acid,GPR153,lithocholic acid,B_orphan_receptor_vs_ligands,orphan,acid,False,test,False,609,41
+GPR153__adenosine,GPR153,adenosine,B_orphan_receptor_vs_ligands,orphan,purinergic,False,test,False,609,42
+GPR153__adenosine-diphosphate,GPR153,adenosine diphosphate,B_orphan_receptor_vs_ligands,orphan,purinergic,False,test,False,609,43
+GPR153__adrenaline,GPR153,adrenaline,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,609,44
+GPR153__anandamide,GPR153,anandamide,B_orphan_receptor_vs_ligands,orphan,lipid,False,test,False,609,45
+GPR153__dopamine,GPR153,dopamine,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,609,46
+GPR153__histamine,GPR153,histamine,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,609,47
+GPR153__leukotriene-D4,GPR153,leukotriene D4,B_orphan_receptor_vs_ligands,orphan,eicosanoid,False,test,False,609,48
+GPR153__acetylcholine,GPR153,acetylcholine,B_orphan_receptor_vs_ligands,orphan,aminergic,False,test,False,609,49
+GPR153__lysophosphatidic-acid,GPR153,lysophosphatidic acid,B_orphan_receptor_vs_ligands,orphan,lipid,False,test,False,609,50
