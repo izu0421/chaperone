@@ -1,0 +1,60 @@
+{
+ "fitted_on": "results/armB_scores_labelled.csv",
+ "anchor": "the published gate's own false-positive rate on this benchmark",
+ "published_gate": {
+  "iptm": 0.5,
+  "bsa": 800,
+  "iface_plddt": 70,
+  "min_sep": 1.5,
+  "n": 234,
+  "recall": 0.372,
+  "decoy_rate": 0.024,
+  "precision": 0.7948717948717948
+ },
+ "gate": {
+  "pae_min_AB_max": 3.75,
+  "min_sep": 1.5,
+  "cut_ci": [
+   3.17,
+   4.26
+  ],
+  "n": 299,
+  "recall": 0.502,
+  "decoy_rate": 0.024,
+  "precision": 0.8394648829431438
+ },
+ "why_not_iface_plddt": {
+  "benchmark_auroc": {
+   "pae_min_AB": 0.84,
+   "iptm": 0.821,
+   "iface_plddt": 0.752,
+   "bsa": 0.772
+  },
+  "depth_rho_in_negatives": {
+   "pae_min_AB": -0.086,
+   "iptm": 0.132,
+   "iface_plddt": 0.312,
+   "bsa": -0.008
+  },
+  "size_rho_orphan_arm": {
+   "pae_min_AB": -0.071,
+   "iptm": 0.362,
+   "iface_plddt": -0.213,
+   "bsa": 0.42
+  },
+  "iface_plddt_by_depth_quartile": [
+   57.3,
+   64.4,
+   65.3,
+   65.7
+  ],
+  "depth_quartile_medians": [
+   86,
+   293,
+   716,
+   1827
+  ]
+ },
+ "orphan_candidates": 57,
+ "orphan_candidates_published_gate": 25
+}

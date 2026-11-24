@@ -439,6 +439,27 @@ async def evaluate_candidate(
     # marker only caches what precedes it.
     cached_system = [{"type": "text", "text": SYSTEM_PROMPT,
                       "cache_control": {"type": "ephemeral"}}]
+    if not enable_fold:
+        # The prompt describes fold_complex and resolve_ptm_artifact
+        # unconditionally, but --no-fold does not register them, so the agent
+        # was being told to reach for tools that are not there. Caught in a run
+        # whose log carried "Tool 'fold_complex' not found in tool runner": the
+        # turn is wasted, and an agent that believes it could have settled a
+        # structural question is reasoning from evidence it cannot obtain.
+        #
+        # Appended as a SECOND block rather than edited into the first, so the
+        # cached prefix stays byte-identical and prompt caching still hits.
+        cached_system.append({"type": "text", "text": (
+            "OVERRIDE, and it takes precedence over everything above: "
+            "fold_complex and resolve_ptm_artifact are NOT available in this "
+            "run and are not in your tool list. Do not call them and do not "
+            "plan around them. Where the instructions above tell you to settle "
+            "a structural question by folding, you cannot: reach the verdict "
+            "the other evidence supports, and put the fold you would have run "
+            "in follow_up as a recommendation. A fold you could not run is not "
+            "a reason to report INSUFFICIENT_EVIDENCE if the remaining evidence "
+            "is itself sufficient."),
+        })
 
     runner = client.beta.messages.tool_runner(
         model=MODEL,

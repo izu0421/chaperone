@@ -1,0 +1,1030 @@
+/data/yzy21/yy/space_agent/chaperone/.venv/lib/python3.13/site-packages/pydantic_settings/sources/utils.py:51: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(  # noqa: B028  (called from many sources at differing depths, so no stacklevel is correct)
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GFRA3&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000146013.json "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GPR37L1&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000170075.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=GFRA3%0DGPR37L1&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GFRA3%22%5Btiab%5D+AND+%22GPR37L1%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGFRA3+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGPR37L1+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GFRA3%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GPR37L1%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=39523310%2C38497103%2C33203955%2C23690594&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=39523310%2C38497103%2C33203955%2C23690594&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=39523310%2C38497103%2C33203955%2C23690594&retmode=json "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=PTN&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000105894.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=PTN%0DGPR22&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22PTN%22%5Btiab%5D+AND+%22GPR22%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3APTN+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22PTN%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=42905476%2C42769323%2C42622926%2C42574576%2C42301613&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=NMS&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000204640.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GPR158&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000151025.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=NMS%0DGPR158&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22NMS%22%5Btiab%5D+AND+%22GPR158%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ANMS+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGPR158+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22NMS%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43054570%2C42689584%2C41960701%2C40190550%2C39556894&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GPR158%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GPR158%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=39383040%2C38884814%2C31311860&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=BMP6&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000153162.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GPR31&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000120436.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=BMP6%0DGPR31&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22BMP6%22%5Btiab%5D+AND+%22GPR31%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ABMP6+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGPR31+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22BMP6%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=41478325%2C41009688%2C40854140%2C40048749%2C39941155&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=41478325%2C41009688%2C40854140%2C40048749%2C39941155&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GPR31%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=40892510%2C33972436&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GRIA4&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000152578.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GPR83&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000123901.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=GRIA4%0DGPR83&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GRIA4%22%5Btiab%5D+AND+%22GPR83%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGRIA4+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGPR83+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GRIA4%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=30692144&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GPR83%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=34504158%2C35559741&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=34504158%2C35559741&retmode=json "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=DSC2&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000134755.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=DSC2%0DGPR75&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22DSC2%22%5Btiab%5D+AND+%22GPR75%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ADSC2+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22DSC2%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=41244075%2C39331858%2C35288587%2C30942563%2C28277619&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=41244075%2C39331858%2C35288587%2C30942563%2C28277619&retmode=json "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=OLR1&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000173391.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=OLR1%0DGPR82&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22OLR1%22%5Btiab%5D+AND+%22GPR82%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AOLR1+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22OLR1%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=42964203%2C42902025%2C42348735%2C41754547%2C40247837&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=SLITRK3&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000121871.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=SLITRK3%0DGPR83&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22SLITRK3%22%5Btiab%5D+AND+%22GPR83%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ASLITRK3+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22SLITRK3%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=CALCB&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000175868.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=MAS1L&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000204687.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=CALCB%0DMAS1L&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CALCB%22%5Btiab%5D+AND+%22MAS1L%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ACALCB+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AMAS1L+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CALCB%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=28151472%2C27784654%2C26967115&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22MAS1L%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22MAS1L%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=CDH2&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000170558.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=CDH2%0DGPR75&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CDH2%22%5Btiab%5D+AND+%22GPR75%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ACDH2+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CDH2%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CDH2%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=41141390%2C40410903%2C39757619%2C39735560%2C39726752&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=EPHA5&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000145242.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=EPHA5%0DGPR158&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22EPHA5%22%5Btiab%5D+AND+%22GPR158%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AEPHA5+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22EPHA5%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=38605661%2C27533087%2C24956127%2C21628570%2C20824214&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=38605661%2C27533087%2C24956127%2C21628570%2C20824214&retmode=json "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=CCK&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000187094.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=CCK%0DGPR6&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CCK%22%5Btiab%5D+AND+%22GPR6%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=18588537&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ACCK+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CCK%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43069593%2C43068089%2C43063875%2C43062477%2C43049844&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43069593%2C43068089%2C43063875%2C43062477%2C43049844&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GPR32&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000142511.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=GHRL%0DGPR32&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GHRL%22%5Btiab%5D+AND+%22GPR32%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGPR32+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GPR32%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=35125345%2C29408202%2C28362840%2C28319894%2C26159746&retmode=json "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=GPR148&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000173302.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=CFC1%0DGPR148&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CFC1%22%5Btiab%5D+AND+%22GPR148%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AGPR148+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22GPR148%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=CLSTN1&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000171603.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=CLSTN1%0DGPR22&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CLSTN1%22%5Btiab%5D+AND+%22GPR22%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ACLSTN1+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CLSTN1%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=42225952%2C42035383%2C36350487&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=FLT1&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000102755.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=FLT1%0DGPR4&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22FLT1%22%5Btiab%5D+AND+%22GPR4%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=34870494&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AFLT1+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22FLT1%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43020054%2C42995588%2C42963551%2C42442143%2C42159331&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43020054%2C42995588%2C42963551%2C42442143%2C42159331&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=SST&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000157005.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=SST%0DMRGPRX2&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22SST%22%5Btiab%5D+AND+%22MRGPRX2%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ASST+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22SST%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43050548%2C42928373%2C42758721%2C42550257%2C42536079&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43050548%2C42928373%2C42758721%2C42550257%2C42536079&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=SPX&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000134548.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=SPX%0DMRGPRX2&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22SPX%22%5Btiab%5D+AND+%22MRGPRX2%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ASPX+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22SPX%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43056497%2C41116761%2C40780576%2C40599376%2C39542302&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43056497%2C41116761%2C40780576%2C40599376%2C39542302&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=LRP8&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000157193.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=LRP8%0DGPR3&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22LRP8%22%5Btiab%5D+AND+%22GPR3%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ALRP8+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22LRP8%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=41276911%2C39429662%2C38137358%2C36343682%2C35192893&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=41276911%2C39429662%2C38137358%2C36343682%2C35192893&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=CD74&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000019582.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=CD74%0DGPR75&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CD74%22%5Btiab%5D+AND+%22GPR75%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ACD74+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CD74%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43062700%2C42938378%2C42914819%2C42906454%2C42906452&retmode=json "HTTP/1.1 429 Too Many Requests"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=43062700%2C42938378%2C42914819%2C42906454%2C42906452&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=CFC1%0DGPR32&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22CFC1%22%5Btiab%5D+AND+%22GPR32%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=FGA%0DGPR39&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22FGA%22%5Btiab%5D+AND+%22GPR39%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=37839873&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=TDGF1&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000241186.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=TDGF1%0DGPR31&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22TDGF1%22%5Btiab%5D+AND+%22GPR31%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3ATDGF1+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22TDGF1%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=29506220%2C29232368%2C20385969%2C19064609%2C9092813&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://www.proteinatlas.org/api/search_download.php?search=IL17RE&format=json&columns=g%2Ceg&compress=no "HTTP/1.1 200 OK"
+HTTP Request: GET https://www.proteinatlas.org/ENSG00000163701.json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://string-db.org/api/json/network?identifiers=IL17RE%0DGPR153&species=9606 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22IL17RE%22%5Btiab%5D+AND+%22GPR153%22%5Btiab%5D&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://rest.uniprot.org/uniprotkb/search?query=gene%3AIL17RE+AND+organism_id%3A9606+AND+reviewed%3Atrue&format=json&fields=accession%2Cprotein_name%2Ckeyword%2Ccc_function%2Cft_carbohyd%2Cft_lipid%2Cft_disulfid%2Cft_mod_res%2Cft_transmem%2Cft_topo_dom&size=1 "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&term=%22IL17RE%22%5Btiab%5D+AND+%28glycosylation%5Btiab%5D+OR+glycosylated%5Btiab%5D+OR+%22N-linked%22%5Btiab%5D+OR+%22O-linked%22%5Btiab%5D+OR+phosphorylation%5Btiab%5D+OR+phosphorylated%5Btiab%5D+OR+%22post-translational+modification%22%5Btiab%5D%29&retmode=json&retmax=5 "HTTP/1.1 200 OK"
+HTTP Request: GET https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=deorphanisation-ppi-triage&email=team%40onecarbon.com&db=pubmed&id=40974979%2C35553626%2C35144761%2C16310341&retmode=json "HTTP/1.1 200 OK"
+Processing request of type CallToolRequest
+Processing request of type ListToolsRequest
