@@ -113,6 +113,23 @@ interface PAE by a median of +4.6 &#8491; over the first 11 pairs: better for on
 unchanged for two, worse for seven. CCL11 at GPR132 goes from 3.01 to 23.12 and interface
 pTM from 0.56 to 0.13.</p>
 
+<p><b>Folding more seeds rescues nothing.</b> The screen ran one seed, and re-folding the
+22 candidates at five seeds with five samples each &mdash; 25 models per pair &mdash;
+improved every one of them, by a median of 0.46 &#8491;. That looked like a rescue until
+the same 25 models were folded for chemokine pairs whose answer is known: AUROC 0.947 at
+one seed, 0.947 at best-of-25. Identical. Best-of-N is a maximum over draws and lifts
+known non-binders by exactly as much as known binders, so a candidate that improves is
+improving by arithmetic. 22 of 22 improving would have read as a rescue without that
+control.</p>
+
+<p><b>And the cut face has to be tested per receptor.</b> Of the three receptors with a
+real extracellular domain, only GPR158 separates from its decoys. GPR37 fails outright
+&mdash; its candidate MST1 reaches 13.07 &#8491; while albumin reaches 5.64 on the same cut
+domain, so a protein with no reason to bind docks better than the candidate. GPR142 + PACAP
+overlaps its decoys too. Without those controls GPR37&rsquo;s 13.07 would have read as a
+weak interface rather than as worse-than-albumin, and GPR37 + MST1 is in the confirmed
+list above.</p>
+
 <p>That collapse is not a broken construct: the mature sequences match the UniProt chain
 boundaries, the alignment frame is intact, and both chains still fold &mdash; receptor
 pLDDT moves by a median of &minus;0.4 and partner pLDDT by &minus;0.2. Only the interface
