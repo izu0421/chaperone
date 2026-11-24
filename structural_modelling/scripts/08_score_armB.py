@@ -42,8 +42,21 @@ CUT = 5.0
 def one(d: Path) -> dict:
     name = d.name
     rec: dict = {"pair": name, "note": ""}
+    # The file is normally <dirname>_summary_confidences.json, but a multi-seed
+    # run writes <job>/seed-N_sample-M/<job>_seed-N_sample-M_summary_confidences
+    # .json, where the directory name is NOT the prefix. Deriving the filename
+    # from the directory name returns "no summary" for every per-seed model,
+    # which reads downstream as a fold that failed rather than one this function
+    # could not find. Fall back to whatever summary the directory actually holds.
+    f = d / f"{name}_summary_confidences.json"
+    if not f.exists():
+        found = sorted(d.glob("*_summary_confidences.json"))
+        if len(found) == 1:
+            f = found[0]
+        elif len(found) > 1:
+            return {**rec, "note": f"{len(found)} summaries in one directory"}
     try:
-        s = json.loads((d / f"{name}_summary_confidences.json").read_text())
+        s = json.loads(f.read_text())
     except Exception as e:
         return {**rec, "note": f"no summary: {str(e)[:40]}"}
     for k in ("iptm", "ptm", "ranking_score", "fraction_disordered", "has_clash"):
@@ -55,7 +68,13 @@ def one(d: Path) -> dict:
     if isinstance(cpe, list) and len(cpe) == 2:
         rec["pae_min_AB"] = cpe[0][1]
 
+    # same naming caveat as the summary above: a per-seed directory's model is
+    # <job>_seed-N_sample-M_model.cif, not <dirname>_model.cif
     cif = d / f"{name}_model.cif"
+    if not cif.exists():
+        found = sorted(d.glob("*_model.cif"))
+        if len(found) == 1:
+            cif = found[0]
     if not cif.exists():
         return {**rec, "note": "no cif"}
     try:
