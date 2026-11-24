@@ -189,6 +189,34 @@ pairs left unresolved by a ChEMBL outage were re-run once the service recovered 
 GABA has no recorded activity at either GPR26 or GPR150 and 105 distinct measured targets
 elsewhere. A tool failure is not a result.</p>
 
+<p><b>And the step that chose what to fold points the wrong way.</b> The screen folded
+5,000 of about 78,900 eligible receptor&ndash;partner combinations, 6.3% of them, chosen by
+a spatial recurrence rank. That rank is the screen&rsquo;s only enrichment step, and it is
+anti-correlated with its own structural gate: the worst-ranked fifth of the folded pairs
+clears the gate four times as often as the best-ranked fifth.</p>
+
+<table>
+<tr><th>spatial rank</th><th>pairs</th><th>clear the gate</th></tr>
+<tr><td>Q1, best ranked</td><td>954</td><td>6 &nbsp;(0.63%)</td></tr>
+<tr><td>Q2</td><td>953</td><td>11 (1.15%)</td></tr>
+<tr><td>Q3</td><td>953</td><td>10 (1.05%)</td></tr>
+<tr><td>Q4</td><td>953</td><td>10 (1.05%)</td></tr>
+<tr><td>Q5, worst ranked</td><td>954</td><td>25 (2.62%)</td></tr>
+</table>
+
+<p>Cochran&ndash;Armitage trend z = +3.34, p = 0.0008. It is not complex size: the PAE gate
+is size-neutral (&rho; = +0.000) and the Mantel&ndash;Haenszel odds ratio for the
+better-ranked half, stratified by size, is 0.63. It is not a few prolific receptors
+either: permuting the rank <em>within</em> receptor gives p = 0.0015 over 2,000 draws.</p>
+
+<p>This does not make the gate right and the spatial score wrong. Both are close to null
+on their own &mdash; spatial recurrence reaches AUROC 0.524 for canonical ligand&ndash;receptor
+pairs, and AlphaFold3 interface scoring 0.519 on degree-balanced HuRI. Two near-null
+criteria that disagree systematically mean the 5,000 folded pairs cannot be described as
+an enriched sample. A random draw from the remaining ~74,000 would settle it; at the
+observed 1.30% rate, 1,500 folds would detect a doubling 84% of the time and 500 would
+detect it 43% of the time, so the small version is not worth running.</p>
+
 <h2>Code</h2>
 <p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;
 the pipeline, the deterministic gate and its rules, and the tests.</p>
