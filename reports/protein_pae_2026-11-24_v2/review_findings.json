@@ -1,0 +1,122 @@
+[
+  {
+    "severity": "info",
+    "pair": null,
+    "check": "recommended_tier_ratio",
+    "detail": "18/57 candidates (32%) are tiered 'recommended for validation'. If this is most of the dataset, the tiers are excluding little and may not feel like a real prioritization \u2014 worth a human sanity check on whether the tier boundaries are too permissive."
+  },
+  {
+    "severity": "warning",
+    "pair": "CADM4/GPR37",
+    "check": "llm_audit",
+    "detail": "Method/compartment mismatch: PLA is justified as a same-cell, same-compartment cis interaction in the plasma membrane. The HPA data given list CADM4's main location as Plasma membrane and GPR37's as Nuclear membrane. The rationale says only that both are 'membrane proteins' and never addresses this difference. A PLA signal (<40 nm) between a plasma-membrane protein and a nuclear-membrane protein is not expected, and the rationale gives no reason, such as trafficking or a different HPA annotation, to explain why they would be in proximity. The deglycosylation arm also assumes an extracellular, ectodomain interface, which conflicts with a nuclear-membrane localisation for GPR37."
+  },
+  {
+    "severity": "warning",
+    "pair": "CADM4/GPR37",
+    "check": "llm_audit",
+    "detail": "The tissue 'brain (white matter / corpus callosum)' is more specific than the HPA data given. HPA lists only 'brain' (RNA) and 'cerebral cortex' (protein) for these two proteins, and corpus callosum or white matter is not mentioned. It is a plausible inference from the oligodendrocyte expression, but the tissue rationale does not say so. The cerebral cortex, brain and retina entries are supported, and retina is correctly labelled as secondary for GPR37 only."
+  },
+  {
+    "severity": "warning",
+    "pair": "CCL11/GPR132",
+    "check": "llm_audit",
+    "detail": "Method fit is fine. stimulation_assay suits a secreted ligand (CCL11, secreted to blood) paired with a membrane GPCR (GPR132). The rationale is specific to these two proteins and does not read as boilerplate."
+  },
+  {
+    "severity": "warning",
+    "pair": "CCL11/GPR132",
+    "check": "llm_audit",
+    "detail": "The target tissues are not supported by the HPA data, which is the stated ground truth. HPA gives no tissue-level RNA or protein data for either protein. The only expression datum is CCL11 in the cell type 'Fibroblasts' (44.2 nCPM)."
+  },
+  {
+    "severity": "warning",
+    "pair": "CCL11/GPR132",
+    "check": "llm_audit",
+    "detail": "Spleen/lymphoid tissue and Bone marrow are named as GPR132 sites, but GPR132 has no HPA expression data at all. The strategy admits these come from 'prior literature, not HPA', and no such literature is in the evidence given. These two tissues are effectively unsupported."
+  },
+  {
+    "severity": "warning",
+    "pair": "CCL11/GPR132",
+    "check": "llm_audit",
+    "detail": "Skin (dermis) and Lung (airway stroma) are inferred from the single HPA cell type 'Fibroblasts'. HPA does not say which tissue those fibroblasts come from, so choosing skin and lung is arbitrary. Neither tissue appears in the evidence."
+  },
+  {
+    "severity": "warning",
+    "pair": "CCL11/GPR132",
+    "check": "llm_audit",
+    "detail": "The tissue list therefore has four tissues and none appears in the evidence. The strategy should have used the fibroblast cell type, or a generic recombinant-ligand/receptor-expressing cell system, instead of naming specific tissues."
+  },
+  {
+    "severity": "warning",
+    "pair": "SLITRK3/GPR83",
+    "check": "llm_audit",
+    "detail": "Compartment mismatch not addressed: the method rationale describes both proteins as surface/membrane proteins on the same cell, and the glycosidase arm uses non-permeabilized cells. The HPA data give SLITRK3 a main subcellular location of Mitochondria and a protein class of 'Predicted intracellular proteins'. GPR83 is a plasma-membrane GPCR. PLA needs same-compartment proximity, so a mitochondrial-annotated SLITRK3 and a plasma-membrane GPR83 are a potential mismatch. The strategy never acknowledges or reconciles this, and the non-permeabilized design could not reach a mitochondrial or intracellular epitope."
+  },
+  {
+    "severity": "warning",
+    "pair": "SLITRK3/GPR83",
+    "check": "llm_audit",
+    "detail": "The target tissue 'brain (hippocampus/cortex neuronal layers)' names hippocampus, which does not appear anywhere in the HPA evidence. The HPA data only list 'cerebral cortex' and 'brain' in general, plus cell types. The hippocampus specification is unsupported."
+  },
+  {
+    "severity": "warning",
+    "pair": "SLITRK3/GPR83",
+    "check": "llm_audit",
+    "detail": "Retina is listed as a PLA target tissue although GPR83 has no retinal expression in the HPA data. The strategy itself concedes this. PLA needs both proteins in the same cells, so retina cannot test the pair and is not supported by the evidence for this interaction."
+  },
+  {
+    "severity": "warning",
+    "pair": "EPHA5/GPR158",
+    "check": "llm_audit",
+    "detail": "Retina is listed as a PLA target tissue, but HPA gives retina RNA only for GPR158 (4.2 nTPM). EPHA5 has no retina signal in the data. PLA needs both proteins in the same cell. The tissue rationale also excludes ovary and lymphoid tissue because they do not overlap, and retina fails that same test. Retina would only work as a single-partner control, and the strategy does not describe it that way."
+  },
+  {
+    "severity": "warning",
+    "pair": "EPHA5/GPR158",
+    "check": "llm_audit",
+    "detail": "'brain (hippocampus)' is not supported by the HPA data. The data only show 'brain' for RNA and 'cerebral cortex' for protein. Neither mentions the hippocampus, so this sub-region looks invented or assumed. Cerebral cortex is supported by both proteins' protein-level data, and brain by both proteins' RNA data."
+  },
+  {
+    "severity": "warning",
+    "pair": "EPHA5/GPR158",
+    "check": "llm_audit",
+    "detail": "Minor: HPA lists EPHA5's main subcellular location as Golgi apparatus, and GPR158 has no location. The rationale says both are 'expected on the same neuron' as surface receptors, without addressing this. The data do not show different compartments, so this is not a method mismatch, and I did not count it as a blocking issue."
+  },
+  {
+    "severity": "warning",
+    "pair": "TNFRSF13B/GPR65",
+    "check": "llm_audit",
+    "detail": "PLA needs both proteins in the same cell and compartment. The HPA single-cell data put them in different cell types: TNFRSF13B in B-cells (138.1 nCPM) and plasma cells (187.7 nCPM), GPR65 only in mast cells (495.1 nCPM). The method rationale says 'a co-expressing cell is needed, and RNA data show lymphoid tissue overlap'. Bulk tissue-level overlap does not show same-cell co-expression, and the evidence points the other way. The strategy gives no co-culture or paracrine justification and names no cell type that expresses both. The triage rationale itself flagged this mismatch as a reason for low confidence, but the strategy does not address it."
+  },
+  {
+    "severity": "warning",
+    "pair": "TNFRSF13B/GPR65",
+    "check": "llm_audit",
+    "detail": "GPR65's HPA subcellular location is 'Vesicles' only, with no plasma membrane annotation. The method rationale calls it 'vesicular/surface localisation' and treats it as a surface receptor next to TACI. That surface claim is not in the evidence. Proximity with a plasma-membrane TACI is therefore not supported."
+  },
+  {
+    "severity": "warning",
+    "pair": "TNFRSF13B/GPR65",
+    "check": "llm_audit",
+    "detail": "Two tissue justifications go beyond the HPA data. Bone marrow is justified as holding 'plasma cells that express TNFRSF13B', but HPA lists TNFRSF13B only in lymphoid tissue, intestine and skeletal muscle, not bone marrow. Intestine is justified by 'gut-associated lymphoid tissue and mast cells', but GPR65 is not enriched in intestine in the HPA data, and intestinal mast cells are not in the evidence. Each of these two tissues has only one of the two proteins enriched. Neither is supported as a site of co-expression, which is what PLA needs."
+  },
+  {
+    "severity": "warning",
+    "pair": "TNFRSF13B/GPR65",
+    "check": "llm_audit",
+    "detail": "The glycosidase pre-treatment arm and the APRIL/BAFF stimulation arm are not tied to any evidence. The triage said glycosylation was unchecked for the interface. The stimulation arm only probes TACI ligand biology, and GPR65 is a proton sensor, not an APRIL/BAFF partner."
+  },
+  {
+    "severity": "warning",
+    "pair": "FLT1/GPR4",
+    "check": "llm_audit",
+    "detail": "Target tissue 'Lung' does not appear anywhere in the HPA ground-truth data. FLT1 data names placenta, skeletal muscle, trophoblasts and vascular endothelial cells. GPR4 has no HPA data. The stated reason is that UniProt describes GPR4 in vascular endothelium, which does not point to lung specifically, so lung looks unsupported by the evidence given. HMVEC-L (lung microvascular) is the only link to lung, and it is not tied to any cited evidence."
+  },
+  {
+    "severity": "warning",
+    "pair": "FLT1/GPR4",
+    "check": "llm_audit",
+    "detail": "Placenta and skeletal muscle are chosen only for FLT1 expression. The strategy admits GPR4 expression there is unknown. Yet the PLA rationale assumes both proteins sit on the same vascular endothelial cell. In placenta the FLT1 signal is mostly trophoblast, so those tissues are weakly matched to a same-cell proximity assay. This is a minor concern; the cultured endothelial cells fit the evidence."
+  }
+]

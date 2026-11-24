@@ -212,3 +212,27 @@ def test_a_membrane_partner_is_inferred_without_the_caller_saying_so(gate, tmp_p
     results = gate.gather_fold_results(row, tool_calls=[], fold_by_pair={})
     # the caller says nothing, as build_report does
     assert gate.fold_evidence_status(results)["status"] == "pass"
+
+
+def test_a_topology_violation_alone_no_longer_forces_a_verdict(gate, tmp_path, monkeypatch):
+    """Measured on the 256-fold chemokine panel: the topology rule rejects 61% of
+    KNOWN binders and 55% of known non-binders, so passing it makes a pair LESS
+    likely to be real (11.5% against a 12.9% base rate). No variant of it moves
+    that above base. AlphaFold3 does not model the membrane, so where it puts a
+    partner measures its docking success, not the biology.
+
+    It may still be REPORTED. It must not drive a verdict: 47 of 51 rejections in
+    the orphan shortlist cited it."""
+    results = _cytoplasmic_only_fold(gate, tmp_path, monkeypatch)
+    status = gate.fold_evidence_status(results, partner_is_cytosolic=False)
+    assert status["status"] == "topology_violation", "the status should still be reported"
+
+    facts = {
+        "known_interaction_strength": "none", "known_interaction_trace": "",
+        "hpa_plausibility": "plausible", "hpa_trace": "",
+        "fold_evidence_status": status["status"], "fold_trace": status["trace"],
+        "glycan_binding_gene": None, "partner_kind": "protein",
+    }
+    row = {"protein_a": "SLIT2", "protein_b": "GPR52", "verdict": "CONFIRMED_NOVEL"}
+    flags = [c for c in gate.find_contradictions(row, facts) if "topology" in c.lower()]
+    assert not flags, f"a topology violation alone still forces a verdict: {flags}"

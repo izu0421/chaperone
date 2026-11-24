@@ -35,7 +35,13 @@ ROOT = Path(__file__).resolve().parents[1]
 SM = Path("/data/yzy21/yy/space_agent/structural_modelling")
 OUT = ROOT / "reports" / "screen_verdicts_current"
 
-PROTEIN_RUN = ROOT / "reports" / "protein_pae_2026-11-24" / "verdicts.csv"
+# v2: re-triaged after the membrane-topology rule was removed from the
+# contradiction trigger. Measured on the 256-fold chemokine panel, that rule
+# rejects 61% of KNOWN binders and 55% of known non-binders, so it was
+# discarding AlphaFold3 pose failures and recording them as biology. 47 of the
+# 51 rejections in the v1 run cited it; removing it took the shortlist from 4
+# to 18.
+PROTEIN_RUN = ROOT / "reports" / "protein_pae_2026-11-24_v2" / "verdicts.csv"
 METAB_OLD = ROOT / "reports" / "orphan_shortlist_2026-11-23" / "verdicts.csv"
 METAB_GAP = ROOT / "reports" / "protein_pae_2026-11-24" / "verdicts_metabolite_gap.csv"
 
@@ -48,7 +54,7 @@ def main() -> int:
     prot = pd.read_csv(PROTEIN_RUN)
     prot = prot[prot.partner_kind.eq("protein")].copy()
     prot["arm"] = "protein"
-    prot["run"] = "protein_pae_2026-11-24"
+    prot["run"] = PROTEIN_RUN.parent.name     # derived, so it cannot name a run we stopped using
 
     # the metabolite arm's current shortlist, by identity and not by position
     hits = pd.read_csv(SM / "results" / "metabolite_calibrated_hits.csv")
@@ -58,8 +64,8 @@ def main() -> int:
             for r in hits.itertuples()}
 
     met_rows = []
-    for path, run in ((METAB_OLD, "orphan_shortlist_2026-11-23"),
-                      (METAB_GAP, "protein_pae_2026-11-24_metabolite_gap")):
+    for path, run in ((METAB_OLD, METAB_OLD.parent.name),
+                      (METAB_GAP, METAB_GAP.parent.name + "_metabolite_gap")):
         if not path.exists():
             continue
         d = pd.read_csv(path)

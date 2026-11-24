@@ -37,17 +37,17 @@ code &mdash; because an agent that both assembles evidence and judges it will ra
 the hypothesis it was given.</p>
 
 <h2>Runs</h2>
-<a class="card" href="reports/protein_pae_2026-11-24/structures/">
+<a class="card" href="reports/protein_pae_2026-11-24_v2/structures/">
   <b>Where the partner sits &rarr;</b>
   <span>Every candidate the screen still supports, in an interactive viewer, with the
   controls it is read against: ligands in the receptor they are known to bind, molecules
   known <em>not</em> to bind the one they are shown with, and the folds the geometry rules
   reject. Interface pTM does not separate them. The pose does.</span></a>
-<a class="card" href="reports/protein_pae_2026-11-24/">
+<a class="card" href="reports/protein_pae_2026-11-24_v2/">
   <b>Orphan GPCR shortlist, 2026-11-24 &rarr;</b>
-  <span>57 protein candidates triaged end to end after the arm was re-gated on interface
-  PAE &mdash; verdicts, the traceable report, the designed experiments and the review
-  audit.</span></a>
+  <span>57 protein candidates triaged end to end, re-run after a geometry rule was found
+  not to discriminate &mdash; verdicts, the traceable report, the designed experiments and
+  the review audit that objects to four of them.</span></a>
 <a class="card" href="reports/orphan_shortlist_2026-11-23/">
   <b>The run before it, 2026-11-23 &rarr;</b>
   <span>102 candidates under the published protein gate. Kept because the arm was
@@ -58,33 +58,37 @@ the hypothesis it was given.</p>
 <p style="margin:0 0 10px">63 candidates across both arms: 57 protein pairs and the 6 receptor-molecule pairs the calibrated small-molecule gate admits.</p>
 <table>
 <tr><th>verdict</th><th>n</th></tr>
-<tr><td>Implausible</td><td>36</td></tr>
+<tr><td>Confirmed novel</td><td>18</td></tr>
+<tr><td>Insufficient evidence</td><td>17</td></tr>
 <tr><td>Likely artefact (PTM/glycan)</td><td>15</td></tr>
+<tr><td>Implausible</td><td>5</td></tr>
+<tr><td>Likely subcomplex</td><td>4</td></tr>
 <tr><td>Likely promiscuous pocket</td><td>4</td></tr>
-<tr><td>Confirmed novel</td><td>4</td></tr>
-<tr><td>Insufficient evidence</td><td>3</td></tr>
-<tr><td>Likely subcomplex</td><td>1</td></tr>
 </table>
-<p style="margin-top:14px">Four faults were found by auditing what the pipeline
+<p style="margin-top:14px">Five faults have been found by auditing what the pipeline
 returned, and the table above is the result of fixing them. Two were wiring: a rule read a
 column that only existed upstream, and another searched a fold directory the screen never
-wrote to. The third was found by extracting the structures &mdash; the topology rule
-flagged an interface spanning both faces of the membrane but said nothing about one lying
-wholly on the <em>cytoplasmic</em> face, which is where nine of the twelve pairs it had
-just confirmed put a secreted partner. The fourth was in the evidence rather than the
-rule: the cached UniProt topology held nothing for 18 of 75 receptors, so a class A GPCR
-read as having no transmembrane region.</p>
-<p>Separately, the protein arm was re-gated. It had been selecting on interface pTM and
-interface pLDDT, which the project's own benchmark scores at 0.821 and 0.752, while the
-benchmark's headline AUROC of 0.840 is computed on interface PAE. Refitted on interface
-PAE at the published gate's own false-positive rate, recall goes from 37.2% to 50.2% and
-the screen returns 57 candidates instead of 25, with the size bias gone.</p>
-<p>53 of the 63 candidates carry a membrane-topology
-violation. 4 are confirmed novel, all with a secreted partner on the
-receptor's extracellular face. No small-molecule candidate is confirmed: the agent called
-every one a promiscuous pocket, from database evidence alone, which is what a 256-fold
-counter-screen concluded independently from the folds. No candidate is high-confidence;
-these are triage calls, not results.</p>
+wrote to. The third was found by extracting the structures. The fourth was in the evidence
+rather than the rule: the cached membrane topology held nothing for 18 of 75 receptors, so
+a class A GPCR read as having no transmembrane region.</p>
+
+<p>The fifth was the largest, and it was a rule of ours that did not work. Folds were being
+rejected for putting the partner on the <em>cytoplasmic</em> face of the receptor. Measured
+on 256 folds of 16 receptors whose ligands are known, that rule rejects <b>61% of real
+binders</b> and 55% of non-binders &mdash; passing it made a pair <em>less</em> likely to be
+real than the base rate. AlphaFold3 models no lipid bilayer, so where it places a partner
+measures its docking luck, about 40% either way, and not the biology. 47 of the 51
+rejections in the previous shortlist cited it. With it removed from the verdict logic and
+kept only as a note on pose quality, the shortlist goes from 4 to
+18.</p>
+
+<p>53 of the 63 candidates still carry a
+topology violation; it is now reported and not acted on. Seventeen of the
+18 confirmed pairs are low confidence, and the review agent raises a
+compartment objection against four of them. These are hypotheses a broken filter was
+suppressing, not findings. No small-molecule candidate is confirmed: the agent called every
+one a promiscuous pocket from database evidence alone, which is what a 256-fold
+counter-screen concluded independently from the folds.</p>
 
 <h2>Code</h2>
 <p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;

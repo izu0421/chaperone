@@ -1,6 +1,6 @@
 {
  "candidates": 63,
- "gate_flagged": 2,
+ "gate_flagged": 1,
  "topology_violations": 53,
  "with_a_real_fold": 57
 }

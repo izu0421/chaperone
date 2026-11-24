@@ -39,7 +39,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # build copy in between: that would be the same 2.2 MB stored twice, and two
 # copies of anything is an invitation to edit the stale one.
 DEST = Path("/data/yzy21/yy/space_agent/chaperone/reports/"
-            "protein_pae_2026-11-24/structures")
+            "protein_pae_2026-11-24_v2/structures")
 CUT = 4.5          # contact distance, angstroms
 
 # Fixed controls. These do not come from the verdicts, because their job is to
@@ -71,7 +71,7 @@ CONTROLS = [
 # that run; the metabolite arm was not re-gated and still comes from the
 # calibrated small-molecule hits, which are read from results/ directly.
 REPORT = Path("/data/yzy21/yy/space_agent/chaperone/reports/"
-              "protein_pae_2026-11-24")
+              "protein_pae_2026-11-24_v2")
 
 
 def _molecule_label(name: str) -> str:
@@ -95,7 +95,10 @@ def candidate_panels():
 
     verdicts = pd.read_csv(REPORT / "verdicts.csv")
     confirmed = verdicts[verdicts.verdict == "CONFIRMED_NOVEL"]
-    for row in confirmed.sort_values("iptm", ascending=False).itertuples():
+    # 18 recommended after the topology rule was removed from the trigger. The
+    # viewer takes the top 12 by interface confidence; a page where every row is
+    # a 300-800 KB structure stops being browsable before it stops being complete.
+    for row in confirmed.sort_values("iptm", ascending=False).head(12).itertuples():
         panels.append((f"{row.protein_b}__{row.protein_a}", "orphan", "recommended",
                        f"{row.protein_a} against {row.protein_b}: interface pTM "
                        f"{row.iptm:.2f}, agent confidence {row.confidence}",

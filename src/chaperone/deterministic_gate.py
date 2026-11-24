@@ -697,7 +697,28 @@ def find_contradictions(row: dict, facts: dict) -> list[str]:
     # etc.) — that's exactly what reconsider_with_fold.py's LLM call is for.
     # Only flag when the verdict shows NO acknowledgment of ANY concern
     # despite a real, checkable structural problem.
-    if facts["fold_evidence_status"] in ("topology_violation", "ptm_only_concern") and verdict not in ("LIKELY_ARTIFACT_PTM", "IMPLAUSIBLE"):
+    #
+    # MEASURED 2026-11-24 and REMOVED from the trigger: `topology_violation`
+    # carries no information about whether the pair binds. On the 256-fold
+    # chemokine panel, where 33 pairs are known binders and the correct pose
+    # puts the secreted chemokine on the extracellular face:
+    #
+    #   rule variant                     rejects  of binders  P(real | passes)
+    #   interface spans BOTH faces          49%       15%          10.8%
+    #   interface is CYTOPLASMIC-only        7%        6%          13.4%
+    #   either  [what this rule used]       56%       14%          11.5%
+    #   base rate                                                  12.9%
+    #
+    # It rejects 61% of KNOWN binders and 55% of known non-binders, so passing
+    # it makes a pair LESS likely to be real. No variant moves P(real|passes)
+    # above the base rate. AlphaFold3 does not model the membrane, so where it
+    # puts a partner measures its docking success -- about 40% either way --
+    # and not the biology. 47 of 51 rejections in the orphan shortlist cited
+    # this rule, which is the single largest source of under-reporting found.
+    #
+    # It still belongs in the REPORT as a note on pose quality. It does not
+    # belong in a rule that pushes a verdict toward IMPLAUSIBLE.
+    if facts["fold_evidence_status"] == "ptm_only_concern" and verdict not in ("LIKELY_ARTIFACT_PTM", "IMPLAUSIBLE"):
         contradictions.append(f"A real AF3 fold found a real structural concern ({facts['fold_evidence_status']}), but verdict is {verdict}, which doesn't acknowledge it. {facts['fold_trace']}")
 
     # Don't suggest downgrading from LIKELY_ARTIFACT_PTM just because a fold's
