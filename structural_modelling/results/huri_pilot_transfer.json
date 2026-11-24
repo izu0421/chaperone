@@ -1,0 +1,22 @@
+{
+ "n": 600,
+ "n_pos": 120,
+ "n_neg": 480,
+ "fitted_cut": 3.75,
+ "refitted_here": 2.61,
+ "refit_ci": [
+  2.17,
+  4.29
+ ],
+ "transfers": true,
+ "pae_gate_here": {
+  "recall": 0.025,
+  "decoy_rate": 0.0396,
+  "precision": 0.136
+ },
+ "published_gate_here": {
+  "recall": 0.008,
+  "decoy_rate": 0.0208,
+  "precision": 0.091
+ }
+}
