@@ -128,9 +128,27 @@ def candidate_panels():
     return panels
 
 
-STAGE_OUT = {"specificity": "specificity_out", "orphan": "orphan_out"}
-STAGE_TOPO = {"specificity": "specificity_topology.json", "orphan": "orphan_topology.json"}
+# The truncation arm: the receptor cut to its extracellular domain, beside the
+# decoys that say whether the cut face is a surface it revealed or one it made.
+# Shown because the separation is the kind that is read faster than it is
+# described -- the candidate buried in the domain, albumin floating off it.
+ECD_PANELS = [
+    ("B_GPR158ECD__NMS", "ecd-candidate",
+     "GPR158 extracellular domain with neuromedin S: all 25 models at interface "
+     "PAE 1.40-1.59, better than the intact receptor's 2.26"),
+    ("B_GPR158ECD__ALB", "ecd-decoy",
+     "the same cut domain against albumin, which has no reason to bind it: 22.8-24.9"),
+    ("B_GPR158ECD__LYZ", "ecd-decoy",
+     "and against lysozyme: 12.7-14.3. Every candidate model beats every decoy model"),
+]
+
+STAGE_OUT = {"specificity": "specificity_out", "orphan": "orphan_out",
+             "rescue": "rescue_out"}
+STAGE_TOPO = {"specificity": "specificity_topology.json", "orphan": "orphan_topology.json",
+              "rescue": "orphan_topology.json"}
 STAGE_POSE = {"specificity": "specificity_pose.csv", "orphan": "orphan_pose.csv"}
+# a truncated receptor has no cytoplasmic face left, so the topology colouring and the
+# membrane axis do not apply to it; the viewer handles a missing axis already
 
 
 def span_of(topology: list, resnum: int):
@@ -162,7 +180,9 @@ def main() -> int:
                   for st, f in STAGE_POSE.items()
                   if (ROOT / "results" / f).exists()}
 
-    panels = CONTROLS + candidate_panels()
+    ecd = [(j, "rescue", role, why, j.replace("B_", "").replace("ECD__", " ECD + "))
+           for j, role, why in ECD_PANELS]
+    panels = CONTROLS + candidate_panels() + ecd
     seen, ordered = set(), []
     for item in panels:                       # a control may also be a candidate
         if item[0] not in seen:

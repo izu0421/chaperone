@@ -61,6 +61,8 @@ h2:first-child{margin-top:0}
 .t-candidate{background:#0f2a44;color:#8fc3f0}
 .t-non-binder{background:#3a1216;color:#f0a3ab}
 .t-rejected{background:#3a1216;color:#f0a3ab}
+.t-ecd-candidate{background:#13351f;color:#7fd99f}
+.t-ecd-decoy{background:#3a1216;color:#f0a3ab}
 .t-recommended{background:#13351f;color:#7fd99f}
 .ctrls{display:flex;flex-wrap:wrap;border-top:1px solid var(--rule);background:var(--surface-2)}
 .ctrls button{flex:1 1 auto;background:none;border:0;border-right:1px solid var(--rule);
@@ -144,6 +146,20 @@ const GROUPS = [
          'so where it puts a partner measures its docking luck, not the biology. 47 of the ' +
          '51 rejections cited it. Seventeen of the eighteen are low confidence: these are ' +
          'hypotheses the old rule was suppressing, not findings.'},
+  {role: 'ecd-candidate', title: 'Receptor cut to its extracellular domain',
+   note: 'If a secreted partner is modelled against the cytoplasmic face, the FOLD is ' +
+         'wrong rather than the hypothesis \u2014 so remove the membrane region and the ' +
+         'wrong face stops existing. Only two of fourteen receptors have a real domain ' +
+         'left after that cut: GPR158 (394 residues) and GPR37 (239). Here GPR158 holds ' +
+         'neuromedin S at interface PAE 1.40-1.59 across 25 models, better than the ' +
+         'intact receptor\u2019s 2.26, with 63 contacts.'},
+  {role: 'ecd-decoy', title: 'The same cut domain, against proteins with no reason to bind it',
+   note: 'The control that makes the panel above readable. Cutting a protein exposes the ' +
+         'faces its own structure was covering, and this project has had a binder dock ' +
+         'onto 844 square angstroms of exactly that. Albumin reaches 22.8-24.9 and ' +
+         'lysozyme 12.7-14.3, with 21 and 19 contacts against neuromedin S\u2019s 63. ' +
+         'Every one of the 25 candidate models beats every one of the 50 decoy models, ' +
+         'so the cut face is revealing a surface and not creating one.'},
   {role: 'rejected',    title: 'Rejected by the gate',
    note: 'Folds the geometry rules once removed. They are kept here because the rule ' +
          'that removed them turned out not to discriminate: it is shown for pose quality ' +
