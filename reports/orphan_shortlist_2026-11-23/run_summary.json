@@ -3,13 +3,13 @@
   "candidates": 102,
   "triage": 102,
   "pose_measured": 146,
-  "gate_flagged": 40,
-  "gate_reconsidered": 40,
+  "gate_flagged": 39,
+  "gate_reconsidered": 39,
   "gate_changed": 45,
   "refolds_executed": 0,
   "strategies_designed": 38,
   "review_findings": 22,
-  "recommended": 4,
+  "recommended": 3,
   "note": "gate_flagged/reconsidered are the fixed gate run over the pre-reconsideration verdicts; gate_changed is a diff of the two verdict files; every other number is counted from the files in this directory",
-  "gate_rounds": 3
+  "gate_rounds": 4
 }

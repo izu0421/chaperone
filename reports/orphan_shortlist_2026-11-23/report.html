@@ -67,11 +67,11 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
   <h1>Deorphanisation — PPI triage report</h1>
   <p>102 candidates &middot; every verdict below is traceable to the raw tool evidence it cites &mdash; click a row to expand</p>
 </header>
-<div class="summary"><div class='stat'><div class='n'>49</div><div class='l'>IMPLAUSIBLE</div></div><div class='stat'><div class='n'>22</div><div class='l'>LIKELY_ARTIFACT_PTM</div></div><div class='stat'><div class='n'>19</div><div class='l'>LIKELY_PROMISCUOUS_POCKET</div></div><div class='stat'><div class='n'>5</div><div class='l'>INSUFFICIENT_EVIDENCE</div></div><div class='stat'><div class='n'>4</div><div class='l'>CONFIRMED_NOVEL</div></div><div class='stat'><div class='n'>3</div><div class='l'>LIKELY_SUBCOMPLEX</div></div><div class='stat' style='background:var(--light);'><div class='n'>102</div><div class='l'>No fold run (evidence-only verdict)</div></div></div>
+<div class="summary"><div class='stat'><div class='n'>50</div><div class='l'>IMPLAUSIBLE</div></div><div class='stat'><div class='n'>22</div><div class='l'>LIKELY_ARTIFACT_PTM</div></div><div class='stat'><div class='n'>19</div><div class='l'>LIKELY_PROMISCUOUS_POCKET</div></div><div class='stat'><div class='n'>5</div><div class='l'>INSUFFICIENT_EVIDENCE</div></div><div class='stat'><div class='n'>3</div><div class='l'>LIKELY_SUBCOMPLEX</div></div><div class='stat'><div class='n'>3</div><div class='l'>CONFIRMED_NOVEL</div></div><div class='stat' style='background:var(--light);'><div class='n'>102</div><div class='l'>No fold run (evidence-only verdict)</div></div></div>
 
     <section class="validation">
       <h2>Worth validating experimentally?</h2>
-      <p class="validation-note">23 of 102 candidates are not already proven in the literature, and
+      <p class="validation-note">22 of 102 candidates are not already proven in the literature, and
       any open structural/mechanism concern raised has actually been checked and cleared — every candidate is
       listed, nothing hidden.</p>
       <table class="validation-table">
@@ -84,11 +84,6 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
         </tr>
         <tr>
           <td><b>MST1 &harr; GPR37</b></td>
-          <td><span class='badge' style='background:#2EC4B6;'>Yes</span></td>
-          <td style="font-size:12px;color:var(--grey);">No known/curated hit anywhere, and expression/localization support a direct interaction — the strongest class of untested hypothesis here.</td>
-        </tr>
-        <tr>
-          <td><b>CTSG &harr; GPR34</b></td>
           <td><span class='badge' style='background:#2EC4B6;'>Yes</span></td>
           <td style="font-size:12px;color:var(--grey);">No known/curated hit anywhere, and expression/localization support a direct interaction — the strongest class of untested hypothesis here.</td>
         </tr>
@@ -245,7 +240,7 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
         <tr>
           <td><b>GNRH2 &harr; MRGPRX2</b></td>
           <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
-          <td style="font-size:12px;color:var(--grey);">Data was genuinely too thin to call either way — not rejected, just unresolved. I am keeping INSUFFICIENT_EVIDENCE, and I am now stating the topology_violation explicitly.</td>
+          <td style="font-size:12px;color:var(--grey);">Data was genuinely too thin to call either way — not rejected, just unresolved. The flagged problem is real.</td>
         </tr>
         <tr>
           <td><b>GHRL &harr; MRGPRX4</b></td>
@@ -576,6 +571,11 @@ details.tools summary { cursor:pointer; font-weight:700; font-size:13px; color:v
           <td><b>TFR2 &harr; GPR22</b></td>
           <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
           <td style="font-size:12px;color:var(--grey);">No expression/localization/structural support for a direct interaction. Both are integral membrane proteins (TFR2 single-pass type II, GPR22 a 7TM orphan GPCR), so a cis interaction needs the same cell, but HPA shows no overlap: TFR2 is liver-enriched (hepatocytes, erythrocyte progenitors) and GPR22 is in brain neurons and cardiomyocytes.</td>
+        </tr>
+        <tr>
+          <td><b>CTSG &harr; GPR34</b></td>
+          <td><span class='badge' style='background:#B0B7C3;'>No</span></td>
+          <td style="font-size:12px;color:var(--grey);">No expression/localization/structural support for a direct interaction. My original rationale said the fold showed no topology violation.</td>
         </tr>
         <tr>
           <td><b>PTPRD &harr; GPR52</b></td>
@@ -5041,10 +5041,10 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
         <span class="metrics">ipTM 0.65 &middot; pTM 0.64</span>
       </div>
       <div class="card-body">
-        <div class="field"><div class="k">Rationale</div><div class="v">I am keeping INSUFFICIENT_EVIDENCE, and I am now stating the topology_violation explicitly. The AF3 interface spans both cytoplasmic and extracellular residues of MRGPRX2. That is impossible for a secreted peptide acting on an intact membrane receptor, so the fold is invalid as support. It shows an artifact, probably the unprocessed precursor lying across the receptor, and not a real binding mode. I did not use the fold to raise the verdict, so CONFIRMED_NOVEL is off the table. I did not lower the verdict to IMPLAUSIBLE because the violation belongs to this particular model and says nothing against the biology. HPA expression is plausible, and a short cationic peptide activating MRGPRX2 is mechanistically reasonable. Known-interaction strength is none: STRING, CellPhoneDB and PubMed all came back empty. With the structure discredited and no literature or database support, the pair is neither confirmed nor ruled out.</div></div>
-        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>No relevant glycosylation for either protein. The mature GnRH-II is a processed, amidated, pyroglutamyl decapeptide, and AF3 modeled the unprocessed sequence, which is another reason to distrust the interface.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>0 PubMed papers mention GNRH2 and MRGPRX2 together.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING, CellPhoneDB and PubMed co-occurrence returned nothing for this pair (strength: none). No known-interaction evidence exists.</div></div>
+        <div class="field"><div class="k">Rationale</div><div class="v">The flagged problem is real. The AF3 interface for GNRH2-MRGPRX2 includes both cytoplasmic and extracellular residues of MRGPRX2, which cannot happen across an intact membrane. The fold therefore gives no support for a binding mode, and I give it no credit toward CONFIRMED_NOVEL or LIKELY_SUBCOMPLEX. It is a flaw in this one model, probably from folding the unprocessed GnRH-II precursor, not evidence about the biology, so on its own it does not justify IMPLAUSIBLE. HPA expression is plausible and nothing shows the two proteins cannot meet, but STRING, CellPhoneDB and PubMed all returned nothing for this pair (strength: none). Plausible expression alone is not interaction evidence. With a discredited structure, no literature or database support, and no evidence against, the pair is neither confirmed nor ruled out.</div></div>
+        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>No relevant glycosylation for either protein. Mature GnRH-II is a processed, amidated, pyroglutamyl decapeptide, which AF3 did not model. That is another reason to distrust the fold interface.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>0 PubMed papers mention GNRH2 and MRGPRX2 together.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING, CellPhoneDB and PubMed co-occurrence returned nothing for this pair (strength: none).</div></div>
         
-        <div class='followup'><b>Follow-up (not yet executed):</b> Re-fold with the mature GnRH-II decapeptide (pyroGlu1, Gly10-NH2 amide, no signal or propeptide sequence). Check that the contacts fall only on the extracellular side, in the orthosteric pocket of MRGPRX2. Then test activation experimentally, for example with a mast cell degranulation or calcium assay in MRGPRX2-expressing cells.</div>
+        <div class='followup'><b>Follow-up (not yet executed):</b> Re-fold with the mature GnRH-II decapeptide (pyroGlu-His-Trp-Ser-His-Gly-Trp-Tyr-Pro-Gly-NH2) against MRGPRX2. Accept only a pose confined to the extracellular or transmembrane pocket. Alternatively, test experimentally whether GnRH-II activates MRGPRX2, for example in a mast cell degranulation or calcium assay.</div>
         
         <details class="tools">
           <summary>Full tool-call ledger (14 calls) — raw evidence behind this verdict</summary>
@@ -19451,17 +19451,17 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
     <div class="card" data-log="CTSG__GPR34">
       <div class="card-head">
         <span class="pair">CTSG &harr; GPR34</span>
-        <span class="badge" style="background:#2EC4B6">CONFIRMED_NOVEL</span>
+        <span class="badge" style="background:#E05D5D">IMPLAUSIBLE</span>
         
-        <span class='badge' style='background:#2EC4B6;opacity:.85;' title='No known/curated hit anywhere, and expression/localization support a direct interaction — the strongest class of untested hypothesis here.'>VALIDATE</span>
+        
         <span class="conf">low confidence</span>
         <span class="metrics">ipTM 0.5 &middot; pTM 0.54</span>
       </div>
       <div class="card-body">
-        <div class="field"><div class="k">Rationale</div><div class="v">The PTM verdict rested on one untested worry: that a glycan site might lie on the modeled CTSG–GPR34 interface. A real AF3 fold has now tested it. It found no annotated glycosylation site at the interface and no membrane-topology violation, so the worry is not confirmed. Neither protein is a lectin, so there is no glycan-mediated binding mechanism that AF3 would miss. STRING, CellPhoneDB and PubMed all show no prior evidence for this pair, so it is novel. CTSG is a secreted protease and GPR34 is a surface GPCR, and CTSG already cleaves PAR1 and PAR4, so contact is plausible. Confidence stays low because the fold was borderline (ipTM about 0.5, interface pLDDT about 63) and HPA co-expression is unknown.</div></div>
-        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>GPR34 has 5 and CTSG has 2 UniProt N-glycosylation sites. The real fold showed none of them at the modeled interface and no topology violation, so the PTM concern is not supported. Neither protein is a carbohydrate-binding lectin.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>0 PubMed papers mention CTSG and GPR34 together.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING, CellPhoneDB and PubMed co-occurrence all returned nothing (known_interaction_strength=none), so the pair is novel. CTSG acting on other GPCRs (PAR1, PAR4, FPR1) gives only indirect precedent.</div></div>
+        <div class="field"><div class="k">Rationale</div><div class="v">My original rationale said the fold showed no topology violation. The check shows that was wrong. The fold put the CTSG–GPR34 interface on GPR34&#x27;s cytoplasmic face. CTSG is a secreted granule protease with no membrane topology and no evidence of cytosolic localisation, so it cannot reach that face. The modeled contact is therefore not physically achievable, and the borderline confidence (ipTM about 0.5, interface pLDDT about 63) cannot rescue it. The remaining evidence is too thin to override this. STRING, CellPhoneDB and PubMed show nothing for the pair (known_interaction_strength=none), and HPA co-expression is unknown, so nothing places the two proteins together. The only support is indirect: CTSG cleaves other GPCRs such as PAR1 and PAR4. A real interaction with GPR34&#x27;s extracellular face stays conceivable, but this fold doesn&#x27;t model it. I rate the modeled interaction implausible, with low confidence because that extracellular-face possibility was not tested.</div></div>
+        <div class='field'><div class='k'>PTM / glycosylation</div><div class='v'>GPR34 has 5 UniProt N-glycosylation sites and CTSG has 2. None lie at the modeled interface. Neither protein is a lectin. The PTM concern is not the problem here; the topology violation is.</div></div><div class='field'><div class='k'>PubMed co-occurrence</div><div class='v'>0 PubMed papers mention CTSG and GPR34 together.</div></div><div class='field'><div class='k'>STRING / CellPhoneDB</div><div class='v'>STRING, CellPhoneDB and PubMed co-occurrence returned nothing for this pair (known_interaction_strength=none). CTSG acting on PAR1, PAR4 and FPR1 is only indirect precedent.</div></div>
         
-        <div class='followup'><b>Follow-up (not yet executed):</b> Check shared tissue and cell-type expression of CTSG and GPR34 (for example neutrophil–microglia contact in inflamed tissue). Run replicate AF3 seeds to see whether the borderline ipTM holds. If the interaction is pursued, test whether CTSG cleaves GPR34&#x27;s N-terminal extracellular region.</div>
+        <div class='followup'><b>Follow-up (not yet executed):</b> Re-fold with constraints or a truncated GPR34 extracellular region (N-terminus and loops) against CTSG. Check whether a docked pose on the extracellular face is confident. Look at HPA immune-cell co-expression, for example neutrophils and mast cells.</div>
         
         <details class="tools">
           <summary>Full tool-call ledger (14 calls) — raw evidence behind this verdict</summary>

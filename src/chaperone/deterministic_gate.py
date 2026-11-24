@@ -300,7 +300,7 @@ def hpa_plausibility(tool_calls: list, gene_a: str, gene_b: str) -> dict:
     }
 
 
-def fold_evidence_status(fold_results: list, secreted_partner: bool = False) -> dict:
+def fold_evidence_status(fold_results: list, partner_is_cytosolic: bool = False) -> dict:
     """Returns {"status": "pass"|"ptm_only_concern"|"topology_violation"|"not_run", "trace": str}.
     Distinguishes two different-severity concerns rather than lumping them:
     a PTM/glycosylation site at the interface is a "might be gated/blocked in
@@ -333,20 +333,30 @@ def fold_evidence_status(fold_results: list, secreted_partner: bool = False) -> 
             if "Cytoplasmic" in topo and "Extracellular" in topo:
                 topology_notes.append(f"{iface['chain_a']}-{iface['chain_b']} interface spans both Cytoplasmic and Extracellular residues — topologically impossible across an intact membrane")
             # The both-faces rule above catches an interface straddling the
-            # membrane. It does NOT catch the commoner failure: a secreted
-            # protein docked entirely on the INSIDE. Caught by extracting the
-            # structures of the shortlist the first rule passed -- 9 of 12
-            # recommended pairs had every annotated interface residue on the
-            # cytoplasmic face, with a secreted partner (GHRL, SLIT2, C3,
-            # CCL28, IL1RN, CTSG, IL2). A secreted protein never reaches the
-            # cytoplasm, so that complex cannot form as modelled either.
+            # membrane, INCLUDING one chain's cytoplasmic face meeting the
+            # other's extracellular face, because `topo` is the union of the
+            # two chains. What it does not catch is the commoner failure: a
+            # SOLUBLE partner docked entirely on the inside. Found by
+            # extracting the structures of the shortlist the first rule
+            # passed -- 9 of 12 recommended pairs put a partner that never
+            # enters the cytosol (GHRL, SLIT2, C3, CCL28, IL1RN, CTSG, IL2)
+            # against residues annotated as intracellular.
             #
-            # Requires `secreted_partner`, because the same geometry is
-            # ordinary biology when the partner is a membrane protein with a
-            # cytoplasmic domain -- the case the comment in _protein_class_flags
-            # exists to protect. No secretion evidence, no flag.
-            elif secreted_partner and "Cytoplasmic" in topo and "Extracellular" not in topo:
-                topology_notes.append(f"{iface['chain_a']}-{iface['chain_b']} interface lies entirely on the Cytoplasmic face while the partner is secreted — a secreted protein does not reach the cytoplasm")
+            # A membrane partner is allowed to meet the cytoplasmic face,
+            # because two proteins in the same bilayer can interface through
+            # their cytosolic surfaces -- that is ordinary biology and the
+            # case _protein_class_flags was written to protect. The test is
+            # therefore whether the PARTNER has a cytosolic surface at all:
+            # it needs its own membrane topology, or positive evidence of
+            # cytosolic localisation.
+            #
+            # Phrased as "unless cytosolic" and not "if secreted", because
+            # the first version asked HPA for a `secreted` tag and cathepsin
+            # G does not carry one although it is a granule protease, so the
+            # pair survived a rule written to catch exactly it.
+            elif (not partner_is_cytosolic
+                  and "Cytoplasmic" in topo and "Extracellular" not in topo):
+                topology_notes.append(f"{iface['chain_a']}-{iface['chain_b']} interface lies on the Cytoplasmic face, but the partner has no cytosolic surface — no membrane topology of its own and no evidence of cytosolic localisation")
 
     if topology_notes:
         return {"status": "topology_violation", "trace": "Real fold executed and flagged: " + "; ".join(topology_notes + ptm_notes)}
@@ -539,6 +549,22 @@ def ligand_pose_status(fold_results: list) -> dict:
     }
 
 
+def _has_membrane_topology(fold_results: list, gene: str) -> bool:
+    """True when BOTH chains of the fold carry membrane topology.
+
+    Read off the fold rather than from an annotation lookup, because this is
+    asking about the chain that was actually modelled. A soluble partner
+    contributes an empty interface_topology list; a membrane partner does not.
+    """
+    for r in fold_results:
+        for iface in (r.get("structural_analysis") or {}).get("interfaces", []):
+            a = set(iface.get("interface_topology_a") or [])
+            b = set(iface.get("interface_topology_b") or [])
+            if a and b:
+                return True
+    return False
+
+
 def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
     gene_a, gene_b = row["protein_a"], row["protein_b"]
     is_ligand = (row.get("partner_kind") or "protein") == "ligand"
@@ -548,12 +574,17 @@ def compute_gate_facts(row: dict, tool_calls: list, fold_results: list) -> dict:
     # would query the protein tools for a gene that does not exist
     hpa = ({"plausibility": "not_applicable", "trace": "small-molecule partner"}
            if is_ligand else hpa_plausibility(tool_calls, gene_a, gene_b))
-    # the topology rule needs to know whether either protein is secreted, which
-    # only the HPA class flags can say
-    _secreted = (not is_ligand
-                 and (_protein_class_flags(tool_calls, gene_a)["secreted"]
-                      or _protein_class_flags(tool_calls, gene_b)["secreted"]))
-    fold = fold_evidence_status(fold_results, secreted_partner=_secreted)
+    # The topology rule needs to know whether the partner HAS a cytosolic
+    # surface. Two ways it can: it is itself a membrane protein (so it has a
+    # cytoplasmic domain in the same bilayer), or it is annotated as living in
+    # the cytosol. Either way the modelled contact is possible; with neither it
+    # is not. Both genes are tested because the gate does not fix which column
+    # holds the receptor.
+    _cytosolic = is_ligand or any(
+        _protein_class_flags(tool_calls, g)["intracellular_only"]
+        or _has_membrane_topology(fold_results, g)
+        for g in (gene_a, gene_b))
+    fold = fold_evidence_status(fold_results, partner_is_cytosolic=_cytosolic)
     glycan_binding_gene = None if is_ligand else _glycan_binding_gene(gene_a, gene_b)
     ligand = ligand_evidence_status(tool_calls) if is_ligand else None
     pose = ligand_pose_status(fold_results) if is_ligand else None

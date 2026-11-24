@@ -70,6 +70,15 @@ REPORT = Path("/data/yzy21/yy/space_agent/chaperone/reports/"
               "orphan_shortlist_2026-11-23")
 
 
+def _molecule_label(name: str) -> str:
+    """Lowercase an ordinary molecule name, leave an acronym alone.
+
+    A blanket .lower() turned GABA into "gaba" and would do the same to PGD2
+    and 5-HT. Only a plain Titlecase word is a common noun here.
+    """
+    return name.lower() if name[:1].isupper() and name[1:].islower() else name
+
+
 def candidate_panels():
     """Every plausible candidate, read from the files the report publishes.
 
@@ -108,7 +117,7 @@ def candidate_panels():
         panels.append((best.pair, "orphan", "candidate",
                        f"{row.metabolite} in {row.receptor}: interface pTM "
                        f"{row.iptm:.2f}, ligand pLDDT {row.plddt_B:.0f}",
-                       f"{row.receptor} + {row.metabolite.lower()}"))
+                       f"{row.receptor} + {_molecule_label(row.metabolite)}"))
     return panels
 
 

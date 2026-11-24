@@ -151,24 +151,42 @@ def _cytoplasmic_only_fold(gate, tmp_path, monkeypatch):
     return gate.gather_fold_results(row, tool_calls=[], fold_by_pair={})
 
 
-def test_secreted_partner_on_the_cytoplasmic_face_is_a_violation(gate, tmp_path, monkeypatch):
+def test_partner_with_no_cytosolic_surface_on_the_inside_is_a_violation(gate, tmp_path, monkeypatch):
     """The gap the structures exposed: the both-faces rule catches an interface
     straddling the membrane, but nine of the twelve pairs the gate had just
-    confirmed put a SECRETED partner wholly on the inside, which the rule said
-    nothing about. A secreted protein does not reach the cytoplasm."""
+    confirmed put a partner that never enters the cytosol wholly on the INSIDE,
+    which the rule said nothing about."""
     results = _cytoplasmic_only_fold(gate, tmp_path, monkeypatch)
-    status = gate.fold_evidence_status(results, secreted_partner=True)
+    status = gate.fold_evidence_status(results, partner_is_cytosolic=False)
     assert status["status"] == "topology_violation", (
-        f"a secreted partner docked entirely on the cytoplasmic face was reported "
-        f"as {status['status']!r}"
+        f"a partner with no cytosolic surface docked entirely on the cytoplasmic "
+        f"face was reported as {status['status']!r}"
     )
-    assert "secreted" in status["trace"]
+    assert "no cytosolic surface" in status["trace"]
 
 
-def test_same_geometry_passes_when_nothing_is_secreted(gate, tmp_path, monkeypatch):
-    """The guard on the rule. A membrane protein with a cytoplasmic domain
-    contacting another protein's cytoplasmic face is ordinary biology, and
-    flagging it would re-create the over-firing _protein_class_flags was
-    written to avoid. No secretion evidence, no flag."""
+def test_same_geometry_passes_when_the_partner_has_a_cytosolic_surface(gate, tmp_path, monkeypatch):
+    """The guard. Two proteins in the same bilayer can interface through their
+    cytosolic surfaces, and so can a genuinely cytosolic partner, so the same
+    geometry is ordinary biology there. Flagging it would re-create the
+    over-firing _protein_class_flags was written to avoid."""
     results = _cytoplasmic_only_fold(gate, tmp_path, monkeypatch)
-    assert gate.fold_evidence_status(results, secreted_partner=False)["status"] == "pass"
+    assert gate.fold_evidence_status(results, partner_is_cytosolic=True)["status"] == "pass"
+
+
+def test_a_membrane_partner_is_read_off_the_fold_as_having_a_cytosolic_surface(gate):
+    """Phrased as "does the partner have a cytosolic surface" and not "is it
+    secreted", because cathepsin G carries no HPA secreted tag although it is a
+    granule protease, and survived a rule written to catch exactly it. A chain
+    that carries its own membrane topology has one; an empty topology list is a
+    soluble chain and does not."""
+    membrane = [{"structural_analysis": {"interfaces": [{
+        "chain_a": "A", "chain_b": "B",
+        "interface_topology_a": ["Cytoplasmic"], "interface_topology_b": ["Cytoplasmic"],
+    }]}}]
+    soluble = [{"structural_analysis": {"interfaces": [{
+        "chain_a": "A", "chain_b": "B",
+        "interface_topology_a": ["Cytoplasmic"], "interface_topology_b": [],
+    }]}}]
+    assert gate._has_membrane_topology(membrane, "ADORA1") is True
+    assert gate._has_membrane_topology(soluble, "CTSG") is False
