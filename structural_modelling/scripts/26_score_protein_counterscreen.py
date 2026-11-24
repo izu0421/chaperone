@@ -255,15 +255,48 @@ def main() -> None:
                 log.info("  %-9s n = %2d   median interface pTM %.2f   median BSA %.0f",
                          lab, len(sub), sub.iptm.median(), sub.bsa.median())
         d_pos, d_neg = B[B.label.eq("binder")], B[B.label.eq("negative")]
+
+        # This block cannot be a significance test and is not run as one. At
+        # 6 positives and 12 negatives the AUROC detection floor is 0.79, and
+        # the best one-sided p available for a single test pair placed above
+        # all 12 negatives is 1/13 = 0.077. Reporting an AUROC here without
+        # that stated would invite reading a number that cannot clear its own
+        # floor.
+        #
+        # What it CAN settle needs no power: whether the strongest positive
+        # control works. GABBR1-GABBR2 is an obligate heterodimer with a solved
+        # structure. If this pipeline does not score it above the non-dimer
+        # pairs, it cannot model this class of complex, and no fold of
+        # GPR62 + ADORA1 is interpretable as evidence in either direction.
         if len(d_pos) and len(d_neg):
-            au = auroc(d_pos.iptm.to_numpy(float), d_neg.iptm.to_numpy(float))
             fl = detection_floor(len(d_pos), len(d_neg))
-            log.info("  known heterodimers vs non-dimer receptor pairs: AUROC %.3f "
-                     "(floor %.3f at n = %d / %d)", au, fl, len(d_pos), len(d_neg))
+            au = auroc(d_pos.iptm.to_numpy(float), d_neg.iptm.to_numpy(float))
+            log.info("  AUROC %.3f against a detection floor of %.3f at n = %d / %d "
+                     "— UNDERPOWERED BY DESIGN, read the positive control instead",
+                     au, fl, len(d_pos), len(d_neg))
+
+        CONTROL = "GABBR1__GABBR2"
+        ctrl = B[B.job.eq(CONTROL)]
+        if len(ctrl) and len(d_neg):
+            c = ctrl.iloc[0]
+            above = int((c.iptm > d_neg.iptm).sum())
+            log.info("  POSITIVE CONTROL %s (obligate heterodimer, solved): "
+                     "interface pTM %.2f, above %d of %d non-dimer pairs",
+                     CONTROL, c.iptm, above, len(d_neg))
+            if above < len(d_neg):
+                log.warning("  the positive control does NOT clear the non-dimer pairs. "
+                            "This pipeline cannot model a GPCR heterodimer it is known to "
+                            "get right, so the test pair below says nothing either way.")
+        elif len(d_neg):
+            log.warning("  positive control %s has not been folded yet", CONTROL)
+
         for r in B[B.label.eq("test")].itertuples():
-            above = int((d_neg.iptm > r.iptm).sum()) if len(d_neg) else -1
-            log.info("  %s: interface pTM %.2f, above %d of %d non-dimer pairs",
-                     r.job, r.iptm, len(d_neg) - above, len(d_neg))
+            above = int((r.iptm > d_neg.iptm).sum()) if len(d_neg) else -1
+            p_one_sided = (len(d_neg) - above + 1) / (len(d_neg) + 1) if len(d_neg) else float("nan")
+            log.info("  %s: interface pTM %.2f, above %d of %d non-dimer pairs "
+                     "(one-sided p = %.3f, floor 1/%d = %.3f)",
+                     r.job, r.iptm, above, len(d_neg), p_one_sided,
+                     len(d_neg) + 1, 1 / (len(d_neg) + 1))
     log.info("\nwrote %s and the two summary tables", dest)
 
 

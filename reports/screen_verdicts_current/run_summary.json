@@ -1,6 +1,7 @@
 {
  "assembled": "scripts/assemble_screen_verdicts.py",
  "runs": [
+  "metabolite_gaba_rerun_2026-11-24",
   "orphan_shortlist_2026-11-23",
   "protein_pae_2026-11-24_metabolite_gap",
   "protein_pae_2026-11-24_v2"
@@ -12,11 +13,11 @@
  },
  "verdicts": {
   "CONFIRMED_NOVEL": 18,
-  "INSUFFICIENT_EVIDENCE": 17,
   "LIKELY_ARTIFACT_PTM": 15,
+  "INSUFFICIENT_EVIDENCE": 15,
+  "LIKELY_PROMISCUOUS_POCKET": 6,
   "IMPLAUSIBLE": 5,
-  "LIKELY_SUBCOMPLEX": 4,
-  "LIKELY_PROMISCUOUS_POCKET": 4
+  "LIKELY_SUBCOMPLEX": 4
  },
  "recommended": 18,
  "recommended_by_arm": {

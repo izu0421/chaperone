@@ -59,11 +59,11 @@ the hypothesis it was given.</p>
 <table>
 <tr><th>verdict</th><th>n</th></tr>
 <tr><td>Confirmed novel</td><td>18</td></tr>
-<tr><td>Insufficient evidence</td><td>17</td></tr>
+<tr><td>Insufficient evidence</td><td>15</td></tr>
 <tr><td>Likely artefact (PTM/glycan)</td><td>15</td></tr>
 <tr><td>Implausible</td><td>5</td></tr>
 <tr><td>Likely subcomplex</td><td>4</td></tr>
-<tr><td>Likely promiscuous pocket</td><td>4</td></tr>
+<tr><td>Likely promiscuous pocket</td><td>6</td></tr>
 </table>
 <p style="margin-top:14px">Five faults have been found by auditing what the pipeline
 returned, and the table above is the result of fixing them. Two were wiring: a rule read a
@@ -105,13 +105,36 @@ candidate models beats every one of the 50 decoy models, so the cut face is reve
 surface rather than creating one &mdash; which is the failure the decoys are there to
 catch.</p>
 
-<p><b>Cutting the signal peptide off the ligand removes several.</b> Every secreted
-partner entered the screen as its full preprohormone, including the 20&ndash;26 residues
-that are cleaved in the ER and are absent when the ligand meets the receptor. Re-folding
-with the mature chain, at the same single seed so only the construct differs, moves
-interface PAE by a median of +4.6 &#8491; over the first 11 pairs: better for one,
-unchanged for two, worse for seven. CCL11 at GPR132 goes from 3.01 to 23.12 and interface
-pTM from 0.56 to 0.13.</p>
+<p><b>Cutting the signal peptide off the ligand removes several, and the control says
+so.</b> Every secreted partner entered the screen as its full preprohormone, including the
+20&ndash;26 residues that are cleaved in the ER and are absent when the ligand meets the
+receptor. Re-folding the mature chain moves interface PAE by a median of
++4.13 &#8491; across 28 pairs, and 13 of them lose the interface outright, past 8 &#8491;.
+CCL11 at GPR132 goes from 3.01 to 20.84 &#8491;.</p>
+
+<p>On its own that number could mean the cut is simply destructive, so the same cut was
+made on 24 chemokine pairs whose answer is known &mdash; every chemokine is secreted with
+a signal peptide and the mature chain is the physiological ligand. It is not destructive.
+It is an improvement:</p>
+
+<table>
+<tr><th>construct</th><th>AUROC on known answers</th><th>binders keeping an interface</th></tr>
+<tr><td>full chain, as the screen ran</td><td>0.947</td><td>&mdash;</td></tr>
+<tr><td><b>mature chain</b></td><td><b>0.986</b></td><td><b>12 of 12</b></td></tr>
+</table>
+
+<p>Known binders shift &minus;0.36 &#8491; on cutting and known non-binders
+&minus;0.62 &#8491;: neutral to slightly helpful, and symmetric, so the cut introduces no
+bias of its own. Against that, the candidates' +4.13 &#8491; gives Mann-Whitney
+p = 2.9&times;10<sup>&minus;6</sup>, and the collapse rate &mdash; 13 of 28 candidates
+against 0 of 12 known binders &mdash; gives Fisher p = 0.0031. Every arm is compared at
+five draws per pair; nine candidate jobs folded at five seeds before the arm was corrected
+to one, and pooling their 25 models would have given them more chances to clear the bar
+than the controls got.</p>
+
+<p>What this control cannot do is exclude a small destructive effect: 0 of 12 puts the 95%
+upper bound on a cut-induced collapse rate at 26%. The candidates' 46% is above that
+bound, which is why the comparison is readable at all.</p>
 
 <p><b>Folding more seeds rescues nothing.</b> The screen ran one seed, and re-folding the
 22 candidates at five seeds with five samples each &mdash; 25 models per pair &mdash;
@@ -131,12 +154,40 @@ weak interface rather than as worse-than-albumin, and GPR37 + MST1 is in the con
 list above.</p>
 
 <p>That collapse is not a broken construct: the mature sequences match the UniProt chain
-boundaries, the alignment frame is intact, and both chains still fold &mdash; receptor
-pLDDT moves by a median of &minus;0.4 and partner pLDDT by &minus;0.2. Only the interface
-goes. For most of these pairs the signal peptide was not misplacing the partner, it was
-<em>supplying</em> the interface, and the confidence recorded for them belongs to a
-peptide that does not exist in the cell. One of them is in the confirmed list above. The
-remaining 35 re-folds are running and the shortlist will be re-ranked on them.</p>
+boundaries, every alignment row is still in the query frame, and both chains still fold
+&mdash; receptor pLDDT moves by a median of &minus;0.4 and partner pLDDT by +0.8 against
+each pair's own full-length fold. Only the interface goes. For these pairs the signal
+peptide was not misplacing the partner, it was <em>supplying</em> the interface, and the
+confidence recorded for them belongs to a peptide that does not exist in the cell.</p>
+
+<p><b>Where each interface sits decides which test can speak for it.</b> The membrane
+topology of both chains, read off the screen's own folds, sorts the confirmed list into
+five kinds. It is used here as a description and never as a veto: as a veto the same rule
+rejects 61% of known binders, which is how the first pass lost 43 candidates.</p>
+
+<table>
+<tr><th>kind</th><th>n</th><th>what it means</th></tr>
+<tr><td>ecto&ndash;ecto</td><td>1</td><td>GPR83 + GRIA4, 94% extracellular on both chains</td></tr>
+<tr><td>extracellular surface</td><td>2</td><td>GPR158 + NMS (97%), GPR37 + MST1 (100%)</td></tr>
+<tr><td>orthosteric pocket</td><td>4</td><td>extracellular plus transmembrane, no cytoplasmic
+  contacts &mdash; where a peptide agonist is supposed to bind</td></tr>
+<tr><td>tail-mediated</td><td>9</td><td>the partner's cytoplasmic tail does the binding. Possible
+  for two proteins in one membrane, but a weaker claim, and only the ectodomain arm can test it</td></tr>
+<tr><td>impossible</td><td>2</td><td>GPRC5C + IGF2 (81% cytoplasmic), GPR31 + TDGF1 (58%) &mdash;
+  a <em>secreted</em> partner with no route to the cytosol</td></tr>
+</table>
+
+<p>So the shortlist now stands on tests rather than on a threshold: one candidate,
+GPR158 + neuromedin S, passes every test that could be run on it; six are refuted by a
+construct test or by physics; and ten are waiting on the ectodomain arm, which folds the
+receptor against the partner's ectodomain alone with permuted ectodomains as negatives.</p>
+
+<p><b>The metabolite arm is closed.</b> All six receptor&ndash;molecule pairs now carry the
+same verdict: the molecule has no measured activity at that receptor, and is promiscuous
+enough that a confident pocket fold is the expected result rather than evidence. The two
+pairs left unresolved by a ChEMBL outage were re-run once the service recovered &mdash;
+GABA has no recorded activity at either GPR26 or GPR150 and 105 distinct measured targets
+elsewhere. A tool failure is not a result.</p>
 
 <h2>Code</h2>
 <p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;

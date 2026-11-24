@@ -1,0 +1,25 @@
+job,arm,receptor,partner,extras,n_chains,size,fold_order
+N_binder_CCR5__CCL5,N_mature_control_binder,CCR5,CCL5,signal 1-23 removed,2,420,1
+N_binder_CCR1__CCL5,N_mature_control_binder,CCR1,CCL5,signal 1-23 removed,2,423,2
+N_binder_CCR1__CCL3,N_mature_control_binder,CCR1,CCL3,signal 1-23 removed,2,424,3
+N_binder_CCR3__CCL11,N_mature_control_binder,CCR3,CCL11,signal 1-23 removed,2,429,4
+N_negative_ACKR3__CCL5,N_mature_control_negative,ACKR3,CCL5,signal 1-23 removed,2,430,5
+N_negative_ACKR3__CCL3,N_mature_control_negative,ACKR3,CCL3,signal 1-23 removed,2,431,6
+N_binder_CCR4__CCL17,N_mature_control_binder,CCR4,CCL17,signal 1-23 removed,2,431,7
+N_binder_CCR3__CXCL10,N_mature_control_binder,CCR3,CXCL10,signal 1-21 removed,2,432,8
+N_negative_ACKR3__CCL20,N_mature_control_negative,ACKR3,CCL20,signal 1-26 removed,2,432,9
+N_negative_ACKR3__CCL17,N_mature_control_negative,ACKR3,CCL17,signal 1-23 removed,2,433,10
+N_binder_ACKR3__CXCL12,N_mature_control_binder,ACKR3,CXCL12,signal 1-21 removed,2,434,11
+N_binder_ACKR3__CXCL11,N_mature_control_binder,ACKR3,CXCL11,signal 1-21 removed,2,435,12
+N_negative_ACKR3__CCL1,N_mature_control_negative,ACKR3,CCL1,signal 1-23 removed,2,435,13
+N_negative_ACKR3__CCL11,N_mature_control_negative,ACKR3,CCL11,signal 1-23 removed,2,436,14
+N_negative_ACKR3__CCL2,N_mature_control_negative,ACKR3,CCL2,signal 1-23 removed,2,438,15
+N_negative_ACKR3__CCL19,N_mature_control_negative,ACKR3,CCL19,signal 1-21 removed,2,439,16
+N_negative_ACKR3__CXCL10,N_mature_control_negative,ACKR3,CXCL10,signal 1-21 removed,2,439,17
+N_binder_CCR6__CCL20,N_mature_control_binder,CCR6,CCL20,signal 1-26 removed,2,444,18
+N_binder_CCR2__CCL11,N_mature_control_binder,CCR2,CCL11,signal 1-23 removed,2,448,19
+N_negative_ACKR3__CXCL13,N_mature_control_negative,ACKR3,CXCL13,signal 1-22 removed,2,449,20
+N_binder_CCR2__CCL2,N_mature_control_binder,CCR2,CCL2,signal 1-23 removed,2,450,21
+N_negative_ACKR3__CCL21,N_mature_control_negative,ACKR3,CCL21,signal 1-23 removed,2,473,22
+N_binder_CCR7__CCL21,N_mature_control_binder,CCR7,CCL21,signal 1-23 removed,2,489,23
+N_negative_ACKR3__CX3CL1,N_mature_control_negative,ACKR3,CX3CL1,signal 1-24 removed,2,735,24

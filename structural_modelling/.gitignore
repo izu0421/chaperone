@@ -28,5 +28,10 @@ results/*_out/
 results/*_msa/
 results/armD_example/
 results/af3_pilot/out/
-work/
+# work/ holds the AF3 input JSONs with embedded MSAs (GB-scale), but the
+# manifests in it ARE the record of what was folded in each arm, 4 KB each.
+# `work/` as a directory pattern would stop git descending at all, so a
+# negation inside it could never match: exclude the CONTENTS and re-admit them.
+work/*
+!work/*manifest.csv
 tmplog

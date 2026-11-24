@@ -1,0 +1,40 @@
+[
+  {
+    "protein_a": "GPR26",
+    "protein_b": "GABA",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen format: GABA dose-response on GPR26-expressing vs. mock/parental cells, with GABA-A/GABA-B/GAT pathway blockers and structurally related metabolites (beta-alanine, glycine, taurine, glutamate) as specificity comparators",
+    "method_rationale": "GABA is a small-molecule metabolite and GPR26 is a constitutively active Gs-coupled orphan GPCR, so PLA/co-IP are not suitable (no protein partner to pull down). A cAMP functional readout directly tests whether GABA is an agonist or modulator and permits a counter-screen against the promiscuous-pocket concern.",
+    "target_tissues": [
+      "brain",
+      "retina"
+    ],
+    "tissue_rationale": "HPA shows GPR26 RNA is tissue-enriched only in brain (4.2 nTPM). Single-cell data show highest nCPM in retinal amacrine cells (7.9) and brain excitatory neurons (6.8), with inhibitory neurons at 2.7; amacrine and brain neurons are in GABAergic circuits. GABA has no HPA entry because it is a metabolite, so its relevance is inferred from brain GABAergic tissue and the SLC6A1/SLC6A11 producers.",
+    "cell_types": [
+      "Brain excitatory neurons",
+      "Retinal amacrine cells",
+      "Brain inhibitory neurons"
+    ],
+    "protocol_notes": "1) Use HEK293 cells (low endogenous GABA-A and GABA-B) transiently or stably expressing GPR26 (epitope-tagged, with surface expression confirmed by flow cytometry or ELISA) versus empty vector. Measure cAMP with a GloSensor or HTRF assay. Run a GABA dose-response (1 nM to 10 mM, with the top range acknowledging physiological extracellular GABA levels), and compare with the high basal cAMP caused by constitutive activity. Check that the signal is GPR26-dependent and does not simply reflect an endogenous receptor response. 2) Add a CRE-luciferase reporter, and a G\u03b1s/G\u03b1i coupling check using a G\u03b1s-deficient background or an adenylyl cyclase inhibitor. Include a GABA-B antagonist (CGP55845), a GABA-A antagonist (bicuculline) and a GAT inhibitor (tiagabine) to exclude indirect effects. Test whether GABA is an inverse agonist, which is plausible for a constitutively active receptor, by looking for a decrease in cAMP. 3) For orthogonal evidence of binding, use a membrane radioligand [3H]-GABA binding or thermal shift (CETSA/DSF) assay on purified GPR26, or a pocket-mutant (alanine scan of the AF3-predicted contact residues) to see whether the response is lost. 4) If a response is seen, confirm in cultured primary neurons or retinal cells expressing GPR26 using GPR26 knockdown or CRISPR.",
+    "controls": "Positive: forskolin for the maximal cAMP signal, and a known Gs-coupled receptor with its cognate ligand (e.g. beta2-adrenergic with isoproterenol) to validate the assay. Negative: empty-vector or parental cells; a GPR26 pocket-mutant; and structurally related metabolites (beta-alanine, glycine, taurine, glutamate) to test for specificity. Counter-screen: include an unrelated Gs-coupled orphan GPCR with a similar pocket to check whether GABA acts promiscuously. Run the GABA-A/GABA-B/GAT blockers in all arms.",
+    "caveats": "The verdict is LIKELY_PROMISCUOUS_POCKET: ipTM=0.92 with only 370.9 A^2 buried surface is the expected result for any small zwitterion placed in a GPCR pocket, and ChEMBL records zero activities for GABA at GPR26. A negative result is therefore the most likely outcome. The high constitutive activity of GPR26 narrows the assay window, so a modest agonist effect may be hard to detect. GABA at high mM concentrations may produce non-specific effects (pH, osmolarity, endogenous receptors). HPA has no data for GABA, since it is a metabolite and not a protein, and has no subcellular location for GPR26, so cell-surface trafficking must be confirmed. Retinal and brain expression levels are low (4.2 nTPM), so native-cell validation will be challenging."
+  },
+  {
+    "protein_a": "GPR150",
+    "protein_b": "GABA",
+    "method": "stimulation_assay",
+    "method_variant": "Counter-screen design: GPR150 vs. mock/unrelated-GPCR-expressing cells, with a GABA-receptor antagonist panel and a structurally related small zwitterion (glycine, beta-alanine) as specificity controls",
+    "method_rationale": "GABA is a small soluble ligand and GPR150 is an orphan class A GPCR, so a functional readout in receptor-expressing cells directly tests whether GABA activates it. PLA and co-IP do not suit a small-molecule ligand. A counter-screen is needed because the AF3 pose is likely promiscuous.",
+    "target_tissues": [
+      "brain",
+      "pancreas"
+    ],
+    "tissue_rationale": "HPA shows GPR150 RNA only in pancreas (6.5 nTPM) and brain (2.5 nTPM). GABA has no HPA entry because it is a metabolite, and the GAD2 overlap in these tissues is only indirect support. Pancreatic islets are the most plausible native context, since GABA is made and released by beta cells, and brain is the second. The primary assay should still use a heterologous cell line, because native GPR150 expression is low.",
+    "cell_types": [
+      "pancreatic islet beta cells",
+      "pancreatic islet alpha cells",
+      "GABAergic neurons"
+    ],
+    "protocol_notes": "1) Express tagged GPR150 (HA or FLAG, to confirm surface expression) in HEK293 cells, alongside mock-transfected cells and cells expressing an unrelated GPCR. Test GABA from 1 nM to 1 mM in parallel readouts: cAMP (GloSensor, to detect Gi or Gs coupling), Ca2+ flux with G\u03b116 or Gqi5 co-expression, and a \u03b2-arrestin recruitment assay (PathHunter or NanoBiT). 2) Because GPR150 is orphan and its G-protein coupling is unknown, run all coupling readouts. Include a constitutive-activity check by titrating the plasmid dose. 3) Confirm any hit in an islet-derived line (e.g. EndoC-\u03b2H1 or INS-1) with GPR150 knockdown or knockout, and measure the response to GABA. 4) For direct binding, run a radioligand or label-free assay (e.g. [3H]-GABA displacement or SPR on purified receptor in nanodiscs). Test the predicted pocket by mutating contact residues, such as to alanine.\", \"controls\": \"Positive: GABA-B (GABBR1/2) cells with GABA and baclofen, to show the assay detects GABA activity. Negative: mock-transfected cells, an unrelated class A GPCR, and an inert zwitterion (glycine, taurine). Specificity: GABA-A/B antagonists (bicuculline, CGP55845) to exclude endogenous HEK GABA responses. Pocket mutants of GPR150 should abolish any response. A positive control for GPR150 surface expression is anti-tag staining.\", \"caveats\": \"The AF3 ipTM of 0.91 is not specific evidence, because GABA is a small flexible zwitterion that AF3 places confidently in many pockets. A positive result in a overexpression system may still reflect nonspecific high-concentration effects, so only activity at physiological concentrations (nM to low \u00b5M) that is lost with pocket mutants and absent in control GPCRs should be believed. GPR150 is an orphan receptor with unknown G-protein coupling, so a null result on one readout does not exclude activation. RNA expression is low (2.5 to 6.5 nTPM), with no HPA protein, subcellular or single-cell data, so native-tissue validation will be difficult. HPA has no data for GABA, so tissue choice relies on GAD2 as a proxy for GABA production.\""
+  }
+]

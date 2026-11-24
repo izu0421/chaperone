@@ -14,3 +14,6 @@ reports/**/verdicts.csv.pre-regate*
 
 # third-party interaction tables, fetched not committed (see bench/gtopdb_raw.README.md)
 structural_modelling/bench/gtopdb_raw/
+
+# transient run logs written beside the package
+logs_*.log

@@ -1,0 +1,20 @@
+[
+  {
+    "severity": "info",
+    "pair": null,
+    "check": "recommended_tier_ratio",
+    "detail": "2/2 candidates (100%) are tiered 'recommended for validation'. If this is most of the dataset, the tiers are excluding little and may not feel like a real prioritization \u2014 worth a human sanity check on whether the tier boundaries are too permissive."
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR150/GABA",
+    "check": "possibly_truncated_field",
+    "detail": "controls is very short or doesn't end in sentence-ending punctuation: ''"
+  },
+  {
+    "severity": "warning",
+    "pair": "GPR150/GABA",
+    "check": "possibly_truncated_field",
+    "detail": "caveats is very short or doesn't end in sentence-ending punctuation: ''"
+  }
+]

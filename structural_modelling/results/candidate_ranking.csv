@@ -1,0 +1,19 @@
+receptor,partner,kind,confidence,pae_screen,iptm,partner_receptors,partner_confident,seeds_n,pae_spread,rec_ecd_aa,ecd_test,mature_test,p_test,pae_mature,d_plddt_min,pae_ecd,pae_ecd_decoy_best,interface,partner_soluble,tier
+GPR158,NMS,protein,low,2.69,0.56,3.0,1.0,25,0.4400000000000004,394,PASS,PASS,partner has no ectodomain,3.01,-0.0754993174419809,1.4,12.72,extracellular surface,True,1 -- passes every test that could be run
+GPR4,FLT1,protein,low,3.45,0.6,2.0,1.0,0,,16,receptor ECD only 16 aa,weakened,"built, not folded yet",5.34,0.8067704011065047,,,tail-mediated,False,2b -- weakened under the real construct
+MRGPRX2,GNRH2,protein,medium,2.2,0.65,2.0,1.0,0,,28,receptor ECD only 28 aa,"built, not folded yet",partner has no ectodomain,,,,,orthosteric pocket,True,"2c -- gate only, no construct test applies"
+GPR65,TNFRSF8,protein,low,2.95,0.66,4.0,1.0,0,,21,receptor ECD only 21 aa,"built, not folded yet","built, not folded yet",,,,,tail-mediated,False,"2c -- gate only, no construct test applies"
+GPR83,GRIA4,protein,low,3.01,0.43,10.0,1.0,0,,54,receptor ECD only 54 aa,"built, not folded yet","built, not folded yet",,,,,ecto-ecto,False,"2c -- gate only, no construct test applies"
+GPR82,OLR1,protein,low,3.07,0.47,3.0,1.0,0,,64,receptor ECD only 64 aa,no signal peptide,"built, not folded yet",,,,,tail-mediated,False,"2c -- gate only, no construct test applies"
+GPR83,SLITRK3,protein,low,3.08,0.61,8.0,1.0,25,5.120000000000001,54,receptor ECD only 54 aa,"built, not folded yet","built, not folded yet",,,,,tail-mediated,False,"2c -- gate only, no construct test applies"
+GPR65,TNFRSF13B,protein,low,3.09,0.57,7.0,1.0,0,,21,receptor ECD only 21 aa,no signal peptide,"built, not folded yet",,,,,tail-mediated,False,"2c -- gate only, no construct test applies"
+MAS1L,CALCB,protein,low,3.16,0.48,13.0,1.0,25,0.8500000000000001,77,receptor ECD only 77 aa,"built, not folded yet",partner has no ectodomain,,,,,orthosteric pocket,True,"2c -- gate only, no construct test applies"
+GPR158,EPHA5,protein,low,3.28,0.38,5.0,1.0,0,,394,not built for this pair,"built, not folded yet","built, not folded yet",,,,,tail-mediated,False,"2c -- gate only, no construct test applies"
+MRGPRX2,SPX,protein,low,3.51,0.39,5.0,1.0,25,0.2999999999999998,28,receptor ECD only 28 aa,"built, not folded yet",partner has no ectodomain,,,,,orthosteric pocket,True,"2c -- gate only, no construct test applies"
+GPR65,HCST,protein,low,3.58,0.62,11.0,1.0,0,,21,receptor ECD only 21 aa,"built, not folded yet",partner has no ectodomain,,,,,tail-mediated,False,"2c -- gate only, no construct test applies"
+GPR37,CADM4,protein,low,2.54,0.47,8.0,1.0,0,,239,not built for this pair,FAIL -- interface lost,"built, not folded yet",15.73,-0.19795874973420524,,,tail-mediated,False,3 -- fails a structural test
+GPR132,CCL11,protein,low,3.01,0.56,6.0,1.0,25,0.8399999999999994,45,receptor ECD only 45 aa,FAIL -- interface lost,partner has no ectodomain,20.84,-3.275585492816873,,,orthosteric pocket,True,3 -- fails a structural test
+GPR37,MST1,protein,low,3.22,0.52,3.0,1.0,25,2.2799999999999994,239,FAIL -- a decoy docks as well,FAIL -- interface lost,partner has no ectodomain,16.37,-0.9804358919838378,13.07,5.64,extracellular surface,True,3 -- fails a structural test
+GPR22,CLSTN1,protein,low,3.41,0.49,8.0,1.0,0,,45,receptor ECD only 45 aa,FAIL -- interface lost,"built, not folded yet",13.78,-0.679507959479011,,,tail-mediated,False,3 -- fails a structural test
+GPRC5C,IGF2,protein,low,2.15,0.49,17.0,1.0,25,8.5,32,receptor ECD only 32 aa,"built, not folded yet",partner has no ectodomain,,,,,IMPOSSIBLE cytoplasmic,True,3 -- secreted partner on the cytoplasmic face
+GPR31,TDGF1,protein,low,3.61,0.58,16.0,1.0,0,,28,receptor ECD only 28 aa,weakened,partner has no ectodomain,5.21,0.8983268699515179,,,IMPOSSIBLE cytoplasmic,True,3 -- secreted partner on the cytoplasmic face

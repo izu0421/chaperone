@@ -44,6 +44,12 @@ OUT = ROOT / "reports" / "screen_verdicts_current"
 PROTEIN_RUN = ROOT / "reports" / "protein_pae_2026-11-24_v2" / "verdicts.csv"
 METAB_OLD = ROOT / "reports" / "orphan_shortlist_2026-11-23" / "verdicts.csv"
 METAB_GAP = ROOT / "reports" / "protein_pae_2026-11-24" / "verdicts_metabolite_gap.csv"
+# Both GABA pairs came back INSUFFICIENT_EVIDENCE only because ChEMBL returned
+# HTTP 500 to the two checks that discriminate for a small molecule, twice each.
+# ChEMBL recovered; re-running the same pipeline on the same two rows resolved
+# both. A tool outage is not a result, and leaving it in the table would have
+# reported two unmeasured pairs as unmeasurable.
+METAB_RERUN = ROOT / "reports" / "metabolite_gaba_rerun_2026-11-24" / "verdicts.csv"
 
 RECOMMENDED = {"CONFIRMED_NOVEL"}
 
@@ -64,15 +70,31 @@ def main() -> int:
             for r in hits.itertuples()}
 
     met_rows = []
+    # order matters: duplicates keep the LAST, so a re-run goes at the end
     for path, run in ((METAB_OLD, METAB_OLD.parent.name),
-                      (METAB_GAP, METAB_GAP.parent.name + "_metabolite_gap")):
+                      (METAB_GAP, METAB_GAP.parent.name + "_metabolite_gap"),
+                      (METAB_RERUN, METAB_RERUN.parent.name)):
         if not path.exists():
             continue
         d = pd.read_csv(path)
         if "partner_kind" in d:
             d = d[d.partner_kind.ne("protein")]
+        # A run may name a molecule either way: the screen's own name ("GABA") or
+        # the standardised one the agent resolved it to ("4-aminobutanoic acid").
+        # Matching on the raw string drops every row that used the other name,
+        # and the drop is invisible -- a re-run of two pairs vanished this way
+        # while the stale rows it was meant to replace stayed in the table.
+        d["protein_b"] = [std.get(x, x) for x in d.protein_b]
+        before = len(d)
         d = d[d.apply(lambda r: (str(r.protein_a).upper(), str(r.protein_b).lower()) in want,
                       axis=1)].copy()
+        if before and not len(d):
+            sys.exit(f"refusing to write: {path.parent.name} has {before} metabolite "
+                     f"rows and NONE matched the calibrated set. Either the run is for "
+                     f"different pairs or the names do not match; check before assuming "
+                     f"it is obsolete.")
+        if before != len(d):
+            print(f"  {path.parent.name}: kept {len(d)} of {before} metabolite rows")
         d["arm"] = "metabolite"
         d["run"] = run
         met_rows.append(d)

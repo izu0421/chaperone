@@ -1,0 +1,51 @@
+job,arm,receptor,partner,extras,n_chains,size,fold_order
+M_GPR65__HCST,M_mature,GPR65,HCST,signal 1-18 removed,2,412,1
+M_MRGPRX4__GHRL,M_mature,MRGPRX4,GHRL,signal 1-23 removed,2,416,2
+M_MRGPRX2__SPX,M_mature,MRGPRX2,SPX,signal 1-26 removed,2,420,3
+M_MRGPRX2__SST,M_mature,MRGPRX2,SST,signal 1-24 removed,2,422,4
+M_MRGPRX2__GNRH2,M_mature,MRGPRX2,GNRH2,signal 1-23 removed,2,427,5
+M_GPR132__CCL11,M_mature,GPR132,CCL11,signal 1-23 removed,2,454,6
+M_GPR6__CCK,M_mature,GPR6,CCK,signal 1-20 removed,2,457,7
+M_GPR31__TDGF1,M_mature,GPR31,TDGF1,signal 1-30 removed,2,477,8
+M_MAS1L__CALCB,M_mature,MAS1L,CALCB,signal 1-25 removed,2,480,9
+M_GPR148__CFC1,M_mature,GPR148,CFC1,signal 1-25 removed,2,545,10
+M_GPR21__EFNA3,M_mature,GPR21,EFNA3,signal 1-22 removed,2,565,11
+M_GPR22__PTN,M_mature,GPR22,PTN,signal 1-32 removed,2,569,12
+M_GPRC5C__IGF2,M_mature,GPRC5C,IGF2,signal 1-24 removed,2,597,13
+M_GPR63__GP1BB,M_mature,GPR63,GP1BB,signal 1-25 removed,2,600,14
+M_GPR142__ADCYAP1,M_mature,GPR142,ADCYAP1,signal 1-24 removed,2,614,15
+M_GPR141__CD226,M_mature,GPR141,CD226,signal 1-18 removed,2,623,16
+M_GPR34__ICOSLG,M_mature,GPR34,ICOSLG,signal 1-18 removed,2,665,17
+M_GPR34__CD244,M_mature,GPR34,CD244,signal 1-21 removed,2,730,18
+M_GPR31__BMP6,M_mature,GPR31,BMP6,signal 1-20 removed,2,812,19
+M_MRGPRX3__CEACAM1,M_mature,MRGPRX3,CEACAM1,signal 1-34 removed,2,814,20
+M_GPR141__IL21R,M_mature,GPR141,IL21R,signal 1-19 removed,2,824,21
+M_GPR101__WNT3,M_mature,GPR101,WNT3,signal 1-21 removed,2,842,22
+M_GPR37L1__GFRA3,M_mature,GPR37L1,GFRA3,signal 1-31 removed,2,850,23
+M_GPR65__TNFRSF8,M_mature,GPR65,TNFRSF8,signal 1-18 removed,2,914,24
+M_GPR22__LRRTM2,M_mature,GPR22,LRRTM2,signal 1-33 removed,2,916,25
+M_GPR37__CADM4,M_mature,GPR37,CADM4,signal 1-20 removed,2,981,26
+M_GPR21__FGFR3,M_mature,GPR21,FGFR3,signal 1-22 removed,2,1133,27
+M_GPR149__COL26A1,M_mature,GPR149,COL26A1,signal 1-20 removed,2,1152,28
+M_MRGPRF__ROR2,M_mature,MRGPRF,ROR2,signal 1-33 removed,2,1253,29
+M_GPR153__IL17RE,M_mature,GPR153,IL17RE,signal 1-23 removed,2,1253,30
+M_GPR3__LRP8,M_mature,GPR3,LRP8,signal 1-32 removed,2,1261,31
+M_GPR83__GRIA4,M_mature,GPR83,GRIA4,signal 1-20 removed,2,1305,32
+M_GPR37__MST1,M_mature,GPR37,MST1,signal 1-18 removed,2,1306,33
+M_GPR158__NMS,M_mature,GPR158,NMS,signal 1-26 removed,2,1342,34
+M_GPR101__FGA,M_mature,GPR101,FGA,signal 1-19 removed,2,1355,35
+M_GPR83__SLITRK3,M_mature,GPR83,SLITRK3,signal 1-26 removed,2,1374,36
+M_GPR22__CLSTN1,M_mature,GPR22,CLSTN1,signal 1-28 removed,2,1386,37
+M_GPR75__DSC2,M_mature,GPR75,DSC2,signal 1-27 removed,2,1414,38
+M_GPR50__FGFR1,M_mature,GPR50,FGFR1,signal 1-21 removed,2,1418,39
+M_GPR75__CDH2,M_mature,GPR75,CDH2,signal 1-25 removed,2,1421,40
+M_GPR37__SEMA4C,M_mature,GPR37,SEMA4C,signal 1-20 removed,2,1426,41
+S_GPR63__GP1BB__GP1BA_GP9,S_subcomplex,GPR63,GP1BB,GP1BA;GP9,4,1454,42
+M_GPR6__GRIN2D,M_mature,GPR6,GRIN2D,signal 1-27 removed,2,1671,43
+M_GPR4__FLT1,M_mature,GPR4,FLT1,signal 1-26 removed,2,1674,44
+M_GPR12__GRIN2A,M_mature,GPR12,GRIN2A,signal 1-22 removed,2,1776,45
+M_GPR158__EPHA5,M_mature,GPR158,EPHA5,signal 1-24 removed,2,2228,46
+S_GPR39__FGA__FGB_FGG,S_subcomplex,GPR39,FGA,FGB;FGG,4,2263,47
+S_GPR101__FGA__FGB_FGG,S_subcomplex,GPR101,FGA,FGB;FGG,4,2318,48
+S_GPR6__GRIN2D__GRIN1,S_subcomplex,GPR6,GRIN2D,GRIN1,3,2636,49
+M_GPR179__UNC5D,M_mature,GPR179,UNC5D,signal 1-32 removed,2,3288,50
