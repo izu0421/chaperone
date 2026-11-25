@@ -40,6 +40,9 @@ def main() -> None:
     GATE = json.loads((ROOT / "results" / "protein_thresholds.json").read_text()
                       )["gate"]["pae_min_AB_max"]
     topo = json.loads((ROOT / "results" / "orphan_topology.json").read_text())
+    _zf = ROOT / "results" / "candidate_interface_zone.csv"
+    z_soluble = ({(r.receptor, r.partner): r.partner_soluble
+                  for r in pd.read_csv(_zf).itertuples()} if _zf.exists() else {})
     v = pd.read_csv(CHAP / "reports" / "screen_verdicts_current" / "verdicts.csv")
     scr = pd.read_csv(ROOT / "results" / "orphan_scores.csv")
     scr["key"] = scr.receptor.astype(str) + "__" + scr.partner.astype(str)
@@ -108,23 +111,36 @@ def main() -> None:
         # while a receptor that HAS one but no job built simply was not tested.
         # Printing both as "no extracellular domain" would report an untested
         # pair as an untestable one.
+        # Three different silences, and the old label collapsed them into one.
+        # No receptor on this list LACKS an extracellular segment -- all have
+        # four, totalling 39-120 aa -- so "receptor ECD only N aa" read as
+        # "untestable" when the arm was simply never built, and for five
+        # receptors the N it quoted was an extracellular LOOP in the middle of
+        # the bundle, not an N-terminal domain that could be cut at all.
         ext = [(int(s["start"]), int(s["end"])) for s in topo.get(rec, [])
                if "Extracellular" in str(s.get("description") or "")]
         longest = max((b - a + 1 for a, b in ext), default=0)
+        nterm = next(((b - a + 1) for a, b in sorted(ext) if a <= 50), 0)
         d["rec_ecd_aa"] = longest
-        d["ecd_test"] = ("not built for this pair" if longest >= 100
-                         else f"receptor ECD only {longest} aa")
+        d["rec_nterm_aa"] = nterm
+        if longest >= 100:
+            d["ecd_test"] = "not built for this pair"
+        elif nterm >= 100:
+            d["ecd_test"] = f"not built; N-terminus is {nterm} aa"
+        elif nterm:
+            d["ecd_test"] = f"N-terminus only {nterm} aa, too short to cut"
+        else:
+            d["ecd_test"] = (f"no N-terminal domain; longest extracellular segment "
+                             f"is a {longest} aa loop")
         if len(A):
-            b = A[A.arm.eq("B_ecd") & A.job.str.contains(f"{rec}ECD__{par}$", regex=True)]
+            # the ECD verdict is READ, never recomputed: it has a precondition the
+            # PAE columns cannot express, namely that the truncated receptor folds
+            b = A[A.arm.isin(["B_ecd", "B2_ntd"])
+                  & A.job.str.contains(f"{rec}(?:ECD|NTD)__{par}$", regex=True)]
             if len(b):
-                dec = A[A.arm.eq("B_ecd_decoy") & A.job.str.startswith(f"B_{rec}ECD__")]
-                if len(dec):
-                    d["pae_ecd"] = b.pae_best.iloc[0]
-                    d["pae_ecd_decoy_best"] = dec.pae_best.min()
-                    d["ecd_test"] = ("PASS" if b.pae_best.iloc[0] < dec.pae_best.min()
-                                     else "FAIL -- a decoy docks as well")
-                else:
-                    d["ecd_test"] = "no decoy folded"
+                d["pae_ecd"] = b.pae_best.iloc[0]
+                d["ecd_test"] = (b.verdict.iloc[0] if "verdict" in b
+                                 and pd.notna(b.verdict.iloc[0]) else "folded, no verdict")
 
         # construct: the molecule that exists
         d["mature_test"] = "no signal peptide"
@@ -152,7 +168,13 @@ def main() -> None:
         # arm P's verdict is READ, never recomputed: it carries a requirement the
         # PAE columns cannot express, namely that the surviving interface is on a
         # face the partner can reach.
-        d["p_test"] = "partner has no ectodomain"
+        # Likewise: a secreted partner has no ectodomain because it is ENTIRELY
+        # extracellular -- MST1 is 711 aa of it. Saying "no ectodomain" there
+        # reported the wrong arm as inapplicable; the mature-chain arm is the
+        # construct test that reaches a secreted partner.
+        soluble = bool(z_soluble.get((rec, par), False)) if z_soluble else False
+        d["p_test"] = ("partner is secreted; the mature-chain arm is the test"
+                       if soluble else "partner ectodomain too short to cut")
         if P_MAN is not None and f"P_{rec}__{par}" in set(P_MAN.job):
             if P_SC is None:
                 d["p_test"] = "built, not folded yet"

@@ -197,6 +197,22 @@ def main() -> None:
             moved = (r.pae_seed1 - r.pae_best) if pd.notna(r.pae_seed1) else float("nan")
             log.info("  %-30s seed1 %5.2f -> best %5.2f  (gain %.2f)",
                      r.job.replace("A_", ""), r.pae_seed1, r.pae_best, moved)
+    # One verdict per ECD job, written here so the ranking table reads it instead
+    # of recomputing a comparison that has a construct-folds precondition.
+    verd = {}
+    for r in B[B.arm.eq("B_ecd")].itertuples():
+        rec = r.job.replace("B_", "").split("ECD")[0]
+        dec = B[(B.arm.eq("B_ecd_decoy")) & (B.job.str.startswith(f"B_{rec}ECD__"))]
+        if r.job in unfolded or dec.job.isin(unfolded).any():
+            verd[r.job] = "WITHHELD -- the truncated receptor does not fold"
+        elif not len(dec):
+            verd[r.job] = "no decoy folded"
+        elif r.pae_best < dec.pae_best.min():
+            verd[r.job] = "PASS"
+        else:
+            verd[r.job] = "FAIL -- a decoy docks as well"
+    j["verdict"] = j.job.map(verd)
+    j["plddt_A_mean"] = j.job.map(df.groupby("job").plddt_A.mean())
     j.to_csv(ROOT / "results" / "rescue_per_job.csv", index=False)
     log.info("\nwrote results/rescue_per_job.csv")
 
