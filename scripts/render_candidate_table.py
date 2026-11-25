@@ -132,16 +132,18 @@ def main() -> None:
                              "that improves AlphaFold3 on 24 chemokine pairs whose answer is known"),
             ("Prior record", "STRING nothing, CellPhoneDB nothing, PubMed co-mentions 0"),
         ],
+        "MRGPRX2+GNRH2": [
+            ("Gate", "2.20 &#8491;, the best gate value in the shortlist"),
+            ("Where it sits", "extracellular plus transmembrane, no cytoplasmic contacts"),
+            ("Mature chain", "survives the cut, under the gate"),
+            ("Why it is thinner", "see the note below on MRGPRX2"),
+        ],
         "MRGPRX2+SPX": [
             ("Gate", "3.51 &#8491; interface PAE, the weakest gate value of the three"),
             ("Where it sits", "extracellular plus transmembrane with no cytoplasmic contacts, "
                               "which is where a peptide agonist is supposed to bind"),
             ("Mature chain", "survives the cut at 3.51 &#8491;, under the gate"),
-            ("Why it is thinner than the other two", "its only test is the mature-chain cut, "
-                 "which has a panel-level control (12 of 12 known binders keep their interface) "
-                 "but no negative control for this pair. The other two each beat decoys or "
-                 "permuted negatives chosen to match them. MRGPRX2 is also a famously "
-                 "promiscuous receptor, so a peptide in its pocket is a low bar"),
+            ("Why it is thinner", "see the note below on MRGPRX2"),
         ],
         "GPR83+GRIA4_RETIRED": [
             ("Gate", "3.01 &#8491; interface PAE"),
@@ -215,9 +217,17 @@ the cards say where each one is thin. What they have in common is that the test 
 gone the other way, which is the only kind of evidence this screen has produced that is
 worth anything.</p>
 {"".join(cards)}
-<p class="mut" style="font-size:12px">Both are AlphaFold3 predictions with no experimental
+<p><b>A note on the two MRGPRX2 pairs.</b> Their only test is the mature-chain cut, which
+has a panel-level control &mdash; 12 of 12 known binders keep their interface after the
+same cut &mdash; but no negative control for either pair. GPR158 + NMS, by contrast, beats
+decoys chosen to match it. MRGPRX2 is also a famously promiscuous receptor that responds to
+many cationic peptides, so a peptide sitting in its pocket is a low bar; the screen folded
+three peptides against it and two of them clear that bar, which is itself the pattern you
+would expect from promiscuity rather than from recognition.</p>
+
+<p class="mut" style="font-size:12px">All are AlphaFold3 predictions with no experimental
 support of any kind. The method&rsquo;s own ceiling bounds them: AUROC 0.519 on
-degree-balanced HuRI. These controls show the two are not the artefacts the other
+degree-balanced HuRI. These controls show these are not the artefacts the other
 {len(t) - len(passes)} are. They do not show the interactions are real.</p>
 
 <h2>Why the others fell</h2>
