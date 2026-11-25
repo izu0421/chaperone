@@ -42,6 +42,14 @@ OUT = ROOT / "reports" / "screen_verdicts_current"
 # 51 rejections in the v1 run cited it; removing it took the shortlist from 4
 # to 18.
 PROTEIN_RUN = ROOT / "reports" / "protein_pae_2026-11-24_v2" / "verdicts.csv"
+# The clash floor was lowered from 1.5 to 0.5 A on 2026-11-24 with a measurement
+# table behind it, which admitted 5 more pairs. They were triaged in their own
+# run and one came back CONFIRMED_NOVEL -- GPR22 + SLITRK2, interface PAE 2.86,
+# better than 50 of the 57 pairs in the main run. It was missing from every
+# downstream table for a day because this list was hardcoded and that run was
+# not on it. The guard below now refuses to write if the gate admits a pair no
+# run has triaged, so a new run cannot be forgotten the same way twice.
+PROTEIN_CLASHFLOOR = ROOT / "reports" / "protein_pae_clashfloor" / "verdicts.csv"
 METAB_OLD = ROOT / "reports" / "orphan_shortlist_2026-11-23" / "verdicts.csv"
 METAB_GAP = ROOT / "reports" / "protein_pae_2026-11-24" / "verdicts_metabolite_gap.csv"
 # Both GABA pairs came back INSUFFICIENT_EVIDENCE only because ChEMBL returned
@@ -57,10 +65,44 @@ RECOMMENDED = {"CONFIRMED_NOVEL"}
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
 
-    prot = pd.read_csv(PROTEIN_RUN)
-    prot = prot[prot.partner_kind.eq("protein")].copy()
-    prot["arm"] = "protein"
-    prot["run"] = PROTEIN_RUN.parent.name     # derived, so it cannot name a run we stopped using
+    prot_parts = []
+    for path in (PROTEIN_RUN, PROTEIN_CLASHFLOOR):
+        if not path.exists():
+            continue
+        d = pd.read_csv(path)
+        d = d[d.partner_kind.eq("protein")].copy()
+        d["arm"] = "protein"
+        d["run"] = path.parent.name    # derived, so it cannot name a run we stopped using
+        prot_parts.append(d)
+    prot = pd.concat(prot_parts, ignore_index=True)
+    prot["_k"] = prot.protein_a.astype(str) + "|" + prot.protein_b.astype(str)
+    dup = prot[prot._k.duplicated(keep=False)]
+    if len(dup):
+        print(f"{dup._k.nunique()} protein pairs triaged in more than one run; keeping the later:")
+        for k, g in dup.groupby("_k"):
+            print("  " + k + ": " + ", ".join(f"{r.run} -> {r.verdict}" for r in g.itertuples()))
+    prot = prot.drop_duplicates("_k", keep="last").drop(columns="_k")
+
+    # Does every pair the CURRENT gate admits have a verdict? This is the check
+    # that was missing: the gate moved, five pairs were admitted, and nothing
+    # downstream noticed that one of them had no row.
+    try:
+        import json as _json
+        sm_sc = pd.read_csv(SM / "results" / "orphan_scores.csv")
+        th = _json.loads((SM / "results" / "protein_thresholds.json").read_text())["gate"]
+        adm = sm_sc[(sm_sc.kind.eq("protein"))
+                    & (sm_sc.pae_min_AB <= th["pae_min_AB_max"])
+                    & (sm_sc.min_sep >= th.get("min_sep", 0))]
+        want_p = {(str(r.receptor), str(r.partner)) for r in adm.itertuples()}
+        got_p = {(str(r.protein_b), str(r.protein_a)) for r in prot.itertuples()}
+        missing_p = want_p - got_p
+        if missing_p:
+            sys.exit(f"refusing to write: the current gate admits {len(missing_p)} protein "
+                     f"pairs with no verdict in any run: {sorted(missing_p)}. Triage them "
+                     f"or add the run that did.")
+        print(f"gate check: all {len(want_p)} pairs the current gate admits have a verdict")
+    except FileNotFoundError as exc:
+        print(f"gate check skipped: {exc}")
 
     # the metabolite arm's current shortlist, by identity and not by position
     hits = pd.read_csv(SM / "results" / "metabolite_calibrated_hits.csv")

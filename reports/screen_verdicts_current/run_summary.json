@@ -4,23 +4,24 @@
   "metabolite_gaba_rerun_2026-11-24",
   "orphan_shortlist_2026-11-23",
   "protein_pae_2026-11-24_metabolite_gap",
-  "protein_pae_2026-11-24_v2"
+  "protein_pae_2026-11-24_v2",
+  "protein_pae_clashfloor"
  ],
- "candidates": 63,
+ "candidates": 68,
  "by_arm": {
-  "protein": 57,
+  "protein": 62,
   "metabolite": 6
  },
  "verdicts": {
-  "CONFIRMED_NOVEL": 18,
-  "LIKELY_ARTIFACT_PTM": 15,
-  "INSUFFICIENT_EVIDENCE": 15,
+  "CONFIRMED_NOVEL": 19,
+  "LIKELY_ARTIFACT_PTM": 17,
+  "INSUFFICIENT_EVIDENCE": 17,
   "LIKELY_PROMISCUOUS_POCKET": 6,
   "IMPLAUSIBLE": 5,
   "LIKELY_SUBCOMPLEX": 4
  },
- "recommended": 18,
+ "recommended": 19,
  "recommended_by_arm": {
-  "protein": 18
+  "protein": 19
  }
 }

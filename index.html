@@ -55,12 +55,12 @@ the hypothesis it was given.</p>
   why.</span></a>
 
 <h2>What the screen found</h2>
-<p style="margin:0 0 10px">63 candidates across both arms: 57 protein pairs and the 6 receptor-molecule pairs the calibrated small-molecule gate admits.</p>
+<p style="margin:0 0 10px">68 candidates across both arms: 62 protein pairs and the 6 receptor-molecule pairs the calibrated small-molecule gate admits. The protein count was 57 until 2026-11-25: lowering the clash floor from 1.5 to 0.5 &#8491; admitted five more pairs, they were triaged in their own run, and the assembler&rsquo;s hardcoded list of source runs did not include it. One of the five is a confirmed candidate. The assembler now refuses to write if the current gate admits a pair that no run has triaged.</p>
 <table>
 <tr><th>verdict</th><th>n</th></tr>
-<tr><td>Confirmed novel</td><td>18</td></tr>
-<tr><td>Insufficient evidence</td><td>15</td></tr>
-<tr><td>Likely artefact (PTM/glycan)</td><td>15</td></tr>
+<tr><td>Confirmed novel</td><td>19</td></tr>
+<tr><td>Insufficient evidence</td><td>17</td></tr>
+<tr><td>Likely artefact (PTM/glycan)</td><td>17</td></tr>
 <tr><td>Implausible</td><td>5</td></tr>
 <tr><td>Likely subcomplex</td><td>4</td></tr>
 <tr><td>Likely promiscuous pocket</td><td>6</td></tr>
@@ -99,23 +99,60 @@ outcome.</p>
 secreted partner is modelled against the cytoplasmic face, removing the membrane region
 means the wrong face no longer exists. Only two of fourteen receptors have a real domain
 left after that cut. GPR158 holds neuromedin S at interface PAE 1.40&ndash;1.59 across 25
-models, better than the intact receptor&rsquo;s 2.26, while the same cut domain against
-albumin reaches 22.8&ndash;24.9 and against lysozyme 12.7&ndash;14.3. Every one of the 25
-candidate models beats every one of the 50 decoy models, so the cut face is revealing a
-surface rather than creating one &mdash; which is the failure the decoys are there to
-catch.</p>
+models, better than the intact receptor&rsquo;s 2.26, while on the same cut domain the best
+of 25 draws is 12.72 for lysozyme, 13.59 for RNase&nbsp;1 and 22.76 for albumin. Every one of
+the 25 candidate models beats every one of the 75 decoy models.</p>
 
-<p><b>Cutting the signal peptide off the ligand removes several, and the control says
-so.</b> Every secreted partner entered the screen as its full preprohormone, including the
-20&ndash;26 residues that are cleaved in the ER and are absent when the ligand meets the
-receptor. Re-folding the mature chain moves interface PAE by a median of
-+4.13 &#8491; across 28 pairs, and 13 of them lose the interface outright, past 8 &#8491;.
-CCL11 at GPR132 goes from 3.01 to 20.84 &#8491;.</p>
+<p><b>That construct is not the extracellular domain, though, and the difference matters.</b>
+The cut kept every segment annotated extracellular, which for GPR158 means the 394-residue
+N-terminal domain with three extracellular loops joined onto its C-terminus &mdash; 436
+residues with three artificial junctions. In the best model, 31 of the 87 receptor interface
+residues sit on those 42 stitched residues: 35.6% of the interface on 9.6% of the construct,
+a 3.70&times; enrichment onto surface the intact receptor does not have. The decoys never
+visit it, so they cannot rule out that the stitch is what is being bound &mdash; the precise
+failure the decoys were added to catch. The N-terminal domain alone, with the same decoys,
+is folding now. What stands without it is the intact-receptor fold: 2.26 &#8491; with 54 of
+60 interface residues on genuine extracellular positions.</p>
 
-<p>On its own that number could mean the cut is simply destructive, so the same cut was
-made on 24 chemokine pairs whose answer is known &mdash; every chemokine is secreted with
-a signal peptide and the mature chain is the physiological ligand. It is not destructive.
-It is an improvement:</p>
+<p><b>Cutting the signal peptide off the ligand looked decisive, and the comparison was
+confounded.</b> Every secreted partner entered the screen as its full preprohormone,
+including the 20&ndash;26 residues that are cleaved in the ER and are absent when the ligand
+meets the receptor. Re-folding the mature chain moved interface PAE by a median of
++2.08 &#8491; across 46 pairs, 17 of them past 8 &#8491;. That was reported here as the
+signal peptide having supplied the interface. <b>An adversarial audit of the arm found the
+reason it is not.</b></p>
+
+<p>The screen folded with unfiltered alignments; every re-fold arm builds its alignment with
+hhfilter at 90% identity, which is a median 7.5&times; shallower &mdash; shallower in 40 of
+40 pairs checked. So the comparison changed the construct and the alignment at once. On the
+18 pairs that happen to have a full-length fold built with the re-fold arm&rsquo;s own
+alignment, the two can be separated:</p>
+
+<table>
+<tr><th>fold</th><th>median interface PAE</th><th>above 8 &#8491;</th></tr>
+<tr><td>screen: deep alignment, full length</td><td>3.06</td><td>0 of 18</td></tr>
+<tr><td>re-fold arm&rsquo;s alignment, full length</td><td>3.53</td><td>5 of 18</td></tr>
+<tr><td>re-fold arm&rsquo;s alignment, mature chain</td><td>5.68</td><td>8 of 18</td></tr>
+</table>
+
+<p>The alignment alone moves it +0.55 &#8491; (Wilcoxon p = 0.014). <b>The cut itself, once
+the alignment is held fixed, moves it +0.23 &#8491; &mdash; p = 0.35, not significant.</b>
+Five of the eight pairs the arm called collapsed were already above 8 &#8491; at full length
+with no cut at all. The chemokine control could not catch this, because both its mature and
+its full-length folds are hhfiltered: it tested the construct and never the alignment, and
+its answer &mdash; 12 of 12 known binders keep their interface after the cut &mdash; agrees
+with the +0.23 &#8491;. Both say the cut is harmless.</p>
+
+<p>What this leaves is a different and more useful result: <b>the screen&rsquo;s
+gate-passing poses are not robust to alignment depth.</b> Five of eighteen fail at full
+length on a 7.5&times; shallower alignment, with nothing cut. The depth-matched baseline for
+the remaining pairs is folding now, and no construct claim here can be attributed until its
+own uncut fold exists on the same alignment.</p>
+
+<p>The control that was run is still worth stating, since it is what agrees with the
+depth-matched number. The same cut was made on 24 chemokine pairs whose answer is known
+&mdash; every chemokine is secreted with a signal peptide and the mature chain is the
+physiological ligand. The cut is not destructive. It is an improvement:</p>
 
 <table>
 <tr><th>construct</th><th>AUROC on known answers</th><th>binders keeping an interface</th></tr>
@@ -125,16 +162,12 @@ It is an improvement:</p>
 
 <p>Known binders shift &minus;0.36 &#8491; on cutting and known non-binders
 &minus;0.62 &#8491;: neutral to slightly helpful, and symmetric, so the cut introduces no
-bias of its own. Against that, the candidates' +4.13 &#8491; gives Mann-Whitney
-p = 2.9&times;10<sup>&minus;6</sup>, and the collapse rate &mdash; 13 of 28 candidates
-against 0 of 12 known binders &mdash; gives Fisher p = 0.0031. Every arm is compared at
-five draws per pair; nine candidate jobs folded at five seeds before the arm was corrected
-to one, and pooling their 25 models would have given them more chances to clear the bar
-than the controls got.</p>
-
-<p>What this control cannot do is exclude a small destructive effect: 0 of 12 puts the 95%
-upper bound on a cut-induced collapse rate at 26%. The candidates' 46% is above that
-bound, which is why the comparison is readable at all.</p>
+bias of its own. The candidate-versus-control tests that were reported here &mdash;
+Mann&ndash;Whitney on the shift, Fisher on the collapse rate &mdash; compared the
+candidates&rsquo; confounded shift against the control&rsquo;s unconfounded one, so they are
+withdrawn. Two further limits of this control are worth keeping: its partners are 68&ndash;373
+residues against the candidates&rsquo; 74&ndash;1,442, so it is silent about large partners;
+and 0 of 12 puts only a 26% upper bound on a cut-induced collapse rate.</p>
 
 <p><b>Folding more seeds rescues nothing.</b> The screen ran one seed, and re-folding the
 22 candidates at five seeds with five samples each &mdash; 25 models per pair &mdash;
@@ -145,13 +178,22 @@ known non-binders by exactly as much as known binders, so a candidate that impro
 improving by arithmetic. 22 of 22 improving would have read as a rescue without that
 control.</p>
 
-<p><b>And the cut face has to be tested per receptor.</b> Of the three receptors with a
-real extracellular domain, only GPR158 separates from its decoys. GPR37 fails outright
-&mdash; its candidate MST1 reaches 13.07 &#8491; while albumin reaches 5.64 on the same cut
-domain, so a protein with no reason to bind docks better than the candidate. GPR142 + PACAP
-overlaps its decoys too. Without those controls GPR37&rsquo;s 13.07 would have read as a
-weak interface rather than as worse-than-albumin, and GPR37 + MST1 is in the confirmed
-list above.</p>
+<p><b>And the cut face has to be tested per receptor &mdash; starting with whether it
+folds at all.</b> Of the three receptors truncated, only GPR158&rsquo;s construct folds.
+Mean receptor pLDDT across 25 draws is 55.2&ndash;60.9 for GPR158, against 50.0 for the
+intact receptor; GPR37&rsquo;s cut construct sits at 23.7&ndash;27.5 against 53.8 intact, and
+GPR142&rsquo;s at 19.7&ndash;26.8 against 64.8. AlphaFold3 models two of the three as random
+coil, so their interface numbers are computed between a decoy and an unfolded chain and
+support nothing in either direction.</p>
+
+<p>This page previously reported GPR37 + MST1 as failing its decoys and GPR142 + PACAP as
+overlapping them. <b>Both statements are withdrawn.</b> GPR37&rsquo;s is unreadable for the
+reason above, and GPR142&rsquo;s was the wrong direction on the arm&rsquo;s own numbers:
+PACAP reaches 3.32 &#8491; against decoys at 5.74, 11.67 and 12.36, beating all three. The
+length of the annotated segment was used as the gate for building these constructs, and
+segment length is not the same thing as a construct that folds; the scorer now withholds any
+verdict whose receptor chain falls below three quarters of the intact receptor&rsquo;s
+pLDDT.</p>
 
 <p>That collapse is not a broken construct: the mature sequences match the UniProt chain
 boundaries, every alignment row is still in the query frame, and both chains still fold
@@ -189,33 +231,47 @@ pairs left unresolved by a ChEMBL outage were re-run once the service recovered 
 GABA has no recorded activity at either GPR26 or GPR150 and 105 distinct measured targets
 elsewhere. A tool failure is not a result.</p>
 
-<p><b>And the step that chose what to fold points the wrong way.</b> The screen folded
+<p><b>And the step that chose what to fold enriched nothing.</b> The screen folded
 5,000 of about 78,900 eligible receptor&ndash;partner combinations, 6.3% of them, chosen by
-a spatial recurrence rank. That rank is the screen&rsquo;s only enrichment step, and it is
-anti-correlated with its own structural gate: the worst-ranked fifth of the folded pairs
-clears the gate four times as often as the best-ranked fifth.</p>
+a spatial recurrence rank. That rank is the screen&rsquo;s only enrichment step, and it
+carries no information about the gate&rsquo;s own quantity: Spearman &rho; = &minus;0.011
+between rank and interface PAE across 4,767 pairs, p = 0.43.</p>
 
 <table>
 <tr><th>spatial rank</th><th>pairs</th><th>clear the gate</th></tr>
 <tr><td>Q1, best ranked</td><td>954</td><td>6 &nbsp;(0.63%)</td></tr>
-<tr><td>Q2</td><td>953</td><td>11 (1.15%)</td></tr>
-<tr><td>Q3</td><td>953</td><td>10 (1.05%)</td></tr>
+<tr><td>Q2</td><td>953</td><td>10 (1.05%)</td></tr>
+<tr><td>Q3</td><td>953</td><td>9 &nbsp;(0.94%)</td></tr>
 <tr><td>Q4</td><td>953</td><td>10 (1.05%)</td></tr>
-<tr><td>Q5, worst ranked</td><td>954</td><td>25 (2.62%)</td></tr>
+<tr><td>Q5, worst ranked</td><td>954</td><td>22 (2.31%)</td></tr>
 </table>
 
-<p>Cochran&ndash;Armitage trend z = +3.34, p = 0.0008. It is not complex size: the PAE gate
-is size-neutral (&rho; = +0.000) and the Mantel&ndash;Haenszel odds ratio for the
-better-ranked half, stratified by size, is 0.63. It is not a few prolific receptors
-either: permuting the rank <em>within</em> receptor gives p = 0.0015 over 2,000 draws.</p>
+<p><b>An earlier version of this page read that table as a graded anti-correlation,
+on a Cochran&ndash;Armitage trend of z = +3.34, p = 0.0008. That was wrong, and an
+adversarial audit of the analysis caught it.</b> Three things were missed:</p>
 
-<p>This does not make the gate right and the spatial score wrong. Both are close to null
-on their own &mdash; spatial recurrence reaches AUROC 0.524 for canonical ligand&ndash;receptor
-pairs, and AlphaFold3 interface scoring 0.519 on degree-balanced HuRI. Two near-null
-criteria that disagree systematically mean the 5,000 folded pairs cannot be described as
-an enriched sample. A random draw from the remaining ~74,000 would settle it; at the
-observed 1.30% rate, 1,500 folds would detect a doubling 84% of the time and 500 would
-detect it 43% of the time, so the small version is not worth running.</p>
+<ul>
+<li><b>There is no trend.</b> Drop Q5 and re-test Q1&ndash;Q4 and the rates are flat
+  &mdash; 0.79, 0.79, 1.18, 0.92% &mdash; with z = +0.36, p = 0.72. The whole signal is the
+  worst-ranked fifth against the rest, which is the single lucky split the analysis claimed
+  to have ruled out by testing five quintiles.</li>
+<li><b>The best-ranked quintile is not low.</b> Q1 against Q2&ndash;Q4 gives OR 0.62,
+  p = 0.33, so the headline paired a non-significant low quintile with the one significant
+  high one.</li>
+<li><b>A third of the gap is receptor composition.</b> The within-receptor permutation null
+  is centred at +0.55 pp, not at zero, and the analytic receptor term is +0.56 pp of the
+  observed +1.68 pp. Held fixed by receptor the trend is z = +2.02, p = 0.044.</li>
+</ul>
+
+<p>What survives is narrower: the worst-ranked fifth clears the gate 2.55 times as often as
+the rest (p = 0.0012), a third of that is which receptors sit where, and the effect exists
+only in the extreme tail of one metric &mdash; widen the PAE cut and it disappears, and on
+interface pLDDT the relationship runs the other way (&rho; = &minus;0.060, p &lt; 0.001).
+The honest summary is that the spatial rank and the structural gate are unrelated. The
+5,000 folded pairs are not an enriched sample, and they are not a depleted one either. A
+random draw from the remaining ~74,000 is still the only thing that measures the
+selection&rsquo;s effect directly; at the observed rate, 1,500 folds would detect a doubling
+84% of the time and 500 would detect it 43% of the time.</p>
 
 <h2>Code</h2>
 <p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;

@@ -1,19 +1,27 @@
 {
- "gate": 3.76,
+ "gate_pae": 3.76,
+ "gate_min_sep": 1.5,
  "n_pairs": 4767,
- "n_pass": 62,
+ "n_pass": 57,
  "eligible_combinations": 78900,
  "coverage_pct": 6.34,
  "rate_by_rank_quintile_pct": [
   0.63,
-  1.15,
   1.05,
+  0.94,
   1.05,
-  2.62
+  2.31
  ],
- "trend_z": 3.344,
- "trend_p": 0.0008263409614587885,
- "size_rho": 0.0003,
- "mh_or_top_half": 0.63,
- "within_receptor_permutation_p": 0.0015
+ "trend_all5_z": 3.015,
+ "trend_all5_p": 0.0025738376557573575,
+ "trend_without_Q5_z": 0.36,
+ "trend_without_Q5_p": 0.7187136928476703,
+ "Q5_vs_rest_OR": 2.548,
+ "Q5_vs_rest_p": 0.0012016628911441312,
+ "Q1_vs_mid_OR": 0.618,
+ "Q1_vs_mid_p": 0.33174980931056974,
+ "spearman_rank_vs_pae": -0.0114,
+ "receptor_composition_share": 0.331,
+ "receptor_stratified_z": 2.017,
+ "receptor_stratified_p": 0.04371781310678463
 }

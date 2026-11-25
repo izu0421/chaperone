@@ -144,16 +144,47 @@ def main() -> None:
     # ---- arm B: did truncation reveal a surface, or manufacture one? -------------
     B = j[j.arm.str.startswith("B_")]
     if len(B):
+        # A truncated receptor that does not fold cannot support a verdict either
+        # way: a chain-pair PAE between a decoy and a random coil is not evidence
+        # about binding. MIN_ECD gates on annotated segment LENGTH, which is not
+        # the same thing as a construct that folds, so the bar has to be applied
+        # after the fold. Measured here: GPR37ECD 23.7-27.5 mean chain-A pLDDT
+        # against 53.8 for the intact receptor, GPR142ECD 19.7-26.8 against 64.8,
+        # GPR158ECD 55.2-60.9 against 50.0 -- only GPR158's cut construct folds.
+        pl = (df[df.arm.str.startswith("B_")].groupby("job").plddt_A.mean()
+              if "plddt_A" in df else pd.Series(dtype=float))
+        intact = (df[df.arm.eq("A_multiseed")].assign(
+                      rec=lambda d: d.job.str.replace("A_", "", regex=False).str.split("__").str[0])
+                  .groupby("rec").plddt_A.mean())
+        log.info("\nDOES THE TRUNCATED RECEPTOR FOLD AT ALL?")
+        unfolded = set()
+        for job in sorted(pl.index):
+            rec = job.replace("B_", "").split("ECD")[0]
+            ref = intact.get(rec, float("nan"))
+            bad = pd.notna(ref) and pl[job] < 0.75 * ref
+            if bad:
+                unfolded.add(job)
+            log.info("  %-28s chain-A pLDDT %4.1f   intact receptor %4.1f%s",
+                     job, pl[job], ref, "   <- does not fold, verdict withheld" if bad else "")
+
         log.info("\nTRUNCATION TO THE EXTRACELLULAR DOMAIN:")
         for r in B[B.arm.eq("B_ecd")].itertuples():
             rec = r.job.split("__")[0].replace("B_", "").replace("ECD", "")
             dec = B[(B.arm.eq("B_ecd_decoy")) & (B.job.str.contains(rec))]
             if len(dec):
-                log.info("  %-28s candidate PAE %.2f   decoys %.2f-%.2f (n=%d)",
-                         r.job, r.pae_best, dec.pae_best.min(), dec.pae_best.max(), len(dec))
-                if r.pae_best >= dec.pae_best.min():
+                # best-of-N against best-of-N. Quoting the decoys' WORST draw as the
+                # upper bound would pair a candidate's maximum with a decoy's minimum.
+                log.info("  %-28s candidate PAE %.2f   decoys %.2f-%.2f (best of %d draws each, n=%d)",
+                         r.job, r.pae_best, dec.pae_best.min(), dec.pae_best.max(),
+                         int(df[df.job.eq(r.job)].shape[0]), len(dec))
+                if r.job in unfolded or dec.job.isin(unfolded).any():
+                    log.warning("     WITHHELD: the truncated receptor does not fold in this "
+                                "job or its decoys, so this comparison measures nothing")
+                elif r.pae_best >= dec.pae_best.min():
                     log.warning("     a decoy docks at least as well -- the cut face is a "
                                 "surface the construct made, not one it revealed")
+                else:
+                    log.info("     candidate beats every decoy")
             else:
                 log.info("  %-28s candidate PAE %.2f   (no decoy folded yet)",
                          r.job, r.pae_best)
