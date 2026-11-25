@@ -135,8 +135,13 @@ def main() -> None:
         if len(A):
             # the ECD verdict is READ, never recomputed: it has a precondition the
             # PAE columns cannot express, namely that the truncated receptor folds
-            b = A[A.arm.isin(["B_ecd", "B2_ntd"])
-                  & A.job.str.contains(f"{rec}(?:ECD|NTD)__{par}$", regex=True)]
+            # prefer the loop-free construct where both exist: the ECD cut
+            # stitched three extracellular loops onto the N-terminal domain, and
+            # 35.6% of GPR158's interface landed on those 42 residues
+            b = A[A.arm.eq("B2_ntd") & A.job.str.contains(f"{rec}NTD__{par}$", regex=True)]
+            if not len(b):
+                b = A[A.arm.eq("B_ecd")
+                      & A.job.str.contains(f"{rec}ECD__{par}$", regex=True)]
             if len(b):
                 d["pae_ecd"] = b.pae_best.iloc[0]
                 d["ecd_test"] = (b.verdict.iloc[0] if "verdict" in b
@@ -150,17 +155,16 @@ def main() -> None:
                 p = m.pae_min_AB.iloc[0]
                 d["pae_mature"] = p
                 d["d_plddt_min"] = min(m.d_pldA.iloc[0], m.d_pldB.iloc[0])
-                imp = bool(m.impossible_face.iloc[0]) if "impossible_face" in m else False
+                # read, never recomputed: the verdict is made against the
+                # depth-matched baseline, which the PAE columns alone cannot see
+                d["pae_matched"] = (m.pae_matched_baseline.iloc[0]
+                                    if "pae_matched_baseline" in m else np.nan)
                 if ctl_state != "usable":
                     d["mature_test"] = f"not readable ({ctl_state})"
-                elif imp:
-                    d["mature_test"] = "FAIL -- cytoplasmic face, partner is secreted"
-                elif p <= GATE:
-                    d["mature_test"] = "PASS"
-                elif p <= 8:
-                    d["mature_test"] = "weakened"
+                elif "mature_verdict" in m and pd.notna(m.mature_verdict.iloc[0]):
+                    d["mature_test"] = m.mature_verdict.iloc[0]
                 else:
-                    d["mature_test"] = "FAIL -- interface lost"
+                    d["mature_test"] = "folded, no verdict"
             elif key in {j.replace("M_", "") for j in
                          pd.read_csv(ROOT / "work" / "subcomplex_manifest.csv").job}:
                 d["mature_test"] = "built, not folded yet"
@@ -216,6 +220,8 @@ def main() -> None:
             return "3 -- fails a structural test"
         if str(r.get("interface")) == "IMPOSSIBLE cytoplasmic":
             return "3 -- secreted partner on the cytoplasmic face"
+        if any("not attributable" in str(r[c]) for c in ("ecd_test", "mature_test", "p_test")):
+            return "2d -- the construct test cannot attribute it"
         passes = [c for c in ("ecd_test", "mature_test", "p_test") if r[c] == "PASS"]
         if str(r["mature_test"]) == "weakened":
             return "2b -- weakened under the real construct"

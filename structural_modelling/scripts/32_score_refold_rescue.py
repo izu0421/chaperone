@@ -142,7 +142,7 @@ def main() -> None:
         log.info("     nothing; a candidate that improves is improving by the same amount.")
 
     # ---- arm B: did truncation reveal a surface, or manufacture one? -------------
-    B = j[j.arm.str.startswith("B_")]
+    B = j[j.arm.str.startswith("B")]
     if len(B):
         # A truncated receptor that does not fold cannot support a verdict either
         # way: a chain-pair PAE between a decoy and a random coil is not evidence
@@ -151,7 +151,7 @@ def main() -> None:
         # after the fold. Measured here: GPR37ECD 23.7-27.5 mean chain-A pLDDT
         # against 53.8 for the intact receptor, GPR142ECD 19.7-26.8 against 64.8,
         # GPR158ECD 55.2-60.9 against 50.0 -- only GPR158's cut construct folds.
-        pl = (df[df.arm.str.startswith("B_")].groupby("job").plddt_A.mean()
+        pl = (df[df.arm.str.startswith("B")].groupby("job").plddt_A.mean()
               if "plddt_A" in df else pd.Series(dtype=float))
         intact = (df[df.arm.eq("A_multiseed")].assign(
                       rec=lambda d: d.job.str.replace("A_", "", regex=False).str.split("__").str[0])
@@ -168,9 +168,11 @@ def main() -> None:
                      job, pl[job], ref, "   <- does not fold, verdict withheld" if bad else "")
 
         log.info("\nTRUNCATION TO THE EXTRACELLULAR DOMAIN:")
-        for r in B[B.arm.eq("B_ecd")].itertuples():
-            rec = r.job.split("__")[0].replace("B_", "").replace("ECD", "")
-            dec = B[(B.arm.eq("B_ecd_decoy")) & (B.job.str.contains(rec))]
+        for r in B[B.arm.isin(["B_ecd", "B2_ntd"])].itertuples():
+            pref, dec_arm = (("B_", "B_ecd_decoy") if r.arm == "B_ecd"
+                             else ("B2_", "B2_ntd_decoy"))
+            rec = r.job.split("__")[0].replace(pref, "").replace("ECD", "").replace("NTD", "")
+            dec = B[(B.arm.eq(dec_arm)) & (B.job.str.contains(rec))]
             if len(dec):
                 # best-of-N against best-of-N. Quoting the decoys' WORST draw as the
                 # upper bound would pair a candidate's maximum with a decoy's minimum.
@@ -200,9 +202,13 @@ def main() -> None:
     # One verdict per ECD job, written here so the ranking table reads it instead
     # of recomputing a comparison that has a construct-folds precondition.
     verd = {}
-    for r in B[B.arm.eq("B_ecd")].itertuples():
-        rec = r.job.replace("B_", "").split("ECD")[0]
-        dec = B[(B.arm.eq("B_ecd_decoy")) & (B.job.str.startswith(f"B_{rec}ECD__"))]
+    for r in B[B.arm.isin(["B_ecd", "B2_ntd"])].itertuples():
+        if r.arm == "B_ecd":
+            rec = r.job.replace("B_", "").split("ECD")[0]
+            dec = B[(B.arm.eq("B_ecd_decoy")) & (B.job.str.startswith(f"B_{rec}ECD__"))]
+        else:
+            rec = r.job.replace("B2_", "").split("NTD")[0]
+            dec = B[(B.arm.eq("B2_ntd_decoy")) & (B.job.str.startswith(f"B2_{rec}NTD__"))]
         if r.job in unfolded or dec.job.isin(unfolded).any():
             verd[r.job] = "WITHHELD -- the truncated receptor does not fold"
         elif not len(dec):
