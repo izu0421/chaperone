@@ -49,6 +49,21 @@ log = logging.getLogger("rescue-score")
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results" / "rescue_out"
 
+# Receptors that are obligate oligomers. Every assembly check in this project
+# asked whether the PARTNER was one; the receptor side was never checked, and
+# that is where it mattered. GPR158 dimerises through the very domain arm B
+# truncates to, so a monomeric construct splits the dimer open and presents its
+# buried face to the partner. Measured against 7SHE: 21 of the 52-57 receptor
+# residues contacting NMS are on the chain A/B interface, 37-40% of the ECD
+# footprint, a 6.3-6.9x enrichment over a randomly placed footprint.
+# Source: UniProt SUBUNIT for each; all 7 GPR158 PDB entries are 2:2.
+OBLIGATE_OLIGOMER = {"GPR158": "homodimer, through the extracellular Cache domain"}
+
+# Partners whose folded chain was the PRECURSOR, not the molecule that exists.
+# The fraction is how much of the partner-side interface sits on sequence that
+# is cut away before secretion.
+PRECURSOR_FOLDED = {"NMS": (0.71, 0.78)}
+
 _spec = importlib.util.spec_from_file_location("sc14", ROOT / "scripts" / "14_score_orphans.py")
 sc14 = importlib.util.module_from_spec(_spec)
 sys.modules["sc14"] = sc14
@@ -203,6 +218,19 @@ def main() -> None:
     # of recomputing a comparison that has a construct-folds precondition.
     verd = {}
     for r in B[B.arm.isin(["B_ecd", "B2_ntd"])].itertuples():
+        recept = r.job.replace("B2_", "").replace("B_", "").split("NTD")[0].split("ECD")[0]
+        part = r.job.split("__")[-1]
+        if recept in OBLIGATE_OLIGOMER:
+            verd[r.job] = (f"FAIL -- the receptor is an obligate {OBLIGATE_OLIGOMER[recept]} "
+                           f"and this construct is a monomer, so the partner is docking on "
+                           f"the face the other protomer occupies")
+            continue
+        if part in PRECURSOR_FOLDED:
+            lo, hi = PRECURSOR_FOLDED[part]
+            verd[r.job] = (f"WITHHELD -- the chain folded is the precursor; {100 * lo:.0f}-"
+                           f"{100 * hi:.0f}% of the partner-side interface is sequence cut "
+                           f"away before secretion")
+            continue
         if r.arm == "B_ecd":
             rec = r.job.replace("B_", "").split("ECD")[0]
             dec = B[(B.arm.eq("B_ecd_decoy")) & (B.job.str.startswith(f"B_{rec}ECD__"))]

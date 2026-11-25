@@ -117,15 +117,12 @@ independently from the folds.</p>
 
 <!-- SURVIVORS-START -->
 <h2>What survived</h2>
-<p>3 of the 19 confirmed pairs are still standing: each has at least one
+<p>2 of the 19 confirmed pairs are still standing: each has at least one
 construct test it passed and none that it failed. They are not equally well supported, and
 the cards say where each one is thin. What they have in common is that the test could have
 gone the other way, which is the only kind of evidence this screen has produced that is
 worth anything.</p>
 <div class="hit">
-  <h3>GPR158 + NMS</h3>
-  <ul><li><b>Gate.</b> 2.69 &#8491; interface PAE on the intact receptor</li><li><b>Where it sits.</b> 97% of the receptor side of the interface is extracellular</li><li><b>Truncation.</b> on the receptor&rsquo;s N-terminal domain alone, 24&ndash;417, with no stitched loops: <b>2.45 &#8491;</b> against decoys at 9.66 (RNase&nbsp;1), 12.15 (lysozyme) and 22.66 (albumin), 25 models each</li><li><b>Mature chain.</b> 2.69 &rarr; 3.01 &#8491; with the signal peptide removed, on a cut that improves AlphaFold3 on 24 chemokine pairs whose answer is known</li><li><b>Prior record.</b> STRING nothing, CellPhoneDB nothing, PubMed co-mentions 0</li></ul>
-</div><div class="hit">
   <h3>MRGPRX2 + GNRH2</h3>
   <ul><li><b>Gate.</b> 2.20 &#8491;, the best gate value in the shortlist</li><li><b>Where it sits.</b> extracellular plus transmembrane, no cytoplasmic contacts</li><li><b>Mature chain.</b> survives the cut, under the gate</li><li><b>Why it is thinner.</b> see the note below on MRGPRX2</li></ul>
 </div><div class="hit">
@@ -143,12 +140,12 @@ would expect from promiscuity rather than from recognition.</p>
 <p class="mut" style="font-size:12px">All are AlphaFold3 predictions with no experimental
 support of any kind. The method&rsquo;s own ceiling bounds them: AUROC 0.519 on
 degree-balanced HuRI. These controls show these are not the artefacts the other
-16 are. They do not show the interactions are real.</p>
+17 are. They do not show the interactions are real.</p>
 
 <h2>Why the others fell</h2>
 <table>
 <tr><th>reason</th><th>n</th><th>pairs</th></tr>
-<tr><td><b>The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed</b><br><span class="mut">Cutting the partner removes the partner&rsquo;s impossible half and leaves the receptor&rsquo;s. Their permuted negatives sit on the same face, so the margin compares two poses that cannot exist.</span></td><td>4</td><td class="why">GPR22 + CLSTN1, GPR22 + SLITRK2, GPR4 + FLT1, GPR82 + OLR1</td></tr><tr><td><b>The interface goes when the signal peptide goes</b><br><span class="mut">Both chains still fold; only the interface is lost.</span></td><td>3</td><td class="why">GPR132 + CCL11, GPR37 + CADM4, GPR37 + MST1</td></tr><tr><td><b>Beaten by another candidate&rsquo;s ectodomain</b><br><span class="mut">The same receptor docks an unrelated, size-matched ectodomain at least as well.</span></td><td>3</td><td class="why">GPR65 + TNFRSF13B, GPR65 + TNFRSF8, GPR83 + SLITRK3</td></tr><tr><td><b>A secreted partner placed on the cytoplasmic face</b><br><span class="mut">It has no route to the cytosol, so the pose cannot exist.</span></td><td>2</td><td class="why">GPR31 + TDGF1, GPRC5C + IGF2</td></tr><tr><td><b>The partner&rsquo;s own oligomer interface</b><br><span class="mut">The partner was folded as a lone chain, which exposes the surface its real assembly buries. Re-folded with the missing subunit present, the interface goes.</span></td><td>1</td><td class="why">GPR83 + GRIA4</td></tr>
+<tr><td><b>The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed</b><br><span class="mut">Cutting the partner removes the partner&rsquo;s impossible half and leaves the receptor&rsquo;s. Their permuted negatives sit on the same face, so the margin compares two poses that cannot exist.</span></td><td>4</td><td class="why">GPR22 + CLSTN1, GPR22 + SLITRK2, GPR4 + FLT1, GPR82 + OLR1</td></tr><tr><td><b>The interface goes when the signal peptide goes</b><br><span class="mut">Both chains still fold; only the interface is lost.</span></td><td>3</td><td class="why">GPR132 + CCL11, GPR37 + CADM4, GPR37 + MST1</td></tr><tr><td><b>Beaten by another candidate&rsquo;s ectodomain</b><br><span class="mut">The same receptor docks an unrelated, size-matched ectodomain at least as well.</span></td><td>3</td><td class="why">GPR65 + TNFRSF13B, GPR65 + TNFRSF8, GPR83 + SLITRK3</td></tr><tr><td><b>A secreted partner placed on the cytoplasmic face</b><br><span class="mut">It has no route to the cytosol, so the pose cannot exist.</span></td><td>2</td><td class="why">GPR31 + TDGF1, GPRC5C + IGF2</td></tr><tr><td><b>The receptor is an obligate homodimer, through the extracellular cache domain and this construct is a monomer, so the partner is docking on the face the other protomer occupies</b><br><span class="mut"></span></td><td>1</td><td class="why">GPR158 + NMS</td></tr><tr><td><b>The partner&rsquo;s own oligomer interface</b><br><span class="mut">The partner was folded as a lone chain, which exposes the surface its real assembly buries. Re-folded with the missing subunit present, the interface goes.</span></td><td>1</td><td class="why">GPR83 + GRIA4</td></tr>
 </table>
 <p>The rest are not refuted and not confirmed: their construct test is built and folding,
 or the pair fails at full length on the re-fold arm&rsquo;s own alignment, in which case
@@ -188,21 +185,55 @@ constructs were built on the length of the annotated segment, and segment length
 same thing as a construct that folds. The scorer now withholds any verdict whose receptor
 chain falls below three quarters of the intact receptor&rsquo;s pLDDT.</p>
 
-<p>GPR158 is the one that folds, and it holds neuromedin S at interface PAE 1.40 to 1.59
+<p>GPR158 is the one that folds, and it held neuromedin S at interface PAE 1.40 to 1.59
 across 25 models, better than the intact receptor&rsquo;s 2.26. On the same cut domain the
-best of 25 draws is 12.72 for lysozyme, 13.59 for RNase&nbsp;1 and 22.76 for albumin, so
-every one of the 25 candidate models beats every one of the 75 decoy models.</p>
+best of 25 draws was 12.72 for lysozyme, 13.59 for RNase&nbsp;1 and 22.76 for albumin, so
+every one of the 25 candidate models beat every one of the 75 decoy models. On a loop-free
+N-terminal domain, built after the stitched construct below was found to be artificial, it
+reached 2.45 &#8491; against decoys at 9.66 to 22.66.</p>
 
-<p>That construct is not the extracellular domain, though, and the difference matters. The
-cut kept every segment annotated extracellular, which for GPR158 means the 394-residue
-N-terminal domain with three extracellular loops joined onto its C-terminus: 436 residues
-with three artificial junctions. In the best model, 31 of the 87 receptor interface residues
-sit on those 42 stitched residues. That is 35.6% of the interface on 9.6% of the construct,
-a 3.70&times; enrichment onto surface the intact receptor does not have, and the decoys
-never visit it. They therefore cannot rule out that the stitch is what is being bound, which
-is the precise failure the decoys were added to catch. The N-terminal domain alone, with the
-same decoys, is folding now. What stands without it is the intact-receptor fold: 2.26
-&#8491;, with 54 of 60 interface residues on genuine extracellular positions.</p>
+<p><b>GPR158 + neuromedin S was the screen&rsquo;s best candidate all day, and on
+2026-11-25 it was refuted. Three reasons, each sufficient on its own.</b></p>
+
+<p><b>GPR158 is not an orphan.</b> It was deorphanised in 2023 as the metabotropic glycine
+receptor (Laboute et al., <i>Science</i> 2023, PMID 36996198), with glycine and taurine
+binding a pocket in the extracellular Cache domain. UniProt has renamed Q5T848 to
+MGLYR_HUMAN and annotates the site as S172, R173, E271 and D307. The screen&rsquo;s premise
+for this receptor was three years out of date. The predicted peptide does not sit in that
+pocket, so this alone does not refute the pose, but it changes what the claim would even
+have been.</p>
+
+<p><b>The predicted interface is the homodimer face.</b> GPR158 is an obligate homodimer
+that dimerises through the same extracellular domain the truncation keeps, and all seven of
+its PDB entries are 2:2. Folding one protomer splits that dimer open and offers its buried
+face to the partner. Checked against the cryo-EM structure 7SHE: of the receptor residues
+contacting neuromedin S, 21 lie on the chain A/B interface in both folds, which is 37% of
+the intact fold&rsquo;s extracellular footprint and 40% of the N-terminal domain
+fold&rsquo;s, a 6.3 to 6.9&times; enrichment over a randomly placed footprint. The same 21
+residues come up both times. The peptide is sitting where the second protomer goes.</p>
+
+<p><b>And the binding is done by sequence that does not exist.</b> Both headline folds used
+the 153-residue precursor with its signal peptide still attached. The mature hormone is a
+33-mer, residues 109 to 141. In the 2.69 &#8491; fold, 15 of the 51 neuromedin S residues
+contacting the receptor are in that mature peptide; in the 2.45 &#8491; fold, 10 of 46. So
+71% and 78% of the partner side of the interface is sequence cut away before secretion. The
+mature peptide&rsquo;s pharmacophore is its amidated C-terminus, FLFRPRN-NH<sub>2</sub>,
+and in a folded 153-mer that C-terminus is an internal residue, so the amide is not modelled
+at all.</p>
+
+<p>The second of those is the artefact that killed four other candidates in this screen,
+appearing in the one place nothing was checking: every assembly test here asked whether the
+<em>partner</em> was an obligate oligomer. The receptor is the oligomer in this case. The
+honest construct, both protomers plus the mature 33-mer, with a control that checks the
+protomers pair at all, is folding now.</p>
+
+<p>The stitched construct was separately artificial, which is how the loop-free fold came to
+exist. The cut kept every segment annotated extracellular, which for GPR158 means the
+394-residue N-terminal domain with three extracellular loops joined onto its C-terminus:
+436 residues with three artificial junctions. In the best model, 31 of the 87 receptor
+interface residues sit on those 42 stitched residues. That is 35.6% of the interface on 9.6%
+of the construct, a 3.70&times; enrichment onto surface the intact receptor does not have,
+and the decoys never visit it.</p>
 
 <h2>Cutting the signal peptide off the ligand</h2>
 <p>Every secreted partner entered the screen as its full preprohormone, including the 20 to
@@ -366,14 +397,6 @@ a report no table referenced.</p>
 <table class="cands">
 <tr><th>Pair</th><th>Standing</th><th>What decided it</th><th>Source</th></tr>
 <tr>
-  <td><b>GPR158 + NMS</b><br>
-      <span class="mut">2.69 &#8491; &middot; extracellular surface</span></td>
-  <td><span class="badge" style="background:#2166AC">Stands</span></td>
-  <td class="why"><b>receptor ectodomain</b>: survives, with its own controls; <b>mature chain</b>: survives, with its own controls.
-      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. NMS is a secreted brain neuropeptide (HPA &quot;Predicted secreted proteins&quot;, secretome_location &quot;Secreted in brain&quot;, function &quot;regulation of circadian rhythms through autocrine and/or paracrine actions&quot;) and GPR158 is a brain/retina-enriched plasma-membrane GPCR (&quot;Metabotropic glycine receptor&quot;, Cell membrane/Postsynaptic cell membrane), so a secreted-ligand/membrane-receptor pairing is compartmentally coherent and both are brain-expressed.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-NMS-GPR158">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR158__NMS">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5H8A3">NMS</a></td>
-</tr>
-<tr>
   <td><b>MRGPRX2 + GNRH2</b><br>
       <span class="mut">2.2 &#8491; &middot; orthosteric pocket</span></td>
   <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
@@ -428,6 +451,14 @@ a report no table referenced.</p>
   <td class="why"><b>mature chain</b>: interface lost on cutting; <b>partner ectodomain</b>: withheld, the cut receptor does not fold (-27.9 pLDDT).
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CADM4 and GPR37 are both membrane proteins enriched in brain and in oligodendrocytes (HPA), and UniProt independently ties both to oligodendrocyte differentiation and CNS myelination, so a cis interaction on the same cell is biologically plausible.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CADM4-GPR37">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O15354">GPR37</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8NFZ8">CADM4</a></td>
+</tr>
+<tr>
+  <td><b>GPR158 + NMS</b><br>
+      <span class="mut">2.69 &#8491; &middot; extracellular surface</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>receptor ectodomain</b>: the receptor is an obligate homodimer, through the extracellular Cache domain and this construct is a monomer, so the partner is docking on the face the other protomer occupies; <b>mature chain</b>: survives, with its own controls.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. NMS is a secreted brain neuropeptide (HPA &quot;Predicted secreted proteins&quot;, secretome_location &quot;Secreted in brain&quot;, function &quot;regulation of circadian rhythms through autocrine and/or paracrine actions&quot;) and GPR158 is a brain/retina-enriched plasma-membrane GPCR (&quot;Metabotropic glycine receptor&quot;, Cell membrane/Postsynaptic cell membrane), so a secreted-ligand/membrane-receptor pairing is compartmentally coherent and both are brain-expressed.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-NMS-GPR158">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR158__NMS">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5H8A3">NMS</a></td>
 </tr>
 <tr>
   <td><b>GPR22 + SLITRK2</b><br>
