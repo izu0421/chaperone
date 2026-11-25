@@ -109,11 +109,9 @@ previous shortlist cited that rule. Removing it from the verdict logic, and keep
 note on pose quality, took the shortlist from 4 to 19.</p>
 
 <p>58 of the 68 candidates still carry a topology violation, now reported and not acted on.
-18 of the 19 confirmed pairs are low confidence, and the review agent raises a compartment
-objection against four of them. These are hypotheses a broken filter was suppressing, not
-findings. No small-molecule candidate is confirmed: the agent called every one a promiscuous
-pocket from database evidence alone, which is what a 256-fold counter-screen concluded
-independently from the folds.</p>
+18 of the 19 confirmed protein pairs are low confidence, and the review agent raises a
+compartment objection against four of them. These are hypotheses a broken filter was
+suppressing, not findings.</p>
 
 <!-- SURVIVORS-START -->
 <h2>What survived</h2>
@@ -338,13 +336,39 @@ GPR158 + neuromedin S passes every test that could be run on it, 9 are refuted b
 construct test or by physics, 1 is weakened, 1 cannot be attributed either way, and the
 remaining 7 are waiting on folds that are running now.</p>
 
-<h2>The metabolite arm is closed</h2>
-<p>All six receptor&ndash;molecule pairs carry the same verdict: the molecule has no measured
-activity at that receptor, and is promiscuous enough that a confident pocket fold is the
-expected result. The two pairs left unresolved by a ChEMBL outage were re-run once the
-service recovered. GABA has no recorded activity at either GPR26 or GPR150, and 105 distinct
-measured targets elsewhere. A tool failure is not a result, and leaving those two as
-unresolved would have reported an outage as a property of the biology.</p>
+<h2>The small-molecule hits</h2>
+<p>Six receptor&ndash;molecule pairs clear the calibrated gate, and none of them has a
+measured activity at that receptor in ChEMBL. Each molecule is promiscuous, which bears on
+how surprising the pairing is and not on whether it is true: GABA binds more than a hundred
+targets and is still the endogenous ligand of its own receptors. The question that decides a
+pairing is whether the fold separates this receptor from receptors known <em>not</em> to take
+the molecule, and a 256-fold counter-screen answers it: 16 known cognate pairs against 189
+known non-cognate, where interface pTM reaches AUROC 0.951 and ligand pLDDT 0.936.</p>
+
+<p>Against that calibration the six sit inside the cognate distribution, not the
+non-cognate one.</p>
+
+<table>
+<tr><th>pair</th><th>interface pTM</th><th>above % of known cognate</th><th>above % of known non-cognate</th></tr>
+<tr><td>GPR26 + glutamate</td><td>0.94</td><td>56%</td><td>99%</td></tr>
+<tr><td>GPR85 + noradrenaline</td><td>0.93</td><td>44%</td><td>97%</td></tr>
+<tr><td>GPR26 + GABA</td><td>0.92</td><td>38%</td><td>95%</td></tr>
+<tr><td>GPR153 + noradrenaline</td><td>0.92</td><td>38%</td><td>95%</td></tr>
+<tr><td>GPR150 + GABA</td><td>0.91</td><td>25%</td><td>94%</td></tr>
+<tr><td>GPR26 + acetylcholine</td><td>0.91</td><td>25%</td><td>94%</td></tr>
+</table>
+
+<p>Ligand pLDDT gives the same ordering: a cognate median of 82.1 and a non-cognate median
+of 65.6, with the six between 78.7 and 87.5, and GPR26 + glutamate above 81% of the known
+cognate pairs. Three caveats travel with them. None has experimental support. GPR26 takes
+three different molecules, so its pocket is permissive rather than selective. And interface
+pTM is the metric three independent groups rank weakest for ligand work, even though it is
+the one with a calibration behind it here.</p>
+
+<p>Two of the six were left unresolved by a ChEMBL outage and were re-run once the service
+recovered: GABA has no recorded activity at either GPR26 or GPR150, and 105 distinct measured
+targets elsewhere. A tool failure is not a result, and leaving those two as unresolved would
+have reported an outage as a property of the biology.</p>
 
 <h2>The step that chose what to fold enriched nothing</h2>
 <p>The screen folded 5,000 of about 78,900 eligible receptor&ndash;partner combinations,
