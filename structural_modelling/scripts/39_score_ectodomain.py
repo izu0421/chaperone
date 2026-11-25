@@ -31,6 +31,11 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 log = logging.getLogger("ecd-score")
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results" / "ectodomain_out"
+# fraction of the candidate's footprint on the partner that is the partner's own
+# oligomer interface, measured from the two folds (scripts/43). GPR83's 27
+# contacting residues on GRIA4 include 21 of the 53 the ectodomain dimer uses:
+# 78% of the footprint, a 7.7x enrichment over a randomly placed footprint.
+ASSEMBLY_OVERLAP = {"GRIA4": 0.78}
 
 _s = iu.spec_from_file_location("sc35", ROOT / "scripts" / "35_score_subcomplex_and_mature.py")
 sc35 = iu.module_from_spec(_s)
@@ -39,7 +44,7 @@ _s.loader.exec_module(sc35)
 
 
 
-def verdict_for(row, perm, cyto, d_plddt_A, gate):
+def verdict_for(row, perm, cyto, d_plddt_A, gate, assembly=None):
     """The arm's verdict, in one place.
 
     This was computed twice, once for the printed table and once for the CSV,
@@ -47,6 +52,20 @@ def verdict_for(row, perm, cyto, d_plddt_A, gate):
     kept a PASS in one and lost it in the other. Three preconditions, in order,
     because each one makes the next meaningless if it fails.
     """
+    if assembly is not None:
+        # The partner was folded as a lone chain. If it is an obligate oligomer,
+        # the lone chain exposes a surface the assembled receptor buries, and a
+        # candidate can dock onto it. Four pairs in this screen have already died
+        # of that. `assembly` is (interface PAE with the missing subunit present,
+        # did the subunits actually pair, what fraction of the candidate footprint
+        # is the oligomer interface).
+        pae_asm, subunits_paired, overlap = assembly
+        if not subunits_paired:
+            return "assembly test inconclusive -- the subunits did not pair"
+        if pae_asm > 8:
+            return (f"FAIL -- the interface is the partner's own oligomer face "
+                    f"({100 * overlap:.0f}% of the footprint; {pae_asm:.2f} A with the "
+                    f"missing subunit present)")
     if pd.notna(d_plddt_A) and d_plddt_A < -15:
         return f"WITHHELD -- the cut receptor does not fold ({d_plddt_A:+.1f} pLDDT)"
     if pd.notna(cyto) and cyto >= 0.3:
@@ -110,6 +129,17 @@ def main() -> None:
     else:
         log.info("\nKNOWN ANSWERS: none folded -- arm P is not yet interpretable")
 
+    # the assembly test, where one was folded
+    asm = {}
+    A2 = best[best.arm.eq("S2_assembly")]
+    for r in A2.itertuples():
+        parts = r.job.replace("S2_", "").split("__")
+        if len(parts) == 3:                       # candidate + partner + partner
+            ctl = A2[A2.job.eq(f"S2_{parts[1]}__{parts[2]}")]
+            paired = bool(len(ctl) and ctl.n_contact.iloc[0] >= 100)
+            asm[f"P_{parts[0]}__{parts[1]}"] = (r.pae_min_AB, paired,
+                                                ASSEMBLY_OVERLAP.get(parts[1], float("nan")))
+
     # 2 and 3. candidates against their permutations and against the screen
     scr = pd.read_csv(ROOT / "results" / "orphan_scores.csv")
     full = {(str(r.receptor), str(r.partner)): r.pae_min_AB for r in scr.itertuples()}
@@ -146,7 +176,8 @@ def main() -> None:
             cyto = zone.get(r.job, float("nan"))
             if len(perm):
                 b = perm.loc[perm.pae_min_AB.idxmin()]
-                v = verdict_for(r, perm, cyto, r.plddt_A - pa, GATE)
+                v = verdict_for(r, perm, cyto, r.plddt_A - pa, GATE,
+                                asm.get(r.job))
                 log.info("  %-22s %8.2f %8.2f  %-11s %-20s %s",
                          f"{r.receptor}+{r.partner}", fu, r.pae_min_AB, dp,
                          f"{b.partner} {b.pae_min_AB:.2f}", v)
@@ -169,7 +200,8 @@ def main() -> None:
         perm = best[best.arm.eq(perm_arm) & best.receptor.eq(r.receptor)]
         cyto = zone.get(r.job, float("nan"))
         pa, _ = pld.get((r.receptor, r.partner), (np.nan, np.nan))
-        verdicts[r.job] = verdict_for(r, perm, cyto, r.plddt_A - pa, GATE)
+        verdicts[r.job] = verdict_for(r, perm, cyto, r.plddt_A - pa, GATE,
+                                      asm.get(r.job))
     best["verdict"] = best.job.map(verdicts)
     best["rec_cyto"] = best.job.map(zone)
     best.to_csv(ROOT / "results" / "ectodomain_per_job.csv", index=False)

@@ -143,7 +143,7 @@ def main() -> None:
                  "permuted negatives chosen to match them. MRGPRX2 is also a famously "
                  "promiscuous receptor, so a peptide in its pocket is a low bar"),
         ],
-        "GPR83+GRIA4": [
+        "GPR83+GRIA4_RETIRED": [
             ("Gate", "3.01 &#8491; interface PAE"),
             ("Where it sits", "94% extracellular on <b>both</b> chains, the only ecto&ndash;ecto pair "
                               "in the shortlist"),
@@ -188,6 +188,11 @@ def main() -> None:
         elif "permuted ectodomain" in why:
             k = ("Beaten by another candidate&rsquo;s ectodomain",
                  "The same receptor docks an unrelated, size-matched ectodomain at least as well.")
+        elif "oligomer face" in why:
+            k = ("The partner&rsquo;s own oligomer interface",
+                 "The partner was folded as a lone chain, which exposes the surface its "
+                 "real assembly buries. Re-folded with the missing subunit present, the "
+                 "interface goes.")
         elif "interface lost" in why:
             k = ("The interface goes when the signal peptide goes",
                  "Both chains still fold; only the interface is lost.")

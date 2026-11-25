@@ -117,7 +117,7 @@ independently from the folds.</p>
 
 <!-- SURVIVORS-START -->
 <h2>What survived</h2>
-<p>3 of the 19 confirmed pairs are still standing: each has at least one
+<p>2 of the 19 confirmed pairs are still standing: each has at least one
 construct test it passed and none that it failed. They are not equally well supported, and
 the cards say where each one is thin. What they have in common is that the test could have
 gone the other way, which is the only kind of evidence this screen has produced that is
@@ -126,21 +126,18 @@ worth anything.</p>
   <h3>GPR158 + NMS</h3>
   <ul><li><b>Gate.</b> 2.69 &#8491; interface PAE on the intact receptor</li><li><b>Where it sits.</b> 97% of the receptor side of the interface is extracellular</li><li><b>Truncation.</b> on the receptor&rsquo;s N-terminal domain alone, 24&ndash;417, with no stitched loops: <b>2.45 &#8491;</b> against decoys at 9.66 (RNase&nbsp;1), 12.15 (lysozyme) and 22.66 (albumin), 25 models each</li><li><b>Mature chain.</b> 2.69 &rarr; 3.01 &#8491; with the signal peptide removed, on a cut that improves AlphaFold3 on 24 chemokine pairs whose answer is known</li><li><b>Prior record.</b> STRING nothing, CellPhoneDB nothing, PubMed co-mentions 0</li></ul>
 </div><div class="hit">
-  <h3>GPR83 + GRIA4</h3>
-  <ul><li><b>Gate.</b> 3.01 &#8491; interface PAE</li><li><b>Where it sits.</b> 94% extracellular on <b>both</b> chains, the only ecto&ndash;ecto pair in the shortlist</li><li><b>Partner ectodomain.</b> cutting GRIA4 to its ectodomain <b>improves</b> it, 3.01 &rarr; <b>2.21 &#8491;</b>, against a best permuted negative of 4.96 &#8491; (the SLITRK2 ectodomain on the same receptor)</li><li><b>Open question.</b> GRIA4 is an obligate tetramer and it was folded as a lone chain, so the surface GPR83 uses may be the dimer interface. The same construct with a second ectodomain copy present is folding now, alongside a control that checks the two copies pair at all</li></ul>
-</div><div class="hit">
   <h3>MRGPRX2 + SPX</h3>
   <ul><li><b>Gate.</b> 3.51 &#8491; interface PAE, the weakest gate value of the three</li><li><b>Where it sits.</b> extracellular plus transmembrane with no cytoplasmic contacts, which is where a peptide agonist is supposed to bind</li><li><b>Mature chain.</b> survives the cut at 3.51 &#8491;, under the gate</li><li><b>Why it is thinner than the other two.</b> its only test is the mature-chain cut, which has a panel-level control (12 of 12 known binders keep their interface) but no negative control for this pair. The other two each beat decoys or permuted negatives chosen to match them. MRGPRX2 is also a famously promiscuous receptor, so a peptide in its pocket is a low bar</li></ul>
 </div>
 <p class="mut" style="font-size:12px">Both are AlphaFold3 predictions with no experimental
 support of any kind. The method&rsquo;s own ceiling bounds them: AUROC 0.519 on
 degree-balanced HuRI. These controls show the two are not the artefacts the other
-16 are. They do not show the interactions are real.</p>
+17 are. They do not show the interactions are real.</p>
 
 <h2>Why the others fell</h2>
 <table>
 <tr><th>reason</th><th>n</th><th>pairs</th></tr>
-<tr><td><b>The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed</b><br><span class="mut">Cutting the partner removes the partner&rsquo;s impossible half and leaves the receptor&rsquo;s. Their permuted negatives sit on the same face, so the margin compares two poses that cannot exist.</span></td><td>4</td><td class="why">GPR22 + CLSTN1, GPR22 + SLITRK2, GPR4 + FLT1, GPR82 + OLR1</td></tr><tr><td><b>Beaten by another candidate&rsquo;s ectodomain</b><br><span class="mut">The same receptor docks an unrelated, size-matched ectodomain at least as well.</span></td><td>3</td><td class="why">GPR65 + TNFRSF13B, GPR65 + TNFRSF8, GPR83 + SLITRK3</td></tr><tr><td><b>A secreted partner placed on the cytoplasmic face</b><br><span class="mut">It has no route to the cytosol, so the pose cannot exist.</span></td><td>2</td><td class="why">GPR31 + TDGF1, GPRC5C + IGF2</td></tr><tr><td><b>The interface goes when the signal peptide goes</b><br><span class="mut">Both chains still fold; only the interface is lost.</span></td><td>2</td><td class="why">GPR132 + CCL11, GPR37 + MST1</td></tr>
+<tr><td><b>The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed</b><br><span class="mut">Cutting the partner removes the partner&rsquo;s impossible half and leaves the receptor&rsquo;s. Their permuted negatives sit on the same face, so the margin compares two poses that cannot exist.</span></td><td>4</td><td class="why">GPR22 + CLSTN1, GPR22 + SLITRK2, GPR4 + FLT1, GPR82 + OLR1</td></tr><tr><td><b>Beaten by another candidate&rsquo;s ectodomain</b><br><span class="mut">The same receptor docks an unrelated, size-matched ectodomain at least as well.</span></td><td>3</td><td class="why">GPR65 + TNFRSF13B, GPR65 + TNFRSF8, GPR83 + SLITRK3</td></tr><tr><td><b>A secreted partner placed on the cytoplasmic face</b><br><span class="mut">It has no route to the cytosol, so the pose cannot exist.</span></td><td>2</td><td class="why">GPR31 + TDGF1, GPRC5C + IGF2</td></tr><tr><td><b>The interface goes when the signal peptide goes</b><br><span class="mut">Both chains still fold; only the interface is lost.</span></td><td>2</td><td class="why">GPR132 + CCL11, GPR37 + MST1</td></tr><tr><td><b>The partner&rsquo;s own oligomer interface</b><br><span class="mut">The partner was folded as a lone chain, which exposes the surface its real assembly buries. Re-folded with the missing subunit present, the interface goes.</span></td><td>1</td><td class="why">GPR83 + GRIA4</td></tr>
 </table>
 <p>The rest are not refuted and not confirmed: their construct test is built and folding,
 or the pair fails at full length on the re-fold arm&rsquo;s own alignment, in which case
@@ -278,7 +275,10 @@ veto the same rule rejects 61% of known binders.</p>
 
 <table>
 <tr><th>kind</th><th>n</th><th>what it means</th></tr>
-<tr><td>ecto&ndash;ecto</td><td>1</td><td>GPR83 + GRIA4, 94% extracellular on both chains</td></tr>
+<tr><td>ecto&ndash;ecto</td><td>1</td><td>GPR83 + GRIA4, 94% extracellular on both chains.
+  Refuted on 2026-11-25: 78% of GPR83&rsquo;s footprint on GRIA4 is the surface GRIA4 uses to
+  dimerise, and the interface goes from 2.21 to 21.16 &#8491; once a second ectodomain copy
+  is present</td></tr>
 <tr><td>extracellular surface</td><td>2</td><td>GPR158 + NMS (97%), GPR37 + MST1 (100%)</td></tr>
 <tr><td>orthosteric pocket</td><td>4</td><td>extracellular plus transmembrane, no cytoplasmic
   contacts, which is where a peptide agonist is supposed to bind</td></tr>
@@ -361,14 +361,6 @@ a report no table referenced.</p>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-NMS-GPR158">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR158__NMS">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5H8A3">NMS</a></td>
 </tr>
 <tr>
-  <td><b>GPR83 + GRIA4</b><br>
-      <span class="mut">3.01 &#8491; &middot; ecto-ecto</span></td>
-  <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
-  <td class="why"><b>partner ectodomain</b>: survives, with its own controls.
-      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature source reports this pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0), and both are plasma-membrane receptors enriched in brain and expressed in the same neuron classes, so a lateral in-membrane contact is physically possible.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GRIA4-GPR83">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P48058">GRIA4</a></td>
-</tr>
-<tr>
   <td><b>MRGPRX2 + SPX</b><br>
       <span class="mut">3.51 &#8491; &middot; orthosteric pocket</span></td>
   <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
@@ -447,6 +439,14 @@ a report no table referenced.</p>
   <td class="why"><b>mature chain</b>: interface lost on cutting.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CCL11 (eotaxin, UniProt P51671) is a secreted chemokine and GPR132 (UniProt Q9UNW8) is a 7-transmembrane cell-membrane GPCR, so a secreted-ligand/membrane-receptor pairing is compartmentally plausible, and STRING, CellPhoneDB and PubMed co-occurrence all return nothing for this pair (0 PubMed hits), so it is novel.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CCL11-GPR132">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR132__CCL11">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UNW8">GPR132</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P51671">CCL11</a></td>
+</tr>
+<tr>
+  <td><b>GPR83 + GRIA4</b><br>
+      <span class="mut">3.01 &#8491; &middot; ecto-ecto</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>partner ectodomain</b>: the interface is the partner&#x27;s own oligomer face (78% of the footprint; 21.16 A with the missing subunit present).
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature source reports this pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0), and both are plasma-membrane receptors enriched in brain and expressed in the same neuron classes, so a lateral in-membrane contact is physically possible.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GRIA4-GPR83">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P48058">GRIA4</a></td>
 </tr>
 <tr>
   <td><b>GPR82 + OLR1</b><br>
