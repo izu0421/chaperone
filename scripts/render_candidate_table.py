@@ -114,8 +114,8 @@ def main() -> None:
 <p>All {len(t)} pairs the agent returned as confirmed, with the construct test that settled
 each one and a link to the triage row that produced its verdict. A rejection with no
 reason attached is indistinguishable from a rejection with a bad reason, and a verdict
-whose source is not linked drifts from it &mdash; which is how a confirmed candidate spent
-a day in a report no table referenced.</p>
+whose source is not linked drifts from it. That is how a confirmed candidate spent a day in
+a report no table referenced.</p>
 <table class="cands">
 <tr><th>Pair</th><th>Standing</th><th>What decided it</th><th>Source</th></tr>
 {chr(10).join(rows)}

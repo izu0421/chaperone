@@ -47,8 +47,8 @@ evidence.</p>
 
 <p>A confident fold is not an interaction. chaperone takes a predicted pair, has an agent
 assemble orthogonal evidence from six databases, and then hands the judgement to fixed
-code &mdash; because an agent that both assembles evidence and judges it will rationalise
-the hypothesis it was given.</p>
+code, because an agent that both assembles evidence and judges it will rationalise the
+hypothesis it was given.</p>
 
 <h2>Runs</h2>
 <a class="card" href="reports/protein_pae_2026-11-24_v2/structures/">
@@ -60,8 +60,8 @@ the hypothesis it was given.</p>
 <a class="card" href="reports/protein_pae_2026-11-24_v2/">
   <b>Orphan GPCR shortlist, 2026-11-24 &rarr;</b>
   <span>57 protein candidates triaged end to end, re-run after a geometry rule was found
-  not to discriminate &mdash; verdicts, the traceable report, the designed experiments and
-  the review audit that objects to four of them.</span></a>
+  not to discriminate. Verdicts, the traceable report, the designed experiments, and the
+  review audit that objects to four of them.</span></a>
 <a class="card" href="reports/orphan_shortlist_2026-11-23/">
   <b>The run before it, 2026-11-23 &rarr;</b>
   <span>102 candidates under the published protein gate. Kept because the arm was
@@ -69,187 +69,208 @@ the hypothesis it was given.</p>
   why.</span></a>
 
 <h2>What the screen found</h2>
-<p style="margin:0 0 10px">68 candidates across both arms: 62 protein pairs and the 6 receptor-molecule pairs the calibrated small-molecule gate admits. The protein count was 57 until 2026-11-25: lowering the clash floor from 1.5 to 0.5 &#8491; admitted five more pairs, they were triaged in their own run, and the assembler&rsquo;s hardcoded list of source runs did not include it. One of the five is a confirmed candidate. The assembler now refuses to write if the current gate admits a pair that no run has triaged.</p>
+<p style="margin:0 0 10px">68 candidates across both arms: 62 protein pairs, and the 6
+receptor&ndash;molecule pairs the calibrated small-molecule gate admits.</p>
 <table>
 <tr><th>verdict</th><th>n</th></tr>
 <tr><td>Confirmed novel</td><td>19</td></tr>
 <tr><td>Insufficient evidence</td><td>17</td></tr>
 <tr><td>Likely artefact (PTM/glycan)</td><td>17</td></tr>
+<tr><td>Likely promiscuous pocket</td><td>6</td></tr>
 <tr><td>Implausible</td><td>5</td></tr>
 <tr><td>Likely subcomplex</td><td>4</td></tr>
-<tr><td>Likely promiscuous pocket</td><td>6</td></tr>
 </table>
-<p style="margin-top:14px">Five faults have been found by auditing what the pipeline
-returned, and the table above is the result of fixing them. Two were wiring: a rule read a
-column that only existed upstream, and another searched a fold directory the screen never
-wrote to. The third was found by extracting the structures. The fourth was in the evidence
-rather than the rule: the cached membrane topology held nothing for 18 of 75 receptors, so
-a class A GPCR read as having no transmembrane region.</p>
+<p style="margin-top:14px">The protein count was 57 until 2026-11-25. Lowering the clash
+floor from 1.5 to 0.5 &#8491; admitted five more pairs, which were triaged in a run of their
+own; the assembler&rsquo;s list of source runs was hardcoded and that run was not on it. One
+of the five is a confirmed candidate, GPR22 + SLITRK2 at interface PAE 2.86, better than 50
+of the 57 pairs that were already in the table. The assembler now refuses to write when the
+current gate admits a pair that no run has triaged.</p>
+
+<h2>Six faults, every one found by reading the output</h2>
+<p>None of these were found by reading the code. Two were wiring: a rule read a column that
+only existed upstream, and another searched a fold directory the screen never wrote to. The
+third turned up when the structures were extracted and looked at. The fourth was in the
+evidence rather than the rule, since the cached membrane topology held nothing for 18 of 75
+receptors, so a class A GPCR read as having no transmembrane region. The sixth is the
+hardcoded run above.</p>
 
 <p>The fifth was the largest, and it was a rule of ours that did not work. Folds were being
 rejected for putting the partner on the <em>cytoplasmic</em> face of the receptor. Measured
-on 256 folds of 16 receptors whose ligands are known, that rule rejects <b>61% of real
-binders</b> and 55% of non-binders &mdash; passing it made a pair <em>less</em> likely to be
-real than the base rate. AlphaFold3 models no lipid bilayer, so where it places a partner
-measures its docking luck, about 40% either way, and not the biology. 47 of the 51
-rejections in the previous shortlist cited it. With it removed from the verdict logic and
-kept only as a note on pose quality, the shortlist goes from 4 to
-18.</p>
+on 256 folds of 16 receptors whose ligands are known, that rule rejects 61% of real binders
+and 55% of non-binders, so passing it made a pair less likely to be real than the base rate.
+AlphaFold3 models no lipid bilayer, so where it puts a partner measures its docking luck,
+about 40% either way, and says nothing about the biology. 47 of the 51 rejections in the
+previous shortlist cited that rule. Removing it from the verdict logic, and keeping it as a
+note on pose quality, took the shortlist from 4 to 19.</p>
 
-<p>53 of the 63 candidates still carry a
-topology violation; it is now reported and not acted on. Seventeen of the
-18 confirmed pairs are low confidence, and the review agent raises a
-compartment objection against four of them. These are hypotheses a broken filter was
-suppressing, not findings. No small-molecule candidate is confirmed: the agent called every
-one a promiscuous pocket from database evidence alone, which is what a 256-fold
-counter-screen concluded independently from the folds.</p>
+<p>58 of the 68 candidates still carry a topology violation, now reported and not acted on.
+18 of the 19 confirmed pairs are low confidence, and the review agent raises a compartment
+objection against four of them. These are hypotheses a broken filter was suppressing, not
+findings. No small-molecule candidate is confirmed: the agent called every one a promiscuous
+pocket from database evidence alone, which is what a 256-fold counter-screen concluded
+independently from the folds.</p>
 
-<h2>Two construct corrections, pulling opposite ways</h2>
-<p>A fold can be wrong about <em>where</em> the partner sits without being wrong about
-<em>whether</em> it binds. Two re-folds test that, and they disagree, which is the useful
-outcome.</p>
+<h2>Re-folding the shortlist as molecules the cell could make</h2>
+<p>A fold can be wrong about <em>where</em> a partner sits and still be right that it binds.
+Five re-folds test that, each with its own controls. Three came back negative, one is
+confounded, and the one positive is narrower than it first looked. The pattern across all
+five is the same: every comparison changed two things at once, and the control was matched
+on the wrong one.</p>
 
-<p><b>Cutting the receptor to its extracellular domain supports one pair.</b> If a
-secreted partner is modelled against the cytoplasmic face, removing the membrane region
-means the wrong face no longer exists. Only two of fourteen receptors have a real domain
-left after that cut. GPR158 holds neuromedin S at interface PAE 1.40&ndash;1.59 across 25
-models, better than the intact receptor&rsquo;s 2.26, while on the same cut domain the best
-of 25 draws is 12.72 for lysozyme, 13.59 for RNase&nbsp;1 and 22.76 for albumin. Every one of
-the 25 candidate models beats every one of the 75 decoy models.</p>
+<h2>More seeds rescue nothing</h2>
+<p>The screen ran one seed. Re-folding the 22 candidates at five seeds with five samples
+each, 25 models per pair, improved every single one of them by a median of 0.46 &#8491;.
+That read as a rescue until the same 25 models were folded for chemokine pairs whose answer
+is known: AUROC 0.947 at one seed, and 0.947 at best-of-25. Best-of-N is a maximum over
+draws, so it lifts known non-binders by exactly as much as known binders, and a candidate
+that improves is improving by arithmetic. Without that control, 22 of 22 improving would
+have read as a result.</p>
 
-<p><b>That construct is not the extracellular domain, though, and the difference matters.</b>
-The cut kept every segment annotated extracellular, which for GPR158 means the 394-residue
-N-terminal domain with three extracellular loops joined onto its C-terminus &mdash; 436
-residues with three artificial junctions. In the best model, 31 of the 87 receptor interface
-residues sit on those 42 stitched residues: 35.6% of the interface on 9.6% of the construct,
-a 3.70&times; enrichment onto surface the intact receptor does not have. The decoys never
-visit it, so they cannot rule out that the stitch is what is being bound &mdash; the precise
-failure the decoys were added to catch. The N-terminal domain alone, with the same decoys,
-is folding now. What stands without it is the intact-receptor fold: 2.26 &#8491; with 54 of
-60 interface residues on genuine extracellular positions.</p>
+<h2>Cutting the receptor to its extracellular domain</h2>
+<p>If a secreted partner is modelled against the cytoplasmic face, removing the membrane
+region means the wrong face no longer exists. Only two of fourteen receptors have a real
+domain left after that cut, and only one of the three constructs built actually folds. Mean
+receptor pLDDT across 25 draws is 55.2 to 60.9 for GPR158, against 50.0 for the intact
+receptor; GPR37&rsquo;s cut construct sits at 23.7 to 27.5 against 53.8 intact, and
+GPR142&rsquo;s at 19.7 to 26.8 against 64.8. AlphaFold3 models two of the three as random
+coil, so their interface numbers are computed between a decoy and an unfolded chain.</p>
 
-<p><b>Cutting the signal peptide off the ligand looked decisive, and the comparison was
-confounded.</b> Every secreted partner entered the screen as its full preprohormone,
-including the 20&ndash;26 residues that are cleaved in the ER and are absent when the ligand
-meets the receptor. Re-folding the mature chain moved interface PAE by a median of
-+2.08 &#8491; across 46 pairs, 17 of them past 8 &#8491;. That was reported here as the
-signal peptide having supplied the interface. <b>An adversarial audit of the arm found the
-reason it is not.</b></p>
+<p>This page previously reported GPR37 + MST1 as failing its decoys and GPR142 + PACAP as
+overlapping them. Both statements are withdrawn. GPR37&rsquo;s is unreadable for the reason
+above, and GPR142&rsquo;s was the wrong direction on the arm&rsquo;s own numbers: PACAP
+reaches 3.32 &#8491; against decoys at 5.74, 11.67 and 12.36, beating all three. These
+constructs were built on the length of the annotated segment, and segment length is not the
+same thing as a construct that folds. The scorer now withholds any verdict whose receptor
+chain falls below three quarters of the intact receptor&rsquo;s pLDDT.</p>
 
-<p>The screen folded with unfiltered alignments; every re-fold arm builds its alignment with
-hhfilter at 90% identity, which is a median 7.5&times; shallower &mdash; shallower in 40 of
-40 pairs checked. So the comparison changed the construct and the alignment at once. On the
-18 pairs that happen to have a full-length fold built with the re-fold arm&rsquo;s own
-alignment, the two can be separated:</p>
+<p>GPR158 is the one that folds, and it holds neuromedin S at interface PAE 1.40 to 1.59
+across 25 models, better than the intact receptor&rsquo;s 2.26. On the same cut domain the
+best of 25 draws is 12.72 for lysozyme, 13.59 for RNase&nbsp;1 and 22.76 for albumin, so
+every one of the 25 candidate models beats every one of the 75 decoy models.</p>
+
+<p>That construct is not the extracellular domain, though, and the difference matters. The
+cut kept every segment annotated extracellular, which for GPR158 means the 394-residue
+N-terminal domain with three extracellular loops joined onto its C-terminus: 436 residues
+with three artificial junctions. In the best model, 31 of the 87 receptor interface residues
+sit on those 42 stitched residues. That is 35.6% of the interface on 9.6% of the construct,
+a 3.70&times; enrichment onto surface the intact receptor does not have, and the decoys
+never visit it. They therefore cannot rule out that the stitch is what is being bound, which
+is the precise failure the decoys were added to catch. The N-terminal domain alone, with the
+same decoys, is folding now. What stands without it is the intact-receptor fold: 2.26
+&#8491;, with 54 of 60 interface residues on genuine extracellular positions.</p>
+
+<h2>Cutting the signal peptide off the ligand</h2>
+<p>Every secreted partner entered the screen as its full preprohormone, including the 20 to
+26 residues that are cleaved in the ER and are absent when the ligand meets the receptor.
+Re-folding the mature chain moved interface PAE by a median of +2.08 &#8491; across 46
+pairs, 17 of them past 8 &#8491;, and this page reported that as the signal peptide having
+supplied the interface. An adversarial audit of the arm found the reason it is not.</p>
+
+<p>The screen folded with unfiltered alignments. Every re-fold arm builds its alignment with
+hhfilter at 90% identity, which is a median 7.5&times; shallower, and shallower in 40 of 40
+pairs checked. The comparison therefore changed the construct and the alignment at once. On
+the 25 pairs that now have a full-length fold built with the re-fold arm&rsquo;s own
+alignment, the two come apart:</p>
 
 <table>
 <tr><th>fold</th><th>median interface PAE</th><th>above 8 &#8491;</th></tr>
-<tr><td>screen: deep alignment, full length</td><td>3.06</td><td>0 of 18</td></tr>
-<tr><td>re-fold arm&rsquo;s alignment, full length</td><td>3.53</td><td>5 of 18</td></tr>
-<tr><td>re-fold arm&rsquo;s alignment, mature chain</td><td>5.68</td><td>8 of 18</td></tr>
+<tr><td>screen: deep alignment, full length</td><td>3.16</td><td>0 of 25</td></tr>
+<tr><td>re-fold alignment, full length</td><td>4.08</td><td>6 of 25</td></tr>
+<tr><td>re-fold alignment, mature chain</td><td>5.78</td><td>10 of 25</td></tr>
 </table>
 
-<p>The alignment alone moves it +0.55 &#8491; (Wilcoxon p = 0.014). <b>The cut itself, once
-the alignment is held fixed, moves it +0.23 &#8491; &mdash; p = 0.35, not significant.</b>
-Five of the eight pairs the arm called collapsed were already above 8 &#8491; at full length
-with no cut at all. The chemokine control could not catch this, because both its mature and
-its full-length folds are hhfiltered: it tested the construct and never the alignment, and
-its answer &mdash; 12 of 12 known binders keep their interface after the cut &mdash; agrees
-with the +0.23 &#8491;. Both say the cut is harmless.</p>
+<p>The alignment on its own moves interface PAE by +0.71 &#8491; (Wilcoxon p = 0.0010). Hold
+the alignment fixed and the cut moves it +0.18 &#8491;, p = 0.24, which is not significant.
+Several of the pairs this arm called collapsed were already above 8 &#8491; at full length
+with nothing cut at all.</p>
 
-<p>What this leaves is a different and more useful result: <b>the screen&rsquo;s
-gate-passing poses are not robust to alignment depth.</b> Five of eighteen fail at full
-length on a 7.5&times; shallower alignment, with nothing cut. The depth-matched baseline for
-the remaining pairs is folding now, and no construct claim here can be attributed until its
-own uncut fold exists on the same alignment.</p>
+<p>The chemokine control could not catch this, because both its mature folds and its
+full-length folds are hhfiltered: it tested the construct and never the alignment. Its
+answer agrees with the depth-matched number anyway. Cutting the signal peptide off 24
+chemokine pairs whose answer is known improves discrimination, from AUROC 0.947 to 0.986,
+and 12 of 12 known binders keep their interface. Known binders shift &minus;0.36 &#8491; on
+cutting and known non-binders &minus;0.62 &#8491;, so the cut is symmetric and introduces no
+bias of its own. Both measurements say the same thing: the cut is harmless.</p>
 
-<p>The control that was run is still worth stating, since it is what agrees with the
-depth-matched number. The same cut was made on 24 chemokine pairs whose answer is known
-&mdash; every chemokine is secreted with a signal peptide and the mature chain is the
-physiological ligand. The cut is not destructive. It is an improvement:</p>
+<p>The candidate-versus-control tests reported here, a Mann&ndash;Whitney on the shift and a
+Fisher test on the collapse rate, compared the candidates&rsquo; confounded shift against
+the control&rsquo;s unconfounded one. They are withdrawn. Two limits of the control are
+worth keeping: its partners are 68 to 373 residues against the candidates&rsquo; 74 to
+1,442, so it is silent about large partners, and 0 of 12 puts only a 26% upper bound on a
+cut-induced collapse rate.</p>
 
-<table>
-<tr><th>construct</th><th>AUROC on known answers</th><th>binders keeping an interface</th></tr>
-<tr><td>full chain, as the screen ran</td><td>0.947</td><td>&mdash;</td></tr>
-<tr><td><b>mature chain</b></td><td><b>0.986</b></td><td><b>12 of 12</b></td></tr>
-</table>
+<p>What this leaves is a different result, and a more useful one: the screen&rsquo;s
+gate-passing poses are not robust to alignment depth. Six of 25 fail at full length on a
+7.5&times; shallower alignment with nothing cut. The depth-matched baseline for the
+remaining pairs is folding now, and until a pair has its own uncut fold on the same
+alignment, this arm attributes nothing about it in either direction. One candidate has
+already moved into that category: GPR83 + SLITRK3 fails at 17.03 &#8491; uncut, so its
+mature-chain collapse says nothing about the construct.</p>
 
-<p>Known binders shift &minus;0.36 &#8491; on cutting and known non-binders
-&minus;0.62 &#8491;: neutral to slightly helpful, and symmetric, so the cut introduces no
-bias of its own. The candidate-versus-control tests that were reported here &mdash;
-Mann&ndash;Whitney on the shift, Fisher on the collapse rate &mdash; compared the
-candidates&rsquo; confounded shift against the control&rsquo;s unconfounded one, so they are
-withdrawn. Two further limits of this control are worth keeping: its partners are 68&ndash;373
-residues against the candidates&rsquo; 74&ndash;1,442, so it is silent about large partners;
-and 0 of 12 puts only a 26% upper bound on a cut-induced collapse rate.</p>
+<h2>Cutting the partner to its ectodomain, and what it does not remove</h2>
+<p>Ten candidates have a membrane partner whose cytoplasmic tail was folded along with
+everything else, and that tail can dock on the receptor&rsquo;s cytoplasmic face exactly as
+a signal peptide can. Folding the receptor against the partner&rsquo;s ectodomain alone
+removes it, with permuted negatives: the same receptor against other candidates&rsquo;
+ectodomains, matched on size, compartment, cut and alignment.</p>
 
-<p><b>Folding more seeds rescues nothing.</b> The screen ran one seed, and re-folding the
-22 candidates at five seeds with five samples each &mdash; 25 models per pair &mdash;
-improved every one of them, by a median of 0.46 &#8491;. That looked like a rescue until
-the same 25 models were folded for chemokine pairs whose answer is known: AUROC 0.947 at
-one seed, 0.947 at best-of-25. Identical. Best-of-N is a maximum over draws and lifts
-known non-binders by exactly as much as known binders, so a candidate that improves is
-improving by arithmetic. 22 of 22 improving would have read as a rescue without that
-control.</p>
+<p>Cutting the partner removes the partner&rsquo;s impossible half and leaves the
+receptor&rsquo;s. Five of nine candidates keep a mostly cytoplasmic receptor face after the
+cut, GPR158 + EPHA5 at 98% and GPR37 + CADM4 at 100%, and so do their permuted negatives, at
+58%, 95% and 100%. GPR158 + EPHA5 beat its negative 3.95 against 15.21 &#8491;, which read
+as a clean pass; both poses are on a face the partner cannot reach, so that margin compares
+two things that cannot exist. The same check on the mature-chain arm finds 9 of 41 folds
+placing a secreted partner on the cytoplasmic face, GPRC5C + IGF2 at 100%, which had been
+reporting a pass. A cut chain is renumbered from 1, so the span&rsquo;s start has to be
+added back before any residue-range lookup; without that the contacts land in the wrong
+domain and the numbers still look reasonable.</p>
 
-<p><b>And the cut face has to be tested per receptor &mdash; starting with whether it
-folds at all.</b> Of the three receptors truncated, only GPR158&rsquo;s construct folds.
-Mean receptor pLDDT across 25 draws is 55.2&ndash;60.9 for GPR158, against 50.0 for the
-intact receptor; GPR37&rsquo;s cut construct sits at 23.7&ndash;27.5 against 53.8 intact, and
-GPR142&rsquo;s at 19.7&ndash;26.8 against 64.8. AlphaFold3 models two of the three as random
-coil, so their interface numbers are computed between a decoy and an unfolded chain and
-support nothing in either direction.</p>
+<h2>Folding the subcomplexes whole</h2>
+<p>Four candidates were set aside as likely subcomplexes, each naming the subunit the model
+was missing. That verdict is a request rather than a rejection, so all four were folded with
+the missing subunits present. All four lose the interface: GPR101 + FGA goes from 2.36 to
+9.62 &#8491; with FGB and FGG present, GPR39 + FGA from 3.59 to 19.85, GPR63 + GP1BB from
+2.75 to 21.59 with GP1BA and GP9, and GPR6 + GRIN2D from 2.02 to 10.91 with GRIN1. These
+comparisons use the screen&rsquo;s own number as the baseline, so they carry the same
+alignment confound as the mature arm, and their depth-matched baselines are folding.</p>
 
-<p>This page previously reported GPR37 + MST1 as failing its decoys and GPR142 + PACAP as
-overlapping them. <b>Both statements are withdrawn.</b> GPR37&rsquo;s is unreadable for the
-reason above, and GPR142&rsquo;s was the wrong direction on the arm&rsquo;s own numbers:
-PACAP reaches 3.32 &#8491; against decoys at 5.74, 11.67 and 12.36, beating all three. The
-length of the annotated segment was used as the gate for building these constructs, and
-segment length is not the same thing as a construct that folds; the scorer now withholds any
-verdict whose receptor chain falls below three quarters of the intact receptor&rsquo;s
-pLDDT.</p>
-
-<p>That collapse is not a broken construct: the mature sequences match the UniProt chain
-boundaries, every alignment row is still in the query frame, and both chains still fold
-&mdash; receptor pLDDT moves by a median of &minus;0.4 and partner pLDDT by +0.8 against
-each pair's own full-length fold. Only the interface goes. For these pairs the signal
-peptide was not misplacing the partner, it was <em>supplying</em> the interface, and the
-confidence recorded for them belongs to a peptide that does not exist in the cell.</p>
-
-<p><b>Where each interface sits decides which test can speak for it.</b> The membrane
-topology of both chains, read off the screen's own folds, sorts the confirmed list into
-five kinds. It is used here as a description and never as a veto: as a veto the same rule
-rejects 61% of known binders, which is how the first pass lost 43 candidates.</p>
+<h2>Which test can speak for which candidate</h2>
+<p>The membrane topology of both chains, read off the screen&rsquo;s own folds, sorts the
+confirmed list into five kinds. It is used as a description and never as a veto, since as a
+veto the same rule rejects 61% of known binders.</p>
 
 <table>
 <tr><th>kind</th><th>n</th><th>what it means</th></tr>
 <tr><td>ecto&ndash;ecto</td><td>1</td><td>GPR83 + GRIA4, 94% extracellular on both chains</td></tr>
 <tr><td>extracellular surface</td><td>2</td><td>GPR158 + NMS (97%), GPR37 + MST1 (100%)</td></tr>
 <tr><td>orthosteric pocket</td><td>4</td><td>extracellular plus transmembrane, no cytoplasmic
-  contacts &mdash; where a peptide agonist is supposed to bind</td></tr>
-<tr><td>tail-mediated</td><td>9</td><td>the partner's cytoplasmic tail does the binding. Possible
-  for two proteins in one membrane, but a weaker claim, and only the ectodomain arm can test it</td></tr>
-<tr><td>impossible</td><td>2</td><td>GPRC5C + IGF2 (81% cytoplasmic), GPR31 + TDGF1 (58%) &mdash;
-  a <em>secreted</em> partner with no route to the cytosol</td></tr>
+  contacts, which is where a peptide agonist is supposed to bind</td></tr>
+<tr><td>tail-mediated</td><td>10</td><td>the partner&rsquo;s cytoplasmic tail does the binding.
+  Possible for two proteins in one membrane, but a weaker claim, and only the ectodomain arm
+  can test it</td></tr>
+<tr><td>impossible</td><td>2</td><td>GPRC5C + IGF2 (81% cytoplasmic) and GPR31 + TDGF1 (58%),
+  both with a <em>secreted</em> partner that has no route to the cytosol</td></tr>
 </table>
 
-<p>So the shortlist now stands on tests rather than on a threshold: one candidate,
-GPR158 + neuromedin S, passes every test that could be run on it; six are refuted by a
-construct test or by physics; and ten are waiting on the ectodomain arm, which folds the
-receptor against the partner's ectodomain alone with permuted ectodomains as negatives.</p>
+<p>So the shortlist stands on tests instead of on a threshold. Of the 19 confirmed pairs,
+GPR158 + neuromedin S passes every test that could be run on it, 9 are refuted by a
+construct test or by physics, 1 is weakened, 1 cannot be attributed either way, and the
+remaining 7 are waiting on folds that are running now.</p>
 
-<p><b>The metabolite arm is closed.</b> All six receptor&ndash;molecule pairs now carry the
-same verdict: the molecule has no measured activity at that receptor, and is promiscuous
-enough that a confident pocket fold is the expected result rather than evidence. The two
-pairs left unresolved by a ChEMBL outage were re-run once the service recovered &mdash;
-GABA has no recorded activity at either GPR26 or GPR150 and 105 distinct measured targets
-elsewhere. A tool failure is not a result.</p>
+<h2>The metabolite arm is closed</h2>
+<p>All six receptor&ndash;molecule pairs carry the same verdict: the molecule has no measured
+activity at that receptor, and is promiscuous enough that a confident pocket fold is the
+expected result. The two pairs left unresolved by a ChEMBL outage were re-run once the
+service recovered. GABA has no recorded activity at either GPR26 or GPR150, and 105 distinct
+measured targets elsewhere. A tool failure is not a result, and leaving those two as
+unresolved would have reported an outage as a property of the biology.</p>
 
-<p><b>And the step that chose what to fold enriched nothing.</b> The screen folded
-5,000 of about 78,900 eligible receptor&ndash;partner combinations, 6.3% of them, chosen by
-a spatial recurrence rank. That rank is the screen&rsquo;s only enrichment step, and it
-carries no information about the gate&rsquo;s own quantity: Spearman &rho; = &minus;0.011
-between rank and interface PAE across 4,767 pairs, p = 0.43.</p>
+<h2>The step that chose what to fold enriched nothing</h2>
+<p>The screen folded 5,000 of about 78,900 eligible receptor&ndash;partner combinations,
+6.3% of them, chosen by a spatial recurrence rank. That rank is the screen&rsquo;s only
+enrichment step, and it carries no information about the gate&rsquo;s own quantity: Spearman
+&rho; = &minus;0.011 between rank and interface PAE across 4,767 pairs, p = 0.43.</p>
 
 <table>
 <tr><th>spatial rank</th><th>pairs</th><th>clear the gate</th></tr>
@@ -260,40 +281,39 @@ between rank and interface PAE across 4,767 pairs, p = 0.43.</p>
 <tr><td>Q5, worst ranked</td><td>954</td><td>22 (2.31%)</td></tr>
 </table>
 
-<p><b>An earlier version of this page read that table as a graded anti-correlation,
-on a Cochran&ndash;Armitage trend of z = +3.34, p = 0.0008. That was wrong, and an
-adversarial audit of the analysis caught it.</b> Three things were missed:</p>
+<p>An earlier version of this page read that table as a graded anti-correlation, on a
+Cochran&ndash;Armitage trend of z = +3.34, p = 0.0008. That was wrong, and an adversarial
+audit of the analysis caught three things it had missed.</p>
 
 <ul>
-<li><b>There is no trend.</b> Drop Q5 and re-test Q1&ndash;Q4 and the rates are flat
-  &mdash; 0.79, 0.79, 1.18, 0.92% &mdash; with z = +0.36, p = 0.72. The whole signal is the
-  worst-ranked fifth against the rest, which is the single lucky split the analysis claimed
-  to have ruled out by testing five quintiles.</li>
-<li><b>The best-ranked quintile is not low.</b> Q1 against Q2&ndash;Q4 gives OR 0.62,
-  p = 0.33, so the headline paired a non-significant low quintile with the one significant
-  high one.</li>
-<li><b>A third of the gap is receptor composition.</b> The within-receptor permutation null
-  is centred at +0.55 pp, not at zero, and the analytic receptor term is +0.56 pp of the
-  observed +1.68 pp. Held fixed by receptor the trend is z = +2.02, p = 0.044.</li>
+<li>There is no trend. Drop Q5 and re-test Q1&ndash;Q4 and the rates are flat, 0.79, 0.79,
+  1.18 and 0.92%, with z = +0.36, p = 0.72. The whole signal is the worst-ranked fifth
+  against the rest, which is the single lucky split the analysis claimed to have ruled out
+  by testing five quintiles.</li>
+<li>The best-ranked quintile is not low. Q1 against Q2&ndash;Q4 gives OR 0.62, p = 0.33, so
+  the headline paired a non-significant low quintile with the one significant high one.</li>
+<li>A third of the gap is receptor composition. The within-receptor permutation null is
+  centred at +0.55 pp instead of at zero, and the analytic receptor term is +0.56 pp of the
+  observed +1.68 pp. Held fixed by receptor, the trend is z = +2.02, p = 0.044.</li>
 </ul>
 
-<p>What survives is narrower: the worst-ranked fifth clears the gate 2.55 times as often as
-the rest (p = 0.0012), a third of that is which receptors sit where, and the effect exists
-only in the extreme tail of one metric &mdash; widen the PAE cut and it disappears, and on
-interface pLDDT the relationship runs the other way (&rho; = &minus;0.060, p &lt; 0.001).
-The honest summary is that the spatial rank and the structural gate are unrelated. The
-5,000 folded pairs are not an enriched sample, and they are not a depleted one either. A
-random draw from the remaining ~74,000 is still the only thing that measures the
-selection&rsquo;s effect directly; at the observed rate, 1,500 folds would detect a doubling
-84% of the time and 500 would detect it 43% of the time.</p>
+<p>What survives is narrower. The worst-ranked fifth clears the gate 2.55 times as often as
+the rest (p = 0.0012), a third of that is which receptors sit where, and the effect lives
+only in the extreme tail of one metric: widen the PAE cut and it disappears, and on
+interface pLDDT the relationship runs the other way (&rho; = &minus;0.060, p &lt; 0.001). So
+the spatial rank and the structural gate are unrelated, and the 5,000 folded pairs are
+neither an enriched sample nor a depleted one. A random draw from the remaining ~74,000 is
+the only thing that measures the selection&rsquo;s effect directly; at the observed rate,
+1,500 folds would detect a doubling 84% of the time and 500 would detect it 43% of the
+time.</p>
 
 <!-- CANDIDATE-TABLE-START -->
 <h2>Every candidate, and what decided it</h2>
 <p>All 19 pairs the agent returned as confirmed, with the construct test that settled
 each one and a link to the triage row that produced its verdict. A rejection with no
 reason attached is indistinguishable from a rejection with a bad reason, and a verdict
-whose source is not linked drifts from it &mdash; which is how a confirmed candidate spent
-a day in a report no table referenced.</p>
+whose source is not linked drifts from it. That is how a confirmed candidate spent a day in
+a report no table referenced.</p>
 <table class="cands">
 <tr><th>Pair</th><th>Standing</th><th>What decided it</th><th>Source</th></tr>
 <tr>
@@ -305,36 +325,12 @@ a day in a report no table referenced.</p>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-NMS-GPR158">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR158__NMS">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5H8A3">NMS</a></td>
 </tr>
 <tr>
-  <td><b>MRGPRX2 + GNRH2</b><br>
-      <span class="mut">2.2 &#8491; &middot; orthosteric pocket</span></td>
-  <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
-  <td class="why"><b>mature chain</b>: survives, with its own controls.
-      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. GNRH2 (UniProt O43555, progonadoliberin-2) is HPA-classed &quot;Predicted secreted proteins&quot;, secreted to blood, function &quot;hormone&quot;; MRGPRX2 (Q96LB1) is a plasma-membrane GPCR whose documented function is to be a promiscuous mast-cell receptor for BASIC secretagogue peptides (substance P, cortistatin-14, PAMP-12, LL-37, beta-defensins, dynorphins, PMX-53), so a cationic decapeptide hormone binding it is mechanistically the right class of interaction rather than an implausible one.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GNRH2-MRGPRX2">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#MRGPRX2__GNRH2">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96LB1">MRGPRX2</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O43555">GNRH2</a></td>
-</tr>
-<tr>
-  <td><b>GPR65 + TNFRSF8</b><br>
-      <span class="mut">2.95 &#8491; &middot; tail-mediated</span></td>
-  <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
-  <td class="why"><b>mature chain</b>: survives, with its own controls.
-      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed co-occurrence returned 0 papers.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF8-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__TNFRSF8">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P28908">TNFRSF8</a></td>
-</tr>
-<tr>
   <td><b>MRGPRX2 + SPX</b><br>
       <span class="mut">3.51 &#8491; &middot; orthosteric pocket</span></td>
   <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
   <td class="why"><b>mature chain</b>: survives, with its own controls.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. SPX (Q9BT56, spexin) is an HPA-annotated secreted blood hormone and MRGPRX2 (Q96LB1) is a mast-cell-specific plasma-membrane GPCR, so a secreted-peptide/receptor pairing is compartment-plausible and does not require same-cell coexpression; MRGPRX2&#x27;s UniProt FUNCTION explicitly describes it as a promiscuous receptor for endogenous peptide secretagogues (substance P, cortistatin-14, PAMP-12, LL-37, beta-defensins, dynorphins, CXCL17), which makes a short secreted peptide like spexin a mechanistically reasonable candidate agonist.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-SPX-MRGPRX2">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96LB1">MRGPRX2</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9BT56">SPX</a></td>
-</tr>
-<tr>
-  <td><b>GPR83 + GRIA4</b><br>
-      <span class="mut">3.01 &#8491; &middot; ecto-ecto</span></td>
-  <td><span class="badge" style="background:#C98A93">Weakened</span></td>
-  <td class="why"><b>mature chain</b>: interface weakens to 4.02 &#8491;.
-      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature source reports this pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0), and both are plasma-membrane receptors enriched in brain and expressed in the same neuron classes, so a lateral in-membrane contact is physically possible.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GRIA4-GPR83">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P48058">GRIA4</a></td>
 </tr>
 <tr>
   <td><b>MAS1L + CALCB</b><br>
@@ -345,12 +341,12 @@ a day in a report no table referenced.</p>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CALCB-MAS1L">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P35410">MAS1L</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P10092">CALCB</a></td>
 </tr>
 <tr>
-  <td><b>GPR65 + HCST</b><br>
-      <span class="mut">3.58 &#8491; &middot; tail-mediated</span></td>
-  <td><span class="badge" style="background:#C98A93">Weakened</span></td>
-  <td class="why"><b>mature chain</b>: interface weakens to 5.17 &#8491;.
-      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. HCST (DAP10, UniProt Q9UBK5) and GPR65 (UniProt Q8IYL9) are both membrane proteins enhanced in the same tissues (bone marrow and lymphoid tissue) with overlapping vesicle/plasma-membrane compartments, and no database or literature records the pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-HCST-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__HCST">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UBK5">HCST</a></td>
+  <td><b>MRGPRX2 + GNRH2</b><br>
+      <span class="mut">2.2 &#8491; &middot; orthosteric pocket</span></td>
+  <td><span class="badge" style="background:#9A9AA2">Gate only</span></td>
+  <td class="why">no construct test has returned yet; the gate is the only evidence.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. GNRH2 (UniProt O43555, progonadoliberin-2) is HPA-classed &quot;Predicted secreted proteins&quot;, secreted to blood, function &quot;hormone&quot;; MRGPRX2 (Q96LB1) is a plasma-membrane GPCR whose documented function is to be a promiscuous mast-cell receptor for BASIC secretagogue peptides (substance P, cortistatin-14, PAMP-12, LL-37, beta-defensins, dynorphins, PMX-53), so a cationic decapeptide hormone binding it is mechanistically the right class of interaction rather than an implausible one.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GNRH2-MRGPRX2">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#MRGPRX2__GNRH2">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96LB1">MRGPRX2</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O43555">GNRH2</a></td>
 </tr>
 <tr>
   <td><b>GPR22 + SLITRK2</b><br>
@@ -361,12 +357,44 @@ a day in a report no table referenced.</p>
   <td class="lnk"><a href="reports/protein_pae_clashfloor/report.html#pair-SLITRK2-GPR22">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q99680">GPR22</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9H156">SLITRK2</a></td>
 </tr>
 <tr>
+  <td><b>GPR65 + TNFRSF8</b><br>
+      <span class="mut">2.95 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#9A9AA2">Gate only</span></td>
+  <td class="why">no construct test has returned yet; the gate is the only evidence.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed co-occurrence returned 0 papers.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF8-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__TNFRSF8">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P28908">TNFRSF8</a></td>
+</tr>
+<tr>
+  <td><b>GPR83 + GRIA4</b><br>
+      <span class="mut">3.01 &#8491; &middot; ecto-ecto</span></td>
+  <td><span class="badge" style="background:#9A9AA2">Gate only</span></td>
+  <td class="why">no construct test has returned yet; the gate is the only evidence.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature source reports this pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0), and both are plasma-membrane receptors enriched in brain and expressed in the same neuron classes, so a lateral in-membrane contact is physically possible.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GRIA4-GPR83">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P48058">GRIA4</a></td>
+</tr>
+<tr>
   <td><b>GPR65 + TNFRSF13B</b><br>
       <span class="mut">3.09 &#8491; &middot; tail-mediated</span></td>
   <td><span class="badge" style="background:#9A9AA2">Gate only</span></td>
   <td class="why">no construct test has returned yet; the gate is the only evidence.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature records this pair: STRING found nothing, CellPhoneDB found nothing, and PubMed co-occurrence returned 0 papers.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF13B-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__TNFRSF13B">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O14836">TNFRSF13B</a></td>
+</tr>
+<tr>
+  <td><b>GPR65 + HCST</b><br>
+      <span class="mut">3.58 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#9A9AA2">Gate only</span></td>
+  <td class="why">no construct test has returned yet; the gate is the only evidence.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. HCST (DAP10, UniProt Q9UBK5) and GPR65 (UniProt Q8IYL9) are both membrane proteins enhanced in the same tissues (bone marrow and lymphoid tissue) with overlapping vesicle/plasma-membrane compartments, and no database or literature records the pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-HCST-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__HCST">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UBK5">HCST</a></td>
+</tr>
+<tr>
+  <td><b>GPR83 + SLITRK3</b><br>
+      <span class="mut">3.08 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#9A9AA2">2d</span></td>
+  <td class="why">no construct test has returned yet; the gate is the only evidence.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. SLITRK3 (single-pass transmembrane LRR protein, UniProt O94933) and GPR83 (7-TM peptide GPCR, UniProt Q9NYM4) are both expressed in brain excitatory, inhibitory and other neurons per HPA, and no database or literature record of the pair exists (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-SLITRK3-GPR83">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR83__SLITRK3">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94933">SLITRK3</a></td>
 </tr>
 <tr>
   <td><b>GPRC5C + IGF2</b><br>
@@ -380,7 +408,7 @@ a day in a report no table referenced.</p>
   <td><b>GPR37 + CADM4</b><br>
       <span class="mut">2.54 &#8491; &middot; tail-mediated</span></td>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
-  <td class="why"><b>mature chain</b>: interface lost; <b>partner ectodomain</b>: 100% cytoplasmic receptor face.
+  <td class="why"><b>partner ectodomain</b>: 100% cytoplasmic receptor face.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CADM4 and GPR37 are both membrane proteins enriched in brain and in oligodendrocytes (HPA), and UniProt independently ties both to oligodendrocyte differentiation and CNS myelination, so a cis interaction on the same cell is biologically plausible.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CADM4-GPR37">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O15354">GPR37</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8NFZ8">CADM4</a></td>
 </tr>
@@ -388,7 +416,7 @@ a day in a report no table referenced.</p>
   <td><b>GPR132 + CCL11</b><br>
       <span class="mut">3.01 &#8491; &middot; orthosteric pocket</span></td>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
-  <td class="why"><b>mature chain</b>: interface lost.
+  <td class="why"><b>mature chain</b>: interface lost on cutting.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CCL11 (eotaxin, UniProt P51671) is a secreted chemokine and GPR132 (UniProt Q9UNW8) is a 7-transmembrane cell-membrane GPCR, so a secreted-ligand/membrane-receptor pairing is compartmentally plausible, and STRING, CellPhoneDB and PubMed co-occurrence all return nothing for this pair (0 PubMed hits), so it is novel.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CCL11-GPR132">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR132__CCL11">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UNW8">GPR132</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P51671">CCL11</a></td>
 </tr>
@@ -401,18 +429,10 @@ a day in a report no table referenced.</p>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-OLR1-GPR82">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96P67">GPR82</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P78380">OLR1</a></td>
 </tr>
 <tr>
-  <td><b>GPR83 + SLITRK3</b><br>
-      <span class="mut">3.08 &#8491; &middot; tail-mediated</span></td>
-  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
-  <td class="why"><b>mature chain</b>: interface lost.
-      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. SLITRK3 (single-pass transmembrane LRR protein, UniProt O94933) and GPR83 (7-TM peptide GPCR, UniProt Q9NYM4) are both expressed in brain excitatory, inhibitory and other neurons per HPA, and no database or literature record of the pair exists (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-SLITRK3-GPR83">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR83__SLITRK3">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94933">SLITRK3</a></td>
-</tr>
-<tr>
   <td><b>GPR37 + MST1</b><br>
       <span class="mut">3.22 &#8491; &middot; extracellular surface</span></td>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
-  <td class="why"><b>receptor ectodomain</b>: withheld, the truncated receptor does not fold; <b>mature chain</b>: interface lost.
+  <td class="why"><b>receptor ectodomain</b>: withheld, the truncated receptor does not fold; <b>mature chain</b>: interface lost on cutting.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed co-mention count is 0.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-MST1-GPR37">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR37__MST1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O15354">GPR37</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P26927">MST1</a></td>
 </tr>
@@ -428,7 +448,7 @@ a day in a report no table referenced.</p>
   <td><b>GPR22 + CLSTN1</b><br>
       <span class="mut">3.41 &#8491; &middot; tail-mediated</span></td>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
-  <td class="why"><b>mature chain</b>: interface lost; <b>partner ectodomain</b>: 95% cytoplasmic receptor face.
+  <td class="why"><b>partner ectodomain</b>: 95% cytoplasmic receptor face.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed returned 0 co-mentions.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CLSTN1-GPR22">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR22__CLSTN1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q99680">GPR22</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94985">CLSTN1</a></td>
 </tr>
@@ -436,7 +456,7 @@ a day in a report no table referenced.</p>
   <td><b>GPR4 + FLT1</b><br>
       <span class="mut">3.45 &#8491; &middot; tail-mediated</span></td>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
-  <td class="why"><b>mature chain</b>: interface weakens to 5.34 &#8491;; <b>partner ectodomain</b>: 46% cytoplasmic receptor face.
+  <td class="why"><b>partner ectodomain</b>: 46% cytoplasmic receptor face.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database records this pair (STRING found nothing, CellPhoneDB found nothing, and the single PubMed co-mention is a VEGFA gene-network analysis, not a binding study), so the interaction is novel.</div></td>
   <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-FLT1-GPR4">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR4__FLT1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P46093">GPR4</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P17948">FLT1</a></td>
 </tr>
@@ -452,7 +472,7 @@ a day in a report no table referenced.</p>
 <!-- CANDIDATE-TABLE-END -->
 
 <h2>Code</h2>
-<p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;
+<p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a>:
 the pipeline, the deterministic gate and its rules, and the tests.</p>
 
 <footer>Part of the human spatial atlas work:
