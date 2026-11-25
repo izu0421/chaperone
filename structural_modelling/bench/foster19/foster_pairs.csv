@@ -1,0 +1,781 @@
+peptide,pep_ref,pep_acc,sequence,receptor,label,target_text,resolved_by
+Thyrotropin-releasing hormone,3,,QHP,TRHR,1,Thyrotropin-releasing hormone receptors,gtopdb family
+Leu-enkephalin,14,,YGGFL,OPRD1,1,Opioid receptors,gtopdb family
+Leu-enkephalin,14,,YGGFL,OPRK1,1,Opioid receptors,gtopdb family
+Leu-enkephalin,14,,YGGFL,OPRL1,1,Opioid receptors,gtopdb family
+Leu-enkephalin,14,,YGGFL,OPRM1,1,Opioid receptors,gtopdb family
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,NPFFR1,1,Neuropeptide FF receptors,manual
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,NPFFR2,1,Neuropeptide FF receptors,manual
+Angiotensin II,35,,DRVYIHPF,AGTR1,1,AT1,manual
+Urotensin-2B,37,,ACFWKYCV,UTS2R,1,UT receptor,manual
+Arg-vasopressin,44,,CYFQNCPRG,OXTR,1,Oxytocin and vasopressin receptors,manual
+Arg-vasopressin,44,,CYFQNCPRG,AVPR1A,1,Oxytocin and vasopressin receptors,manual
+Arg-vasopressin,44,,CYFQNCPRG,AVPR1B,1,Oxytocin and vasopressin receptors,manual
+Arg-vasopressin,44,,CYFQNCPRG,AVPR2,1,Oxytocin and vasopressin receptors,manual
+Oxytocin,45,,CYIQNCPLG,OXTR,1,Oxytocin and vasopressin receptors,manual
+Oxytocin,45,,CYIQNCPLG,AVPR1A,1,Oxytocin and vasopressin receptors,manual
+Oxytocin,45,,CYIQNCPLG,AVPR1B,1,Oxytocin and vasopressin receptors,manual
+Oxytocin,45,,CYIQNCPLG,AVPR2,1,Oxytocin and vasopressin receptors,manual
+Beta-neoendorphin,46,,YGGFLRKYP,OPRK1,1,Kappa receptor,manual
+Neuromedin B,59,,GNLWATGHFM,BRS3,1,Bombesin receptors (BB1 and BB2),gtopdb family
+Neuromedin B,59,,GNLWATGHFM,GRPR,1,Bombesin receptors (BB1 and BB2),gtopdb family
+Neuromedin B,59,,GNLWATGHFM,NMBR,1,Bombesin receptors (BB1 and BB2),gtopdb family
+Gonadoliberin-1,60,,QHWSYGLRPG,GNRHR,1,Gonadotrophin-releasing hormone receptors,gtopdb family
+Gonadoliberin-1,60,,QHWSYGLRPG,GNRHR2,1,Gonadotrophin-releasing hormone receptors,gtopdb family
+Kisspeptin-10,61,,YNWNSFGLRF,KISS1R,1,Kisspeptin receptor,gtopdb family
+Neurokinin A,62,,HKTDSFVGLM,TACR1,1,Neurokinin receptors,manual
+Neurokinin A,62,,HKTDSFVGLM,TACR2,1,Neurokinin receptors,manual
+Neurokinin A,62,,HKTDSFVGLM,TACR3,1,Neurokinin receptors,manual
+Neurokinin B,63,,DMHDFFVGLM,TACR1,1,Neurokinin receptors,manual
+Neurokinin B,63,,DMHDFFVGLM,TACR2,1,Neurokinin receptors,manual
+Neurokinin B,63,,DMHDFFVGLM,TACR3,1,Neurokinin receptors,manual
+T-kinin (natural variant),73,,ISRPPGFSPFR,BDKRB1,1,Bradykinin receptors,gtopdb family
+T-kinin (natural variant),73,,ISRPPGFSPFR,BDKRB2,1,Bradykinin receptors,gtopdb family
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,MC1R,1,Melanocortin receptors,gtopdb family
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,MC2R,1,Melanocortin receptors,gtopdb family
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,MC3R,1,Melanocortin receptors,gtopdb family
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,MC4R,1,Melanocortin receptors,gtopdb family
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,MC5R,1,Melanocortin receptors,gtopdb family
+Neuropeptide SF,75,,SQAFLFQPQRF,NPFFR1,1,Neuropeptide FF receptors,manual
+Neuropeptide SF,75,,SQAFLFQPQRF,NPFFR2,1,Neuropeptide FF receptors,manual
+Urotensin-2,76,,ETPDCFWKYCV,UTS2R,1,Urotensin receptor,gtopdb family
+Substance P,77,,RPKPQQFFGLM,TACR1,1,Neurokinin receptors,manual
+Substance P,77,,RPKPQQFFGLM,TACR2,1,Neurokinin receptors,manual
+Substance P,77,,RPKPQQFFGLM,TACR3,1,Neurokinin receptors,manual
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,NPFFR1,1,Neuropeptide FF receptors,manual
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,NPFFR2,1,Neuropeptide FF receptors,manual
+Apelin-13,92,,QRPRLSHKGPMPF,APLNR,1,Apelin receptor,gtopdb family
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,MC1R,1,Melanocortin receptors,gtopdb family
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,MC2R,1,Melanocortin receptors,gtopdb family
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,MC3R,1,Melanocortin receptors,gtopdb family
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,MC4R,1,Melanocortin receptors,gtopdb family
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,MC5R,1,Melanocortin receptors,gtopdb family
+Neurotensin,94,,QLYENKPRRPYIL,NTSR1,1,Neurotensin receptors,gtopdb family
+Neurotensin,94,,QLYENKPRRPYIL,NTSR2,1,Neurotensin receptors,gtopdb family
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,SSTR1,1,Somatostatin receptors,gtopdb family
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,SSTR2,1,Somatostatin receptors,gtopdb family
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,SSTR3,1,Somatostatin receptors,gtopdb family
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,SSTR4,1,Somatostatin receptors,gtopdb family
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,SSTR5,1,Somatostatin receptors,gtopdb family
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,CCKAR,1,Cholecystokinin receptors,gtopdb family
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,CCKBR,1,Cholecystokinin receptors,gtopdb family
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,OPRD1,1,Opioid receptors,gtopdb family
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,OPRK1,1,Opioid receptors,gtopdb family
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,OPRL1,1,Opioid receptors,gtopdb family
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,OPRM1,1,Opioid receptors,gtopdb family
+Nociceptin/orphanin FQ,120,,FGGFTGARKSARKLANQ,OPRL1,1,Opioid receptor (NOP),manual
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,SSTR1,1,Somatostatin receptors,gtopdb family
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,SSTR2,1,Somatostatin receptors,gtopdb family
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,SSTR3,1,Somatostatin receptors,gtopdb family
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,SSTR4,1,Somatostatin receptors,gtopdb family
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,SSTR5,1,Somatostatin receptors,gtopdb family
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,MC1R,1,Melanocortin receptors,gtopdb family
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,MC2R,1,Melanocortin receptors,gtopdb family
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,MC3R,1,Melanocortin receptors,gtopdb family
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,MC4R,1,Melanocortin receptors,gtopdb family
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,MC5R,1,Melanocortin receptors,gtopdb family
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,MCHR1,1,Melanin-concentrating hormone receptors,gtopdb family
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,MCHR2,1,Melanin-concentrating hormone receptors,gtopdb family
+Neuropeptide S,136,,SFRNGVGTGMKKTSFQRAKS,NPSR1,1,Neuropeptide S receptors,gtopdb substring
+Motilin,145,,FVPIFTYGELQRMQEKERNKGQ,MLNR,1,Motilin receptor,gtopdb family
+PEN,146,,AADHDVGSELPPEGVLGALLRV,GPR83,1,GPR83,gene symbol
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,NPBWR1,1,Neuropeptide W/neuropeptide B receptors,gtopdb family
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,NPBWR2,1,Neuropeptide W/neuropeptide B receptors,gtopdb family
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,NPBWR1,1,Neuropeptide W/neuropeptide B receptors,gtopdb family
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,NPBWR2,1,Neuropeptide W/neuropeptide B receptors,gtopdb family
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,NMUR1,1,Neuromedin U receptors,gtopdb family
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,NMUR2,1,Neuromedin U receptors,gtopdb family
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,BRS3,1,Bombesin receptors (BB1 and BB2),gtopdb family
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,GRPR,1,Bombesin receptors (BB1 and BB2),gtopdb family
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,NMBR,1,Bombesin receptors (BB1 and BB2),gtopdb family
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,ADCYAP1R1,1,VIP and PACAP receptors,gtopdb family
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,VIPR1,1,VIP and PACAP receptors,gtopdb family
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,VIPR2,1,VIP and PACAP receptors,gtopdb family
+Ghrelin-28,170,,GSSFLSPEHQRVQQRKESKKPPAKLQPR,GHSR,1,Ghrelin receptors,gtopdb substring
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,HCRTR1,1,Orexin receptors,gtopdb family
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,HCRTR2,1,Orexin receptors,gtopdb family
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,GALR1,1,Galanin receptors,gtopdb family
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,GALR2,1,Galanin receptors,gtopdb family
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,GALR3,1,Galanin receptors,gtopdb family
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,OPRD1,1,Opioid receptors,gtopdb family
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,OPRK1,1,Opioid receptors,gtopdb family
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,OPRL1,1,Opioid receptors,gtopdb family
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,OPRM1,1,Opioid receptors,gtopdb family
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,PRLHR,1,"PrRP receptor, neuropeptide FF receptors",manual
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,NPFFR1,1,"PrRP receptor, neuropeptide FF receptors",manual
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,NPFFR2,1,"PrRP receptor, neuropeptide FF receptors",manual
+Apelin receptor early endogenous ligand,189,,QRPVNLTMRRKLRKHNCLQRRCMPLHSRVPFP,APLNR,1,Apelin receptor,gtopdb family
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,CCKAR,1,Cholecystokinin receptors,gtopdb family
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,CCKBR,1,Cholecystokinin receptors,gtopdb family
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,NMUR1,1,Neuromedin U receptors,gtopdb family
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,NMUR2,1,Neuromedin U receptors,gtopdb family
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPY1R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPY2R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPY4R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPY5R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPY6RP,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NPY1R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NPY2R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NPY4R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NPY5R,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NPY6RP,1,Neuropeptide Y receptors (Y1 Y2 Y4 Y5),gtopdb family
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NPY1R,1,Neuropeptide Y receptors (Y1 Y2 Y5),gtopdb family
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NPY2R,1,Neuropeptide Y receptors (Y1 Y2 Y5),gtopdb family
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NPY4R,1,Neuropeptide Y receptors (Y1 Y2 Y5),gtopdb family
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NPY5R,1,Neuropeptide Y receptors (Y1 Y2 Y5),gtopdb family
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NPY6RP,1,Neuropeptide Y receptors (Y1 Y2 Y5),gtopdb family
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,MC1R,1,Melanocortin receptors,gtopdb family
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,MC2R,1,Melanocortin receptors,gtopdb family
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,MC3R,1,Melanocortin receptors,gtopdb family
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,MC4R,1,Melanocortin receptors,gtopdb family
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,MC5R,1,Melanocortin receptors,gtopdb family
+PEN,146,,AADHDVGSELPPEGVLGALLRV,NPY1R,0,,permuted within the panel
+PEN,146,,AADHDVGSELPPEGVLGALLRV,NMUR1,0,,permuted within the panel
+PEN,146,,AADHDVGSELPPEGVLGALLRV,GNRHR2,0,,permuted within the panel
+PEN,146,,AADHDVGSELPPEGVLGALLRV,HCRTR2,0,,permuted within the panel
+PEN,146,,AADHDVGSELPPEGVLGALLRV,PRLHR,0,,permuted within the panel
+Urotensin-2B,37,,ACFWKYCV,OPRL1,0,,permuted within the panel
+Urotensin-2B,37,,ACFWKYCV,NMBR,0,,permuted within the panel
+Urotensin-2B,37,,ACFWKYCV,NPY1R,0,,permuted within the panel
+Urotensin-2B,37,,ACFWKYCV,SSTR4,0,,permuted within the panel
+Urotensin-2B,37,,ACFWKYCV,NPSR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,CCKAR,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,MC2R,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,VIPR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,VIPR2,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,NMUR2,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,NPBWR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,MCHR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,OXTR,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,TACR2,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,AGTR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,MC1R,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,MC4R,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,NPY1R,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,TACR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,AVPR1B,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,NPFFR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,GNRHR,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,TACR3,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,TRHR,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,ADCYAP1R1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,BRS3,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,NTSR2,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,NPY6RP,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,HCRTR1,0,,permuted within the panel
+"SST-14, SRIF-14",103,,AGCKNFFWKTFTSC,NMBR,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,VIPR1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,TRHR,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NMBR,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,MC5R,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NPSR1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,AVPR1A,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NPFFR2,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,GRPR,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,KISS1R,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,MC2R,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,MC3R,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,GALR2,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,OPRK1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,GALR3,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,GALR1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,PRLHR,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,TACR1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,MCHR1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,OPRD1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,TACR3,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,MLNR,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,NMUR1,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,SSTR4,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,GNRHR2,0,,permuted within the panel
+Pancreatic hormone (PH),200,,APLEPVYPGDNATPEQMAQYAADLRRYINMLTRPRY,HCRTR1,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,SSTR2,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,KISS1R,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,PRLHR,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,OPRK1,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,NPFFR1,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,TRHR,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,APLNR,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,SSTR3,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,NPY2R,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,GRPR,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,GHSR,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,MCHR2,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,SSTR5,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,NPBWR2,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,BDKRB2,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,SSTR1,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,GALR2,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,NMUR2,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,OPRM1,0,,permuted within the panel
+Arg-vasopressin,44,,CYFQNCPRG,NMUR1,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,TRHR,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,MC1R,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,BDKRB2,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,TACR3,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,MC2R,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,NPY4R,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,MLNR,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,NPSR1,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,MCHR1,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,NPY6RP,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,SSTR2,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,GRPR,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,MC5R,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,NTSR1,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,MC4R,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,GHSR,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,OPRD1,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,NTSR2,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,ADCYAP1R1,0,,permuted within the panel
+Oxytocin,45,,CYIQNCPLG,VIPR1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,BDKRB1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,APLNR,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,SSTR3,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,OPRL1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,OPRK1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,HCRTR1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,NMUR2,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,NPSR1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,KISS1R,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,MCHR2,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,UTS2R,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,NTSR2,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,CCKAR,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,GALR3,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,TRHR,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,NPY2R,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,BRS3,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,NTSR1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,OPRM1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,SSTR2,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,GPR83,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,NPY5R,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,SSTR1,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,GHSR,0,,permuted within the panel
+"Melanocyte-stimulating hormone beta, Beta-MSH",126,,DEGPYRMEHFRWGSPPKD,TACR1,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,OPRD1,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,NPBWR1,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,SSTR4,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,GNRHR2,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,BDKRB2,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,GNRHR,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,MC1R,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,GALR2,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,OPRM1,0,,permuted within the panel
+Melanin-concentrating hormone (MCH),131,,DFDMLRCMLGRVYRPCWQV,GHSR,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,MC1R,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,OPRL1,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,MC5R,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,OPRM1,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,GNRHR,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,MCHR1,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,VIPR1,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,OPRK1,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,MCHR2,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,NPFFR2,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,MC2R,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,NPY2R,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,AVPR1A,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,MC3R,0,,permuted within the panel
+Neurokinin B,63,,DMHDFFVGLM,NPY6RP,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,AVPR1A,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,TRHR,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,VIPR1,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NMUR1,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,GNRHR2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,OXTR,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NTSR2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,AGTR1,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,GHSR,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,KISS1R,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,BDKRB2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,OPRD1,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,TACR2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,AVPR2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,GALR2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,MC5R,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NPY1R,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,PRLHR,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NPBWR2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NPFFR1,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,ADCYAP1R1,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NMUR2,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,AVPR1B,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NPSR1,0,,permuted within the panel
+Cortistatin-17,121,,DRMPCRNFFWKTFSSCK,NMBR,0,,permuted within the panel
+Angiotensin II,35,,DRVYIHPF,OPRK1,0,,permuted within the panel
+Angiotensin II,35,,DRVYIHPF,NPFFR1,0,,permuted within the panel
+Angiotensin II,35,,DRVYIHPF,VIPR1,0,,permuted within the panel
+Angiotensin II,35,,DRVYIHPF,NPSR1,0,,permuted within the panel
+Angiotensin II,35,,DRVYIHPF,KISS1R,0,,permuted within the panel
+Urotensin-2,76,,ETPDCFWKYCV,SSTR1,0,,permuted within the panel
+Urotensin-2,76,,ETPDCFWKYCV,NPY5R,0,,permuted within the panel
+Urotensin-2,76,,ETPDCFWKYCV,GNRHR,0,,permuted within the panel
+Urotensin-2,76,,ETPDCFWKYCV,GNRHR2,0,,permuted within the panel
+Urotensin-2,76,,ETPDCFWKYCV,OPRM1,0,,permuted within the panel
+Nociceptin/orphanin FQ,120,,FGGFTGARKSARKLANQ,VIPR2,0,,permuted within the panel
+Nociceptin/orphanin FQ,120,,FGGFTGARKSARKLANQ,SSTR3,0,,permuted within the panel
+Nociceptin/orphanin FQ,120,,FGGFTGARKSARKLANQ,TACR1,0,,permuted within the panel
+Nociceptin/orphanin FQ,120,,FGGFTGARKSARKLANQ,NPSR1,0,,permuted within the panel
+Nociceptin/orphanin FQ,120,,FGGFTGARKSARKLANQ,NTSR2,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,NPFFR2,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,TACR1,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,SSTR4,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,NPY4R,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,OPRL1,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,APLNR,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,NPSR1,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,CCKAR,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,MC1R,0,,permuted within the panel
+Neuromedin U-25,159,,FRVDEEFQSPFASQSRGYFLFRPRN,TACR3,0,,permuted within the panel
+Motilin,145,,FVPIFTYGELQRMQEKERNKGQ,APLNR,0,,permuted within the panel
+Motilin,145,,FVPIFTYGELQRMQEKERNKGQ,UTS2R,0,,permuted within the panel
+Motilin,145,,FVPIFTYGELQRMQEKERNKGQ,GPR83,0,,permuted within the panel
+Motilin,145,,FVPIFTYGELQRMQEKERNKGQ,AVPR2,0,,permuted within the panel
+Motilin,145,,FVPIFTYGELQRMQEKERNKGQ,NMUR2,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,SSTR2,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,GPR83,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,OXTR,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,KISS1R,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,NPSR1,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,VIPR2,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,OPRD1,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,MCHR1,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,NMUR2,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,NPY4R,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,NPY1R,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,GALR2,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,NPFFR2,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,GALR1,0,,permuted within the panel
+Neuromedin B,59,,GNLWATGHFM,NPY5R,0,,permuted within the panel
+Ghrelin-28,170,,GSSFLSPEHQRVQQRKESKKPPAKLQPR,GPR83,0,,permuted within the panel
+Ghrelin-28,170,,GSSFLSPEHQRVQQRKESKKPPAKLQPR,NTSR1,0,,permuted within the panel
+Ghrelin-28,170,,GSSFLSPEHQRVQQRKESKKPPAKLQPR,OPRD1,0,,permuted within the panel
+Ghrelin-28,170,,GSSFLSPEHQRVQQRKESKKPPAKLQPR,AVPR1A,0,,permuted within the panel
+Ghrelin-28,170,,GSSFLSPEHQRVQQRKESKKPPAKLQPR,SSTR4,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,MC4R,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,VIPR2,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,VIPR1,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,BDKRB1,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,NPY6RP,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,GRPR,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,NPFFR2,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,CCKBR,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,NTSR1,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,OPRM1,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,BDKRB2,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,SSTR2,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,TACR1,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,AVPR1B,0,,permuted within the panel
+Galanin,177,,GWTLNSAGYLLGPHAVGNHRSFSDKNGLTS,NMUR2,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,KISS1R,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,OPRL1,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,NPBWR2,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,TRHR,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,NMUR1,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,MC3R,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,NPY4R,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,AGTR1,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,AVPR1A,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,GHSR,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,NPFFR1,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,GALR1,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,NPY6RP,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,UTS2R,0,,permuted within the panel
+Neurokinin A,62,,HKTDSFVGLM,AVPR1B,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,MC3R,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,HCRTR1,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,TACR2,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,NMUR2,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,AVPR2,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,SSTR4,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,AVPR1B,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,MLNR,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,NPY6RP,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,OPRK1,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,MCHR2,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,UTS2R,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,NPFFR2,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,MC1R,0,,permuted within the panel
+PACAP-27,168,,HSDGIFTDSYSRYRKQMAVKKYLAAVL,SSTR1,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,NPY2R,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,NPFFR1,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,NTSR2,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,OPRL1,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,SSTR2,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,MC1R,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,GALR3,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,MC3R,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,GPR83,0,,permuted within the panel
+Neuromedin S,195,,ILQRGSGTAAVDFTKKDHTATWGRPFFLFRPRN,NTSR1,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,NPY6RP,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,GRPR,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,OXTR,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,MC4R,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,CCKBR,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,GALR3,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,HCRTR2,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,UTS2R,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,ADCYAP1R1,0,,permuted within the panel
+T-kinin (natural variant),73,,ISRPPGFSPFR,NTSR2,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,NPFFR2,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,MLNR,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,VIPR2,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,NMUR1,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,GALR3,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,NTSR2,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,NMBR,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,SSTR3,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,SSTR5,0,,permuted within the panel
+CCK-33,194,,KAPSGRMSIVKNLQNLDPSHRISDRDYMGWMDF,MC3R,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,AVPR1B,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,OPRM1,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,MCHR2,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,MLNR,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,ADCYAP1R1,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,MC5R,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,AVPR2,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,GNRHR,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,SSTR4,0,,permuted within the panel
+Neuropeptide RFRP-1,86,,MPHSFANLPLRF,KISS1R,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,HCRTR2,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,NPFFR2,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,APLNR,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,NMUR1,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,NPBWR2,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,GPR83,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,OPRL1,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,SSTR3,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,TRHR,0,,permuted within the panel
+Gastrin-17,118,,QGPWLEEEEEAYGWMDF,NPY1R,0,,permuted within the panel
+Thyrotropin-releasing hormone,3,,QHP,NMBR,0,,permuted within the panel
+Thyrotropin-releasing hormone,3,,QHP,UTS2R,0,,permuted within the panel
+Thyrotropin-releasing hormone,3,,QHP,GPR83,0,,permuted within the panel
+Thyrotropin-releasing hormone,3,,QHP,OPRL1,0,,permuted within the panel
+Thyrotropin-releasing hormone,3,,QHP,KISS1R,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,KISS1R,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,MC5R,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,OPRK1,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,NPY2R,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,NPFFR2,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,NPFFR1,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,NPY5R,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,BDKRB2,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,VIPR2,0,,permuted within the panel
+Gonadoliberin-1,60,,QHWSYGLRPG,NTSR2,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,MC4R,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,GALR2,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,AVPR1B,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,NPY4R,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,SSTR3,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,PRLHR,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,NPFFR1,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,CCKBR,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,HCRTR1,0,,permuted within the panel
+Neurotensin,94,,QLYENKPRRPYIL,NMUR2,0,,permuted within the panel
+Apelin-13,92,,QRPRLSHKGPMPF,NMUR2,0,,permuted within the panel
+Apelin-13,92,,QRPRLSHKGPMPF,GALR2,0,,permuted within the panel
+Apelin-13,92,,QRPRLSHKGPMPF,NPFFR1,0,,permuted within the panel
+Apelin-13,92,,QRPRLSHKGPMPF,GRPR,0,,permuted within the panel
+Apelin-13,92,,QRPRLSHKGPMPF,MC1R,0,,permuted within the panel
+Apelin receptor early endogenous ligand,189,,QRPVNLTMRRKLRKHNCLQRRCMPLHSRVPFP,NPFFR1,0,,permuted within the panel
+Apelin receptor early endogenous ligand,189,,QRPVNLTMRRKLRKHNCLQRRCMPLHSRVPFP,GALR2,0,,permuted within the panel
+Apelin receptor early endogenous ligand,189,,QRPVNLTMRRKLRKHNCLQRRCMPLHSRVPFP,OPRM1,0,,permuted within the panel
+Apelin receptor early endogenous ligand,189,,QRPVNLTMRRKLRKHNCLQRRCMPLHSRVPFP,SSTR2,0,,permuted within the panel
+Apelin receptor early endogenous ligand,189,,QRPVNLTMRRKLRKHNCLQRRCMPLHSRVPFP,AVPR1A,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,NPBWR1,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,OXTR,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,NPBWR2,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,HCRTR2,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,NPFFR1,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,BDKRB1,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,ADCYAP1R1,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,HCRTR1,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,GHSR,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,AVPR1B,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,GNRHR2,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,SSTR2,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,NPFFR2,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,BDKRB2,0,,permuted within the panel
+Substance P,77,,RPKPQQFFGLM,NPY4R,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,MC4R,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,BDKRB2,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,MC1R,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,CCKAR,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,NPY6RP,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,TACR1,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,GRPR,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,SSTR4,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,UTS2R,0,,permuted within the panel
+Orexin-B,171,,RSGPPGLQGRLQRLLQASGNHAAGILTM,GNRHR2,0,,permuted within the panel
+Neuropeptide S,136,,SFRNGVGTGMKKTSFQRAKS,GALR1,0,,permuted within the panel
+Neuropeptide S,136,,SFRNGVGTGMKKTSFQRAKS,AGTR1,0,,permuted within the panel
+Neuropeptide S,136,,SFRNGVGTGMKKTSFQRAKS,GALR3,0,,permuted within the panel
+Neuropeptide S,136,,SFRNGVGTGMKKTSFQRAKS,AVPR1B,0,,permuted within the panel
+Neuropeptide S,136,,SFRNGVGTGMKKTSFQRAKS,NPY1R,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,NPSR1,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,AVPR2,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,GALR3,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,MC1R,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,SSTR4,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,MC4R,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,SSTR2,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,MC5R,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,NTSR1,0,,permuted within the panel
+Neuropeptide SF,75,,SQAFLFQPQRF,SSTR1,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,CCKAR,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,TACR1,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,SSTR3,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,NPY5R,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,GNRHR2,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,HCRTR2,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,OPRK1,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,MC3R,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,SSTR4,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,CCKBR,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,ADCYAP1R1,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,MLNR,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,APLNR,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,BDKRB2,0,,permuted within the panel
+PrRP-31,183,,SRTHRHSMEIRTPDINPAWYASRGIRPVGRF,MC2R,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,BDKRB2,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,GALR3,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,MCHR2,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,GPR83,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,NPSR1,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,BRS3,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,HCRTR1,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,SSTR2,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,NPFFR2,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,AVPR1A,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,PRLHR,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,OPRK1,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,AVPR2,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,GRPR,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,NTSR1,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,SSTR3,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,ADCYAP1R1,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,HCRTR2,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,OPRD1,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,CCKBR,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,MCHR1,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,AVPR1B,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,TACR2,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,TACR3,0,,permuted within the panel
+Alpha-MSH (des-acetyl MSH),93,,SYSMEHFRWGKPV,OXTR,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,NMBR,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,AVPR1A,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,OPRK1,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,BDKRB1,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,NPY4R,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,TRHR,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,NPFFR2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,MCHR2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,GALR2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,AGTR1,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,NMUR2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,GPR83,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,NTSR2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,NPY2R,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,GALR1,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,GNRHR2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,SSTR1,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,GALR3,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,BDKRB2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,CCKBR,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,BRS3,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,KISS1R,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,CCKAR,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,AVPR2,0,,permuted within the panel
+"Corticotropin, ACTH",208,,SYSMEHFRWGKPVGKKRRPVKVYPNGAEDESAEAFPLEF,NPBWR1,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,CCKAR,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,AGTR1,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,GNRHR2,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,AVPR1B,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,MLNR,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,OPRD1,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,SSTR1,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,UTS2R,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,HCRTR1,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,TACR3,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,OPRL1,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,OPRM1,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,GNRHR,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,OXTR,0,,permuted within the panel
+Gastrin-releasing peptide (GRP),167,,VPLPAGGGTVLTKMYPRGNHWAVGHLM,NPFFR2,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,SSTR3,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,NMUR2,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,OPRM1,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,TACR2,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,KISS1R,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,NPY1R,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,SSTR1,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,CCKAR,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,TACR1,0,,permuted within the panel
+Neuropeptide NPVF; RFRP-3,29,,VPNLPQRF,AVPR1A,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,OPRL1,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,TACR2,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,NPFFR1,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,BDKRB1,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,BRS3,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,MLNR,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,PRLHR,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,NMUR1,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,MC1R,0,,permuted within the panel
+Neuropeptide W-23,151,,WYKHVASPRYHTVGRAAGLLMGL,CCKBR,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,NPY4R,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,MC5R,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,NPY6RP,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,MC1R,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,SSTR5,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,CCKBR,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,OPRK1,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,GNRHR2,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,OPRL1,0,,permuted within the panel
+Neuropeptide B-23,152,,WYKPAAGHSSYSVGRAAGLLSGL,GPR83,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,UTS2R,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,GALR1,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,VIPR1,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,NPY6RP,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,SSTR3,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,SSTR4,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,NPFFR1,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,MC4R,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,MC3R,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,GNRHR2,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,NPFFR2,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,APLNR,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,MCHR2,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,MC5R,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,MLNR,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,GNRHR,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,GHSR,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,GPR83,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,NMBR,0,,permuted within the panel
+Leu-enkephalin,14,,YGGFL,SSTR5,0,,permuted within the panel
+Beta-neoendorphin,46,,YGGFLRKYP,GHSR,0,,permuted within the panel
+Beta-neoendorphin,46,,YGGFLRKYP,ADCYAP1R1,0,,permuted within the panel
+Beta-neoendorphin,46,,YGGFLRKYP,MC2R,0,,permuted within the panel
+Beta-neoendorphin,46,,YGGFLRKYP,MLNR,0,,permuted within the panel
+Beta-neoendorphin,46,,YGGFLRKYP,NMUR1,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,MC1R,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,SSTR4,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,CCKBR,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,VIPR1,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,MC2R,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,MC3R,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,BRS3,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,GALR1,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NPBWR2,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NPFFR1,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NTSR2,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,HCRTR1,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NPY4R,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NPY2R,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NPY5R,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,MC5R,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NPFFR2,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,AGTR1,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,GALR2,0,,permuted within the panel
+Dynorphin A,119,,YGGFLRRIRPKLKWDNQ,NMUR2,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,MC3R,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,NMUR1,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,NPFFR2,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,SSTR4,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,CCKBR,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,NPY5R,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,GALR3,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,NPY4R,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,MCHR2,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,VIPR1,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,NTSR2,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,SSTR5,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,GALR1,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,MC5R,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,AVPR1B,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,NMBR,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,BRS3,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,MLNR,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,HCRTR2,0,,permuted within the panel
+Beta-endorphin,182,,YGGFMTSEKSQTPLVTLFKNAIIKNAYKKGE,MC4R,0,,permuted within the panel
+Kisspeptin-10,61,,YNWNSFGLRF,NPFFR1,0,,permuted within the panel
+Kisspeptin-10,61,,YNWNSFGLRF,NTSR1,0,,permuted within the panel
+Kisspeptin-10,61,,YNWNSFGLRF,VIPR1,0,,permuted within the panel
+Kisspeptin-10,61,,YNWNSFGLRF,TRHR,0,,permuted within the panel
+Kisspeptin-10,61,,YNWNSFGLRF,TACR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,PRLHR,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,AGTR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NPSR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,SSTR3,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,GALR2,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NTSR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,OPRD1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NMUR2,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,UTS2R,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,MCHR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,TRHR,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,MC4R,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,AVPR2,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,KISS1R,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,CCKAR,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,TACR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,NMUR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,MC5R,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,VIPR2,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,TACR3,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,OXTR,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,SSTR2,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,CCKBR,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,VIPR1,0,,permuted within the panel
+Peptide YY (PYY),201,,YPIKPEAPREDASPEELNRYYASLRHYLNLVTRQRY,BRS3,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,HCRTR1,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NMUR1,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,GHSR,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,MC3R,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,TACR2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,AVPR1B,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,TRHR,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,MCHR1,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,GNRHR,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,OXTR,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,SSTR2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,GALR3,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,AVPR1A,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,MLNR,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPSR1,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,MCHR2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPBWR2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPFFR2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,GALR2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,NPBWR1,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,BDKRB2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,TACR3,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,GNRHR2,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,MC5R,0,,permuted within the panel
+Neuropeptide Y (NPY),199,,YPSKPDNPGEDAPAEDMARYYSALRHYINLITRQRY,OPRK1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,NPBWR1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,AVPR1B,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,ADCYAP1R1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,PRLHR,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,CCKAR,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,NMBR,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,TRHR,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,AVPR2,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,HCRTR2,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,NTSR1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,NPY4R,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,TACR2,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,OPRL1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,GALR2,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,NPY2R,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,OXTR,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,NPY5R,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,BDKRB2,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,NPFFR2,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,TACR1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,OPRD1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,MCHR1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,BDKRB1,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,SSTR2,0,,permuted within the panel
+Melanotropin gamma; Gamma-MSH,74,,YVMGHFRWDRF,GPR83,0,,permuted within the panel

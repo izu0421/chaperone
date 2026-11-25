@@ -1,0 +1,781 @@
+job,arm,receptor,peptide,pep_ref,label,size,fold_order
+F_NPY6RP__p14,F_calibration,NPY6RP,Leu-enkephalin,14,0,295,1
+F_GNRHR2__p14,F_calibration,GNRHR2,Leu-enkephalin,14,0,297,2
+F_NPY6RP__p45,F_calibration,NPY6RP,Oxytocin,45,0,299,3
+F_NPY6RP__p62,F_calibration,NPY6RP,Neurokinin A,62,0,300,4
+F_NPY6RP__p63,F_calibration,NPY6RP,Neurokinin B,63,0,300,5
+F_NPY6RP__p73,F_calibration,NPY6RP,T-kinin (natural variant),73,0,301,6
+F_GNRHR2__p60,F_calibration,GNRHR2,Gonadoliberin-1,60,1,302,7
+F_GNRHR2__p76,F_calibration,GNRHR2,Urotensin-2,76,0,303,8
+F_GNRHR2__p77,F_calibration,GNRHR2,Substance P,77,0,303,9
+F_NPY6RP__p103,F_calibration,NPY6RP,"SST-14, SRIF-14",103,0,304,10
+F_MC2R__p46,F_calibration,MC2R,Beta-neoendorphin,46,0,306,11
+F_MC2R__p45,F_calibration,MC2R,Oxytocin,45,0,306,12
+F_MC2R__p63,F_calibration,MC2R,Neurokinin B,63,0,307,13
+F_MC2R__p74,F_calibration,MC2R,Melanotropin gamma; Gamma-MSH,74,1,308,14
+F_GNRHR2__p121,F_calibration,GNRHR2,Cortistatin-17,121,0,309,15
+F_MC2R__p93,F_calibration,MC2R,Alpha-MSH (des-acetyl MSH),93,1,310,16
+F_MC2R__p103,F_calibration,MC2R,"SST-14, SRIF-14",103,0,311,17
+F_GNRHR2__p131,F_calibration,GNRHR2,Melanin-concentrating hormone (MCH),131,0,311,18
+F_NPY6RP__p152,F_calibration,NPY6RP,Neuropeptide B-23,152,0,313,19
+F_GNRHR2__p146,F_calibration,GNRHR2,PEN,146,0,314,20
+F_MC2R__p119,F_calibration,MC2R,Dynorphin A,119,0,314,21
+F_MC2R__p126,F_calibration,MC2R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,1,315,22
+F_GNRHR2__p152,F_calibration,GNRHR2,Neuropeptide B-23,152,0,315,23
+F_NPY6RP__p168,F_calibration,NPY6RP,PACAP-27,168,0,317,24
+F_NPY6RP__p171,F_calibration,NPY6RP,Orexin-B,171,0,318,25
+F_GNRHR2__p167,F_calibration,GNRHR2,Gastrin-releasing peptide (GRP),167,0,319,26
+F_NPY6RP__p177,F_calibration,NPY6RP,Galanin,177,0,320,27
+F_GNRHR2__p171,F_calibration,GNRHR2,Orexin-B,171,0,320,28
+F_GNRHR2__p183,F_calibration,GNRHR2,PrRP-31,183,0,323,29
+F_MC1R__p45,F_calibration,MC1R,Oxytocin,45,0,326,30
+F_NPY6RP__p201,F_calibration,NPY6RP,Peptide YY (PYY),201,1,326,31
+F_NPY6RP__p200,F_calibration,NPY6RP,Pancreatic hormone (PH),200,1,326,32
+F_NPY6RP__p199,F_calibration,NPY6RP,Neuropeptide Y (NPY),199,1,326,33
+F_MC1R__p63,F_calibration,MC1R,Neurokinin B,63,0,327,34
+F_MC2R__p183,F_calibration,MC2R,PrRP-31,183,0,328,35
+F_GNRHR2__p199,F_calibration,GNRHR2,Neuropeptide Y (NPY),199,0,328,36
+F_MC1R__p74,F_calibration,MC1R,Melanotropin gamma; Gamma-MSH,74,1,328,37
+F_MC3R__p14,F_calibration,MC3R,Leu-enkephalin,14,0,328,38
+F_GNRHR2__p200,F_calibration,GNRHR2,Pancreatic hormone (PH),200,0,328,39
+F_MC1R__p75,F_calibration,MC1R,Neuropeptide SF,75,0,328,40
+F_MC5R__p14,F_calibration,MC5R,Leu-enkephalin,14,0,330,41
+F_MC1R__p92,F_calibration,MC1R,Apelin-13,92,0,330,42
+F_MC1R__p93,F_calibration,MC1R,Alpha-MSH (des-acetyl MSH),93,1,330,43
+F_MC1R__p103,F_calibration,MC1R,"SST-14, SRIF-14",103,0,331,44
+F_GNRHR2__p208,F_calibration,GNRHR2,"Corticotropin, ACTH",208,0,331,45
+F_MC2R__p200,F_calibration,MC2R,Pancreatic hormone (PH),200,0,333,46
+F_MC3R__p62,F_calibration,MC3R,Neurokinin A,62,0,333,47
+F_MC3R__p63,F_calibration,MC3R,Neurokinin B,63,0,333,48
+F_GNRHR__p14,F_calibration,GNRHR,Leu-enkephalin,14,0,333,49
+F_MC3R__p74,F_calibration,MC3R,Melanotropin gamma; Gamma-MSH,74,1,334,50
+F_MC1R__p119,F_calibration,MC1R,Dynorphin A,119,0,334,51
+F_MC5R__p45,F_calibration,MC5R,Oxytocin,45,0,334,52
+F_MC1R__p126,F_calibration,MC1R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,1,335,53
+F_MC5R__p63,F_calibration,MC5R,Neurokinin B,63,0,335,54
+F_MC5R__p60,F_calibration,MC5R,Gonadoliberin-1,60,0,335,55
+F_MC5R__p74,F_calibration,MC5R,Melanotropin gamma; Gamma-MSH,74,1,336,56
+F_MC2R__p208,F_calibration,MC2R,"Corticotropin, ACTH",208,1,336,57
+F_MC1R__p131,F_calibration,MC1R,Melanin-concentrating hormone (MCH),131,0,336,58
+F_MC3R__p93,F_calibration,MC3R,Alpha-MSH (des-acetyl MSH),93,1,336,59
+F_MC5R__p75,F_calibration,MC5R,Neuropeptide SF,75,0,336,60
+F_MC5R__p86,F_calibration,MC5R,Neuropeptide RFRP-1,86,0,337,61
+F_MC4R__p14,F_calibration,MC4R,Leu-enkephalin,14,0,337,62
+F_GNRHR__p63,F_calibration,GNRHR,Neurokinin B,63,0,338,63
+F_GNRHR__p60,F_calibration,GNRHR,Gonadoliberin-1,60,1,338,64
+F_MC5R__p93,F_calibration,MC5R,Alpha-MSH (des-acetyl MSH),93,1,338,65
+F_NPBWR1__p74,F_calibration,NPBWR1,Melanotropin gamma; Gamma-MSH,74,0,339,66
+F_NPBWR1__p77,F_calibration,NPBWR1,Substance P,77,0,339,67
+F_GNRHR__p76,F_calibration,GNRHR,Urotensin-2,76,0,339,68
+F_GNRHR__p86,F_calibration,GNRHR,Neuropeptide RFRP-1,86,0,340,69
+F_MC1R__p151,F_calibration,MC1R,Neuropeptide W-23,151,0,340,70
+F_MC3R__p119,F_calibration,MC3R,Dynorphin A,119,0,340,71
+F_MC1R__p152,F_calibration,MC1R,Neuropeptide B-23,152,0,340,72
+F_MC4R__p45,F_calibration,MC4R,Oxytocin,45,0,341,73
+F_MC3R__p126,F_calibration,MC3R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,1,341,74
+F_GNRHR__p103,F_calibration,GNRHR,"SST-14, SRIF-14",103,0,342,75
+F_NPBWR1__p103,F_calibration,NPBWR1,"SST-14, SRIF-14",103,0,342,76
+F_NPBWR2__p44,F_calibration,NPBWR2,Arg-vasopressin,44,0,342,77
+F_MC1R__p159,F_calibration,MC1R,Neuromedin U-25,159,0,342,78
+F_MC5R__p119,F_calibration,MC5R,Dynorphin A,119,0,342,79
+F_MC5R__p121,F_calibration,MC5R,Cortistatin-17,121,0,342,80
+F_MC4R__p75,F_calibration,MC4R,Neuropeptide SF,75,0,343,81
+F_MC5R__p126,F_calibration,MC5R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,1,343,82
+F_MC4R__p74,F_calibration,MC4R,Melanotropin gamma; Gamma-MSH,74,1,343,83
+F_MC4R__p73,F_calibration,MC4R,T-kinin (natural variant),73,0,343,84
+F_NPBWR2__p62,F_calibration,NPBWR2,Neurokinin A,62,0,343,85
+F_MC1R__p168,F_calibration,MC1R,PACAP-27,168,0,344,86
+F_NPBWR2__p77,F_calibration,NPBWR2,Substance P,77,0,344,87
+F_MC4R__p93,F_calibration,MC4R,Alpha-MSH (des-acetyl MSH),93,1,345,88
+F_MC4R__p94,F_calibration,MC4R,Neurotensin,94,0,345,89
+F_MC1R__p171,F_calibration,MC1R,Orexin-B,171,0,345,90
+F_MCHR2__p14,F_calibration,MCHR2,Leu-enkephalin,14,0,345,91
+F_MC4R__p103,F_calibration,MC4R,"SST-14, SRIF-14",103,0,346,92
+F_GNRHR__p131,F_calibration,GNRHR,Melanin-concentrating hormone (MCH),131,0,347,93
+F_NPBWR1__p131,F_calibration,NPBWR1,Melanin-concentrating hormone (MCH),131,0,347,94
+F_MC5R__p152,F_calibration,MC5R,Neuropeptide B-23,152,0,348,95
+F_MCHR2__p44,F_calibration,MCHR2,Arg-vasopressin,44,0,349,96
+F_NPBWR2__p118,F_calibration,NPBWR2,Gastrin-17,118,0,350,97
+F_NPBWR2__p119,F_calibration,NPBWR2,Dynorphin A,119,0,350,98
+F_MC1R__p195,F_calibration,MC1R,Neuromedin S,195,0,350,99
+F_NPBWR2__p121,F_calibration,NPBWR2,Cortistatin-17,121,0,350,100
+F_MCHR2__p63,F_calibration,MCHR2,Neurokinin B,63,0,350,101
+F_MC3R__p168,F_calibration,MC3R,PACAP-27,168,0,350,102
+F_MC4R__p126,F_calibration,MC4R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,1,350,103
+F_NPBWR1__p152,F_calibration,NPBWR1,Neuropeptide B-23,152,1,351,104
+F_NPBWR1__p151,F_calibration,NPBWR1,Neuropeptide W-23,151,1,351,105
+F_MCHR2__p86,F_calibration,MCHR2,Neuropeptide RFRP-1,86,0,352,106
+F_MCHR2__p93,F_calibration,MCHR2,Alpha-MSH (des-acetyl MSH),93,0,353,107
+F_MC3R__p183,F_calibration,MC3R,PrRP-31,183,0,354,108
+F_MC3R__p182,F_calibration,MC3R,Beta-endorphin,182,0,354,109
+F_GALR1__p14,F_calibration,GALR1,Leu-enkephalin,14,0,354,110
+F_GNRHR__p167,F_calibration,GNRHR,Gastrin-releasing peptide (GRP),167,0,355,111
+F_NPBWR2__p151,F_calibration,NPBWR2,Neuropeptide W-23,151,1,356,112
+F_MC1R__p208,F_calibration,MC1R,"Corticotropin, ACTH",208,1,356,113
+F_MC5R__p182,F_calibration,MC5R,Beta-endorphin,182,0,356,114
+F_MC3R__p194,F_calibration,MC3R,CCK-33,194,0,356,115
+F_NPBWR2__p152,F_calibration,NPBWR2,Neuropeptide B-23,152,1,356,116
+F_MC3R__p195,F_calibration,MC3R,Neuromedin S,195,0,356,117
+F_MCHR2__p126,F_calibration,MCHR2,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,358,118
+F_GALR1__p62,F_calibration,GALR1,Neurokinin A,62,0,359,119
+F_MC3R__p200,F_calibration,MC3R,Pancreatic hormone (PH),200,0,359,120
+F_GALR1__p59,F_calibration,GALR1,Neuromedin B,59,0,359,121
+F_MC3R__p199,F_calibration,MC3R,Neuropeptide Y (NPY),199,0,359,122
+F_MCHR2__p131,F_calibration,MCHR2,Melanin-concentrating hormone (MCH),131,1,359,123
+F_MC4R__p171,F_calibration,MC4R,Orexin-B,171,0,360,124
+F_MC5R__p200,F_calibration,MC5R,Pancreatic hormone (PH),200,0,361,125
+F_MC5R__p199,F_calibration,MC5R,Neuropeptide Y (NPY),199,0,361,126
+F_MC5R__p201,F_calibration,MC5R,Peptide YY (PYY),201,0,361,127
+F_MC3R__p208,F_calibration,MC3R,"Corticotropin, ACTH",208,1,362,128
+F_MC4R__p177,F_calibration,MC4R,Galanin,177,0,362,129
+F_MC4R__p182,F_calibration,MC4R,Beta-endorphin,182,0,363,130
+F_MC5R__p208,F_calibration,MC5R,"Corticotropin, ACTH",208,1,364,131
+F_NPBWR1__p199,F_calibration,NPBWR1,Neuropeptide Y (NPY),199,0,364,132
+F_BDKRB1__p73,F_calibration,BDKRB1,T-kinin (natural variant),73,1,364,133
+F_GNRHR__p199,F_calibration,GNRHR,Neuropeptide Y (NPY),199,0,364,134
+F_BDKRB1__p74,F_calibration,BDKRB1,Melanotropin gamma; Gamma-MSH,74,0,364,135
+F_BDKRB1__p77,F_calibration,BDKRB1,Substance P,77,0,364,136
+F_GALR1__p119,F_calibration,GALR1,Dynorphin A,119,0,366,137
+F_MCHR2__p168,F_calibration,MCHR2,PACAP-27,168,0,367,138
+F_NPBWR1__p208,F_calibration,NPBWR1,"Corticotropin, ACTH",208,0,367,139
+F_AGTR1__p35,F_calibration,AGTR1,Angiotensin II,35,1,367,140
+F_MC4R__p201,F_calibration,MC4R,Peptide YY (PYY),201,0,368,141
+F_NPBWR2__p199,F_calibration,NPBWR2,Neuropeptide Y (NPY),199,0,369,142
+F_AGTR1__p62,F_calibration,AGTR1,Neurokinin A,62,0,369,143
+F_GALR1__p136,F_calibration,GALR1,Neuropeptide S,136,0,369,144
+F_SSTR5__p14,F_calibration,SSTR5,Leu-enkephalin,14,0,369,145
+F_MC4R__p208,F_calibration,MC4R,"Corticotropin, ACTH",208,1,371,146
+F_MCHR2__p182,F_calibration,MCHR2,Beta-endorphin,182,0,371,147
+F_BDKRB1__p126,F_calibration,BDKRB1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,371,148
+F_GHSR__p14,F_calibration,GHSR,Leu-enkephalin,14,0,371,149
+F_AGTR1__p103,F_calibration,AGTR1,"SST-14, SRIF-14",103,0,373,150
+F_OPRL1__p3,F_calibration,OPRL1,Thyrotropin-releasing hormone,3,0,373,151
+F_SSTR5__p44,F_calibration,SSTR5,Arg-vasopressin,44,0,373,152
+F_GHSR__p44,F_calibration,GHSR,Arg-vasopressin,44,0,375,153
+F_GHSR__p45,F_calibration,GHSR,Oxytocin,45,0,375,154
+F_GHSR__p46,F_calibration,GHSR,Beta-neoendorphin,46,0,375,155
+F_OPRL1__p14,F_calibration,OPRL1,Leu-enkephalin,14,1,375,156
+F_GHSR__p62,F_calibration,GHSR,Neurokinin A,62,0,376,157
+F_AGTR1__p121,F_calibration,AGTR1,Cortistatin-17,121,0,376,158
+F_BDKRB1__p151,F_calibration,BDKRB1,Neuropeptide W-23,151,0,376,159
+F_AGTR1__p119,F_calibration,AGTR1,Dynorphin A,119,0,376,160
+F_MCHR2__p199,F_calibration,MCHR2,Neuropeptide Y (NPY),199,0,376,161
+F_OPRD1__p14,F_calibration,OPRD1,Leu-enkephalin,14,1,377,162
+F_GHSR__p77,F_calibration,GHSR,Substance P,77,0,377,163
+F_OPRL1__p37,F_calibration,OPRL1,Urotensin-2B,37,0,378,164
+F_SSTR2__p45,F_calibration,SSTR2,Oxytocin,45,0,378,165
+F_SSTR2__p44,F_calibration,SSTR2,Arg-vasopressin,44,0,378,166
+F_SSTR5__p103,F_calibration,SSTR5,"SST-14, SRIF-14",103,1,378,167
+F_GALR1__p177,F_calibration,GALR1,Galanin,177,1,379,168
+F_PRLHR__p44,F_calibration,PRLHR,Arg-vasopressin,44,0,379,169
+F_NPSR1__p37,F_calibration,NPSR1,Urotensin-2B,37,0,379,170
+F_MCHR2__p208,F_calibration,MCHR2,"Corticotropin, ACTH",208,0,379,171
+F_NPSR1__p35,F_calibration,NPSR1,Angiotensin II,35,0,379,172
+F_SSTR2__p59,F_calibration,SSTR2,Neuromedin B,59,0,379,173
+F_GALR3__p73,F_calibration,GALR3,T-kinin (natural variant),73,0,379,174
+F_GALR3__p75,F_calibration,GALR3,Neuropeptide SF,75,0,379,175
+F_AGTR1__p136,F_calibration,AGTR1,Neuropeptide S,136,0,379,176
+F_SSTR2__p77,F_calibration,SSTR2,Substance P,77,0,380,177
+F_NPSR1__p45,F_calibration,NPSR1,Oxytocin,45,0,380,178
+F_GALR1__p182,F_calibration,GALR1,Beta-endorphin,182,0,380,179
+F_SSTR2__p75,F_calibration,SSTR2,Neuropeptide SF,75,0,380,180
+F_AVPR2__p44,F_calibration,AVPR2,Arg-vasopressin,44,1,380,181
+F_OPRL1__p63,F_calibration,OPRL1,Neurokinin B,63,0,380,182
+F_SSTR2__p74,F_calibration,SSTR2,Melanotropin gamma; Gamma-MSH,74,0,380,183
+F_AVPR2__p45,F_calibration,AVPR2,Oxytocin,45,1,380,184
+F_OPRL1__p62,F_calibration,OPRL1,Neurokinin A,62,0,380,185
+F_OPRL1__p74,F_calibration,OPRL1,Melanotropin gamma; Gamma-MSH,74,0,381,186
+F_PRLHR__p74,F_calibration,PRLHR,Melanotropin gamma; Gamma-MSH,74,0,381,187
+F_NPSR1__p59,F_calibration,NPSR1,Neuromedin B,59,0,381,188
+F_GALR3__p93,F_calibration,GALR3,Alpha-MSH (des-acetyl MSH),93,0,381,189
+F_OPRD1__p45,F_calibration,OPRD1,Oxytocin,45,0,381,190
+F_SSTR5__p121,F_calibration,SSTR5,Cortistatin-17,121,1,381,191
+F_NPSR1__p75,F_calibration,NPSR1,Neuropeptide SF,75,0,382,192
+F_OPRD1__p59,F_calibration,OPRD1,Neuromedin B,59,0,382,193
+F_SSTR2__p93,F_calibration,SSTR2,Alpha-MSH (des-acetyl MSH),93,0,382,194
+F_AVPR2__p74,F_calibration,AVPR2,Melanotropin gamma; Gamma-MSH,74,0,382,195
+F_AVPR2__p75,F_calibration,AVPR2,Neuropeptide SF,75,0,382,196
+F_PRLHR__p93,F_calibration,PRLHR,Alpha-MSH (des-acetyl MSH),93,0,383,197
+F_GHSR__p121,F_calibration,GHSR,Cortistatin-17,121,0,383,198
+F_SSTR2__p103,F_calibration,SSTR2,"SST-14, SRIF-14",103,1,383,199
+F_BDKRB1__p177,F_calibration,BDKRB1,Galanin,177,0,383,200
+F_OPRD1__p74,F_calibration,OPRD1,Melanotropin gamma; Gamma-MSH,74,0,383,201
+F_AVPR2__p86,F_calibration,AVPR2,Neuropeptide RFRP-1,86,0,383,202
+F_PRLHR__p94,F_calibration,PRLHR,Neurotensin,94,0,383,203
+F_GHSR__p126,F_calibration,GHSR,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,384,204
+F_NPY4R__p45,F_calibration,NPY4R,Oxytocin,45,0,384,205
+F_AVPR2__p93,F_calibration,AVPR2,Alpha-MSH (des-acetyl MSH),93,0,384,206
+F_NPSR1__p93,F_calibration,NPSR1,Alpha-MSH (des-acetyl MSH),93,0,384,207
+F_APLNR__p14,F_calibration,APLNR,Leu-enkephalin,14,0,385,208
+F_OPRK1__p14,F_calibration,OPRK1,Leu-enkephalin,14,1,385,209
+F_NPY4R__p59,F_calibration,NPY4R,Neuromedin B,59,0,385,210
+F_OPRD1__p93,F_calibration,OPRD1,Alpha-MSH (des-acetyl MSH),93,0,385,211
+F_GALR1__p200,F_calibration,GALR1,Pancreatic hormone (PH),200,0,385,212
+F_NPY4R__p62,F_calibration,NPY4R,Neurokinin A,62,0,385,213
+F_GHSR__p131,F_calibration,GHSR,Melanin-concentrating hormone (MCH),131,0,385,214
+F_SSTR2__p121,F_calibration,SSTR2,Cortistatin-17,121,1,386,215
+F_NPY4R__p77,F_calibration,NPY4R,Substance P,77,0,386,216
+F_AGTR1__p167,F_calibration,AGTR1,Gastrin-releasing peptide (GRP),167,0,386,217
+F_GALR3__p126,F_calibration,GALR3,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,386,218
+F_NPY4R__p74,F_calibration,NPY4R,Melanotropin gamma; Gamma-MSH,74,0,386,219
+F_SSTR5__p152,F_calibration,SSTR5,Neuropeptide B-23,152,0,387,220
+F_OPRL1__p120,F_calibration,OPRL1,Nociceptin/orphanin FQ,120,1,387,221
+F_OPRL1__p119,F_calibration,OPRL1,Dynorphin A,119,1,387,222
+F_SSTR2__p126,F_calibration,SSTR2,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,387,223
+F_OPRL1__p118,F_calibration,OPRL1,Gastrin-17,118,0,387,224
+F_PRLHR__p121,F_calibration,PRLHR,Cortistatin-17,121,0,387,225
+F_NPSR1__p121,F_calibration,NPSR1,Cortistatin-17,121,0,388,226
+F_NPY4R__p94,F_calibration,NPY4R,Neurotensin,94,0,388,227
+F_OPRL1__p126,F_calibration,OPRL1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,388,228
+F_NPSR1__p120,F_calibration,NPSR1,Nociceptin/orphanin FQ,120,0,388,229
+F_AVPR2__p121,F_calibration,AVPR2,Cortistatin-17,121,0,388,230
+F_OPRK1__p35,F_calibration,OPRK1,Angiotensin II,35,0,388,231
+F_GALR3__p136,F_calibration,GALR3,Neuropeptide S,136,0,388,232
+F_GALR1__p208,F_calibration,GALR1,"Corticotropin, ACTH",208,0,388,233
+F_OPRD1__p119,F_calibration,OPRD1,Dynorphin A,119,1,389,234
+F_OPRK1__p46,F_calibration,OPRK1,Beta-neoendorphin,46,1,389,235
+F_OPRD1__p121,F_calibration,OPRD1,Cortistatin-17,121,0,389,236
+F_APLNR__p44,F_calibration,APLNR,Arg-vasopressin,44,0,389,237
+F_OPRK1__p44,F_calibration,OPRK1,Arg-vasopressin,44,0,389,238
+F_NPSR1__p126,F_calibration,NPSR1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,389,239
+F_OPRK1__p63,F_calibration,OPRK1,Neurokinin B,63,0,390,240
+F_NPY2R__p44,F_calibration,NPY2R,Arg-vasopressin,44,0,390,241
+F_OPRK1__p60,F_calibration,OPRK1,Gonadoliberin-1,60,0,390,242
+F_NPY2R__p60,F_calibration,NPY2R,Gonadoliberin-1,60,0,391,243
+F_NPSR1__p136,F_calibration,NPSR1,Neuropeptide S,136,1,391,244
+F_NPY2R__p63,F_calibration,NPY2R,Neurokinin B,63,0,391,245
+F_OPRD1__p131,F_calibration,OPRD1,Melanin-concentrating hormone (MCH),131,0,391,246
+F_NPY1R__p37,F_calibration,NPY1R,Urotensin-2B,37,0,392,247
+F_NPY1R__p29,F_calibration,NPY1R,Neuropeptide NPVF; RFRP-3,29,0,392,248
+F_PRLHR__p146,F_calibration,PRLHR,PEN,146,0,392,249
+F_BDKRB1__p208,F_calibration,BDKRB1,"Corticotropin, ACTH",208,0,392,250
+F_NPY4R__p119,F_calibration,NPY4R,Dynorphin A,119,0,392,251
+F_UTS2R__p3,F_calibration,UTS2R,Thyrotropin-releasing hormone,3,0,392,252
+F_NPY2R__p74,F_calibration,NPY2R,Melanotropin gamma; Gamma-MSH,74,0,392,253
+F_OPRL1__p152,F_calibration,OPRL1,Neuropeptide B-23,152,0,393,254
+F_AVPR2__p145,F_calibration,AVPR2,Motilin,145,0,393,255
+F_GRPR__p44,F_calibration,GRPR,Arg-vasopressin,44,0,393,256
+F_GRPR__p45,F_calibration,GRPR,Oxytocin,45,0,393,257
+F_APLNR__p92,F_calibration,APLNR,Apelin-13,92,1,393,258
+F_PRLHR__p151,F_calibration,PRLHR,Neuropeptide W-23,151,0,393,259
+F_OPRK1__p93,F_calibration,OPRK1,Alpha-MSH (des-acetyl MSH),93,0,393,260
+F_NMBR__p3,F_calibration,NMBR,Thyrotropin-releasing hormone,3,0,393,261
+F_OPRL1__p151,F_calibration,OPRL1,Neuropeptide W-23,151,0,393,262
+F_SSTR4__p14,F_calibration,SSTR4,Leu-enkephalin,14,0,393,263
+F_GHSR__p170,F_calibration,GHSR,Ghrelin-28,170,1,394,264
+F_GRPR__p59,F_calibration,GRPR,Neuromedin B,59,1,394,265
+F_UTS2R__p14,F_calibration,UTS2R,Leu-enkephalin,14,0,394,266
+F_NPY1R__p59,F_calibration,NPY1R,Neuromedin B,59,0,394,267
+F_SSTR5__p182,F_calibration,SSTR5,Beta-endorphin,182,0,395,268
+F_GRPR__p73,F_calibration,GRPR,T-kinin (natural variant),73,0,395,269
+F_OPRL1__p159,F_calibration,OPRL1,Neuromedin U-25,159,0,395,270
+F_NMBR__p14,F_calibration,NMBR,Leu-enkephalin,14,0,395,271
+F_AGTR1__p201,F_calibration,AGTR1,Peptide YY (PYY),201,0,395,272
+F_GALR2__p44,F_calibration,GALR2,Arg-vasopressin,44,0,396,273
+F_SSTR4__p37,F_calibration,SSTR4,Urotensin-2B,37,0,396,274
+F_NPSR1__p159,F_calibration,NPSR1,Neuromedin U-25,159,0,396,275
+F_GALR2__p59,F_calibration,GALR2,Neuromedin B,59,0,397,276
+F_GRPR__p92,F_calibration,GRPR,Apelin-13,92,0,397,277
+F_OPRK1__p119,F_calibration,OPRK1,Dynorphin A,119,1,397,278
+F_GRPR__p93,F_calibration,GRPR,Alpha-MSH (des-acetyl MSH),93,0,397,279
+F_UTS2R__p37,F_calibration,UTS2R,Urotensin-2B,37,1,397,280
+F_SSTR5__p194,F_calibration,SSTR5,CCK-33,194,0,397,281
+F_OPRL1__p167,F_calibration,OPRL1,Gastrin-releasing peptide (GRP),167,0,397,282
+F_APLNR__p118,F_calibration,APLNR,Gastrin-17,118,0,397,283
+F_NPY4R__p152,F_calibration,NPY4R,Neuropeptide B-23,152,0,398,284
+F_NMBR__p37,F_calibration,NMBR,Urotensin-2B,37,0,398,285
+F_AGTR1__p208,F_calibration,AGTR1,"Corticotropin, ACTH",208,0,398,286
+F_GALR2__p74,F_calibration,GALR2,Melanotropin gamma; Gamma-MSH,74,0,398,287
+F_OXTR__p44,F_calibration,OXTR,Arg-vasopressin,44,1,398,288
+F_AVPR2__p168,F_calibration,AVPR2,PACAP-27,168,0,398,289
+F_OXTR__p45,F_calibration,OXTR,Oxytocin,45,1,398,290
+F_NPY1R__p103,F_calibration,NPY1R,"SST-14, SRIF-14",103,0,398,291
+F_NPY2R__p119,F_calibration,NPY2R,Dynorphin A,119,0,398,292
+F_APLNR__p126,F_calibration,APLNR,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,398,293
+F_OPRK1__p126,F_calibration,OPRK1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,398,294
+F_GALR3__p177,F_calibration,GALR3,Galanin,177,1,398,295
+F_OXTR__p59,F_calibration,OXTR,Neuromedin B,59,0,399,296
+F_SSTR1__p29,F_calibration,SSTR1,Neuropeptide NPVF; RFRP-3,29,0,399,297
+F_OPRD1__p167,F_calibration,OPRD1,Gastrin-releasing peptide (GRP),167,0,399,298
+F_SSTR2__p177,F_calibration,SSTR2,Galanin,177,0,399,299
+F_UTS2R__p62,F_calibration,UTS2R,Neurokinin A,62,0,399,300
+F_SSTR4__p75,F_calibration,SSTR4,Neuropeptide SF,75,0,399,301
+F_NPY2R__p126,F_calibration,NPY2R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,399,302
+F_GALR3__p182,F_calibration,GALR3,Beta-endorphin,182,0,399,303
+F_SSTR4__p86,F_calibration,SSTR4,Neuropeptide RFRP-1,86,0,400,304
+F_SSTR1__p44,F_calibration,SSTR1,Arg-vasopressin,44,0,400,305
+F_BDKRB2__p44,F_calibration,BDKRB2,Arg-vasopressin,44,0,400,306
+F_UTS2R__p76,F_calibration,UTS2R,Urotensin-2,76,1,400,307
+F_OXTR__p74,F_calibration,OXTR,Melanotropin gamma; Gamma-MSH,74,0,400,308
+F_OPRD1__p170,F_calibration,OPRD1,Ghrelin-28,170,0,400,309
+F_UTS2R__p73,F_calibration,UTS2R,T-kinin (natural variant),73,0,400,310
+F_OXTR__p77,F_calibration,OXTR,Substance P,77,0,400,311
+F_GALR2__p92,F_calibration,GALR2,Apelin-13,92,0,400,312
+F_GALR2__p94,F_calibration,GALR2,Neurotensin,94,0,400,313
+F_OXTR__p73,F_calibration,OXTR,T-kinin (natural variant),73,0,400,314
+F_BDKRB2__p45,F_calibration,BDKRB2,Oxytocin,45,0,400,315
+F_NMBR__p59,F_calibration,NMBR,Neuromedin B,59,1,400,316
+F_NPY4R__p159,F_calibration,NPY4R,Neuromedin U-25,159,0,400,317
+F_NPY1R__p121,F_calibration,NPY1R,Cortistatin-17,121,0,401,318
+F_NPY1R__p118,F_calibration,NPY1R,Gastrin-17,118,0,401,319
+F_PRLHR__p183,F_calibration,PRLHR,PrRP-31,183,1,401,320
+F_GALR3__p194,F_calibration,GALR3,CCK-33,194,0,401,321
+F_SSTR2__p189,F_calibration,SSTR2,Apelin receptor early endogenous ligand,189,0,401,322
+F_BDKRB2__p60,F_calibration,BDKRB2,Gonadoliberin-1,60,0,401,323
+F_GALR3__p195,F_calibration,GALR3,Neuromedin S,195,0,401,324
+F_OPRL1__p182,F_calibration,OPRL1,Beta-endorphin,182,1,401,325
+F_KISS1R__p3,F_calibration,KISS1R,Thyrotropin-releasing hormone,3,0,401,326
+F_NMBR__p74,F_calibration,NMBR,Melanotropin gamma; Gamma-MSH,74,0,401,327
+F_TRHR__p3,F_calibration,TRHR,Thyrotropin-releasing hormone,3,1,401,328
+F_GHSR__p199,F_calibration,GHSR,Neuropeptide Y (NPY),199,0,402,329
+F_BDKRB2__p73,F_calibration,BDKRB2,T-kinin (natural variant),73,1,402,330
+F_SSTR4__p103,F_calibration,SSTR4,"SST-14, SRIF-14",103,1,402,331
+F_APLNR__p145,F_calibration,APLNR,Motilin,145,0,402,332
+F_OXTR__p93,F_calibration,OXTR,Alpha-MSH (des-acetyl MSH),93,0,402,333
+F_SSTR1__p75,F_calibration,SSTR1,Neuropeptide SF,75,0,402,334
+F_SSTR2__p195,F_calibration,SSTR2,Neuromedin S,195,0,402,335
+F_SSTR1__p76,F_calibration,SSTR1,Urotensin-2,76,0,402,336
+F_BDKRB2__p74,F_calibration,BDKRB2,Melanotropin gamma; Gamma-MSH,74,0,402,337
+F_BDKRB2__p77,F_calibration,BDKRB2,Substance P,77,0,402,338
+F_OPRL1__p195,F_calibration,OPRL1,Neuromedin S,195,0,403,339
+F_OPRK1__p152,F_calibration,OPRK1,Neuropeptide B-23,152,0,403,340
+F_OXTR__p103,F_calibration,OXTR,"SST-14, SRIF-14",103,0,403,341
+F_OPRD1__p182,F_calibration,OPRD1,Beta-endorphin,182,1,403,342
+F_GALR2__p121,F_calibration,GALR2,Cortistatin-17,121,0,404,343
+F_BDKRB2__p93,F_calibration,BDKRB2,Alpha-MSH (des-acetyl MSH),93,0,404,344
+F_GALR3__p200,F_calibration,GALR3,Pancreatic hormone (PH),200,0,404,345
+F_GALR2__p119,F_calibration,GALR2,Dynorphin A,119,0,404,346
+F_NPY1R__p136,F_calibration,NPY1R,Neuropeptide S,136,0,404,347
+F_NMBR__p103,F_calibration,NMBR,"SST-14, SRIF-14",103,0,404,348
+F_GALR3__p199,F_calibration,GALR3,Neuropeptide Y (NPY),199,0,404,349
+F_SSTR2__p199,F_calibration,SSTR2,Neuropeptide Y (NPY),199,0,405,350
+F_OPRM1__p14,F_calibration,OPRM1,Leu-enkephalin,14,1,405,351
+F_SSTR4__p119,F_calibration,SSTR4,Dynorphin A,119,0,405,352
+F_APLNR__p159,F_calibration,APLNR,Neuromedin U-25,159,0,405,353
+F_SSTR2__p201,F_calibration,SSTR2,Peptide YY (PYY),201,0,405,354
+F_SSTR4__p121,F_calibration,SSTR4,Cortistatin-17,121,1,405,355
+F_SSTR1__p103,F_calibration,SSTR1,"SST-14, SRIF-14",103,1,405,356
+F_KISS1R__p35,F_calibration,KISS1R,Angiotensin II,35,0,406,357
+F_OXTR__p121,F_calibration,OXTR,Cortistatin-17,121,0,406,358
+F_KISS1R__p29,F_calibration,KISS1R,Neuropeptide NPVF; RFRP-3,29,0,406,359
+F_TACR2__p29,F_calibration,TACR2,Neuropeptide NPVF; RFRP-3,29,0,406,360
+F_PRLHR__p200,F_calibration,PRLHR,Pancreatic hormone (PH),200,0,406,361
+F_NPY1R__p146,F_calibration,NPY1R,PEN,146,0,406,362
+F_PRLHR__p201,F_calibration,PRLHR,Peptide YY (PYY),201,0,406,363
+F_NPY4R__p182,F_calibration,NPY4R,Beta-endorphin,182,0,406,364
+F_GALR2__p131,F_calibration,GALR2,Melanin-concentrating hormone (MCH),131,0,406,365
+F_KISS1R__p44,F_calibration,KISS1R,Arg-vasopressin,44,0,407,366
+F_NPSR1__p200,F_calibration,NPSR1,Pancreatic hormone (PH),200,0,407,367
+F_NMBR__p121,F_calibration,NMBR,Cortistatin-17,121,0,407,368
+F_OPRK1__p168,F_calibration,OPRK1,PACAP-27,168,0,407,369
+F_GALR3__p208,F_calibration,GALR3,"Corticotropin, ACTH",208,0,407,370
+F_SSTR4__p131,F_calibration,SSTR4,Melanin-concentrating hormone (MCH),131,0,407,371
+F_UTS2R__p126,F_calibration,UTS2R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,407,372
+F_NPSR1__p199,F_calibration,NPSR1,Neuropeptide Y (NPY),199,0,407,373
+F_AVPR2__p201,F_calibration,AVPR2,Peptide YY (PYY),201,0,407,374
+F_TRHR__p45,F_calibration,TRHR,Oxytocin,45,0,407,375
+F_NPSR1__p201,F_calibration,NPSR1,Peptide YY (PYY),201,0,407,376
+F_TRHR__p44,F_calibration,TRHR,Arg-vasopressin,44,0,407,377
+F_TACR2__p63,F_calibration,TACR2,Neurokinin B,63,1,408,378
+F_TRHR__p62,F_calibration,TRHR,Neurokinin A,62,0,408,379
+F_KISS1R__p62,F_calibration,KISS1R,Neurokinin A,62,0,408,380
+F_TACR2__p62,F_calibration,TACR2,Neurokinin A,62,1,408,381
+F_BDKRB2__p121,F_calibration,BDKRB2,Cortistatin-17,121,0,408,382
+F_KISS1R__p59,F_calibration,KISS1R,Neuromedin B,59,0,408,383
+F_OPRM1__p29,F_calibration,OPRM1,Neuropeptide NPVF; RFRP-3,29,0,408,384
+F_KISS1R__p60,F_calibration,KISS1R,Gonadoliberin-1,60,0,408,385
+F_TRHR__p61,F_calibration,TRHR,Kisspeptin-10,61,0,408,386
+F_OPRD1__p200,F_calibration,OPRD1,Pancreatic hormone (PH),200,0,408,387
+F_OPRD1__p201,F_calibration,OPRD1,Peptide YY (PYY),201,0,408,388
+F_KISS1R__p61,F_calibration,KISS1R,Kisspeptin-10,61,1,408,389
+F_SSTR1__p121,F_calibration,SSTR1,Cortistatin-17,121,1,408,390
+F_OPRM1__p44,F_calibration,OPRM1,Arg-vasopressin,44,0,409,391
+F_TRHR__p74,F_calibration,TRHR,Melanotropin gamma; Gamma-MSH,74,0,409,392
+F_TACR2__p74,F_calibration,TACR2,Melanotropin gamma; Gamma-MSH,74,0,409,393
+F_TACR2__p77,F_calibration,TACR2,Substance P,77,1,409,394
+F_BRS3__p59,F_calibration,BRS3,Neuromedin B,59,1,409,395
+F_SSTR1__p126,F_calibration,SSTR1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,409,396
+F_AVPR2__p208,F_calibration,AVPR2,"Corticotropin, ACTH",208,0,410,397
+F_KISS1R__p86,F_calibration,KISS1R,Neuropeptide RFRP-1,86,0,410,398
+F_BDKRB2__p131,F_calibration,BDKRB2,Melanin-concentrating hormone (MCH),131,0,410,399
+F_OPRM1__p63,F_calibration,OPRM1,Neurokinin B,63,0,410,400
+F_NPY4R__p201,F_calibration,NPY4R,Peptide YY (PYY),201,1,411,401
+F_UTS2R__p145,F_calibration,UTS2R,Motilin,145,0,411,402
+F_APLNR__p183,F_calibration,APLNR,PrRP-31,183,0,411,403
+F_TACR2__p93,F_calibration,TACR2,Alpha-MSH (des-acetyl MSH),93,0,411,404
+F_NPY4R__p200,F_calibration,NPY4R,Pancreatic hormone (PH),200,1,411,405
+F_GRPR__p167,F_calibration,GRPR,Gastrin-releasing peptide (GRP),167,1,411,406
+F_NPY4R__p199,F_calibration,NPY4R,Neuropeptide Y (NPY),199,1,411,407
+F_OPRK1__p182,F_calibration,OPRK1,Beta-endorphin,182,1,411,408
+F_OPRK1__p183,F_calibration,OPRK1,PrRP-31,183,0,411,409
+F_OPRM1__p76,F_calibration,OPRM1,Urotensin-2,76,0,411,410
+F_TACR2__p103,F_calibration,TACR2,"SST-14, SRIF-14",103,0,412,411
+F_BRS3__p93,F_calibration,BRS3,Alpha-MSH (des-acetyl MSH),93,0,412,412
+F_GRPR__p171,F_calibration,GRPR,Orexin-B,171,0,412,413
+F_APLNR__p189,F_calibration,APLNR,Apelin receptor early endogenous ligand,189,1,412,414
+F_OPRM1__p86,F_calibration,OPRM1,Neuropeptide RFRP-1,86,0,412,415
+F_TRHR__p103,F_calibration,TRHR,"SST-14, SRIF-14",103,0,412,416
+F_BRS3__p103,F_calibration,BRS3,"SST-14, SRIF-14",103,0,413,417
+F_SSTR4__p159,F_calibration,SSTR4,Neuromedin U-25,159,0,413,418
+F_GRPR__p177,F_calibration,GRPR,Galanin,177,0,414,419
+F_NPY4R__p208,F_calibration,NPY4R,"Corticotropin, ACTH",208,0,414,420
+F_NPY2R__p195,F_calibration,NPY2R,Neuromedin S,195,0,414,421
+F_SSTR4__p168,F_calibration,SSTR4,PACAP-27,168,0,415,422
+F_KISS1R__p121,F_calibration,KISS1R,Cortistatin-17,121,0,415,423
+F_TACR2__p121,F_calibration,TACR2,Cortistatin-17,121,0,415,424
+F_TRHR__p118,F_calibration,TRHR,Gastrin-17,118,0,415,425
+F_TRHR__p121,F_calibration,TRHR,Cortistatin-17,121,0,415,426
+F_TACR1__p29,F_calibration,TACR1,Neuropeptide NPVF; RFRP-3,29,0,415,427
+F_SSTR4__p170,F_calibration,SSTR4,Ghrelin-28,170,0,416,428
+F_KISS1R__p126,F_calibration,KISS1R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,416,429
+F_UTS2R__p167,F_calibration,UTS2R,Gastrin-releasing peptide (GRP),167,0,416,430
+F_TRHR__p126,F_calibration,TRHR,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,416,431
+F_UTS2R__p168,F_calibration,UTS2R,PACAP-27,168,0,416,432
+F_SSTR4__p171,F_calibration,SSTR4,Orexin-B,171,0,416,433
+F_BRS3__p119,F_calibration,BRS3,Dynorphin A,119,0,416,434
+F_OPRK1__p199,F_calibration,OPRK1,Neuropeptide Y (NPY),199,0,416,435
+F_OPRK1__p200,F_calibration,OPRK1,Pancreatic hormone (PH),200,0,416,436
+F_OXTR__p167,F_calibration,OXTR,Gastrin-releasing peptide (GRP),167,0,416,437
+F_OPRM1__p119,F_calibration,OPRM1,Dynorphin A,119,1,417,438
+F_TACR1__p62,F_calibration,TACR1,Neurokinin A,62,1,417,439
+F_BRS3__p126,F_calibration,BRS3,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,417,440
+F_MLNR__p14,F_calibration,MLNR,Leu-enkephalin,14,0,417,441
+F_NPY2R__p200,F_calibration,NPY2R,Pancreatic hormone (PH),200,1,417,442
+F_NPY2R__p199,F_calibration,NPY2R,Neuropeptide Y (NPY),199,1,417,443
+F_NPY2R__p201,F_calibration,NPY2R,Peptide YY (PYY),201,1,417,444
+F_UTS2R__p171,F_calibration,UTS2R,Orexin-B,171,0,417,445
+F_TACR1__p61,F_calibration,TACR1,Kisspeptin-10,61,0,417,446
+F_GALR2__p177,F_calibration,GALR2,Galanin,177,1,417,447
+F_NMBR__p167,F_calibration,NMBR,Gastrin-releasing peptide (GRP),167,1,417,448
+F_TACR1__p63,F_calibration,TACR1,Neurokinin B,63,1,417,449
+F_TACR1__p77,F_calibration,TACR1,Substance P,77,1,418,450
+F_TACR1__p74,F_calibration,TACR1,Melanotropin gamma; Gamma-MSH,74,0,418,451
+F_SSTR1__p167,F_calibration,SSTR1,Gastrin-releasing peptide (GRP),167,0,418,452
+F_SSTR1__p168,F_calibration,SSTR1,PACAP-27,168,0,418,453
+F_OPRM1__p126,F_calibration,OPRM1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,418,454
+F_SSTR4__p183,F_calibration,SSTR4,PrRP-31,183,0,419,455
+F_OPRM1__p131,F_calibration,OPRM1,Melanin-concentrating hormone (MCH),131,0,419,456
+F_SSTR4__p182,F_calibration,SSTR4,Beta-endorphin,182,0,419,457
+F_NTSR2__p45,F_calibration,NTSR2,Oxytocin,45,0,419,458
+F_GALR2__p189,F_calibration,GALR2,Apelin receptor early endogenous ligand,189,0,419,459
+F_BDKRB2__p171,F_calibration,BDKRB2,Orexin-B,171,0,419,460
+F_OPRK1__p208,F_calibration,OPRK1,"Corticotropin, ACTH",208,0,419,461
+F_NTSR2__p60,F_calibration,NTSR2,Gonadoliberin-1,60,0,420,462
+F_GRPR__p200,F_calibration,GRPR,Pancreatic hormone (PH),200,0,420,463
+F_NPY1R__p201,F_calibration,NPY1R,Peptide YY (PYY),201,1,420,464
+F_NPY1R__p200,F_calibration,NPY1R,Pancreatic hormone (PH),200,1,420,465
+F_NPY1R__p199,F_calibration,NPY1R,Neuropeptide Y (NPY),199,1,420,466
+F_NPY2R__p208,F_calibration,NPY2R,"Corticotropin, ACTH",208,0,420,467
+F_MLNR__p45,F_calibration,MLNR,Oxytocin,45,0,421,468
+F_TACR2__p151,F_calibration,TACR2,Neuropeptide W-23,151,0,421,469
+F_BDKRB2__p177,F_calibration,BDKRB2,Galanin,177,0,421,470
+F_NMBR__p182,F_calibration,NMBR,Beta-endorphin,182,0,421,471
+F_NTSR2__p73,F_calibration,NTSR2,T-kinin (natural variant),73,0,421,472
+F_TACR1__p103,F_calibration,TACR1,"SST-14, SRIF-14",103,0,421,473
+F_MLNR__p46,F_calibration,MLNR,Beta-neoendorphin,46,0,421,474
+F_BDKRB2__p183,F_calibration,BDKRB2,PrRP-31,183,0,422,475
+F_BRS3__p151,F_calibration,BRS3,Neuropeptide W-23,151,0,422,476
+F_NMBR__p194,F_calibration,NMBR,CCK-33,194,0,423,477
+F_NTSR2__p94,F_calibration,NTSR2,Neurotensin,94,1,423,478
+F_SSTR3__p14,F_calibration,SSTR3,Leu-enkephalin,14,0,423,479
+F_GALR2__p199,F_calibration,GALR2,Neuropeptide Y (NPY),199,0,423,480
+F_NMUR2__p29,F_calibration,NMUR2,Neuropeptide NPVF; RFRP-3,29,0,423,481
+F_GALR2__p200,F_calibration,GALR2,Pancreatic hormone (PH),200,0,423,482
+F_GALR2__p201,F_calibration,GALR2,Peptide YY (PYY),201,0,423,483
+F_SSTR4__p200,F_calibration,SSTR4,Pancreatic hormone (PH),200,0,424,484
+F_NTSR2__p103,F_calibration,NTSR2,"SST-14, SRIF-14",103,0,424,485
+F_NMUR2__p44,F_calibration,NMUR2,Arg-vasopressin,44,0,424,486
+F_TACR1__p120,F_calibration,TACR1,Nociceptin/orphanin FQ,120,0,424,487
+F_MLNR__p86,F_calibration,MLNR,Neuropeptide RFRP-1,86,0,424,488
+F_UTS2R__p201,F_calibration,UTS2R,Peptide YY (PYY),201,0,425,489
+F_OXTR__p199,F_calibration,OXTR,Neuropeptide Y (NPY),199,0,425,490
+F_TACR2__p168,F_calibration,TACR2,PACAP-27,168,0,425,491
+F_TACR1__p126,F_calibration,TACR1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,425,492
+F_OXTR__p201,F_calibration,OXTR,Peptide YY (PYY),201,0,425,493
+F_NMUR2__p59,F_calibration,NMUR2,Neuromedin B,59,0,425,494
+F_GALR2__p208,F_calibration,GALR2,"Corticotropin, ACTH",208,0,426,495
+F_AVPR1A__p29,F_calibration,AVPR1A,Neuropeptide NPVF; RFRP-3,29,0,426,496
+F_SSTR3__p29,F_calibration,SSTR3,Neuropeptide NPVF; RFRP-3,29,0,426,497
+F_BRS3__p167,F_calibration,BRS3,Gastrin-releasing peptide (GRP),167,1,426,498
+F_NMBR__p200,F_calibration,NMBR,Pancreatic hormone (PH),200,0,426,499
+F_GPR83__p3,F_calibration,GPR83,Thyrotropin-releasing hormone,3,0,426,500
+F_NTSR2__p119,F_calibration,NTSR2,Dynorphin A,119,0,427,501
+F_AVPR1A__p44,F_calibration,AVPR1A,Arg-vasopressin,44,1,427,502
+F_BDKRB2__p199,F_calibration,BDKRB2,Neuropeptide Y (NPY),199,0,427,503
+F_SSTR3__p44,F_calibration,SSTR3,Arg-vasopressin,44,0,427,504
+F_NTSR2__p120,F_calibration,NTSR2,Nociceptin/orphanin FQ,120,0,427,505
+F_OPRM1__p167,F_calibration,OPRM1,Gastrin-releasing peptide (GRP),167,0,427,506
+F_NTSR1__p45,F_calibration,NTSR1,Oxytocin,45,0,427,507
+F_AVPR1A__p45,F_calibration,AVPR1A,Oxytocin,45,1,427,508
+F_NTSR2__p121,F_calibration,NTSR2,Cortistatin-17,121,0,427,509
+F_NMUR2__p92,F_calibration,NMUR2,Apelin-13,92,0,428,510
+F_GPR83__p14,F_calibration,GPR83,Leu-enkephalin,14,0,428,511
+F_NTSR1__p61,F_calibration,NTSR1,Kisspeptin-10,61,0,428,512
+F_AVPR1A__p63,F_calibration,AVPR1A,Neurokinin B,63,0,428,513
+F_NMUR2__p94,F_calibration,NMUR2,Neurotensin,94,0,428,514
+F_NTSR2__p126,F_calibration,NTSR2,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,428,515
+F_AVPR1A__p62,F_calibration,AVPR1A,Neurokinin A,62,0,428,516
+F_NMBR__p208,F_calibration,NMBR,"Corticotropin, ACTH",208,0,429,517
+F_NTSR1__p74,F_calibration,NTSR1,Melanotropin gamma; Gamma-MSH,74,0,429,518
+F_NMUR2__p103,F_calibration,NMUR2,"SST-14, SRIF-14",103,0,429,519
+F_NTSR1__p75,F_calibration,NTSR1,Neuropeptide SF,75,0,429,520
+F_OPRM1__p177,F_calibration,OPRM1,Galanin,177,0,430,521
+F_BDKRB2__p208,F_calibration,BDKRB2,"Corticotropin, ACTH",208,0,430,522
+F_SSTR1__p208,F_calibration,SSTR1,"Corticotropin, ACTH",208,0,430,523
+F_BRS3__p182,F_calibration,BRS3,Beta-endorphin,182,0,430,524
+F_MCHR1__p45,F_calibration,MCHR1,Oxytocin,45,0,431,525
+F_NTSR1__p94,F_calibration,NTSR1,Neurotensin,94,1,431,526
+F_NTSR1__p93,F_calibration,NTSR1,Alpha-MSH (des-acetyl MSH),93,0,431,527
+F_SSTR3__p93,F_calibration,SSTR3,Alpha-MSH (des-acetyl MSH),93,0,431,528
+F_OPRM1__p182,F_calibration,OPRM1,Beta-endorphin,182,1,431,529
+F_AVPR1A__p93,F_calibration,AVPR1A,Alpha-MSH (des-acetyl MSH),93,0,431,530
+F_SSTR3__p94,F_calibration,SSTR3,Neurotensin,94,0,431,531
+F_OPRM1__p189,F_calibration,OPRM1,Apelin receptor early endogenous ligand,189,0,432,532
+F_MCHR1__p59,F_calibration,MCHR1,Neuromedin B,59,0,432,533
+F_NMUR2__p121,F_calibration,NMUR2,Cortistatin-17,121,0,432,534
+F_TACR1__p159,F_calibration,TACR1,Neuromedin U-25,159,0,432,535
+F_NMUR2__p119,F_calibration,NMUR2,Dynorphin A,119,0,432,536
+F_SSTR3__p103,F_calibration,SSTR3,"SST-14, SRIF-14",103,1,432,537
+F_MCHR1__p63,F_calibration,MCHR1,Neurokinin B,63,0,432,538
+F_GPR83__p59,F_calibration,GPR83,Neuromedin B,59,0,433,539
+F_NMUR2__p126,F_calibration,NMUR2,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,433,540
+F_MCHR1__p74,F_calibration,MCHR1,Melanotropin gamma; Gamma-MSH,74,0,433,541
+F_AVPR1B__p44,F_calibration,AVPR1B,Arg-vasopressin,44,1,433,542
+F_AVPR1B__p45,F_calibration,AVPR1B,Oxytocin,45,1,433,543
+F_AVPR1B__p62,F_calibration,AVPR1B,Neurokinin A,62,0,434,544
+F_MLNR__p145,F_calibration,MLNR,Motilin,145,1,434,545
+F_TRHR__p201,F_calibration,TRHR,Peptide YY (PYY),201,0,434,546
+F_TRHR__p200,F_calibration,TRHR,Pancreatic hormone (PH),200,0,434,547
+F_KISS1R__p200,F_calibration,KISS1R,Pancreatic hormone (PH),200,0,434,548
+F_GPR83__p74,F_calibration,GPR83,Melanotropin gamma; Gamma-MSH,74,0,434,549
+F_TACR2__p199,F_calibration,TACR2,Neuropeptide Y (NPY),199,0,434,550
+F_KISS1R__p201,F_calibration,KISS1R,Peptide YY (PYY),201,0,434,551
+F_TRHR__p199,F_calibration,TRHR,Neuropeptide Y (NPY),199,0,434,552
+F_NPFFR1__p14,F_calibration,NPFFR1,Leu-enkephalin,14,0,435,553
+F_NMUR1__p44,F_calibration,NMUR1,Arg-vasopressin,44,0,435,554
+F_NMUR1__p46,F_calibration,NMUR1,Beta-neoendorphin,46,0,435,555
+F_AVPR1A__p121,F_calibration,AVPR1A,Cortistatin-17,121,0,435,556
+F_TACR1__p171,F_calibration,TACR1,Orexin-B,171,0,435,557
+F_MCHR1__p93,F_calibration,MCHR1,Alpha-MSH (des-acetyl MSH),93,0,435,558
+F_SSTR3__p120,F_calibration,SSTR3,Nociceptin/orphanin FQ,120,0,435,559
+F_AVPR1B__p74,F_calibration,AVPR1B,Melanotropin gamma; Gamma-MSH,74,0,435,560
+F_AVPR1B__p77,F_calibration,AVPR1B,Substance P,77,0,435,561
+F_SSTR3__p118,F_calibration,SSTR3,Gastrin-17,118,0,435,562
+F_BRS3__p201,F_calibration,BRS3,Peptide YY (PYY),201,0,435,563
+F_MLNR__p151,F_calibration,MLNR,Neuropeptide W-23,151,0,435,564
+F_SSTR3__p121,F_calibration,SSTR3,Cortistatin-17,121,1,435,565
+F_NMUR1__p62,F_calibration,NMUR1,Neurokinin A,62,0,436,566
+F_CCKAR__p29,F_calibration,CCKAR,Neuropeptide NPVF; RFRP-3,29,0,436,567
+F_NTSR1__p126,F_calibration,NTSR1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,436,568
+F_AVPR1B__p86,F_calibration,AVPR1B,Neuropeptide RFRP-1,86,0,436,569
+F_HCRTR1__p77,F_calibration,HCRTR1,Substance P,77,0,436,570
+F_GPR83__p93,F_calibration,GPR83,Alpha-MSH (des-acetyl MSH),93,0,436,571
+F_MCHR1__p103,F_calibration,MCHR1,"SST-14, SRIF-14",103,0,436,572
+F_SSTR3__p126,F_calibration,SSTR3,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,436,573
+F_AVPR1B__p93,F_calibration,AVPR1B,Alpha-MSH (des-acetyl MSH),93,0,437,574
+F_AVPR1B__p94,F_calibration,AVPR1B,Neurotensin,94,0,437,575
+F_TRHR__p208,F_calibration,TRHR,"Corticotropin, ACTH",208,0,437,576
+F_NMUR2__p145,F_calibration,NMUR2,Motilin,145,0,437,577
+F_KISS1R__p208,F_calibration,KISS1R,"Corticotropin, ACTH",208,0,437,578
+F_TACR1__p177,F_calibration,TACR1,Galanin,177,0,437,579
+F_AVPR1B__p103,F_calibration,AVPR1B,"SST-14, SRIF-14",103,0,438,580
+F_NPFFR1__p29,F_calibration,NPFFR1,Neuropeptide NPVF; RFRP-3,29,1,438,581
+F_NPFFR1__p35,F_calibration,NPFFR1,Angiotensin II,35,0,438,582
+F_BRS3__p208,F_calibration,BRS3,"Corticotropin, ACTH",208,0,438,583
+F_HCRTR1__p93,F_calibration,HCRTR1,Alpha-MSH (des-acetyl MSH),93,0,438,584
+F_HCRTR1__p94,F_calibration,HCRTR1,Neurotensin,94,0,438,585
+F_TACR1__p183,F_calibration,TACR1,PrRP-31,183,0,438,586
+F_NPFFR1__p44,F_calibration,NPFFR1,Arg-vasopressin,44,0,439,587
+F_MLNR__p167,F_calibration,MLNR,Gastrin-releasing peptide (GRP),167,0,439,588
+F_MLNR__p168,F_calibration,MLNR,PACAP-27,168,0,439,589
+F_HCRTR1__p103,F_calibration,HCRTR1,"SST-14, SRIF-14",103,0,439,590
+F_CCKAR__p74,F_calibration,CCKAR,Melanotropin gamma; Gamma-MSH,74,0,439,591
+F_NPFFR1__p62,F_calibration,NPFFR1,Neurokinin A,62,0,440,592
+F_NMUR2__p159,F_calibration,NMUR2,Neuromedin U-25,159,1,440,593
+F_GPR83__p118,F_calibration,GPR83,Gastrin-17,118,0,440,594
+F_NPFFR1__p60,F_calibration,NPFFR1,Gonadoliberin-1,60,0,440,595
+F_NPFFR1__p61,F_calibration,NPFFR1,Kisspeptin-10,61,0,440,596
+F_NTSR2__p182,F_calibration,NTSR2,Beta-endorphin,182,0,441,597
+F_AVPR1B__p121,F_calibration,AVPR1B,Cortistatin-17,121,0,441,598
+F_GPR83__p126,F_calibration,GPR83,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,441,599
+F_MCHR1__p131,F_calibration,MCHR1,Melanin-concentrating hormone (MCH),131,1,441,600
+F_NPFFR1__p75,F_calibration,NPFFR1,Neuropeptide SF,75,1,441,601
+F_NPFFR1__p77,F_calibration,NPFFR1,Substance P,77,0,441,602
+F_NMUR2__p168,F_calibration,NMUR2,PACAP-27,168,0,442,603
+F_NPFFR1__p86,F_calibration,NPFFR1,Neuropeptide RFRP-1,86,1,442,604
+F_CCKAR__p103,F_calibration,CCKAR,"SST-14, SRIF-14",103,0,442,605
+F_HCRTR1__p119,F_calibration,HCRTR1,Dynorphin A,119,0,442,606
+F_NPFFR1__p92,F_calibration,NPFFR1,Apelin-13,92,0,443,607
+F_MLNR__p183,F_calibration,MLNR,PrRP-31,183,0,443,608
+F_NPFFR1__p94,F_calibration,NPFFR1,Neurotensin,94,0,443,609
+F_NTSR2__p194,F_calibration,NTSR2,CCK-33,194,0,443,610
+F_NTSR2__p195,F_calibration,NTSR2,Neuromedin S,195,0,443,611
+F_TACR1__p201,F_calibration,TACR1,Peptide YY (PYY),201,0,443,612
+F_TACR1__p200,F_calibration,TACR1,Pancreatic hormone (PH),200,0,443,613
+F_NMUR1__p121,F_calibration,NMUR1,Cortistatin-17,121,0,443,614
+F_HCRTR1__p126,F_calibration,HCRTR1,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,443,615
+F_MLNR__p182,F_calibration,MLNR,Beta-endorphin,182,0,443,616
+F_NMUR1__p118,F_calibration,NMUR1,Gastrin-17,118,0,443,617
+F_AVPR1B__p136,F_calibration,AVPR1B,Neuropeptide S,136,0,444,618
+F_NPFFR1__p103,F_calibration,NPFFR1,"SST-14, SRIF-14",103,0,444,619
+F_MLNR__p194,F_calibration,MLNR,CCK-33,194,0,445,620
+F_NMUR2__p177,F_calibration,NMUR2,Galanin,177,0,445,621
+F_CCKAR__p118,F_calibration,CCKAR,Gastrin-17,118,1,445,622
+F_GPR83__p145,F_calibration,GPR83,Motilin,145,0,445,623
+F_GPR83__p146,F_calibration,GPR83,PEN,146,1,445,624
+F_GPR83__p152,F_calibration,GPR83,Neuropeptide B-23,152,0,446,625
+F_NTSR1__p170,F_calibration,NTSR1,Ghrelin-28,170,0,446,626
+F_CCKAR__p126,F_calibration,CCKAR,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,446,627
+F_AVPR1A__p170,F_calibration,AVPR1A,Ghrelin-28,170,0,446,628
+F_NPFFR1__p121,F_calibration,NPFFR1,Cortistatin-17,121,0,447,629
+F_NPFFR1__p119,F_calibration,NPFFR1,Dynorphin A,119,0,447,630
+F_MLNR__p199,F_calibration,MLNR,Neuropeptide Y (NPY),199,0,448,631
+F_NMUR2__p195,F_calibration,NMUR2,Neuromedin S,195,1,448,632
+F_NTSR1__p177,F_calibration,NTSR1,Galanin,177,0,448,633
+F_VIPR2__p59,F_calibration,VIPR2,Neuromedin B,59,0,448,634
+F_VIPR2__p60,F_calibration,VIPR2,Gonadoliberin-1,60,0,448,635
+F_MLNR__p200,F_calibration,MLNR,Pancreatic hormone (PH),200,0,448,636
+F_NMUR1__p146,F_calibration,NMUR1,PEN,146,0,448,637
+F_SSTR3__p183,F_calibration,SSTR3,PrRP-31,183,0,449,638
+F_NTSR2__p208,F_calibration,NTSR2,"Corticotropin, ACTH",208,0,449,639
+F_NMUR1__p151,F_calibration,NMUR1,Neuropeptide W-23,151,0,449,640
+F_AVPR1A__p189,F_calibration,AVPR1A,Apelin receptor early endogenous ligand,189,0,450,641
+F_NMUR2__p201,F_calibration,NMUR2,Peptide YY (PYY),201,0,451,642
+F_NMUR1__p159,F_calibration,NMUR1,Neuromedin U-25,159,1,451,643
+F_AVPR1B__p167,F_calibration,AVPR1B,Gastrin-releasing peptide (GRP),167,0,451,644
+F_AVPR1B__p168,F_calibration,AVPR1B,PACAP-27,168,0,451,645
+F_NTSR1__p195,F_calibration,NTSR1,Neuromedin S,195,0,451,646
+F_GPR83__p170,F_calibration,GPR83,Ghrelin-28,170,0,451,647
+F_SSTR3__p194,F_calibration,SSTR3,CCK-33,194,0,451,648
+F_HCRTR1__p168,F_calibration,HCRTR1,PACAP-27,168,0,452,649
+F_VIPR2__p103,F_calibration,VIPR2,"SST-14, SRIF-14",103,0,452,650
+F_HCRTR1__p167,F_calibration,HCRTR1,Gastrin-releasing peptide (GRP),167,0,452,651
+F_NPFFR1__p151,F_calibration,NPFFR1,Neuropeptide W-23,151,0,453,652
+F_HCRTR1__p171,F_calibration,HCRTR1,Orexin-B,171,1,453,653
+F_CCKAR__p159,F_calibration,CCKAR,Neuromedin U-25,159,0,453,654
+F_AVPR1B__p177,F_calibration,AVPR1B,Galanin,177,0,454,655
+F_NMUR2__p208,F_calibration,NMUR2,"Corticotropin, ACTH",208,0,454,656
+F_SSTR3__p201,F_calibration,SSTR3,Peptide YY (PYY),201,0,454,657
+F_AVPR1A__p199,F_calibration,AVPR1A,Neuropeptide Y (NPY),199,0,454,658
+F_AVPR1A__p200,F_calibration,AVPR1A,Pancreatic hormone (PH),200,0,454,659
+F_NTSR1__p201,F_calibration,NTSR1,Peptide YY (PYY),201,0,454,660
+F_VIPR2__p120,F_calibration,VIPR2,Nociceptin/orphanin FQ,120,0,455,661
+F_CCKAR__p167,F_calibration,CCKAR,Gastrin-releasing peptide (GRP),167,0,455,662
+F_NPY5R__p59,F_calibration,NPY5R,Neuromedin B,59,0,455,663
+F_HCRTR2__p73,F_calibration,HCRTR2,T-kinin (natural variant),73,0,455,664
+F_HCRTR2__p77,F_calibration,HCRTR2,Substance P,77,0,455,665
+F_HCRTR2__p74,F_calibration,HCRTR2,Melanotropin gamma; Gamma-MSH,74,0,455,666
+F_NPY5R__p60,F_calibration,NPY5R,Gonadoliberin-1,60,0,455,667
+F_AVPR1B__p182,F_calibration,AVPR1B,Beta-endorphin,182,0,455,668
+F_NPY5R__p74,F_calibration,NPY5R,Melanotropin gamma; Gamma-MSH,74,0,456,669
+F_GPR83__p195,F_calibration,GPR83,Neuromedin S,195,0,456,670
+F_NPY5R__p76,F_calibration,NPY5R,Urotensin-2,76,0,456,671
+F_CCKAR__p171,F_calibration,CCKAR,Orexin-B,171,0,456,672
+F_NMUR1__p182,F_calibration,NMUR1,Beta-endorphin,182,0,457,673
+F_HCRTR2__p93,F_calibration,HCRTR2,Alpha-MSH (des-acetyl MSH),93,0,457,674
+F_AVPR1A__p208,F_calibration,AVPR1A,"Corticotropin, ACTH",208,0,457,675
+F_MCHR1__p199,F_calibration,MCHR1,Neuropeptide Y (NPY),199,0,458,676
+F_CCKBR__p73,F_calibration,CCKBR,T-kinin (natural variant),73,0,458,677
+F_MCHR1__p201,F_calibration,MCHR1,Peptide YY (PYY),201,0,458,678
+F_MCHR1__p200,F_calibration,MCHR1,Pancreatic hormone (PH),200,0,458,679
+F_NMUR1__p194,F_calibration,NMUR1,CCK-33,194,0,459,680
+F_NMUR1__p195,F_calibration,NMUR1,Neuromedin S,195,1,459,681
+F_CCKAR__p183,F_calibration,CCKAR,PrRP-31,183,0,459,682
+F_AVPR1B__p199,F_calibration,AVPR1B,Neuropeptide Y (NPY),199,0,460,683
+F_CCKBR__p93,F_calibration,CCKBR,Alpha-MSH (des-acetyl MSH),93,0,460,684
+F_CCKBR__p94,F_calibration,CCKBR,Neurotensin,94,0,460,685
+F_HCRTR2__p118,F_calibration,HCRTR2,Gastrin-17,118,0,461,686
+F_HCRTR1__p199,F_calibration,HCRTR1,Neuropeptide Y (NPY),199,0,461,687
+F_CCKAR__p194,F_calibration,CCKAR,CCK-33,194,1,461,688
+F_HCRTR1__p200,F_calibration,HCRTR1,Pancreatic hormone (PH),200,0,461,689
+F_NPFFR1__p183,F_calibration,NPFFR1,PrRP-31,183,1,461,690
+F_NMUR1__p201,F_calibration,NMUR1,Peptide YY (PYY),201,0,462,691
+F_NMUR1__p199,F_calibration,NMUR1,Neuropeptide Y (NPY),199,0,462,692
+F_NMUR1__p200,F_calibration,NMUR1,Pancreatic hormone (PH),200,0,462,693
+F_VIPR1__p14,F_calibration,VIPR1,Leu-enkephalin,14,0,462,694
+F_NPY5R__p119,F_calibration,NPY5R,Dynorphin A,119,0,462,695
+F_GPR83__p208,F_calibration,GPR83,"Corticotropin, ACTH",208,0,462,696
+F_NPFFR1__p189,F_calibration,NPFFR1,Apelin receptor early endogenous ligand,189,0,462,697
+F_NPY5R__p126,F_calibration,NPY5R,"Melanocyte-stimulating hormone beta, Beta-MSH",126,0,463,698
+F_NPFFR1__p195,F_calibration,NPFFR1,Neuromedin S,195,0,463,699
+F_CCKBR__p118,F_calibration,CCKBR,Gastrin-17,118,1,464,700
+F_CCKAR__p201,F_calibration,CCKAR,Peptide YY (PYY),201,0,464,701
+F_CCKBR__p119,F_calibration,CCKBR,Dynorphin A,119,0,464,702
+F_VIPR2__p168,F_calibration,VIPR2,PACAP-27,168,1,465,703
+F_VIPR1__p35,F_calibration,VIPR1,Angiotensin II,35,0,465,704
+F_VIPR1__p45,F_calibration,VIPR1,Oxytocin,45,0,466,705
+F_HCRTR2__p146,F_calibration,HCRTR2,PEN,146,0,466,706
+F_CCKAR__p208,F_calibration,CCKAR,"Corticotropin, ACTH",208,0,467,707
+F_VIPR1__p63,F_calibration,VIPR1,Neurokinin B,63,0,467,708
+F_VIPR1__p61,F_calibration,VIPR1,Kisspeptin-10,61,0,467,709
+F_VIPR2__p177,F_calibration,VIPR2,Galanin,177,0,468,710
+F_CCKBR__p152,F_calibration,CCKBR,Neuropeptide B-23,152,0,470,711
+F_CCKBR__p151,F_calibration,CCKBR,Neuropeptide W-23,151,0,470,712
+F_VIPR2__p194,F_calibration,VIPR2,CCK-33,194,0,471,713
+F_VIPR1__p103,F_calibration,VIPR1,"SST-14, SRIF-14",103,0,471,714
+F_HCRTR2__p171,F_calibration,HCRTR2,Orexin-B,171,1,472,715
+F_TACR3__p45,F_calibration,TACR3,Oxytocin,45,0,474,716
+F_VIPR1__p121,F_calibration,VIPR1,Cortistatin-17,121,0,474,717
+F_VIPR2__p201,F_calibration,VIPR2,Peptide YY (PYY),201,0,474,718
+F_VIPR1__p119,F_calibration,VIPR1,Dynorphin A,119,0,474,719
+F_TACR3__p62,F_calibration,TACR3,Neurokinin A,62,1,475,720
+F_HCRTR2__p182,F_calibration,HCRTR2,Beta-endorphin,182,0,475,721
+F_HCRTR2__p183,F_calibration,HCRTR2,PrRP-31,183,0,475,722
+F_TACR3__p63,F_calibration,TACR3,Neurokinin B,63,1,475,723
+F_NPY5R__p182,F_calibration,NPY5R,Beta-endorphin,182,0,476,724
+F_NPY5R__p183,F_calibration,NPY5R,PrRP-31,183,0,476,725
+F_TACR3__p77,F_calibration,TACR3,Substance P,77,1,476,726
+F_ADCYAP1R1__p46,F_calibration,ADCYAP1R1,Beta-neoendorphin,46,0,477,727
+F_CCKBR__p177,F_calibration,CCKBR,Galanin,177,0,477,728
+F_ADCYAP1R1__p45,F_calibration,ADCYAP1R1,Oxytocin,45,0,477,729
+F_CCKBR__p182,F_calibration,CCKBR,Beta-endorphin,182,0,478,730
+F_CCKBR__p183,F_calibration,CCKBR,PrRP-31,183,0,478,731
+F_TACR3__p93,F_calibration,TACR3,Alpha-MSH (des-acetyl MSH),93,0,478,732
+F_ADCYAP1R1__p73,F_calibration,ADCYAP1R1,T-kinin (natural variant),73,0,479,733
+F_ADCYAP1R1__p74,F_calibration,ADCYAP1R1,Melanotropin gamma; Gamma-MSH,74,0,479,734
+F_TACR3__p103,F_calibration,TACR3,"SST-14, SRIF-14",103,0,479,735
+F_ADCYAP1R1__p77,F_calibration,ADCYAP1R1,Substance P,77,0,479,736
+F_CCKBR__p194,F_calibration,CCKBR,CCK-33,194,1,480,737
+F_ADCYAP1R1__p86,F_calibration,ADCYAP1R1,Neuropeptide RFRP-1,86,0,480,738
+F_NPY5R__p200,F_calibration,NPY5R,Pancreatic hormone (PH),200,1,481,739
+F_NPY5R__p201,F_calibration,NPY5R,Peptide YY (PYY),201,1,481,740
+F_ADCYAP1R1__p93,F_calibration,ADCYAP1R1,Alpha-MSH (des-acetyl MSH),93,0,481,741
+F_NPY5R__p199,F_calibration,NPY5R,Neuropeptide Y (NPY),199,1,481,742
+F_ADCYAP1R1__p103,F_calibration,ADCYAP1R1,"SST-14, SRIF-14",103,0,482,743
+F_CCKBR__p201,F_calibration,CCKBR,Peptide YY (PYY),201,0,483,744
+F_VIPR1__p168,F_calibration,VIPR1,PACAP-27,168,1,484,745
+F_ADCYAP1R1__p121,F_calibration,ADCYAP1R1,Cortistatin-17,121,0,485,746
+F_CCKBR__p208,F_calibration,CCKBR,"Corticotropin, ACTH",208,0,486,747
+F_VIPR1__p177,F_calibration,VIPR1,Galanin,177,0,487,748
+F_VIPR1__p182,F_calibration,VIPR1,Beta-endorphin,182,0,488,749
+F_TACR3__p159,F_calibration,TACR3,Neuromedin U-25,159,0,490,750
+F_TACR3__p167,F_calibration,TACR3,Gastrin-releasing peptide (GRP),167,0,492,751
+F_VIPR1__p201,F_calibration,VIPR1,Peptide YY (PYY),201,0,493,752
+F_VIPR1__p200,F_calibration,VIPR1,Pancreatic hormone (PH),200,0,493,753
+F_ADCYAP1R1__p168,F_calibration,ADCYAP1R1,PACAP-27,168,1,495,754
+F_ADCYAP1R1__p183,F_calibration,ADCYAP1R1,PrRP-31,183,0,499,755
+F_TACR3__p201,F_calibration,TACR3,Peptide YY (PYY),201,0,501,756
+F_TACR3__p200,F_calibration,TACR3,Pancreatic hormone (PH),200,0,501,757
+F_TACR3__p199,F_calibration,TACR3,Neuropeptide Y (NPY),199,0,501,758
+F_NPFFR2__p14,F_calibration,NPFFR2,Leu-enkephalin,14,0,527,759
+F_NPFFR2__p29,F_calibration,NPFFR2,Neuropeptide NPVF; RFRP-3,29,1,530,760
+F_NPFFR2__p59,F_calibration,NPFFR2,Neuromedin B,59,0,532,761
+F_NPFFR2__p60,F_calibration,NPFFR2,Gonadoliberin-1,60,0,532,762
+F_NPFFR2__p63,F_calibration,NPFFR2,Neurokinin B,63,0,532,763
+F_NPFFR2__p75,F_calibration,NPFFR2,Neuropeptide SF,75,1,533,764
+F_NPFFR2__p77,F_calibration,NPFFR2,Substance P,77,0,533,765
+F_NPFFR2__p74,F_calibration,NPFFR2,Melanotropin gamma; Gamma-MSH,74,0,533,766
+F_NPFFR2__p86,F_calibration,NPFFR2,Neuropeptide RFRP-1,86,1,534,767
+F_NPFFR2__p93,F_calibration,NPFFR2,Alpha-MSH (des-acetyl MSH),93,0,535,768
+F_NPFFR2__p119,F_calibration,NPFFR2,Dynorphin A,119,0,539,769
+F_NPFFR2__p118,F_calibration,NPFFR2,Gastrin-17,118,0,539,770
+F_NPFFR2__p159,F_calibration,NPFFR2,Neuromedin U-25,159,0,547,771
+F_NPFFR2__p167,F_calibration,NPFFR2,Gastrin-releasing peptide (GRP),167,0,549,772
+F_NPFFR2__p168,F_calibration,NPFFR2,PACAP-27,168,0,549,773
+F_NPFFR2__p177,F_calibration,NPFFR2,Galanin,177,0,552,774
+F_NPFFR2__p183,F_calibration,NPFFR2,PrRP-31,183,1,553,775
+F_NPFFR2__p182,F_calibration,NPFFR2,Beta-endorphin,182,0,553,776
+F_NPFFR2__p194,F_calibration,NPFFR2,CCK-33,194,0,555,777
+F_NPFFR2__p200,F_calibration,NPFFR2,Pancreatic hormone (PH),200,0,558,778
+F_NPFFR2__p199,F_calibration,NPFFR2,Neuropeptide Y (NPY),199,0,558,779
+F_NPFFR2__p208,F_calibration,NPFFR2,"Corticotropin, ACTH",208,0,561,780
