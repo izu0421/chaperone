@@ -38,6 +38,29 @@ sys.modules["sc35"] = sc35
 _s.loader.exec_module(sc35)
 
 
+
+def verdict_for(row, perm, cyto, d_plddt_A, gate):
+    """The arm's verdict, in one place.
+
+    This was computed twice, once for the printed table and once for the CSV,
+    and the two drifted within an hour of each other: a 98%-cytoplasmic pose
+    kept a PASS in one and lost it in the other. Three preconditions, in order,
+    because each one makes the next meaningless if it fails.
+    """
+    if pd.notna(d_plddt_A) and d_plddt_A < -15:
+        return f"WITHHELD -- the cut receptor does not fold ({d_plddt_A:+.1f} pLDDT)"
+    if pd.notna(cyto) and cyto >= 0.3:
+        return f"FAIL -- {100 * cyto:.0f}% of the receptor face is cytoplasmic"
+    if perm is None or not len(perm):
+        return "folded, no negative yet"
+    if row.pae_min_AB >= perm.pae_min_AB.min():
+        return "FAIL -- a permuted ectodomain docks as well"
+    if row.pae_min_AB > gate:
+        return (f"beats its negatives but is weak ({row.pae_min_AB:.2f} A, "
+                f"gate {gate:.2f})")
+    return "PASS"
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=12)
@@ -123,11 +146,7 @@ def main() -> None:
             cyto = zone.get(r.job, float("nan"))
             if len(perm):
                 b = perm.loc[perm.pae_min_AB.idxmin()]
-                if cyto >= 0.3:
-                    v = f"FAIL -- {100 * cyto:.0f}% of the receptor face is cytoplasmic"
-                else:
-                    v = ("PASS" if r.pae_min_AB < b.pae_min_AB else
-                         "FAIL -- a permuted ectodomain docks as well")
+                v = verdict_for(r, perm, cyto, r.plddt_A - pa, GATE)
                 log.info("  %-22s %8.2f %8.2f  %-11s %-20s %s",
                          f"{r.receptor}+{r.partner}", fu, r.pae_min_AB, dp,
                          f"{b.partner} {b.pae_min_AB:.2f}", v)
@@ -149,15 +168,8 @@ def main() -> None:
         perm_arm = "P_permuted" if r.arm == "P_candidate" else "P_both_permuted"
         perm = best[best.arm.eq(perm_arm) & best.receptor.eq(r.receptor)]
         cyto = zone.get(r.job, float("nan"))
-        if cyto >= 0.3:
-            v = f"FAIL -- {100 * cyto:.0f}% cytoplasmic receptor face"
-        elif not len(perm):
-            v = "folded, no negative yet"
-        elif r.pae_min_AB < perm.pae_min_AB.min():
-            v = "PASS"
-        else:
-            v = "FAIL -- a permuted ectodomain docks as well"
-        verdicts[r.job] = v
+        pa, _ = pld.get((r.receptor, r.partner), (np.nan, np.nan))
+        verdicts[r.job] = verdict_for(r, perm, cyto, r.plddt_A - pa, GATE)
     best["verdict"] = best.job.map(verdicts)
     best["rec_cyto"] = best.job.map(zone)
     best.to_csv(ROOT / "results" / "ectodomain_per_job.csv", index=False)
