@@ -372,8 +372,13 @@ def render_validation_summary(enriched_rows: list, strategies: dict = None) -> s
             blurb = REJECTED_VERDICT_BLURBS.get(row.get("verdict"), row.get("verdict") or "")
             first_sentence = (row.get("rationale") or "").split(". ")[0]
             why = esc(blurb) + (f" {esc(first_sentence)}." if first_sentence else "")
+        # A per-pair anchor, so anything outside this report can link straight to
+        # the row that explains a verdict. Without it the only way to show why a
+        # candidate was rejected is to retype the reason somewhere else, and the
+        # copy drifts from the run that produced it.
+        anchor = f"pair-{row['protein_a']}-{row['protein_b']}".replace(" ", "_")
         rows_html += f"""
-        <tr>
+        <tr id="{esc(anchor)}">
           <td><b>{pair}</b></td>
           <td>{worth_badge}</td>
           <td style="font-size:12px;color:var(--grey);">{why}</td>

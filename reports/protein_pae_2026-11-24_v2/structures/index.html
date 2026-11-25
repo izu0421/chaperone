@@ -340,7 +340,18 @@ fetch('meta.json').then(r => r.json()).then(meta => {
       if (act === 'spin'){ if (V) V.spin(state.spin ? 'y' : false); }
       else paint();
     }));
-  const first = document.querySelector('.row');
-  if (first) select(first.dataset.job);
+  // Deep link: #GPR158__NMS opens that structure directly, so a claim made
+  // anywhere else can point at the fold it rests on instead of describing it.
+  function fromHash(){
+    const want = decodeURIComponent(location.hash.replace(/^#/, ''));
+    if (!want) return null;
+    return document.querySelector(`.row[data-job="${CSS.escape(want)}"]`);
+  }
+  const target = fromHash() || document.querySelector('.row');
+  if (target) select(target.dataset.job);
+  window.addEventListener('hashchange', () => {
+    const r = fromHash();
+    if (r) select(r.dataset.job);
+  });
 });
 </script>

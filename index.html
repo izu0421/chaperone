@@ -20,6 +20,20 @@ a{color:var(--acc)}
 .card b{display:block;font-size:15px}
 .card span{color:var(--mut);font-size:13px}
 table{border-collapse:collapse;font-size:13px;margin:6px 0 0}
+table.cands{width:100%;table-layout:fixed;margin-top:12px}
+table.cands td{vertical-align:top;padding:8px 10px 8px 0;font-size:12px}
+table.cands th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--grey)}
+table.cands td:nth-child(1){width:21%}
+table.cands td:nth-child(2){width:10%}
+table.cands td:nth-child(4){width:21%}
+td.why{line-height:1.45}
+.mut{color:var(--grey);font-size:11px;display:block;margin-top:3px;line-height:1.4}
+.badge{display:inline-block;padding:1px 7px;border-radius:9px;color:#fff;font-size:10.5px;
+  letter-spacing:.02em;white-space:nowrap}
+.lnk a{margin-right:2px;white-space:nowrap}
+@media(max-width:620px){table.cands,table.cands tr,table.cands td{display:block;width:auto}
+  table.cands tr{border-bottom:1px solid var(--rule);padding:8px 0}
+  table.cands th{display:none}}
 td,th{border-bottom:1px solid var(--rule);padding:5px 14px 5px 0;text-align:left}
 th{color:var(--mut);font-weight:600;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
 code{background:var(--surface);padding:1px 5px;border-radius:3px;font-size:13px}
@@ -272,6 +286,170 @@ The honest summary is that the spatial rank and the structural gate are unrelate
 random draw from the remaining ~74,000 is still the only thing that measures the
 selection&rsquo;s effect directly; at the observed rate, 1,500 folds would detect a doubling
 84% of the time and 500 would detect it 43% of the time.</p>
+
+<!-- CANDIDATE-TABLE-START -->
+<h2>Every candidate, and what decided it</h2>
+<p>All 19 pairs the agent returned as confirmed, with the construct test that settled
+each one and a link to the triage row that produced its verdict. A rejection with no
+reason attached is indistinguishable from a rejection with a bad reason, and a verdict
+whose source is not linked drifts from it &mdash; which is how a confirmed candidate spent
+a day in a report no table referenced.</p>
+<table class="cands">
+<tr><th>Pair</th><th>Standing</th><th>What decided it</th><th>Source</th></tr>
+<tr>
+  <td><b>GPR158 + NMS</b><br>
+      <span class="mut">2.69 &#8491; &middot; extracellular surface</span></td>
+  <td><span class="badge" style="background:#2166AC">Stands</span></td>
+  <td class="why"><b>receptor ectodomain</b>: survives, with its own controls; <b>mature chain</b>: survives, with its own controls.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. NMS is a secreted brain neuropeptide (HPA &quot;Predicted secreted proteins&quot;, secretome_location &quot;Secreted in brain&quot;, function &quot;regulation of circadian rhythms through autocrine and/or paracrine actions&quot;) and GPR158 is a brain/retina-enriched plasma-membrane GPCR (&quot;Metabotropic glycine receptor&quot;, Cell membrane/Postsynaptic cell membrane), so a secreted-ligand/membrane-receptor pairing is compartmentally coherent and both are brain-expressed.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-NMS-GPR158">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR158__NMS">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5H8A3">NMS</a></td>
+</tr>
+<tr>
+  <td><b>MRGPRX2 + GNRH2</b><br>
+      <span class="mut">2.2 &#8491; &middot; orthosteric pocket</span></td>
+  <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
+  <td class="why"><b>mature chain</b>: survives, with its own controls.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. GNRH2 (UniProt O43555, progonadoliberin-2) is HPA-classed &quot;Predicted secreted proteins&quot;, secreted to blood, function &quot;hormone&quot;; MRGPRX2 (Q96LB1) is a plasma-membrane GPCR whose documented function is to be a promiscuous mast-cell receptor for BASIC secretagogue peptides (substance P, cortistatin-14, PAMP-12, LL-37, beta-defensins, dynorphins, PMX-53), so a cationic decapeptide hormone binding it is mechanistically the right class of interaction rather than an implausible one.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GNRH2-MRGPRX2">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#MRGPRX2__GNRH2">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96LB1">MRGPRX2</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O43555">GNRH2</a></td>
+</tr>
+<tr>
+  <td><b>GPR65 + TNFRSF8</b><br>
+      <span class="mut">2.95 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
+  <td class="why"><b>mature chain</b>: survives, with its own controls.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed co-occurrence returned 0 papers.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF8-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__TNFRSF8">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P28908">TNFRSF8</a></td>
+</tr>
+<tr>
+  <td><b>MRGPRX2 + SPX</b><br>
+      <span class="mut">3.51 &#8491; &middot; orthosteric pocket</span></td>
+  <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
+  <td class="why"><b>mature chain</b>: survives, with its own controls.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. SPX (Q9BT56, spexin) is an HPA-annotated secreted blood hormone and MRGPRX2 (Q96LB1) is a mast-cell-specific plasma-membrane GPCR, so a secreted-peptide/receptor pairing is compartment-plausible and does not require same-cell coexpression; MRGPRX2&#x27;s UniProt FUNCTION explicitly describes it as a promiscuous receptor for endogenous peptide secretagogues (substance P, cortistatin-14, PAMP-12, LL-37, beta-defensins, dynorphins, CXCL17), which makes a short secreted peptide like spexin a mechanistically reasonable candidate agonist.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-SPX-MRGPRX2">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96LB1">MRGPRX2</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9BT56">SPX</a></td>
+</tr>
+<tr>
+  <td><b>GPR83 + GRIA4</b><br>
+      <span class="mut">3.01 &#8491; &middot; ecto-ecto</span></td>
+  <td><span class="badge" style="background:#C98A93">Weakened</span></td>
+  <td class="why"><b>mature chain</b>: interface weakens to 4.02 &#8491;.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature source reports this pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0), and both are plasma-membrane receptors enriched in brain and expressed in the same neuron classes, so a lateral in-membrane contact is physically possible.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GRIA4-GPR83">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P48058">GRIA4</a></td>
+</tr>
+<tr>
+  <td><b>MAS1L + CALCB</b><br>
+      <span class="mut">3.16 &#8491; &middot; orthosteric pocket</span></td>
+  <td><span class="badge" style="background:#C98A93">Weakened</span></td>
+  <td class="why"><b>mature chain</b>: interface weakens to 5.03 &#8491;.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CALCB (P10092) is a secreted peptide hormone and MAS1L (P35410) is a plasma-membrane orphan GPCR, so a ligand-receptor pairing is compartmentally plausible, and STRING, CellPhoneDB and PubMed (0 papers) all show no prior record of the pair.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CALCB-MAS1L">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P35410">MAS1L</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P10092">CALCB</a></td>
+</tr>
+<tr>
+  <td><b>GPR65 + HCST</b><br>
+      <span class="mut">3.58 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#C98A93">Weakened</span></td>
+  <td class="why"><b>mature chain</b>: interface weakens to 5.17 &#8491;.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. HCST (DAP10, UniProt Q9UBK5) and GPR65 (UniProt Q8IYL9) are both membrane proteins enhanced in the same tissues (bone marrow and lymphoid tissue) with overlapping vesicle/plasma-membrane compartments, and no database or literature records the pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-HCST-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__HCST">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UBK5">HCST</a></td>
+</tr>
+<tr>
+  <td><b>GPR22 + SLITRK2</b><br>
+      <span class="mut">2.86 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#9A9AA2">Gate only</span></td>
+  <td class="why">no construct test has returned yet; the gate is the only evidence.
+      <div class="mut">Triaged in <code>protein_pae_clashfloor</code>. No prior record of this pair exists: STRING found no association, CellPhoneDB found no curated interaction, and PubMed returned 0 co-mentions.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_clashfloor/report.html#pair-SLITRK2-GPR22">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q99680">GPR22</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9H156">SLITRK2</a></td>
+</tr>
+<tr>
+  <td><b>GPR65 + TNFRSF13B</b><br>
+      <span class="mut">3.09 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#9A9AA2">Gate only</span></td>
+  <td class="why">no construct test has returned yet; the gate is the only evidence.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature records this pair: STRING found nothing, CellPhoneDB found nothing, and PubMed co-occurrence returned 0 papers.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF13B-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__TNFRSF13B">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O14836">TNFRSF13B</a></td>
+</tr>
+<tr>
+  <td><b>GPRC5C + IGF2</b><br>
+      <span class="mut">2.15 &#8491; &middot; IMPOSSIBLE cytoplasmic</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>physics</b>: a secreted partner placed on the cytoplasmic face, which it has no route to; <b>mature chain</b>: cytoplasmic face, partner is secreted.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. IGF2 is a secreted hormone (HPA: &quot;Secreted to blood&quot;, function &quot;Hormone&quot;) and GPRC5C is a 7-transmembrane orphan GPCR that HPA places at the plasma membrane, so a ligand-receptor geometry is compartmentally plausible.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-IGF2-GPRC5C">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPRC5C__IGF2">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NQ84">GPRC5C</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P01344">IGF2</a></td>
+</tr>
+<tr>
+  <td><b>GPR37 + CADM4</b><br>
+      <span class="mut">2.54 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>mature chain</b>: interface lost; <b>partner ectodomain</b>: 100% cytoplasmic receptor face.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CADM4 and GPR37 are both membrane proteins enriched in brain and in oligodendrocytes (HPA), and UniProt independently ties both to oligodendrocyte differentiation and CNS myelination, so a cis interaction on the same cell is biologically plausible.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CADM4-GPR37">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O15354">GPR37</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8NFZ8">CADM4</a></td>
+</tr>
+<tr>
+  <td><b>GPR132 + CCL11</b><br>
+      <span class="mut">3.01 &#8491; &middot; orthosteric pocket</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>mature chain</b>: interface lost.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CCL11 (eotaxin, UniProt P51671) is a secreted chemokine and GPR132 (UniProt Q9UNW8) is a 7-transmembrane cell-membrane GPCR, so a secreted-ligand/membrane-receptor pairing is compartmentally plausible, and STRING, CellPhoneDB and PubMed co-occurrence all return nothing for this pair (0 PubMed hits), so it is novel.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CCL11-GPR132">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR132__CCL11">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UNW8">GPR132</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P51671">CCL11</a></td>
+</tr>
+<tr>
+  <td><b>GPR82 + OLR1</b><br>
+      <span class="mut">3.07 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>partner ectodomain</b>: 95% cytoplasmic receptor face.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature source records this pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0), both are plasma-membrane receptors, and both are enriched in the myeloid/macrophage lineage, so the interaction is novel and biologically possible.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-OLR1-GPR82">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96P67">GPR82</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P78380">OLR1</a></td>
+</tr>
+<tr>
+  <td><b>GPR83 + SLITRK3</b><br>
+      <span class="mut">3.08 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>mature chain</b>: interface lost.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. SLITRK3 (single-pass transmembrane LRR protein, UniProt O94933) and GPR83 (7-TM peptide GPCR, UniProt Q9NYM4) are both expressed in brain excitatory, inhibitory and other neurons per HPA, and no database or literature record of the pair exists (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-SLITRK3-GPR83">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR83__SLITRK3">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94933">SLITRK3</a></td>
+</tr>
+<tr>
+  <td><b>GPR37 + MST1</b><br>
+      <span class="mut">3.22 &#8491; &middot; extracellular surface</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>receptor ectodomain</b>: withheld, the truncated receptor does not fold; <b>mature chain</b>: interface lost.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed co-mention count is 0.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-MST1-GPR37">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR37__MST1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O15354">GPR37</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P26927">MST1</a></td>
+</tr>
+<tr>
+  <td><b>GPR158 + EPHA5</b><br>
+      <span class="mut">3.28 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>mature chain</b>: interface weakens to 5.78 &#8491;; <b>partner ectodomain</b>: 98% cytoplasmic receptor face.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. EPHA5 and GPR158 are both brain-enriched cell-surface membrane receptors with synaptic roles, and STRING, CellPhoneDB and PubMed (0 papers) all show no prior record of this pair, so it is biologically plausible and novel.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-EPHA5-GPR158">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P54756">EPHA5</a></td>
+</tr>
+<tr>
+  <td><b>GPR22 + CLSTN1</b><br>
+      <span class="mut">3.41 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>mature chain</b>: interface lost; <b>partner ectodomain</b>: 95% cytoplasmic receptor face.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed returned 0 co-mentions.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CLSTN1-GPR22">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR22__CLSTN1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q99680">GPR22</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94985">CLSTN1</a></td>
+</tr>
+<tr>
+  <td><b>GPR4 + FLT1</b><br>
+      <span class="mut">3.45 &#8491; &middot; tail-mediated</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>mature chain</b>: interface weakens to 5.34 &#8491;; <b>partner ectodomain</b>: 46% cytoplasmic receptor face.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database records this pair (STRING found nothing, CellPhoneDB found nothing, and the single PubMed co-mention is a VEGFA gene-network analysis, not a binding study), so the interaction is novel.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-FLT1-GPR4">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR4__FLT1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P46093">GPR4</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P17948">FLT1</a></td>
+</tr>
+<tr>
+  <td><b>GPR31 + TDGF1</b><br>
+      <span class="mut">3.61 &#8491; &middot; IMPOSSIBLE cytoplasmic</span></td>
+  <td><span class="badge" style="background:#B2182B">Refuted</span></td>
+  <td class="why"><b>physics</b>: a secreted partner placed on the cytoplasmic face, which it has no route to; <b>mature chain</b>: cytoplasmic face, partner is secreted.
+      <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. TDGF1 (Cripto, UniProt P13385) is a secreted/GPI-anchored growth factor that can be shed to act on other cells, and GPR31 (UniProt O00270) is a plasma-membrane GPCR, so an extracellular ligand-receptor contact is topologically plausible.</div></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TDGF1-GPR31">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR31__TDGF1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O00270">GPR31</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P13385">TDGF1</a></td>
+</tr>
+</table>
+<!-- CANDIDATE-TABLE-END -->
 
 <h2>Code</h2>
 <p><a href="https://github.com/izu0421/chaperone">github.com/izu0421/chaperone</a> &mdash;
