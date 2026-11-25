@@ -1,0 +1,11 @@
+receptor,ligand,kind,acid_A,acid_res,ring_A,ring_res,base_A,base_res,cation_paired,anion_paired,has_counter_charge
+GPR26,glutamate,hit,2.86,ASP86,5.09,PHE176,3.05,LYS280,True,True,True
+GPR26,GABA,hit,5.74,ASP290,5.18,PHE254,2.54,LYS280,False,True,False
+GPR26,acetylcholine,hit,6.44,ASP290,4.94,PHE254,2.23,LYS280,False,True,False
+GPR150,GABA,hit,13.3,ASP93,3.46,PHE350,6.36,ARG66,True,False,False
+GPR85,noradrenaline,hit,9.6,GLU169,4.01,PHE174,3.47,ARG69,True,True,True
+GPR153,noradrenaline,hit,3.22,ASP254,7.23,TYR253,6.64,HIS53,True,False,True
+CHRM1,acetylcholine,cognate,4.18,ASP105,3.83,TYR404,17.56,ARG171,True,False,True
+ADRB2,noradrenaline,cognate,2.56,ASP113,4.6,PHE193,10.43,HIS296,True,False,True
+HTR1A,serotonin,cognate,2.85,ASP116,3.56,TYR390,11.34,LYS191,True,False,True
+DRD2,dopamine,cognate,2.72,ASP114,3.63,TYR416,5.05,HIS393,True,False,True

@@ -1,0 +1,30 @@
+{
+ "GPR150": {
+  "n_ligands": 17,
+  "n_above_0.85": 16,
+  "best": "serotonin",
+  "best_iptm": 0.94,
+  "margin": 0.0
+ },
+ "GPR26": {
+  "n_ligands": 17,
+  "n_above_0.85": 13,
+  "best": "acetylcholine",
+  "best_iptm": 0.93,
+  "margin": 0.0
+ },
+ "GPR85": {
+  "n_ligands": 17,
+  "n_above_0.85": 12,
+  "best": "dopamine",
+  "best_iptm": 0.9,
+  "margin": 0.0
+ },
+ "GPR153": {
+  "n_ligands": 17,
+  "n_above_0.85": 5,
+  "best": "noradrenaline",
+  "best_iptm": 0.92,
+  "margin": 0.020000000000000018
+ }
+}

@@ -360,10 +360,51 @@ non-cognate one.</p>
 
 <p>Ligand pLDDT gives the same ordering: a cognate median of 82.1 and a non-cognate median
 of 65.6, with the six between 78.7 and 87.5, and GPR26 + glutamate above 81% of the known
-cognate pairs. Three caveats travel with them. None has experimental support. GPR26 takes
-three different molecules, so its pocket is permissive rather than selective. And interface
-pTM is the metric three independent groups rank weakest for ligand work, even though it is
-the one with a calibration behind it here.</p>
+cognate pairs.</p>
+
+<p><b>That comparison is across different ligand&ndash;receptor pairs, and it does not
+survive being made within one ligand.</b> A high score can mean the receptor prefers this
+ligand, or that the ligand fits most pockets, or that this pocket fits most ligands, and a
+single fold cannot separate the three. Asked twice, none of the six survives.</p>
+
+<p><b>Fix the ligand and vary the receptor.</b> Folding noradrenaline against 18 receptors
+puts the one that genuinely binds it, the &beta;<sub>2</sub> adrenoceptor, at rank 3 &mdash;
+behind HTR1A and DRD2, which do not bind noradrenaline. GPR153 ranks 6th and GPR85 7th,
+each below four known non-binders. A metric that cannot put the right receptor first for a
+ligand whose pharmacology is textbook cannot support a rank-6 orphan. Glutamate is the one
+exception: GPR26 ranks <b>1 of 18</b>, with no known non-binder above it.</p>
+
+<p><b>Fix the receptor and vary the ligand.</b> This detects a permissive pocket directly
+instead of inferring it from the molecule's promiscuity.</p>
+
+<table>
+<tr><th>receptor</th><th>ligands at &ge;0.85, of 17</th><th>best</th><th>margin over second</th></tr>
+<tr><td>GPR150</td><td>16</td><td>serotonin 0.94</td><td>0.00, tied with histamine</td></tr>
+<tr><td>GPR26</td><td>13</td><td>acetylcholine 0.93</td><td>0.00, tied with glutamate and dopamine</td></tr>
+<tr><td>GPR85</td><td>12</td><td>dopamine 0.90</td><td>0.00, tied with noradrenaline</td></tr>
+<tr><td>GPR153</td><td>5</td><td>noradrenaline 0.92</td><td>+0.02</td></tr>
+</table>
+
+<p>GPR26 gives 0.87 to anandamide and 0.86 to lysophosphatidic acid, twenty-carbon lipids
+that cannot occupy a site built for a small amino acid. <b>No pair wins both directions.</b>
+The two that come closest fail on opposite axes: GPR26 is the best receptor for glutamate
+and does not prefer glutamate among ligands, while GPR153 is the only selective pocket of
+the four and is the one the receptor test refutes.</p>
+
+<p>A third test, the charge geometry, agrees. Every one of these ligands is positively
+charged, and the four cognate controls put that charge 2.6 to 4.2 &#8491; from an acidic
+oxygen. Measured atom to atom rather than residue to residue, GPR26 + acetylcholine is
+6.44 &#8491; from the nearest one, GPR85 + noradrenaline 9.60 &#8491;, and GPR150 + GABA
+13.30 &#8491;. Only GPR26 + glutamate has a complete network at both ends of the
+zwitterion, ASP86 at 2.86 &#8491; to the amine and LYS280 at 3.05 &#8491; to the
+carboxylate.</p>
+
+<p>So what remains for GPR26 + glutamate is narrow and worth stating exactly: a correct
+charge network, colocalisation with VGLUT1 glutamatergic neurons at 4&ndash;13&times; the
+atlas background and 0.26&times; depletion in pancreas, rank 1 of 18 among receptors, and a
+receptor confirmed still orphan on six independent sources including the 2026 IUPHAR
+review. It does not distinguish glutamate from acetylcholine or dopamine, and no experiment
+has been done.</p>
 
 <p>Two of the six were left unresolved by a ChEMBL outage and were re-run once the service
 recovered: GABA has no recorded activity at either GPR26 or GPR150, and 105 distinct measured

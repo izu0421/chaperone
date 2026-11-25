@@ -1,0 +1,5 @@
+receptor,ligand,armA_rank,armA_n,armA_nonbinders_above,armB_above_0.85,armB_best,armB_margin,wins_both
+GPR26,glutamate,1,18,0,13.0,acetylcholine,0.0,False
+GPR150,glutamate,3,18,1,16.0,serotonin,0.0,False
+GPR85,noradrenaline,7,18,4,12.0,dopamine,0.0,False
+GPR153,noradrenaline,6,18,4,5.0,noradrenaline,0.020000000000000018,False
