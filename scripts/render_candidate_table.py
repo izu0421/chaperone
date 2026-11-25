@@ -34,6 +34,8 @@ SM = Path("/data/yzy21/yy/space_agent/structural_modelling")
 VIEWER = "reports/protein_pae_2026-11-24_v2/structures"
 START = "<!-- CANDIDATE-TABLE-START -->"
 END = "<!-- CANDIDATE-TABLE-END -->"
+S_START = "<!-- SURVIVORS-START -->"
+S_END = "<!-- SURVIVORS-END -->"
 
 TIER_LABEL = {
     "1": ("Stands", "#2166AC"),
@@ -109,6 +111,120 @@ def main() -> None:
   <td class="lnk">{' &middot; '.join(links)}</td>
 </tr>""")
 
+    # ---- the two blocks the page leads with --------------------------------
+    passes = {}
+    for r in t.itertuples():
+        got = [c for c in ("ecd_test", "mature_test", "p_test")
+               if str(getattr(r, c, "")) == "PASS"]
+        fails = [c for c in ("ecd_test", "mature_test", "p_test")
+                 if str(getattr(r, c, "")).startswith("FAIL")]
+        if got and not fails:
+            passes[f"{r.receptor}+{r.partner}"] = (r, got)
+
+    EVIDENCE = {
+        "GPR158+NMS": [
+            ("Gate", "2.69 &#8491; interface PAE on the intact receptor"),
+            ("Where it sits", "97% of the receptor side of the interface is extracellular"),
+            ("Truncation", "on the receptor&rsquo;s N-terminal domain alone, 24&ndash;417, with no "
+                           "stitched loops: <b>2.45 &#8491;</b> against decoys at 9.66 (RNase&nbsp;1), "
+                           "12.15 (lysozyme) and 22.66 (albumin), 25 models each"),
+            ("Mature chain", "2.69 &rarr; 3.01 &#8491; with the signal peptide removed, on a cut "
+                             "that improves AlphaFold3 on 24 chemokine pairs whose answer is known"),
+            ("Prior record", "STRING nothing, CellPhoneDB nothing, PubMed co-mentions 0"),
+        ],
+        "MRGPRX2+SPX": [
+            ("Gate", "3.51 &#8491; interface PAE, the weakest gate value of the three"),
+            ("Where it sits", "extracellular plus transmembrane with no cytoplasmic contacts, "
+                              "which is where a peptide agonist is supposed to bind"),
+            ("Mature chain", "survives the cut at 3.51 &#8491;, under the gate"),
+            ("Why it is thinner than the other two", "its only test is the mature-chain cut, "
+                 "which has a panel-level control (12 of 12 known binders keep their interface) "
+                 "but no negative control for this pair. The other two each beat decoys or "
+                 "permuted negatives chosen to match them. MRGPRX2 is also a famously "
+                 "promiscuous receptor, so a peptide in its pocket is a low bar"),
+        ],
+        "GPR83+GRIA4": [
+            ("Gate", "3.01 &#8491; interface PAE"),
+            ("Where it sits", "94% extracellular on <b>both</b> chains, the only ecto&ndash;ecto pair "
+                              "in the shortlist"),
+            ("Partner ectodomain", "cutting GRIA4 to its ectodomain <b>improves</b> it, 3.01 &rarr; "
+                                   "<b>2.21 &#8491;</b>, against a best permuted negative of 4.96 &#8491; "
+                                   "(the SLITRK2 ectodomain on the same receptor)"),
+            ("Open question", "GRIA4 is an obligate tetramer and it was folded as a lone chain, so "
+                              "the surface GPR83 uses may be the dimer interface. The same construct "
+                              "with a second ectodomain copy present is folding now, alongside a "
+                              "control that checks the two copies pair at all"),
+        ],
+    }
+
+    cards = []
+    for name, (r, got) in passes.items():
+        ev = EVIDENCE.get(name)
+        if not ev:
+            ev = [("Passed", ", ".join(c.replace("_test", "") for c in got))]
+        li = "".join(f"<li><b>{esc(k)}.</b> {v}</li>" for k, v in ev)
+        cards.append(f"""<div class="hit">
+  <h3>{esc(name.replace('+', ' + '))}</h3>
+  <ul>{li}</ul>
+</div>""")
+
+    buckets = {}
+    for r in t.itertuples():
+        why = None
+        for c in ("ecd_test", "mature_test", "p_test"):
+            v = str(getattr(r, c, ""))
+            if v.startswith("FAIL"):
+                why = v.replace("FAIL -- ", ""); break
+        if why is None:
+            continue
+        if "cytoplasmic face, partner is secreted" in why:
+            k = ("A secreted partner placed on the cytoplasmic face",
+                 "It has no route to the cytosol, so the pose cannot exist.")
+        elif "cytoplasmic" in why:
+            k = ("The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed",
+                 "Cutting the partner removes the partner&rsquo;s impossible half and leaves the "
+                 "receptor&rsquo;s. Their permuted negatives sit on the same face, so the margin "
+                 "compares two poses that cannot exist.")
+        elif "permuted ectodomain" in why:
+            k = ("Beaten by another candidate&rsquo;s ectodomain",
+                 "The same receptor docks an unrelated, size-matched ectodomain at least as well.")
+        elif "interface lost" in why:
+            k = ("The interface goes when the signal peptide goes",
+                 "Both chains still fold; only the interface is lost.")
+        else:
+            k = (why.capitalize(), "")
+        buckets.setdefault(k, []).append(f"{r.receptor} + {r.partner}")
+
+    rej = "".join(
+        # k[0] already contains HTML entities written by hand; esc() would turn
+        # &rsquo; into &amp;rsquo; and the apostrophe would render as literal text
+        f"<tr><td><b>{k[0]}</b><br><span class=\"mut\">{k[1]}</span></td>"
+        f"<td>{len(v)}</td><td class=\"why\">{esc(', '.join(sorted(v)))}</td></tr>"
+        for k, v in sorted(buckets.items(), key=lambda kv: -len(kv[1])))
+
+    survivors = f"""{S_START}
+<h2>What survived</h2>
+<p>{len(passes)} of the {len(t)} confirmed pairs are still standing: each has at least one
+construct test it passed and none that it failed. They are not equally well supported, and
+the cards say where each one is thin. What they have in common is that the test could have
+gone the other way, which is the only kind of evidence this screen has produced that is
+worth anything.</p>
+{"".join(cards)}
+<p class="mut" style="font-size:12px">Both are AlphaFold3 predictions with no experimental
+support of any kind. The method&rsquo;s own ceiling bounds them: AUROC 0.519 on
+degree-balanced HuRI. These controls show the two are not the artefacts the other
+{len(t) - len(passes)} are. They do not show the interactions are real.</p>
+
+<h2>Why the others fell</h2>
+<table>
+<tr><th>reason</th><th>n</th><th>pairs</th></tr>
+{rej}
+</table>
+<p>The rest are not refuted and not confirmed: their construct test is built and folding,
+or the pair fails at full length on the re-fold arm&rsquo;s own alignment, in which case
+cutting it attributes nothing in either direction.</p>
+{S_END}"""
+
     block = f"""{START}
 <h2>Every candidate, and what decided it</h2>
 <p>All {len(t)} pairs the agent returned as confirmed, with the construct test that settled
@@ -124,12 +240,19 @@ a report no table referenced.</p>
 
     page = ROOT / "index.html"
     s = page.read_text()
+    if S_START in s and S_END in s:
+        s = s[:s.index(S_START)] + survivors + s[s.index(S_END) + len(S_END):]
+    else:
+        s = s.replace('<h2>Re-folding the shortlist as molecules the cell could make</h2>',
+                      survivors + '\n\n<h2>Re-folding the shortlist as molecules the cell '
+                      'could make</h2>', 1)
     if START in s and END in s:
         s = s[:s.index(START)] + block + s[s.index(END) + len(END):]
     else:
         s = s.replace("<h2>Code</h2>", block + "\n\n<h2>Code</h2>", 1)
     page.write_text(s)
-    print(f"rendered {len(rows)} candidates into index.html")
+    print(f"rendered {len(rows)} candidates, {len(passes)} survivors, "
+          f"{sum(len(v) for v in buckets.values())} rejected into index.html")
     print(t.tier.value_counts().to_string())
 
 
