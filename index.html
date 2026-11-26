@@ -43,6 +43,13 @@ th{color:var(--mut);font-weight:600;font-size:11px;letter-spacing:.05em;text-tra
 code{background:var(--surface);padding:1px 5px;border-radius:3px;font-size:13px}
 footer{color:var(--mut);font-size:13px;margin-top:40px;border-top:1px solid var(--rule);
   padding-top:18px}
+figure{margin:14px 0 0}
+figure img{display:block;width:100%;background:#fff;border:1px solid var(--rule);padding:9px}
+figcaption{color:var(--mut);font-size:12px;margin-top:8px;line-height:1.55;max-width:70ch}
+figcaption b{color:var(--ink)}
+.note{border-left:2px solid var(--acc);padding:2px 0 2px 13px;margin:14px 0;color:var(--mut);
+  font-size:13px;line-height:1.55}
+.note b{color:var(--ink)}
 </style>
 <div class="wrap">
 <h1>chaperone</h1>
@@ -91,6 +98,39 @@ of the five is a confirmed candidate, GPR22 + SLITRK2 at interface PAE 2.86, bet
 of the 57 pairs that were already in the table. The assembler now refuses to write when the
 current gate admits a pair that no run has triaged.</p>
 
+<h2>The screen re-run on molecules that exist</h2>
+<p>83% of the pairs in the first screen were folded as the wrong molecule: a membrane
+partner whole instead of its ectodomain, a secreted partner as its precursor. Every test on
+this page below attacks one of those faults <em>after</em> the gate. The re-screen folds the
+right chain before it, same pairs, same seed, same alignments. It is 4,166 of 4,769 pairs
+through.</p>
+<table>
+<tr><th>construct</th><th>pairs</th><th>v1 median</th><th>v2 median</th><th>shift</th></tr>
+<tr><td>receptor ectodomain</td><td>2,150</td><td>15.55</td><td>14.09</td><td>&minus;1.07 &#8491;</td></tr>
+<tr><td>partner mature chain</td><td>1,221</td><td>14.36</td><td>14.02</td><td>&minus;0.43 &#8491;</td></tr>
+<tr><td>short ectodomain</td><td>665</td><td>18.00</td><td>17.61</td><td>&minus;0.32 &#8491;</td></tr>
+<tr><td>as-is</td><td>127</td><td>14.18</td><td>13.72</td><td>&minus;0.40 &#8491;</td></tr>
+</table>
+<p style="margin-top:14px"><b>The candidate list barely survives the correction.</b> Of the
+4,165 pairs folded both ways, the old construct put 62 under the 3.76 &#8491; gate and the
+corrected one puts 68 there &mdash; but only <b>20 pairs are in both lists</b>. 42 of the old
+candidates are gone and 48 are new. A re-screen that returned the same pairs would have
+tested nothing; this one says the first shortlist was largely a list about molecules the cell
+does not make. Numbers will move until the last 603 folds land.</p>
+
+<h2>What the screen's own controls say</h2>
+<figure>
+  <img src="manuscript/figures/screen_controls.png" alt="Four control panels">
+  <figcaption><b>a</b>, every pair whose precursor cleared the gate, re-folded as the peptide
+  the cell actually releases: 9 of 12 lose the interface. <b>b</b>, textbook receptor&ndash;ligand
+  pairs pushed through the screen's own pipeline; the true pair is outlined, and it is the
+  darkest cell in its row only twice in five. <b>c</b>, the pairing does carry signal: true
+  pairs sit 0.4 to 0.6 &#8491; below what the receptor's and the peptide's own tendencies
+  predict, under either median-polish sweep order. <b>d</b>, RF2-PPI's deposited DCA score
+  against our statistic over 1,590 pairs &mdash; uncorrelated, so neither corroborates the
+  other.</figcaption>
+</figure>
+
 <h2>Six faults, every one found by reading the output</h2>
 <p>None of these were found by reading the code. Two were wiring: a rule read a column that
 only existed upstream, and another searched a fold directory the screen never wrote to. The
@@ -113,41 +153,114 @@ note on pose quality, took the shortlist from 4 to 19.</p>
 compartment objection against four of them. These are hypotheses a broken filter was
 suppressing, not findings.</p>
 
+<h2>What the gate's numbers mean</h2>
+<p>Until this was measured the screen had rankings and no units: nothing said whether
+2 &#8491; meant anything. Foster et al. assayed 293 receptor&ndash;peptide pairs for
+activation. Folding all of them puts a number on the gate.</p>
+<figure>
+  <img src="manuscript/figures/foster_calibration.png" alt="Calibration against 293 assayed pairs">
+  <figcaption><b>a</b>, interface PAE is the statistic: AUROC 0.740, and 0.758 on alignments
+  cut to the depth the screen itself runs at. Interface pLDDT, ipTM and ligand pLDDT are all
+  weaker. <b>b</b>, at the 3.76 &#8491; gate, precision 0.73 and recall 0.50. <b>c</b>, the
+  deorphanisation question is per receptor: given an orphan, does its true ligand rank first?
+  36 of 58, against a 39% chance rate. <b>d</b>, longer peptides score worse (&rho; = +0.27),
+  so a flat gate across different-sized partners is unfair, but the AUROC holds inside every
+  length band.</figcaption>
+</figure>
+<p>Two things follow. The gate <b>admits about three real pairs for every false one and
+throws away half the real ones</b>, which is why a threshold-based list is small and clean
+and not complete. And the calibration <b>transfers across a 7.8&times; change in alignment
+depth</b> &mdash; median interface PAE moves 0.09 &#8491; and the ranking holds at
+&rho; = +0.85 &mdash; so a number measured on deep alignments can license a gate applied to
+shallow ones. That was the open question that made everything below provisional.</p>
+
+<p class="note"><b>What it does not cover.</b> Foster is peptides against peptide receptors.
+The re-screen's candidates include membrane partners folded as ectodomains, and none of that
+is calibrated. Its negatives are pairs that failed to activate a reporter, which a real
+complex can also do, so the AUROC is conservative and the precision optimistic.</p>
+
 <!-- SURVIVORS-START -->
 <h2>What survived</h2>
-<p>2 of the 19 confirmed pairs are still standing: each has at least one
-construct test it passed and none that it failed. They are not equally well supported, and
-the cards say where each one is thin. What they have in common is that the test could have
-gone the other way, which is the only kind of evidence this screen has produced that is
-worth anything.</p>
+<p>This section said two pairs were standing, both of them MRGPRX2. Re-folding every
+candidate as the molecule the cell actually releases keeps one of them, kills the other, and
+adds two that were never on the list. The deciding test is in panel <b>a</b> above.</p>
+
 <div class="hit">
-  <h3>MRGPRX2 + GNRH2</h3>
-  <ul><li><b>Gate.</b> 2.20 &#8491;, the best gate value in the shortlist</li><li><b>Where it sits.</b> extracellular plus transmembrane, no cytoplasmic contacts</li><li><b>Mature chain.</b> survives the cut, under the gate</li><li><b>Why it is thinner.</b> see the note below on MRGPRX2</li></ul>
-</div><div class="hit">
-  <h3>MRGPRX2 + SPX</h3>
-  <ul><li><b>Gate.</b> 3.51 &#8491; interface PAE, the weakest gate value of the three</li><li><b>Where it sits.</b> extracellular plus transmembrane with no cytoplasmic contacts, which is where a peptide agonist is supposed to bind</li><li><b>Mature chain.</b> survives the cut at 3.51 &#8491;, under the gate</li><li><b>Why it is thinner.</b> see the note below on MRGPRX2</li></ul>
+  <h3>MRGPRX2 + spexin-1</h3>
+  <ul>
+    <li><b>Gate.</b> 1.54 &#8491; folded as the 14-residue hormone, the best value anywhere in
+    this screen</li>
+    <li><b>It got better as it got smaller.</b> The 90-residue spexin chain gives 2.59 &#8491;
+    and the precursor 2.59; cutting to the released peptide improves it. Spexin-2, the other
+    product of the same precursor, gives 3.60 &#8491;, so the arm resolves to one product.</li>
+    <li><b>Where it sits.</b> extracellular plus transmembrane, no cytoplasmic contacts</li>
+    <li><b>Against it.</b> MRGPRX2 is the most permissive receptor in the known-answer matrix
+    (&minus;2.9 &#8491; receptor effect, the largest of fourteen), and in that matrix it
+    outranks GALR2 for spexin-1 &mdash; GALR2 being the receptor that actually binds it.</li>
+  </ul>
 </div>
-<p><b>A note on the two MRGPRX2 pairs.</b> Their only test is the mature-chain cut, which
-has a panel-level control &mdash; 12 of 12 known binders keep their interface after the
-same cut &mdash; but no negative control for either pair. GPR158 + NMS, by contrast, beats
-decoys chosen to match it. MRGPRX2 is also a famously promiscuous receptor that responds to
-many cationic peptides, so a peptide sitting in its pocket is a low bar; the screen folded
-three peptides against it and two of them clear that bar, which is itself the pattern you
-would expect from promiscuity rather than from recognition.</p>
+<div class="hit">
+  <h3>GPRC5A + neurotrophin-4</h3>
+  <ul>
+    <li><b>Gate.</b> 2.16 &#8491; as the 130-residue mature neurotrophin, improved from
+    3.26 &#8491; as the precursor</li>
+    <li><b>Against it.</b> in the known-answer matrix GPRC5A also outranks NTRK2, NT-4's real
+    receptor, for this exact ligand (2.19 against 3.40 &#8491;). Either GPRC5A binds
+    neurotrophins or GPRC5A docks neurotrophins well, and this screen cannot tell those
+    apart.</li>
+  </ul>
+</div>
+<div class="hit">
+  <h3>GPR142 + PACAP-38</h3>
+  <ul>
+    <li><b>Gate.</b> 3.28 &#8491; as PACAP-38, the 38-residue hormone</li>
+    <li><b>The arm discriminates between products.</b> PACAP-related peptide, cut from the
+    same precursor, gives 18.98 &#8491;. A pose carried by the precursor's bulk would not
+    care which fragment it was shown.</li>
+    <li><b>Against it.</b> ADCYAP1R1, the real PACAP receptor, still wins on the same ligand
+    (1.48 against 3.39 &#8491;), which is the one textbook case where the true receptor
+    beats every orphan.</li>
+  </ul>
+</div>
+
+<p class="note"><b>MRGPRX2 + GNRH2 is withdrawn.</b> It was the best gate value on this page
+at 2.20 &#8491;. GNRH2's released hormone is gonadoliberin-2, a decapeptide, and folded as
+that it gives <b>6.49 &#8491;</b>. The only spans that keep the interface are the 97-residue
+prohormone (2.13 &#8491;) and the 84-residue remnant left behind after the hormone is cut
+out (2.28 &#8491;) &mdash; neither of which is what a cell secretes to signal with.</p>
+
+<p class="note"><b>GPR158 + NMS is withdrawn, and for a different reason than this page
+gave.</b> It was dropped as an obligate-homodimer artefact. That test is withdrawn too (see
+below). What refutes it is the construct: neuromedin S is PEPTIDE 109&ndash;141, 33 residues,
+and the screen folded all 127 residues after the signal peptide. Same receptor, same
+alignment, same seed: the precursor gives 3.01 &#8491; and the actual peptide
+<b>15.21 &#8491;</b>. For comparison NMUR1 and NMUR2, which do bind it, give 7.12 and
+5.83 &#8491;, so the ordering is right and GPR158 is 8 to 10 &#8491; worse than the real
+receptors.</p>
 
 <p class="mut" style="font-size:12px">All are AlphaFold3 predictions with no experimental
-support of any kind. The method&rsquo;s own ceiling bounds them: AUROC 0.519 on
-degree-balanced HuRI. These controls show these are not the artefacts the other
-17 are. They do not show the interactions are real.</p>
+support of any kind. The method's own ceiling bounds them: AUROC 0.519 on degree-balanced
+HuRI. These controls show they are not the artefacts the others are. They do not show the
+interactions are real.</p>
 
-<h2>Why the others fell</h2>
+<h2>Why the others fell, and which of those reasons still holds</h2>
 <table>
-<tr><th>reason</th><th>n</th><th>pairs</th></tr>
-<tr><td><b>The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed</b><br><span class="mut">Cutting the partner removes the partner&rsquo;s impossible half and leaves the receptor&rsquo;s. Their permuted negatives sit on the same face, so the margin compares two poses that cannot exist.</span></td><td>4</td><td class="why">GPR22 + CLSTN1, GPR22 + SLITRK2, GPR4 + FLT1, GPR82 + OLR1</td></tr><tr><td><b>The interface goes when the signal peptide goes</b><br><span class="mut">Both chains still fold; only the interface is lost.</span></td><td>3</td><td class="why">GPR132 + CCL11, GPR37 + CADM4, GPR37 + MST1</td></tr><tr><td><b>Beaten by another candidate&rsquo;s ectodomain</b><br><span class="mut">The same receptor docks an unrelated, size-matched ectodomain at least as well.</span></td><td>3</td><td class="why">GPR65 + TNFRSF13B, GPR65 + TNFRSF8, GPR83 + SLITRK3</td></tr><tr><td><b>A secreted partner placed on the cytoplasmic face</b><br><span class="mut">It has no route to the cytosol, so the pose cannot exist.</span></td><td>2</td><td class="why">GPR31 + TDGF1, GPRC5C + IGF2</td></tr><tr><td><b>The receptor is an obligate homodimer, through the extracellular cache domain and this construct is a monomer, so the partner is docking on the face the other protomer occupies</b><br><span class="mut"></span></td><td>1</td><td class="why">GPR158 + NMS</td></tr><tr><td><b>The partner&rsquo;s own oligomer interface</b><br><span class="mut">The partner was folded as a lone chain, which exposes the surface its real assembly buries. Re-folded with the missing subunit present, the interface goes.</span></td><td>1</td><td class="why">GPR83 + GRIA4</td></tr>
+<tr><th>reason</th><th>n</th><th>status</th></tr>
+<tr><td><b>The interface was carried by a precursor the cell never releases</b><br><span class="mut">The largest single source of false positives in this screen, and a construct error rather than a statistical one, which is why it survived every audit that invalidated the statistics.</span></td><td>9</td><td class="why">holds</td></tr>
+<tr><td><b>The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed</b><br><span class="mut">Cutting the partner removes the partner&rsquo;s impossible half and leaves the receptor&rsquo;s. The permuted negatives sit on the same face, so the margin compares two poses that cannot exist.</span></td><td>4</td><td class="why">holds</td></tr>
+<tr><td><b>Beaten by another candidate&rsquo;s ectodomain</b><br><span class="mut">The same receptor docks an unrelated, size-matched ectodomain at least as well.</span></td><td>3</td><td class="why">holds</td></tr>
+<tr><td><b>A secreted partner placed on the cytoplasmic face</b><br><span class="mut">It has no route to the cytosol, so the pose cannot exist.</span></td><td>2</td><td class="why">holds</td></tr>
+<tr><td><b>The partner was docking on the face its own assembly buries</b><br><span class="mut">Read from the interface PAE rising when the missing subunit was added. A decoy control &mdash; the same pair plus an unrelated secreted chain length-matched to within 3 residues &mdash; moved interface PAE by a median <b>+10.92 &#8491;</b>, larger than the test&rsquo;s own effects, and in 5 of 11 pairs the unrelated chain wrecked the fold harder than the real subunit. A three-chain PAE is not on the same scale as a two-chain one.</span></td><td>2</td><td class="why"><b>withdrawn</b></td></tr>
 </table>
-<p>The rest are not refuted and not confirmed: their construct test is built and folding,
-or the pair fails at full length on the re-fold arm&rsquo;s own alignment, in which case
-cutting it attributes nothing in either direction.</p>
+<p>The replacement test never compares across folds: of the partner residues the candidate
+contacts, what fraction does the partner&rsquo;s own second copy also contact? That is
+computed inside one structure, so the chain count cannot reach it. It needed a null of its
+own &mdash; an interface is a contiguous patch on a surface, not a uniform sample of
+residues, and the uncalibrated threshold fired on 20 to 30% of randomly placed patches. Against
+2,000 same-size patches grown by randomised walk over the partner&rsquo;s accessible surface,
+with interpenetrating folds rejected, <b>0 of 19 pairs clear q &lt; 0.05</b>. The best is
+GPR25 + CD226 at 41% overlap, q = 0.19. Nothing in this screen is demonstrably an
+assembly-face artefact.</p>
 <!-- SURVIVORS-END -->
 
 <h2>Re-folding the shortlist as molecules the cell could make</h2>
@@ -283,6 +396,41 @@ unattributable category on that basis: GPR83 + SLITRK3 fails at 17.03 &#8491; un
 GPR22 + CLSTN1 at 13.75 &#8491;, so their mature-chain collapses say nothing about the
 construct.</p>
 
+<h2>The cut above was the wrong cut</h2>
+<p>That arm removes the signal peptide and folds everything after it. UniProt also annotates
+PROPEPTIDE, PEPTIDE and CHAIN, and the rule never read any of them, so a prohormone was
+folded as a prohormone. Across the 1,369 jobs built as &ldquo;mature&rdquo;:</p>
+<table>
+<tr><th>what the partner actually is</th><th>partners</th><th>jobs</th></tr>
+<tr><td>one CHAIN, so the prodomain must go too</td><td>233</td><td>877</td></tr>
+<tr><td>signal only &mdash; the current rule is right</td><td>43</td><td>216</td></tr>
+<tr><td>several peptide products, no single answer</td><td>38</td><td>149</td></tr>
+<tr><td>one PEPTIDE product</td><td>17</td><td>86</td></tr>
+<tr><td>CHAIN absent, propeptide trimmed</td><td>13</td><td>41</td></tr>
+</table>
+<p style="margin-top:14px"><b>472 of 1,369 mature jobs fold the wrong molecule or an
+undefined one.</b> The worst are near-total: C3 was folded at 1,641 residues when the
+signalling fragment C3a is 17; oxytocin at 106 residues when the hormone is 9; fibrinogen
+alpha at 847 when the released peptide is 16.</p>
+
+<p>Every pair whose precursor cleared the gate was re-folded as each product the protein is
+processed into, with the receptor chain, both alignments and the seed copied from the
+original input so that the span is the only difference. <b>9 of 12 lose the interface.</b>
+Nine of those products are shorter than the precursor and score worse, which is against the
+length bias, so a loss is the informative direction.</p>
+
+<p><b>Ghrelin is the cleanest demonstration.</b> Three orphan receptors &mdash; MRGPRX1,
+GPR32 and MRGPRX4 &mdash; each reached the gate against the GHRL precursor. None of them
+holds any actual ghrelin product, and they disagree about which product is least bad:
+ghrelin-27 for two of them, obestatin for the third. A real signal would have them converge
+on one molecule. Three independent reads of a single precursor artefact.</p>
+
+<p class="note"><b>A bug in the audit itself, worth recording.</b> The first run cached an
+empty result whenever a UniProt fetch raised, so 79 partners covering 274 jobs were reported
+as the biological category &ldquo;no UniProt sequence&rdquo;. Re-fetching succeeded for every
+one of them, including SPX, which is in the shortlist. A transient error written into a cache
+is indistinguishable from an answer forever after.</p>
+
 <h2>Cutting the partner to its ectodomain, and what it does not remove</h2>
 <p>Ten candidates have a membrane partner whose cytoplasmic tail was folded along with
 everything else, and that tail can dock on the receptor&rsquo;s cytoplasmic face exactly as
@@ -335,6 +483,57 @@ veto the same rule rejects 61% of known binders.</p>
 GPR158 + neuromedin S passes every test that could be run on it, 9 are refuted by a
 construct test or by physics, 1 is weakened, 1 cannot be attributed either way, and the
 remaining 7 are waiting on folds that are running now.</p>
+
+<h2>The control this project defined and never ran</h2>
+<p><code>scripts/39</code> declared two arms, <code>P_known_positive</code> and
+<code>P_known_negative</code>, and said in its own docstring that if they failed
+&ldquo;nothing else here means anything&rdquo;. Zero were ever folded. Panel <b>b</b> above
+is that control: six textbook peptide hormones against fourteen receptors, 72 folds, built
+the same way as the orphan arm &mdash; sliced products, hhfilter-90 alignments, paired
+alignments &mdash; so every comparison sits inside one arm and the paired-alignment depth is
+comparable.</p>
+<table>
+<tr><th>question</th><th>answer</th></tr>
+<tr><td>Pooled AUROC over 9 true pairs and 63 matched negatives</td><td>0.780 (95% CI 0.594&ndash;0.965), floor 0.686 at this n</td></tr>
+<tr><td>Does the true receptor rank first among fourteen?</td><td>2 of 5 peptides</td></tr>
+<tr><td>Normalised rank of the true receptor</td><td>median 0.14 against 0.50 expected (Wilcoxon p = 0.063)</td></tr>
+<tr><td>True pairs clearing the 3.76 &#8491; gate</td><td>4 of 9</td></tr>
+<tr><td>Negatives clearing it</td><td>5 of 63</td></tr>
+</table>
+<p style="margin-top:14px">So the readout is real and weak. The gate is <b>specific</b> &mdash;
+it rejects 58 of 63 matched negatives &mdash; and <b>insensitive</b>, missing five of nine
+pairs out of any pharmacology textbook. GHSR scores 8.77 to 9.79 &#8491; against ghrelin, its
+own ligand.</p>
+
+<p>Panel <b>c</b> asks the question that matters more. A receptor that docks anything well,
+or a peptide that docks nowhere, hands a true pair a low PAE without the pairing mattering at
+all. Median polish removes an additive receptor effect and an additive peptide effect, and
+the residual is what is left of the pairing: <b>true pairs sit 0.64 &#8491; below expectation
+and the matched negatives sit at zero</b>, Mann&ndash;Whitney p = 0.016. The decomposition is
+not unique, so both sweep orders are reported; the other gives &minus;0.41 &#8491; and
+p = 0.011. The pairing carries signal beyond receptor identity and peptide identity, which is
+the weakest claim this screen needs and the only one its own controls support.</p>
+
+<p class="note"><b>A standing rule that came out of this.</b> <code>b7.build_pair</code>
+intersects the two chains' genome accessions, so the paired-alignment depth depends on which
+receptor is paired with the ligand &mdash; it varies 6 to 8&times; between receptors for the
+same peptide. An earlier version of this page reported that orphans outranked the true
+receptor for 2 of 4 peptides. Every case where the orphan won was a case where it had 2 to
+8&times; more alignment. Never compare interface PAE between two receptors unless their
+paired-alignment depths are matched, or the comparison is inside one arm built in one pass.</p>
+
+<h2>An external baseline</h2>
+<p>RF2-PPI screened the human proteome and deposited a DCA score for 189M pairs and an
+AlphaFold2 score for 3.38M. A labelled head-to-head on the Foster set is impossible &mdash;
+none of its receptor&ndash;peptide pairs appears in either deposit. What can be asked is
+whether the two methods rank the same pairs, over the 1,590 of our 1,592 screened pairs that
+carry a deposited DCA score.</p>
+<p>They do not. Spearman &rho; = <b>&minus;0.063</b>, and the pairs that clear our gate have
+the same median DCA as the pairs that do not (0.082 against 0.075, p = 0.79). Our single
+best pair, GPR45 + GABRG2 at 1.77 &#8491;, sits at only the 84th DCA percentile of the pairs
+we screened, so an RF2-PPI cascade ranking on DCA would not have surfaced it either. That
+cuts both ways: it means the screen is not re-deriving a published result, and it means no
+independent method corroborates a single pair in it.</p>
 
 <h2>The small-molecule hits</h2>
 <p>Six receptor&ndash;molecule pairs clear the calibrated gate, and none of them has a
@@ -411,6 +610,14 @@ recovered: GABA has no recorded activity at either GPR26 or GPR150, and 105 dist
 targets elsewhere. A tool failure is not a result, and leaving those two as unresolved would
 have reported an outage as a property of the biology.</p>
 
+<p class="note"><b>Promiscuity is a caveat here, not a verdict.</b> A permissive pocket
+makes a pairing less surprising and does not make it false &mdash; GABA has more than a
+hundred measured targets and is still the endogenous ligand of its own receptors. These six
+remain the small-molecule hits of this screen. What the two-way test establishes is the
+<em>shape</em> of the claim each one can carry: GPR26 + glutamate is a ranked, charge-complete,
+spatially corroborated hypothesis, and the other five are pocket-permissive pairings that
+need a ligand-selectivity experiment before they can be anything else.</p>
+
 <h2>The step that chose what to fold enriched nothing</h2>
 <p>The screen folded 5,000 of about 78,900 eligible receptor&ndash;partner combinations,
 6.3% of them, chosen by a spatial recurrence rank. That rank is the screen&rsquo;s only
@@ -459,6 +666,19 @@ each one and a link to the triage row that produced its verdict. A rejection wit
 reason attached is indistinguishable from a rejection with a bad reason, and a verdict
 whose source is not linked drifts from it. That is how a confirmed candidate spent a day in
 a report no table referenced.</p>
+
+<p class="note"><b>This table is generated from the 2026-11-24 triage and is now behind the
+construct work above.</b> It is left as the record of what each verdict rested on at the
+time, not as the current standing. Superseded rows: <b>MRGPRX2 + GNRH2</b> is withdrawn
+&mdash; the hormone is a decapeptide and scores 6.49 &#8491;, and the table's own argument
+that &ldquo;a cationic decapeptide hormone binding MRGPRX2 is the right class of
+interaction&rdquo; was never tested on the decapeptide. <b>GPR158 + NMS</b> is still
+withdrawn but on construct grounds, not the obligate-homodimer argument the row gives.
+<b>GPR83 + GRIA4</b> and the other assembly-face rejections rest on a test whose decoy
+control invalidated it; recalibrated, 0 of 19 pairs are assembly-face artefacts. The
+re-screen also replaced 42 of the 62 gate-passing pairs outright, so the population this
+table was drawn from has moved.</p>
+
 <table class="cands">
 <tr><th>Pair</th><th>Standing</th><th>What decided it</th><th>Source</th></tr>
 <tr>
