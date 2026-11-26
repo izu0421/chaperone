@@ -122,7 +122,9 @@ does not make. Numbers will move until the last 603 folds land.</p>
 <figure>
   <img src="manuscript/figures/screen_controls.png" alt="Four control panels">
   <figcaption><b>a</b>, every pair whose precursor cleared the gate, re-folded as the peptide
-  the cell actually releases: 9 of 12 lose the interface. <b>b</b>, textbook receptor&ndash;ligand
+  the cell actually releases. The grey band is what cutting a partner does on its own, measured
+  on 27 alignment-matched pairs: every loss falls inside it, and only GPR65 + CD52 and
+  GPR158 + NMS reach its edge. <b>b</b>, textbook receptor&ndash;ligand
   pairs pushed through the screen's own pipeline; the true pair is outlined, and it is the
   darkest cell in its row only twice in five. <b>c</b>, the pairing does carry signal: true
   pairs sit 0.4 to 0.6 &#8491; below what the receptor's and the peptide's own tendencies
@@ -223,20 +225,26 @@ adds two that were never on the list. The deciding test is in panel <b>a</b> abo
   </ul>
 </div>
 
-<p class="note"><b>MRGPRX2 + GNRH2 is withdrawn.</b> It was the best gate value on this page
-at 2.20 &#8491;. GNRH2's released hormone is gonadoliberin-2, a decapeptide, and folded as
-that it gives <b>6.49 &#8491;</b>. The only spans that keep the interface are the 97-residue
-prohormone (2.13 &#8491;) and the 84-residue remnant left behind after the hormone is cut
-out (2.28 &#8491;) &mdash; neither of which is what a cell secretes to signal with.</p>
+<p class="note"><b>MRGPRX2 + GNRH2 is unresolved, not refuted.</b> It was the best gate value
+on this page at 2.20 &#8491;. GNRH2's released decapeptide, gonadoliberin-2, gives
+<b>6.49 &#8491;</b> &mdash; a +4.3 &#8491; loss, which is inside one standard deviation of the
+cut null above and cannot be attributed. What the refold shows is <em>which molecule carries
+the pose</em>: the interface belongs to the 97-residue progonadoliberin-2 chain
+(2.13 &#8491;) and to the 84-residue remnant left after the hormone is excised
+(2.28 &#8491;), not to the decapeptide. Both of those are annotated released species, so this
+is a question about which molecule the receptor would actually meet, and the screen cannot
+answer it.</p>
 
 <p class="note"><b>GPR158 + NMS is withdrawn, and for a different reason than this page
 gave.</b> It was dropped as an obligate-homodimer artefact. That test is withdrawn too (see
 below). What refutes it is the construct: neuromedin S is PEPTIDE 109&ndash;141, 33 residues,
 and the screen folded all 127 residues after the signal peptide. Same receptor, same
 alignment, same seed: the precursor gives 3.01 &#8491; and the actual peptide
-<b>15.21 &#8491;</b>. For comparison NMUR1 and NMUR2, which do bind it, give 7.12 and
-5.83 &#8491;, so the ordering is right and GPR158 is 8 to 10 &#8491; worse than the real
-receptors.</p>
+<b>15.21 &#8491;</b>. That +12.20 &#8491; is the largest loss in the arm and it still sits
+just inside the cut null's observed maximum of +12.22 &#8491;, so it is the strongest case
+here and not a closed one. The differential reading is what carries it: NMUR1 and NMUR2,
+which do bind neuromedin S, give 7.12 and 5.83 &#8491; on the same product, so the ordering
+is right and GPR158 is 8 to 10 &#8491; worse than the real receptors.</p>
 
 <p class="mut" style="font-size:12px">All are AlphaFold3 predictions with no experimental
 support of any kind. The method's own ceiling bounds them: AUROC 0.519 on degree-balanced
@@ -246,7 +254,7 @@ interactions are real.</p>
 <h2>Why the others fell, and which of those reasons still holds</h2>
 <table>
 <tr><th>reason</th><th>n</th><th>status</th></tr>
-<tr><td><b>The interface was carried by a precursor the cell never releases</b><br><span class="mut">The largest single source of false positives in this screen, and a construct error rather than a statistical one, which is why it survived every audit that invalidated the statistics.</span></td><td>9</td><td class="why">holds</td></tr>
+<tr><td><b>The interface was carried by a precursor the cell never releases</b><br><span class="mut">A construct error rather than a statistical one, so it survived the audits that invalidated the statistics. But the attribution per pair does not survive its own null: cutting a partner at all moves interface PAE with sd 3.14 &#8491; and a tail to +12.22 &#8491;, and none of the nine losses clears that maximum. Four clear two standard deviations.</span></td><td>9</td><td class="why"><b>weakened</b><br><span class="mut">4 strong, 5 unresolved</span></td></tr>
 <tr><td><b>The receptor&rsquo;s cytoplasmic face, after the partner&rsquo;s tail was removed</b><br><span class="mut">Cutting the partner removes the partner&rsquo;s impossible half and leaves the receptor&rsquo;s. The permuted negatives sit on the same face, so the margin compares two poses that cannot exist.</span></td><td>4</td><td class="why">holds</td></tr>
 <tr><td><b>Beaten by another candidate&rsquo;s ectodomain</b><br><span class="mut">The same receptor docks an unrelated, size-matched ectodomain at least as well.</span></td><td>3</td><td class="why">holds</td></tr>
 <tr><td><b>A secreted partner placed on the cytoplasmic face</b><br><span class="mut">It has no route to the cytosol, so the pose cannot exist.</span></td><td>2</td><td class="why">holds</td></tr>
@@ -399,25 +407,59 @@ construct.</p>
 <h2>The cut above was the wrong cut</h2>
 <p>That arm removes the signal peptide and folds everything after it. UniProt also annotates
 PROPEPTIDE, PEPTIDE and CHAIN, and the rule never read any of them, so a prohormone was
-folded as a prohormone. Across the 1,369 jobs built as &ldquo;mature&rdquo;:</p>
+folded as a prohormone. Of the 1,221 mature pairs folded so far:</p>
 <table>
-<tr><th>what the partner actually is</th><th>partners</th><th>jobs</th></tr>
-<tr><td>one CHAIN, so the prodomain must go too</td><td>233</td><td>877</td></tr>
-<tr><td>signal only &mdash; the current rule is right</td><td>43</td><td>216</td></tr>
-<tr><td>several peptide products, no single answer</td><td>38</td><td>149</td></tr>
-<tr><td>one PEPTIDE product</td><td>17</td><td>86</td></tr>
-<tr><td>CHAIN absent, propeptide trimmed</td><td>13</td><td>41</td></tr>
+<tr><th>what the partner actually is</th><th>partners</th><th>pairs</th></tr>
+<tr><td>several released products, so no single right answer</td><td>100</td><td>389</td></tr>
+<tr><td>one product, and it is <em>not</em> what was folded</td><td>82</td><td>351</td></tr>
+<tr><td>one product, and the signal-only rule already gives it</td><td>162</td><td>481</td></tr>
 </table>
-<p style="margin-top:14px"><b>472 of 1,369 mature jobs fold the wrong molecule or an
-undefined one.</b> The worst are near-total: C3 was folded at 1,641 residues when the
-signalling fragment C3a is 17; oxytocin at 106 residues when the hormone is 9; fibrinogen
-alpha at 847 when the released peptide is 16.</p>
+<p style="margin-top:14px"><b>740 of 1,221 mature pairs &mdash; 60.6%, over 67 receptors and
+169 partners &mdash; fold the wrong molecule or an undecided one.</b> The worst unambiguous
+cases are near-total: urotensin-2B folded at 91 residues when the peptide is 8, neurokinin B
+at 105 when it is 10, endothelin-2 at 154 when it is 21, neuromedin S at 127 when it is 33.</p>
+
+<p class="note"><b>Correction, 2026-11-26.</b> This section previously reported 472 of 1,369
+jobs and named C3, oxytocin and fibrinogen alpha as the worst cases. That was wrong, and the
+fault was in the audit rather than the screen. <code>scripts/60</code> tested
+&ldquo;exactly one PEPTIDE&rdquo; before &ldquo;exactly one CHAIN&rdquo;, so a precursor
+holding both had every CHAIN discarded: FGA resolved to fibrinopeptide A, 16 residues, and
+threw away fibrinogen alpha chain at 36&ndash;866. The same branch sent any partner with
+several CHAINs and no PEPTIDE to &ldquo;signal only, the rule is right&rdquo;, which declared
+the construct correct for proteins carrying up to twelve chains. A released product is any
+annotated CHAIN <em>or</em> PEPTIDE, and more than one of them means ambiguous. Under that
+rule C3 has thirteen products, oxytocin two and fibrinogen alpha two, so none of the three is
+a clean example of anything; the ambiguous class roughly triples, from 38 partners to 100;
+and the exposure is larger than first reported, not smaller. The flagship case is unaffected:
+NMS still has exactly one annotated product and 74% of what was folded is not in it.</p>
 
 <p>Every pair whose precursor cleared the gate was re-folded as each product the protein is
 processed into, with the receptor chain, both alignments and the seed copied from the
-original input so that the span is the only difference. <b>9 of 12 lose the interface.</b>
-Nine of those products are shorter than the precursor and score worse, which is against the
-length bias, so a loss is the informative direction.</p>
+original input so that the span is the only difference. Counting only products genuinely
+smaller than the precursor, <b>10 of 13 end up above the gate.</b></p>
+
+<p class="note"><b>How much of that is the cut rather than the molecule.</b> There is an
+alignment-matched control for exactly this manipulation already in the project: 27 pairs
+folded uncut and then cut, 18 to 34 residues removed, identical alignment row counts in both
+chains. Cutting moves interface PAE with a <b>standard deviation of 3.14 &#8491; and a tail
+to +12.22 &#8491;</b>, it makes a pair worse 16 times in 27, and it pushed 4 of 10 under-gate
+pairs above the gate while rescuing only 1 of 17. Measured against that null on the same
+statistic, <b>none of the nine losses exceeds the largest move the null produces</b> and four
+exceed two standard deviations: GPR158 + NMS (+12.20), GPR65 + CD52 (+12.04),
+GPRC5C + IGF2 (+8.92), GPR148 + CFC1 (+7.77). So a single pair losing its interface on the
+refold is not, on its own, evidence that the pair was an artefact.</p>
+
+<p class="note"><b>And the gate cannot see most true hormones anyway.</b> In the known-answer
+matrix, 4 of the 7 textbook receptor&ndash;hormone pairs fail the 3.76 &#8491; gate when folded
+as their real mature product &mdash; GALR3 + spexin-1 at 5.27, NMUR2 and NMUR1 + neuromedin S
+at 5.83 and 7.12, GHSR + ghrelin-27 at 8.77. A majority of genuine pairs failing as products
+is the same outcome the refold produced, so the two cannot be told apart at this n.</p>
+
+<p>What the refold does establish is narrower and still worth having. The construct was
+wrong, which is a fact about the molecule and not a statistic. Three pairs resolve to a
+single product and <em>improve</em> while getting shorter, which the cut-noise null does not
+predict in that direction. And GHRL fails to converge: three receptors reached the gate
+against its precursor and they disagree about which product is least bad.</p>
 
 <p><b>Ghrelin is the cleanest demonstration.</b> Three orphan receptors &mdash; MRGPRX1,
 GPR32 and MRGPRX4 &mdash; each reached the gate against the GHRL precursor. None of them
