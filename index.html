@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>chaperone</title>
 <style>
-:root{--bg:#000;--surface:#0c0c0c;--rule:#242428;--ink:#f2f2f4;--mut:#8b8b93;--acc:#2166AC}
+:root{--bg:#000;--surface:#0c0c0c;--rule:#242428;--ink:#f2f2f4;--mut:#8b8b93;--grey:#8b8b93;--acc:#2166AC}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
@@ -62,33 +62,23 @@ code, because an agent that both assembles evidence and judges it will rationali
 hypothesis it was given.</p>
 
 <h2>Runs</h2>
-<a class="card" href="reports/product_arm_2026-11-27/structures/">
-  <b>Product, precursor, decoy &rarr;</b>
-  <span>22 structures from the controlled arm, in triples: the molecule the cell releases,
-  the precursor the screen folded instead, and a decoy cut removing the same number of
-  residues from the same terminus. A hit has to beat both, because the product alone cannot
-  tell &ldquo;this molecule binds&rdquo; from &ldquo;a chain of this length binds&rdquo;.</span></a>
-<a class="card" href="reports/product_refold_2026-11-26/structures/">
-  <b>The first refold, 2026-11-26 &rarr;</b>
-  <span>20 structures, in pairs: the prohormone the screen folded and the peptide the cell
-  actually secretes, same receptor, same alignments, same seed. Beside them the textbook
-  receptor&ndash;hormone pairs, because four of seven fail the gate as their own mature
-  product &mdash; so without them a refuted pair and an ordinary one look alike.</span></a>
-<a class="card" href="reports/protein_pae_2026-11-24_v2/structures/">
-  <b>The 2026-11-24 pose viewer &rarr;</b>
-  <span>The earlier set, kept as the record of what the pose argument looked like before
-  the construct work. Its verdicts are superseded: it still lists MRGPRX2 + GNRH2 as
-  rejected for spanning both membrane faces, a rule since withdrawn.</span></a>
+<a class="card" href="reports/hits/">
+  <b>The hits, with their controls &rarr;</b>
+  <span>59 structures, and only what the project currently stands behind. Ten construct
+  hits, each as a triple &mdash; the molecule the cell releases, the precursor the screen
+  folded instead, and a decoy cut removing the same number of residues from the same
+  terminus &mdash; because a hit has to beat both. Beside them the 29 screen hits with no
+  outstanding objection.</span></a>
 <a class="card" href="reports/protein_pae_2026-11-24_v2/">
-  <b>Orphan GPCR shortlist, 2026-11-24 &rarr;</b>
-  <span>57 protein candidates triaged end to end, re-run after a geometry rule was found
-  not to discriminate. Verdicts, the traceable report, the designed experiments, and the
-  review audit that objects to four of them.</span></a>
-<a class="card" href="reports/orphan_shortlist_2026-11-23/">
-  <b>The run before it, 2026-11-23 &rarr;</b>
-  <span>102 candidates under the published protein gate. Kept because the arm was
-  re-gated afterwards and 45 of its verdicts changed; the two together are the record of
-  why.</span></a>
+  <b>The agentic triage &rarr;</b>
+  <span>What the evidence agent found for each candidate, the verdicts the deterministic
+  gate returned, the experiments designed to test them, and the review audit that objects
+  to four. Evidence and judgement, kept apart on purpose.</span></a>
+<a class="card" href="https://www.yizhouyu.com/humanspatialatlas/">
+  <b>Human Spatial Atlas &rarr;</b>
+  <span>Where these receptors are measured. A fold says two molecules can sit together;
+  whether the pair can happen is a question about tissue, and the atlas is the other half of
+  that argument.</span></a>
 
 <h2>What the screen found</h2>
 <p style="margin:0 0 10px">68 candidates across both arms: 62 protein pairs, and the 6
@@ -138,10 +128,12 @@ that a loss on refolding was uninterpretable. They fail the <em>gate</em>; not o
 gets <em>worse</em>. So a candidate that degrades as its own released product is doing
 something no real pair here does.</p>
 
-<h3>11 pairs the correct molecule reveals</h3>
-<p>These clear the 3.76 &#8491; gate as the peptide the cell secretes, beat their own
-precursor, and are not matched by a decoy cut of identical length. They are the direction no
-post-hoc test on a shortlist could reach, because none of them was on one.</p>
+<h3>10 hits, held across three seeds</h3>
+<p>Each clears the 3.76 &#8491; gate as the peptide the cell secretes on the pooled
+evidence of three seeds, beats its own precursor, and is not matched by a decoy cut of
+identical length. They are the direction no post-hoc test on a shortlist could reach,
+because none of them was on one. Every structure is in
+<a href="reports/hits/">the viewer</a>, as a triple.</p>
 <table>
 <tr><th>pair and molecule</th><th>product</th><th>precursor</th><th>decoy</th>
   <th>3 seeds</th></tr>
@@ -155,14 +147,13 @@ post-hoc test on a shortlist could reach, because none of them was on one.</p>
 <tr><td><b>GPR152</b> + PF4<span class="mut">Platelet factor 4, short form, 54 aa</span></td><td>3.39</td><td>4.77</td><td>8.07</td><td><b>3.39</b></td></tr>
 <tr><td><b>MRGPRX2</b> + GAST<span class="mut">Gastrin-6, 6 aa</span></td><td>3.44</td><td>5.38</td><td>4.92</td><td><b>3.42</b></td></tr>
 <tr><td><b>MRGPRF</b> + VEGFC<span class="mut">Vascular endothelial growth factor C, 116 aa</span></td><td>3.53</td><td>3.78</td><td>13.52</td><td><b>1.95</b></td></tr>
-<tr><td><b>GPR33</b> + CFC1<span class="mut">Cryptic protein, 133 aa</span></td><td>3.72</td><td>3.83</td><td>5.59</td><td><span class="mut">3.72, precursor now better</span></td></tr>
 </table>
-<p style="margin-top:14px"><b>10 of 11 hold across three seeds.</b> One seed
-is a screen: AlphaFold3 docking splits by seed, and two of this arm's own product folds
-straddle the gate <em>within</em> a single seed. Each hit was re-folded on seeds 2 and 3
-together with its precursor and its decoy, from the same inputs, with nothing changed but
-the seed. The one that did not hold, GPR33 + CFC1, is not refuted &mdash; its precursor
-caught up, which is exactly what a one-seed screen cannot tell you.</p>
+<p style="margin-top:14px"><b>One seed is a screen.</b> AlphaFold3 docking splits by seed,
+and two of this arm's own product folds straddle the gate <em>within</em> a single seed, so a
+pair that clears on seed 1 and nowhere else has cleared nothing. All 11 pairs
+that cleared on the first pass were re-folded on seeds 2 and 3 together with their precursor
+and their decoy, from the same inputs, with nothing changed but the seed. 10 held.
+GPR33 + CFC1 did not: its precursor caught up, so it is not refuted, which is exactly what a one-seed screen cannot tell you.</p>
 <p style="margin-top:14px"><b>GPR39 + fibrinopeptide A is the clearest.</b> The precursor
 sits at 17.15 &#8491; and the 16-residue released peptide at <b>2.42</b>, while a decoy
 removing the same number of residues elsewhere stays at 16.57. A 14.73 &#8491; move that an
@@ -174,13 +165,13 @@ product (9.79 &#8491;, GHSR + ghrelin-28) <em>and</em> worse than its own decoy 
 real molecule doing worse than an arbitrary cut of the same size.</p>
 <table>
 <tr><th>pair and molecule</th><th>product</th><th>precursor</th><th>decoy</th></tr>
-<tr><td><b>GPR37</b> + EFNA4<span class="mut">Ephrin-A4, 145 aa</span></td><td>10.12</td><td>5.22</td><td>5.92</td><td>&mdash;</td></tr>
-<tr><td><b>GPR32</b> + INHA<span class="mut">Inhibin alpha chain, 134 aa</span></td><td>10.44</td><td>5.57</td><td>10.09</td><td>&mdash;</td></tr>
-<tr><td><b>MRGPRD</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>11.36</td><td>6.25</td><td>11.18</td><td>&mdash;</td></tr>
-<tr><td><b>GPR37L1</b> + GFRA3<span class="mut">GDNF family receptor alpha-3, 343 aa</span></td><td>11.67</td><td>2.61</td><td>3.01</td><td>&mdash;</td></tr>
-<tr><td><b>MAS1L</b> + TDGF1<span class="mut">Protein Cripto, 120 aa</span></td><td>14.15</td><td>4.23</td><td>4.41</td><td>&mdash;</td></tr>
-<tr><td><b>MAS1L</b> + CALCB<span class="mut">Calcitonin gene-related peptide 2, 37 aa</span></td><td>20.05</td><td>5.02</td><td>5.22</td><td>&mdash;</td></tr>
-<tr><td><b>GPR31</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>21.36</td><td>5.18</td><td>2.57</td><td>&mdash;</td></tr>
+<tr><td><b>GPR37</b> + EFNA4<span class="mut">Ephrin-A4, 145 aa</span></td><td>10.12</td><td>5.22</td><td>5.92</td></tr>
+<tr><td><b>GPR32</b> + INHA<span class="mut">Inhibin alpha chain, 134 aa</span></td><td>10.44</td><td>5.57</td><td>10.09</td></tr>
+<tr><td><b>MRGPRD</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>11.36</td><td>6.25</td><td>11.18</td></tr>
+<tr><td><b>GPR37L1</b> + GFRA3<span class="mut">GDNF family receptor alpha-3, 343 aa</span></td><td>11.67</td><td>2.61</td><td>3.01</td></tr>
+<tr><td><b>MAS1L</b> + TDGF1<span class="mut">Protein Cripto, 120 aa</span></td><td>14.15</td><td>4.23</td><td>4.41</td></tr>
+<tr><td><b>MAS1L</b> + CALCB<span class="mut">Calcitonin gene-related peptide 2, 37 aa</span></td><td>20.05</td><td>5.02</td><td>5.22</td></tr>
+<tr><td><b>GPR31</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>21.36</td><td>5.18</td><td>2.57</td></tr>
 </table>
 <p class="note"><b>The rule changed, and it was too strict before.</b> The second clause
 used to ask for a product-minus-precursor move larger than +12.22 &#8491;, the observed
@@ -195,8 +186,9 @@ product-minus-precursor change is <b>+0.19 &#8491;</b>. For those receptors the
 prohormone-versus-product distinction simply does not matter: they engage neither molecule.
 Eleven sit within 1.5 &#8491; of the gate, led by GPR141 + PLAU short by 0.08 &#8491;, where
 seed variance alone could decide it.</p>
-<p class="mut" style="font-size:12px">Generated from <code>results/arm_verdicts.csv</code>
-on 2026-11-27. Every new hit is one seed; the three-seed confirmation is folding.</p>
+<p class="mut" style="font-size:12px">Generated from <code>results/arm_verdicts.csv</code> and
+<code>results/confirm_verdicts.csv</code> on 2026-11-27. Products, precursors and decoys on seed 1;
+every hit refolded on seeds 2 and 3.</p>
 <!-- ARM-END -->
 
 <h2>The shortlist, on the completed re-screen</h2>
@@ -920,7 +912,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#5B8CB8">Partly tested</span></td>
   <td class="why"><b>mature chain</b>: survives, with its own controls.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. GNRH2 (UniProt O43555, progonadoliberin-2) is HPA-classed &quot;Predicted secreted proteins&quot;, secreted to blood, function &quot;hormone&quot;; MRGPRX2 (Q96LB1) is a plasma-membrane GPCR whose documented function is to be a promiscuous mast-cell receptor for BASIC secretagogue peptides (substance P, cortistatin-14, PAMP-12, LL-37, beta-defensins, dynorphins, PMX-53), so a cationic decapeptide hormone binding it is mechanistically the right class of interaction rather than an implausible one.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GNRH2-MRGPRX2">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#MRGPRX2__GNRH2">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96LB1">MRGPRX2</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O43555">GNRH2</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-GNRH2-MRGPRX2">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q96LB1">MRGPRX2</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O43555">GNRH2</a></td>
 </tr>
 <tr>
   <td><b>MRGPRX2 + SPX</b><br>
@@ -952,7 +944,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#C98A93">Weakened</span></td>
   <td class="why"><b>mature chain</b>: interface weakens to 5.17 &#8491;.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. HCST (DAP10, UniProt Q9UBK5) and GPR65 (UniProt Q8IYL9) are both membrane proteins enhanced in the same tissues (bone marrow and lymphoid tissue) with overlapping vesicle/plasma-membrane compartments, and no database or literature records the pair (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-HCST-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__HCST">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UBK5">HCST</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-HCST-GPR65">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UBK5">HCST</a></td>
 </tr>
 <tr>
   <td><b>GPRC5C + IGF2</b><br>
@@ -960,7 +952,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>physics</b>: a secreted partner placed on the cytoplasmic face, which it has no route to; <b>mature chain</b>: cytoplasmic face, partner is secreted.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. IGF2 is a secreted hormone (HPA: &quot;Secreted to blood&quot;, function &quot;Hormone&quot;) and GPRC5C is a 7-transmembrane orphan GPCR that HPA places at the plasma membrane, so a ligand-receptor geometry is compartmentally plausible.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-IGF2-GPRC5C">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPRC5C__IGF2">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NQ84">GPRC5C</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P01344">IGF2</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-IGF2-GPRC5C">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NQ84">GPRC5C</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P01344">IGF2</a></td>
 </tr>
 <tr>
   <td><b>GPR37 + CADM4</b><br>
@@ -976,7 +968,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>receptor ectodomain</b>: the receptor is an obligate homodimer, through the extracellular Cache domain and this construct is a monomer, so the partner is docking on the face the other protomer occupies; <b>mature chain</b>: survives, with its own controls.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. NMS is a secreted brain neuropeptide (HPA &quot;Predicted secreted proteins&quot;, secretome_location &quot;Secreted in brain&quot;, function &quot;regulation of circadian rhythms through autocrine and/or paracrine actions&quot;) and GPR158 is a brain/retina-enriched plasma-membrane GPCR (&quot;Metabotropic glycine receptor&quot;, Cell membrane/Postsynaptic cell membrane), so a secreted-ligand/membrane-receptor pairing is compartmentally coherent and both are brain-expressed.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-NMS-GPR158">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR158__NMS">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5H8A3">NMS</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-NMS-GPR158">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5T848">GPR158</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q5H8A3">NMS</a></td>
 </tr>
 <tr>
   <td><b>GPR22 + SLITRK2</b><br>
@@ -992,7 +984,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>mature chain</b>: survives, with its own controls; <b>partner ectodomain</b>: a permuted ectodomain docks as well.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed co-occurrence returned 0 papers.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF8-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__TNFRSF8">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P28908">TNFRSF8</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF8-GPR65">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P28908">TNFRSF8</a></td>
 </tr>
 <tr>
   <td><b>GPR132 + CCL11</b><br>
@@ -1000,7 +992,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>mature chain</b>: interface lost on cutting.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. CCL11 (eotaxin, UniProt P51671) is a secreted chemokine and GPR132 (UniProt Q9UNW8) is a 7-transmembrane cell-membrane GPCR, so a secreted-ligand/membrane-receptor pairing is compartmentally plausible, and STRING, CellPhoneDB and PubMed co-occurrence all return nothing for this pair (0 PubMed hits), so it is novel.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CCL11-GPR132">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR132__CCL11">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UNW8">GPR132</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P51671">CCL11</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CCL11-GPR132">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9UNW8">GPR132</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P51671">CCL11</a></td>
 </tr>
 <tr>
   <td><b>GPR83 + GRIA4</b><br>
@@ -1024,7 +1016,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>partner ectodomain</b>: a permuted ectodomain docks as well.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. SLITRK3 (single-pass transmembrane LRR protein, UniProt O94933) and GPR83 (7-TM peptide GPCR, UniProt Q9NYM4) are both expressed in brain excitatory, inhibitory and other neurons per HPA, and no database or literature record of the pair exists (STRING not found, CellPhoneDB not found, PubMed co-occurrence 0).</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-SLITRK3-GPR83">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR83__SLITRK3">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94933">SLITRK3</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-SLITRK3-GPR83">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q9NYM4">GPR83</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94933">SLITRK3</a></td>
 </tr>
 <tr>
   <td><b>GPR65 + TNFRSF13B</b><br>
@@ -1032,7 +1024,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>partner ectodomain</b>: a permuted ectodomain docks as well.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database or literature records this pair: STRING found nothing, CellPhoneDB found nothing, and PubMed co-occurrence returned 0 papers.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF13B-GPR65">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR65__TNFRSF13B">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O14836">TNFRSF13B</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TNFRSF13B-GPR65">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q8IYL9">GPR65</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O14836">TNFRSF13B</a></td>
 </tr>
 <tr>
   <td><b>GPR37 + MST1</b><br>
@@ -1040,7 +1032,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>receptor ectodomain</b>: withheld, the truncated receptor does not fold; <b>mature chain</b>: interface lost on cutting.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed co-mention count is 0.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-MST1-GPR37">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR37__MST1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O15354">GPR37</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P26927">MST1</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-MST1-GPR37">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O15354">GPR37</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P26927">MST1</a></td>
 </tr>
 <tr>
   <td><b>GPR22 + CLSTN1</b><br>
@@ -1048,7 +1040,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>partner ectodomain</b>: 95% of the receptor face is cytoplasmic.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No prior record of this pair exists: STRING found nothing, CellPhoneDB found nothing, and PubMed returned 0 co-mentions.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CLSTN1-GPR22">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR22__CLSTN1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q99680">GPR22</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94985">CLSTN1</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-CLSTN1-GPR22">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/Q99680">GPR22</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O94985">CLSTN1</a></td>
 </tr>
 <tr>
   <td><b>GPR4 + FLT1</b><br>
@@ -1056,7 +1048,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>mature chain</b>: interface weakens to 5.34 &#8491;; <b>partner ectodomain</b>: 46% of the receptor face is cytoplasmic.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. No database records this pair (STRING found nothing, CellPhoneDB found nothing, and the single PubMed co-mention is a VEGFA gene-network analysis, not a binding study), so the interaction is novel.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-FLT1-GPR4">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR4__FLT1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P46093">GPR4</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P17948">FLT1</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-FLT1-GPR4">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P46093">GPR4</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P17948">FLT1</a></td>
 </tr>
 <tr>
   <td><b>GPR31 + TDGF1</b><br>
@@ -1064,7 +1056,7 @@ table was drawn from has moved.</p>
   <td><span class="badge" style="background:#B2182B">Refuted</span></td>
   <td class="why"><b>physics</b>: a secreted partner placed on the cytoplasmic face, which it has no route to; <b>mature chain</b>: cytoplasmic face, partner is secreted.
       <div class="mut">Triaged in <code>protein_pae_2026-11-24_v2</code>. TDGF1 (Cripto, UniProt P13385) is a secreted/GPI-anchored growth factor that can be shed to act on other cells, and GPR31 (UniProt O00270) is a plasma-membrane GPCR, so an extracellular ligand-receptor contact is topologically plausible.</div></td>
-  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TDGF1-GPR31">triage</a> &middot; <a href="reports/protein_pae_2026-11-24_v2/structures/#GPR31__TDGF1">fold</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O00270">GPR31</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P13385">TDGF1</a></td>
+  <td class="lnk"><a href="reports/protein_pae_2026-11-24_v2/report.html#pair-TDGF1-GPR31">triage</a> &middot; <a href="https://www.uniprot.org/uniprotkb/O00270">GPR31</a> &middot; <a href="https://www.uniprot.org/uniprotkb/P13385">TDGF1</a></td>
 </tr>
 </table>
 <!-- CANDIDATE-TABLE-END -->
@@ -1074,9 +1066,10 @@ table was drawn from has moved.</p>
 the pipeline, the deterministic gate and its rules, and the tests.</p>
 
 <footer><span style="float:right;font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums"
-  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-27 15:00  ·  a12c3bc</span>
+  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-27 17:51  ·  pending</span>
 Part of the human spatial atlas work:
-<a href="https://www.yizhouyu.com/humanspatialatlas/">the atlas</a> and its
+<a href="https://www.yizhouyu.com/humanspatialatlas/">the Human Spatial Atlas</a>, its
 <a href="https://www.yizhouyu.com/humanspatialatlas/manuscript.html">figures</a>
-(password protected).</footer>
+(password protected), and the
+<a href="https://www.yizhouyu.com/tcellatlas/">T cell atlas</a>.</footer>
 </div>

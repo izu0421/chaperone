@@ -1,0 +1,7551 @@
+{
+ "ARM_T1_MRGPRF__VEGFC__Vascular-endothelial-gro_112-227": {
+  "file": "s/ARM_T1_MRGPRF__VEGFC__Vascular-endothelial-gro_112-227.pdb",
+  "role": "confirmed",
+  "why": "Vascular endothelial growth factor C, 116 residues: <b>1.95 A</b> pooled over three seeds (3.53 on seed 1), against 2.31 as the precursor and 12.34 for the decoy cut",
+  "stage": "current",
+  "label": "MRGPRF + VEGFC \u2014 product",
+  "receptor": "MRGPRF",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   18,
+   21,
+   39,
+   40,
+   41,
+   42,
+   43,
+   92,
+   99,
+   110,
+   113,
+   119,
+   120,
+   121,
+   123,
+   124,
+   127,
+   178,
+   182,
+   186,
+   187,
+   189,
+   190,
+   191,
+   194,
+   198,
+   201,
+   205,
+   206,
+   255,
+   258,
+   259,
+   262,
+   267,
+   268,
+   269,
+   273,
+   274,
+   277,
+   280
+  ],
+  "n_contacts": 40,
+  "spans": {
+   "EXT": [
+    18,
+    21,
+    39,
+    40,
+    41,
+    42,
+    43,
+    110,
+    113,
+    119,
+    120,
+    121,
+    123,
+    182,
+    186,
+    187,
+    189,
+    190,
+    191,
+    194,
+    198,
+    267,
+    268,
+    269,
+    273
+   ],
+   "TM": [
+    92,
+    99,
+    124,
+    127,
+    178,
+    201,
+    205,
+    206,
+    255,
+    258,
+    259,
+    262,
+    274,
+    277,
+    280
+   ]
+  },
+  "tm_contacts": 15,
+  "cyt_contacts": 0,
+  "ext_contacts": 25,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 116,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    14.84,
+    0.91,
+    -12.76
+   ],
+   "cyt": [
+    -25.19,
+    2.1,
+    27.92
+   ]
+  },
+  "tm_spans": [
+   [
+    45,
+    66
+   ],
+   [
+    83,
+    104
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    199,
+    220
+   ],
+   [
+    242,
+    263
+   ],
+   [
+    274,
+    294
+   ]
+  ]
+ },
+ "ARM_T1_MRGPRF__VEGFC__PRECURSOR": {
+  "file": "s/ARM_T1_MRGPRF__VEGFC__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 2.31 A over three seeds",
+  "stage": "current",
+  "label": "MRGPRF + VEGFC \u2014 precursor",
+  "receptor": "MRGPRF",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   35,
+   36,
+   39,
+   40,
+   41,
+   42,
+   43,
+   45,
+   92,
+   96,
+   99,
+   108,
+   109,
+   120,
+   124,
+   127,
+   178,
+   182,
+   183,
+   186,
+   187,
+   188,
+   190,
+   194,
+   195,
+   198,
+   201,
+   202,
+   205,
+   206,
+   255,
+   258,
+   259,
+   262,
+   266,
+   268,
+   269,
+   270,
+   271,
+   272,
+   273,
+   276,
+   277,
+   280
+  ],
+  "n_contacts": 44,
+  "spans": {
+   "EXT": [
+    35,
+    36,
+    39,
+    40,
+    41,
+    42,
+    43,
+    108,
+    109,
+    120,
+    182,
+    183,
+    186,
+    187,
+    188,
+    190,
+    194,
+    195,
+    198,
+    266,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273
+   ],
+   "TM": [
+    45,
+    92,
+    96,
+    99,
+    124,
+    127,
+    178,
+    201,
+    202,
+    205,
+    206,
+    255,
+    258,
+    259,
+    262,
+    276,
+    277,
+    280
+   ]
+  },
+  "tm_contacts": 18,
+  "cyt_contacts": 0,
+  "ext_contacts": 26,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 388,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    3.25,
+    -19.51,
+    17.25
+   ],
+   "cyt": [
+    49.53,
+    9.46,
+    -7.9
+   ]
+  },
+  "tm_spans": [
+   [
+    45,
+    66
+   ],
+   [
+    83,
+    104
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    199,
+    220
+   ],
+   [
+    242,
+    263
+   ],
+   [
+    274,
+    294
+   ]
+  ]
+ },
+ "ARM_T1_MRGPRF__VEGFC__DECOY_273-388": {
+  "file": "s/ARM_T1_MRGPRF__VEGFC__DECOY_273-388.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 12.34 A",
+  "stage": "current",
+  "label": "MRGPRF + VEGFC \u2014 decoy cut",
+  "receptor": "MRGPRF",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   34,
+   36,
+   37,
+   40,
+   41,
+   42,
+   43,
+   92,
+   96,
+   99,
+   103,
+   108,
+   113,
+   120,
+   124,
+   127,
+   178,
+   182,
+   190,
+   191,
+   194,
+   195,
+   198,
+   202,
+   206,
+   255,
+   258,
+   259,
+   262,
+   265,
+   266,
+   267,
+   268,
+   269,
+   273,
+   276,
+   277,
+   280
+  ],
+  "n_contacts": 38,
+  "spans": {
+   "EXT": [
+    34,
+    36,
+    37,
+    40,
+    41,
+    42,
+    43,
+    108,
+    113,
+    120,
+    182,
+    190,
+    191,
+    194,
+    195,
+    198,
+    265,
+    266,
+    267,
+    268,
+    269,
+    273
+   ],
+   "TM": [
+    92,
+    96,
+    99,
+    103,
+    124,
+    127,
+    178,
+    202,
+    206,
+    255,
+    258,
+    259,
+    262,
+    276,
+    277,
+    280
+   ]
+  },
+  "tm_contacts": 16,
+  "cyt_contacts": 0,
+  "ext_contacts": 22,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 116,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    0.93,
+    10.5,
+    21.58
+   ],
+   "cyt": [
+    15.77,
+    -11.65,
+    -32.69
+   ]
+  },
+  "tm_spans": [
+   [
+    45,
+    66
+   ],
+   [
+    83,
+    104
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    199,
+    220
+   ],
+   [
+    242,
+    263
+   ],
+   [
+    274,
+    294
+   ]
+  ]
+ },
+ "ARM_T2_GPR39__FGA__Fibrinopeptide-A_20-35": {
+  "file": "s/ARM_T2_GPR39__FGA__Fibrinopeptide-A_20-35.pdb",
+  "role": "confirmed",
+  "why": "Fibrinopeptide A, 16 residues: <b>2.37 A</b> pooled over three seeds (2.42 on seed 1), against 16.63 as the precursor and 22.24 for the decoy cut",
+  "stage": "current",
+  "label": "GPR39 + FGA \u2014 product",
+  "receptor": "GPR39",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   62,
+   63,
+   64,
+   65,
+   68,
+   72,
+   133,
+   136,
+   137,
+   143,
+   144,
+   273,
+   274,
+   276,
+   277,
+   280,
+   281,
+   284,
+   347,
+   348,
+   349,
+   350,
+   351,
+   353
+  ],
+  "n_contacts": 24,
+  "spans": {
+   "CYT": [
+    62,
+    63,
+    64,
+    65,
+    68,
+    133,
+    136,
+    137,
+    143,
+    144,
+    273,
+    274,
+    276,
+    277,
+    280,
+    281,
+    347,
+    348,
+    349,
+    350,
+    351,
+    353
+   ],
+   "TM": [
+    72,
+    284
+   ]
+  },
+  "tm_contacts": 2,
+  "cyt_contacts": 22,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 16,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -5.79,
+    -36.39,
+    4.9
+   ],
+   "cyt": [
+    6.44,
+    27.25,
+    -5.33
+   ]
+  },
+  "tm_spans": [
+   [
+    35,
+    55
+   ],
+   [
+    70,
+    89
+   ],
+   [
+    110,
+    131
+   ],
+   [
+    152,
+    172
+   ],
+   [
+    218,
+    242
+   ],
+   [
+    284,
+    305
+   ],
+   [
+    324,
+    344
+   ]
+  ]
+ },
+ "ARM_T2_GPR39__FGA__PRECURSOR": {
+  "file": "s/ARM_T2_GPR39__FGA__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 16.63 A over three seeds",
+  "stage": "current",
+  "label": "GPR39 + FGA \u2014 precursor",
+  "receptor": "GPR39",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   65,
+   137,
+   140,
+   141,
+   144,
+   252,
+   255,
+   256,
+   262,
+   266,
+   267,
+   278,
+   372,
+   391,
+   392,
+   393,
+   394,
+   396,
+   397,
+   400,
+   401,
+   403,
+   404,
+   407,
+   413,
+   414,
+   416,
+   426
+  ],
+  "n_contacts": 28,
+  "spans": {
+   "CYT": [
+    65,
+    137,
+    140,
+    141,
+    144,
+    252,
+    255,
+    256,
+    262,
+    266,
+    267,
+    278,
+    372,
+    391,
+    392,
+    393,
+    394,
+    396,
+    397,
+    400,
+    401,
+    403,
+    404,
+    407,
+    413,
+    414,
+    416,
+    426
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 28,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 847,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -50.49,
+    -50.27,
+    20.62
+   ],
+   "cyt": [
+    -2.94,
+    -18.51,
+    -4.33
+   ]
+  },
+  "tm_spans": [
+   [
+    35,
+    55
+   ],
+   [
+    70,
+    89
+   ],
+   [
+    110,
+    131
+   ],
+   [
+    152,
+    172
+   ],
+   [
+    218,
+    242
+   ],
+   [
+    284,
+    305
+   ],
+   [
+    324,
+    344
+   ]
+  ]
+ },
+ "ARM_T2_GPR39__FGA__DECOY_424-439": {
+  "file": "s/ARM_T2_GPR39__FGA__DECOY_424-439.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 22.24 A",
+  "stage": "current",
+  "label": "GPR39 + FGA \u2014 decoy cut",
+  "receptor": "GPR39",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   102,
+   105,
+   176,
+   206
+  ],
+  "n_contacts": 4,
+  "spans": {
+   "EXT": [
+    102,
+    105,
+    176,
+    206
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 4,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 16,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    35.0,
+    5.61,
+    2.97
+   ],
+   "cyt": [
+    -29.73,
+    -6.71,
+    -5.19
+   ]
+  },
+  "tm_spans": [
+   [
+    35,
+    55
+   ],
+   [
+    70,
+    89
+   ],
+   [
+    110,
+    131
+   ],
+   [
+    152,
+    172
+   ],
+   [
+    218,
+    242
+   ],
+   [
+    284,
+    305
+   ],
+   [
+    324,
+    344
+   ]
+  ]
+ },
+ "ARM_T1_GPR65__CCL23__CCL23(27-99)_48-120": {
+  "file": "s/ARM_T1_GPR65__CCL23__CCL23(27-99)_48-120.pdb",
+  "role": "confirmed",
+  "why": "CCL23(27-99), 73 residues: <b>2.62 A</b> pooled over three seeds (3.16 on seed 1), against 3.60 as the precursor and 10.95 for the decoy cut",
+  "stage": "current",
+  "label": "GPR65 + CCL23 \u2014 product",
+  "receptor": "GPR65",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   115,
+   116,
+   117,
+   119,
+   120,
+   123,
+   126,
+   210,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   220,
+   223,
+   224,
+   295
+  ],
+  "n_contacts": 18,
+  "spans": {
+   "TM": [
+    115,
+    116,
+    117,
+    210,
+    212,
+    217,
+    220,
+    223,
+    224
+   ],
+   "CYT": [
+    119,
+    120,
+    123,
+    126,
+    213,
+    214,
+    215,
+    216,
+    295
+   ]
+  },
+  "tm_contacts": 9,
+  "cyt_contacts": 9,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 73,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    26.45,
+    -20.36,
+    -0.66
+   ],
+   "cyt": [
+    -8.83,
+    15.34,
+    -18.74
+   ]
+  },
+  "tm_spans": [
+   [
+    6,
+    42
+   ],
+   [
+    47,
+    77
+   ],
+   [
+    83,
+    118
+   ],
+   [
+    127,
+    153
+   ],
+   [
+    175,
+    212
+   ],
+   [
+    217,
+    252
+   ],
+   [
+    265,
+    293
+   ]
+  ]
+ },
+ "ARM_T1_GPR65__CCL23__PRECURSOR": {
+  "file": "s/ARM_T1_GPR65__CCL23__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 3.60 A over three seeds",
+  "stage": "current",
+  "label": "GPR65 + CCL23 \u2014 precursor",
+  "receptor": "GPR65",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   115,
+   116,
+   117,
+   119,
+   120,
+   123,
+   126,
+   210,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   219,
+   220,
+   223,
+   224,
+   295
+  ],
+  "n_contacts": 19,
+  "spans": {
+   "TM": [
+    115,
+    116,
+    117,
+    210,
+    212,
+    217,
+    219,
+    220,
+    223,
+    224
+   ],
+   "CYT": [
+    119,
+    120,
+    123,
+    126,
+    213,
+    214,
+    215,
+    216,
+    295
+   ]
+  },
+  "tm_contacts": 10,
+  "cyt_contacts": 9,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 99,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    3.84,
+    -30.26,
+    21.61
+   ],
+   "cyt": [
+    -22.68,
+    10.6,
+    -1.7
+   ]
+  },
+  "tm_spans": [
+   [
+    6,
+    42
+   ],
+   [
+    47,
+    77
+   ],
+   [
+    83,
+    118
+   ],
+   [
+    127,
+    153
+   ],
+   [
+    175,
+    212
+   ],
+   [
+    217,
+    252
+   ],
+   [
+    265,
+    293
+   ]
+  ]
+ },
+ "ARM_T1_GPR65__CCL23__DECOY_10-79": {
+  "file": "s/ARM_T1_GPR65__CCL23__DECOY_10-79.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 10.95 A",
+  "stage": "current",
+  "label": "GPR65 + CCL23 \u2014 decoy cut",
+  "receptor": "GPR65",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   46,
+   47,
+   48,
+   49,
+   112,
+   115,
+   116,
+   119,
+   120,
+   121,
+   123,
+   126,
+   206,
+   210,
+   213,
+   215,
+   216,
+   217,
+   220,
+   223,
+   224,
+   228,
+   294,
+   295,
+   296
+  ],
+  "n_contacts": 25,
+  "spans": {
+   "CYT": [
+    46,
+    119,
+    120,
+    121,
+    123,
+    126,
+    213,
+    215,
+    216,
+    294,
+    295,
+    296
+   ],
+   "TM": [
+    47,
+    48,
+    49,
+    112,
+    115,
+    116,
+    206,
+    210,
+    217,
+    220,
+    223,
+    224,
+    228
+   ]
+  },
+  "tm_contacts": 13,
+  "cyt_contacts": 12,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 70,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    16.3,
+    7.98,
+    32.07
+   ],
+   "cyt": [
+    -4.64,
+    6.19,
+    -24.45
+   ]
+  },
+  "tm_spans": [
+   [
+    6,
+    42
+   ],
+   [
+    47,
+    77
+   ],
+   [
+    83,
+    118
+   ],
+   [
+    127,
+    153
+   ],
+   [
+    175,
+    212
+   ],
+   [
+    217,
+    252
+   ],
+   [
+    265,
+    293
+   ]
+  ]
+ },
+ "ARM_T2_GPR39__FGB__Fibrinopeptide-B_31-44": {
+  "file": "s/ARM_T2_GPR39__FGB__Fibrinopeptide-B_31-44.pdb",
+  "role": "confirmed",
+  "why": "Fibrinopeptide B, 14 residues: <b>2.93 A</b> pooled over three seeds (2.93 on seed 1), against 5.02 as the precursor and 18.16 for the decoy cut",
+  "stage": "current",
+  "label": "GPR39 + FGB \u2014 product",
+  "receptor": "GPR39",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   62,
+   63,
+   64,
+   65,
+   68,
+   72,
+   129,
+   133,
+   136,
+   137,
+   245,
+   273,
+   274,
+   277,
+   281,
+   284,
+   285,
+   344,
+   347,
+   349,
+   350,
+   353
+  ],
+  "n_contacts": 22,
+  "spans": {
+   "CYT": [
+    62,
+    63,
+    64,
+    65,
+    68,
+    133,
+    136,
+    137,
+    245,
+    273,
+    274,
+    277,
+    281,
+    347,
+    349,
+    350,
+    353
+   ],
+   "TM": [
+    72,
+    129,
+    284,
+    285,
+    344
+   ]
+  },
+  "tm_contacts": 5,
+  "cyt_contacts": 17,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 14,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -9.04,
+    -36.13,
+    1.07
+   ],
+   "cyt": [
+    7.94,
+    27.88,
+    -2.06
+   ]
+  },
+  "tm_spans": [
+   [
+    35,
+    55
+   ],
+   [
+    70,
+    89
+   ],
+   [
+    110,
+    131
+   ],
+   [
+    152,
+    172
+   ],
+   [
+    218,
+    242
+   ],
+   [
+    284,
+    305
+   ],
+   [
+    324,
+    344
+   ]
+  ]
+ },
+ "ARM_T2_GPR39__FGB__PRECURSOR": {
+  "file": "s/ARM_T2_GPR39__FGB__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 5.02 A over three seeds",
+  "stage": "current",
+  "label": "GPR39 + FGB \u2014 precursor",
+  "receptor": "GPR39",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   63,
+   64,
+   65,
+   68,
+   72,
+   133,
+   136,
+   137,
+   140,
+   141,
+   245,
+   265,
+   268,
+   271,
+   272,
+   273,
+   274,
+   281,
+   284,
+   285,
+   344,
+   347,
+   349,
+   372,
+   375,
+   376,
+   379,
+   382,
+   383,
+   387,
+   391,
+   394,
+   395,
+   396,
+   398,
+   399,
+   400,
+   402,
+   403,
+   405
+  ],
+  "n_contacts": 40,
+  "spans": {
+   "CYT": [
+    63,
+    64,
+    65,
+    68,
+    133,
+    136,
+    137,
+    140,
+    141,
+    245,
+    265,
+    268,
+    271,
+    272,
+    273,
+    274,
+    281,
+    347,
+    349,
+    372,
+    375,
+    376,
+    379,
+    382,
+    383,
+    387,
+    391,
+    394,
+    395,
+    396,
+    398,
+    399,
+    400,
+    402,
+    403,
+    405
+   ],
+   "TM": [
+    72,
+    284,
+    285,
+    344
+   ]
+  },
+  "tm_contacts": 4,
+  "cyt_contacts": 36,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 461,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -39.56,
+    13.49,
+    -48.03
+   ],
+   "cyt": [
+    2.11,
+    -15.71,
+    -6.35
+   ]
+  },
+  "tm_spans": [
+   [
+    35,
+    55
+   ],
+   [
+    70,
+    89
+   ],
+   [
+    110,
+    131
+   ],
+   [
+    152,
+    172
+   ],
+   [
+    218,
+    242
+   ],
+   [
+    284,
+    305
+   ],
+   [
+    324,
+    344
+   ]
+  ]
+ },
+ "ARM_T2_GPR39__FGB__DECOY_231-244": {
+  "file": "s/ARM_T2_GPR39__FGB__DECOY_231-244.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 18.16 A",
+  "stage": "current",
+  "label": "GPR39 + FGB \u2014 decoy cut",
+  "receptor": "GPR39",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   15,
+   17,
+   24,
+   25,
+   89,
+   90,
+   93,
+   97,
+   98,
+   99,
+   112,
+   115,
+   174,
+   179,
+   180,
+   192,
+   207,
+   209,
+   210,
+   211,
+   212,
+   220,
+   302,
+   306,
+   311,
+   319,
+   322,
+   323,
+   326,
+   330
+  ],
+  "n_contacts": 30,
+  "spans": {
+   "EXT": [
+    15,
+    17,
+    24,
+    25,
+    90,
+    93,
+    97,
+    98,
+    99,
+    174,
+    179,
+    180,
+    192,
+    207,
+    209,
+    210,
+    211,
+    212,
+    306,
+    311,
+    319,
+    322,
+    323
+   ],
+   "TM": [
+    89,
+    112,
+    115,
+    220,
+    302,
+    326,
+    330
+   ]
+  },
+  "tm_contacts": 7,
+  "cyt_contacts": 0,
+  "ext_contacts": 23,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 14,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -23.87,
+    -21.85,
+    7.8
+   ],
+   "cyt": [
+    23.55,
+    17.18,
+    -6.62
+   ]
+  },
+  "tm_spans": [
+   [
+    35,
+    55
+   ],
+   [
+    70,
+    89
+   ],
+   [
+    110,
+    131
+   ],
+   [
+    152,
+    172
+   ],
+   [
+    218,
+    242
+   ],
+   [
+    284,
+    305
+   ],
+   [
+    324,
+    344
+   ]
+  ]
+ },
+ "ARM_T2_GPR45__CCK__Cholecystokinin-8_96-103": {
+  "file": "s/ARM_T2_GPR45__CCK__Cholecystokinin-8_96-103.pdb",
+  "role": "confirmed",
+  "why": "Cholecystokinin-8, 8 residues: <b>2.96 A</b> pooled over three seeds (2.96 on seed 1), against 4.96 as the precursor and 7.07 for the decoy cut",
+  "stage": "current",
+  "label": "GPR45 + CCK \u2014 product",
+  "receptor": "GPR45",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   65,
+   67,
+   68,
+   69,
+   70,
+   73,
+   128,
+   131,
+   132,
+   135,
+   141,
+   143,
+   258,
+   261,
+   262,
+   264,
+   265,
+   268,
+   269,
+   327,
+   328,
+   329,
+   330
+  ],
+  "n_contacts": 23,
+  "spans": {
+   "CYT": [
+    65,
+    67,
+    68,
+    69,
+    70,
+    73,
+    131,
+    132,
+    135,
+    141,
+    143,
+    258,
+    261,
+    262,
+    264,
+    265,
+    268,
+    327,
+    328,
+    329,
+    330
+   ],
+   "TM": [
+    128,
+    269
+   ]
+  },
+  "tm_contacts": 2,
+  "cyt_contacts": 21,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 8,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -21.22,
+    14.44,
+    19.72
+   ],
+   "cyt": [
+    14.28,
+    -13.08,
+    -15.18
+   ]
+  },
+  "tm_spans": [
+   [
+    39,
+    59
+   ],
+   [
+    76,
+    96
+   ],
+   [
+    110,
+    130
+   ],
+   [
+    150,
+    170
+   ],
+   [
+    199,
+    219
+   ],
+   [
+    269,
+    289
+   ],
+   [
+    306,
+    326
+   ]
+  ]
+ },
+ "ARM_T2_GPR45__CCK__PRECURSOR": {
+  "file": "s/ARM_T2_GPR45__CCK__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 4.96 A over three seeds",
+  "stage": "current",
+  "label": "GPR45 + CCK \u2014 precursor",
+  "receptor": "GPR45",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   58,
+   59,
+   62,
+   64,
+   65,
+   67,
+   68,
+   69,
+   70,
+   73,
+   131,
+   132,
+   135,
+   139,
+   141,
+   143,
+   258,
+   261,
+   262,
+   265,
+   268,
+   269,
+   328,
+   330,
+   331,
+   334
+  ],
+  "n_contacts": 26,
+  "spans": {
+   "TM": [
+    58,
+    59,
+    269
+   ],
+   "CYT": [
+    62,
+    64,
+    65,
+    67,
+    68,
+    69,
+    70,
+    73,
+    131,
+    132,
+    135,
+    139,
+    141,
+    143,
+    258,
+    261,
+    262,
+    265,
+    268,
+    328,
+    330,
+    331,
+    334
+   ]
+  },
+  "tm_contacts": 3,
+  "cyt_contacts": 23,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 95,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    8.34,
+    -36.76,
+    6.92
+   ],
+   "cyt": [
+    -13.16,
+    11.19,
+    1.35
+   ]
+  },
+  "tm_spans": [
+   [
+    39,
+    59
+   ],
+   [
+    76,
+    96
+   ],
+   [
+    110,
+    130
+   ],
+   [
+    150,
+    170
+   ],
+   [
+    199,
+    219
+   ],
+   [
+    269,
+    289
+   ],
+   [
+    306,
+    326
+   ]
+  ]
+ },
+ "ARM_T2_GPR45__CCK__DECOY_11-15": {
+  "file": "s/ARM_T2_GPR45__CCK__DECOY_11-15.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 7.07 A",
+  "stage": "current",
+  "label": "GPR45 + CCK \u2014 decoy cut",
+  "receptor": "GPR45",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   64,
+   67,
+   69,
+   70,
+   73,
+   131,
+   132,
+   135,
+   141,
+   142,
+   143,
+   144,
+   261,
+   262,
+   265,
+   268,
+   269,
+   328,
+   330
+  ],
+  "n_contacts": 19,
+  "spans": {
+   "CYT": [
+    64,
+    67,
+    69,
+    70,
+    73,
+    131,
+    132,
+    135,
+    141,
+    142,
+    143,
+    144,
+    261,
+    262,
+    265,
+    268,
+    328,
+    330
+   ],
+   "TM": [
+    269
+   ]
+  },
+  "tm_contacts": 1,
+  "cyt_contacts": 18,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 5,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -23.19,
+    17.52,
+    13.07
+   ],
+   "cyt": [
+    16.1,
+    -16.42,
+    -9.06
+   ]
+  },
+  "tm_spans": [
+   [
+    39,
+    59
+   ],
+   [
+    76,
+    96
+   ],
+   [
+    110,
+    130
+   ],
+   [
+    150,
+    170
+   ],
+   [
+    199,
+    219
+   ],
+   [
+    269,
+    289
+   ],
+   [
+    306,
+    326
+   ]
+  ]
+ },
+ "ARM_T2_MRGPRX2__SST__Somatostatin-14_103-116": {
+  "file": "s/ARM_T2_MRGPRX2__SST__Somatostatin-14_103-116.pdb",
+  "role": "confirmed",
+  "why": "Somatostatin-14, 14 residues: <b>3.08 A</b> pooled over three seeds (3.38 on seed 1), against 3.93 as the precursor and 10.04 for the decoy cut",
+  "stage": "current",
+  "label": "MRGPRX2 + SST \u2014 product",
+  "receptor": "MRGPRX2",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   26,
+   34,
+   85,
+   86,
+   89,
+   101,
+   105,
+   106,
+   109,
+   164,
+   168,
+   170,
+   173,
+   180,
+   184,
+   243,
+   244,
+   247,
+   248,
+   254,
+   257,
+   258,
+   261
+  ],
+  "n_contacts": 23,
+  "spans": {
+   "EXT": [
+    26,
+    101,
+    173,
+    254
+   ],
+   "TM": [
+    34,
+    85,
+    86,
+    89,
+    105,
+    106,
+    109,
+    164,
+    168,
+    170,
+    180,
+    184,
+    243,
+    244,
+    247,
+    248,
+    257,
+    258,
+    261
+   ]
+  },
+  "tm_contacts": 19,
+  "cyt_contacts": 0,
+  "ext_contacts": 4,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 14,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -35.45,
+    -8.76,
+    -0.52
+   ],
+   "cyt": [
+    33.24,
+    8.09,
+    2.97
+   ]
+  },
+  "tm_spans": [
+   [
+    29,
+    56
+   ],
+   [
+    64,
+    93
+   ],
+   [
+    103,
+    129
+   ],
+   [
+    145,
+    170
+   ],
+   [
+    179,
+    207
+   ],
+   [
+    221,
+    250
+   ],
+   [
+    257,
+    283
+   ]
+  ]
+ },
+ "ARM_T2_MRGPRX2__SST__PRECURSOR": {
+  "file": "s/ARM_T2_MRGPRX2__SST__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 3.93 A over three seeds",
+  "stage": "current",
+  "label": "MRGPRX2 + SST \u2014 precursor",
+  "receptor": "MRGPRX2",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   13,
+   23,
+   85,
+   92,
+   99,
+   100,
+   101,
+   103,
+   106,
+   164,
+   168,
+   169,
+   170,
+   173,
+   174,
+   175,
+   177,
+   180,
+   184,
+   243,
+   247,
+   248,
+   251,
+   257,
+   258,
+   261,
+   262
+  ],
+  "n_contacts": 27,
+  "spans": {
+   "EXT": [
+    13,
+    23,
+    99,
+    100,
+    101,
+    173,
+    174,
+    175,
+    177,
+    251
+   ],
+   "TM": [
+    85,
+    92,
+    103,
+    106,
+    164,
+    168,
+    169,
+    170,
+    180,
+    184,
+    243,
+    247,
+    248,
+    257,
+    258,
+    261,
+    262
+   ]
+  },
+  "tm_contacts": 17,
+  "cyt_contacts": 0,
+  "ext_contacts": 10,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 92,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    16.64,
+    -1.7,
+    -18.5
+   ],
+   "cyt": [
+    -12.87,
+    -0.75,
+    38.76
+   ]
+  },
+  "tm_spans": [
+   [
+    29,
+    56
+   ],
+   [
+    64,
+    93
+   ],
+   [
+    103,
+    129
+   ],
+   [
+    145,
+    170
+   ],
+   [
+    179,
+    207
+   ],
+   [
+    221,
+    250
+   ],
+   [
+    257,
+    283
+   ]
+  ]
+ },
+ "ARM_T2_MRGPRX2__SST__DECOY_36-48": {
+  "file": "s/ARM_T2_MRGPRX2__SST__DECOY_36-48.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 10.04 A",
+  "stage": "current",
+  "label": "MRGPRX2 + SST \u2014 decoy cut",
+  "receptor": "MRGPRX2",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   54,
+   55,
+   59,
+   60,
+   62,
+   65,
+   279,
+   280,
+   282,
+   283,
+   284,
+   286,
+   290
+  ],
+  "n_contacts": 13,
+  "spans": {
+   "TM": [
+    54,
+    55,
+    65,
+    279,
+    280,
+    282,
+    283
+   ],
+   "CYT": [
+    59,
+    60,
+    62,
+    284,
+    286,
+    290
+   ]
+  },
+  "tm_contacts": 7,
+  "cyt_contacts": 6,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 13,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -15.87,
+    -25.72,
+    11.93
+   ],
+   "cyt": [
+    14.5,
+    28.69,
+    -5.44
+   ]
+  },
+  "tm_spans": [
+   [
+    29,
+    56
+   ],
+   [
+    64,
+    93
+   ],
+   [
+    103,
+    129
+   ],
+   [
+    145,
+    170
+   ],
+   [
+    179,
+    207
+   ],
+   [
+    221,
+    250
+   ],
+   [
+    257,
+    283
+   ]
+  ]
+ },
+ "ARM_T2_GPR4__CTSG__Cathepsin-G,-C-terminal-_21-243": {
+  "file": "s/ARM_T2_GPR4__CTSG__Cathepsin-G,-C-terminal-_21-243.pdb",
+  "role": "confirmed",
+  "why": "Cathepsin G, C-terminal truncated form, 223 residues: <b>3.24 A</b> pooled over three seeds (3.27 on seed 1), against 3.95 as the precursor and 7.17 for the decoy cut",
+  "stage": "current",
+  "label": "GPR4 + CTSG \u2014 product",
+  "receptor": "GPR4",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   14,
+   159,
+   160,
+   162,
+   163,
+   164,
+   171,
+   172,
+   173,
+   254,
+   256,
+   257,
+   258
+  ],
+  "n_contacts": 19,
+  "spans": {
+   "EXT": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    159,
+    160,
+    162,
+    163,
+    164,
+    171,
+    172,
+    254,
+    256,
+    257,
+    258
+   ],
+   "TM": [
+    14,
+    173
+   ]
+  },
+  "tm_contacts": 2,
+  "cyt_contacts": 0,
+  "ext_contacts": 17,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 223,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -4.69,
+    4.34,
+    3.65
+   ],
+   "cyt": [
+    20.47,
+    -35.42,
+    -23.63
+   ]
+  },
+  "tm_spans": [
+   [
+    9,
+    45
+   ],
+   [
+    50,
+    80
+   ],
+   [
+    86,
+    121
+   ],
+   [
+    130,
+    156
+   ],
+   [
+    173,
+    210
+   ],
+   [
+    215,
+    250
+   ],
+   [
+    261,
+    289
+   ]
+  ]
+ },
+ "ARM_T2_GPR4__CTSG__PRECURSOR": {
+  "file": "s/ARM_T2_GPR4__CTSG__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 3.95 A over three seeds",
+  "stage": "current",
+  "label": "GPR4 + CTSG \u2014 precursor",
+  "receptor": "GPR4",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   162,
+   171,
+   173,
+   256,
+   257,
+   258,
+   259,
+   262,
+   263
+  ],
+  "n_contacts": 17,
+  "spans": {
+   "EXT": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    162,
+    171,
+    256,
+    257,
+    258,
+    259
+   ],
+   "TM": [
+    9,
+    10,
+    173,
+    262,
+    263
+   ]
+  },
+  "tm_contacts": 5,
+  "cyt_contacts": 0,
+  "ext_contacts": 12,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 237,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -0.98,
+    1.06,
+    8.39
+   ],
+   "cyt": [
+    16.9,
+    -28.27,
+    -35.27
+   ]
+  },
+  "tm_spans": [
+   [
+    9,
+    45
+   ],
+   [
+    50,
+    80
+   ],
+   [
+    86,
+    121
+   ],
+   [
+    130,
+    156
+   ],
+   [
+    173,
+    210
+   ],
+   [
+    215,
+    250
+   ],
+   [
+    261,
+    289
+   ]
+  ]
+ },
+ "ARM_T2_GPR4__CTSG__DECOY_15-237": {
+  "file": "s/ARM_T2_GPR4__CTSG__DECOY_15-237.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 7.17 A",
+  "stage": "current",
+  "label": "GPR4 + CTSG \u2014 decoy cut",
+  "receptor": "GPR4",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   160,
+   161,
+   162,
+   163,
+   164,
+   171,
+   172,
+   173,
+   254,
+   256,
+   257,
+   258,
+   259,
+   262,
+   263
+  ],
+  "n_contacts": 22,
+  "spans": {
+   "EXT": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    160,
+    161,
+    162,
+    163,
+    164,
+    171,
+    172,
+    254,
+    256,
+    257,
+    258,
+    259
+   ],
+   "TM": [
+    9,
+    173,
+    262,
+    263
+   ]
+  },
+  "tm_contacts": 4,
+  "cyt_contacts": 0,
+  "ext_contacts": 18,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 223,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    0.53,
+    10.23,
+    0.75
+   ],
+   "cyt": [
+    19.11,
+    -42.43,
+    -13.64
+   ]
+  },
+  "tm_spans": [
+   [
+    9,
+    45
+   ],
+   [
+    50,
+    80
+   ],
+   [
+    86,
+    121
+   ],
+   [
+    130,
+    156
+   ],
+   [
+    173,
+    210
+   ],
+   [
+    215,
+    250
+   ],
+   [
+    261,
+    289
+   ]
+  ]
+ },
+ "ARM_T2_GPR152__GHRL__Obestatin_76-98": {
+  "file": "s/ARM_T2_GPR152__GHRL__Obestatin_76-98.pdb",
+  "role": "confirmed",
+  "why": "Obestatin, 23 residues: <b>3.38 A</b> pooled over three seeds (3.38 on seed 1), against 3.77 as the precursor and 4.26 for the decoy cut",
+  "stage": "current",
+  "label": "GPR152 + GHRL \u2014 product",
+  "receptor": "GPR152",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   15,
+   26,
+   87,
+   90,
+   91,
+   94,
+   95,
+   107,
+   108,
+   111,
+   175,
+   179,
+   181,
+   182,
+   183,
+   184,
+   185,
+   187,
+   190,
+   194,
+   197,
+   253,
+   260,
+   263,
+   266,
+   269,
+   273,
+   274,
+   277,
+   278,
+   281,
+   282
+  ],
+  "n_contacts": 32,
+  "spans": {
+   "EXT": [
+    15,
+    26,
+    87,
+    90,
+    91,
+    94,
+    95,
+    175,
+    179,
+    181,
+    182,
+    183,
+    184,
+    185,
+    187,
+    190,
+    194,
+    281
+   ],
+   "TM": [
+    107,
+    108,
+    111,
+    197,
+    260,
+    263,
+    266,
+    269,
+    273,
+    274,
+    277,
+    278,
+    282
+   ],
+   "CYT": [
+    253
+   ]
+  },
+  "tm_contacts": 13,
+  "cyt_contacts": 1,
+  "ext_contacts": 18,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 23,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    24.25,
+    13.22,
+    3.48
+   ],
+   "cyt": [
+    -13.61,
+    -5.58,
+    -1.77
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    106,
+    126
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    195,
+    215
+   ],
+   [
+    258,
+    278
+   ],
+   [
+    282,
+    302
+   ]
+  ]
+ },
+ "ARM_T2_GPR152__GHRL__PRECURSOR": {
+  "file": "s/ARM_T2_GPR152__GHRL__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 3.77 A over three seeds",
+  "stage": "current",
+  "label": "GPR152 + GHRL \u2014 precursor",
+  "receptor": "GPR152",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   52,
+   53,
+   56,
+   57,
+   60,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   87,
+   90,
+   91,
+   94,
+   95,
+   107,
+   108,
+   129,
+   143,
+   175,
+   176,
+   178,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   190,
+   194,
+   233,
+   234,
+   235,
+   260,
+   263,
+   264,
+   269,
+   273,
+   274,
+   278,
+   281,
+   282,
+   299,
+   301,
+   302,
+   305,
+   308,
+   309,
+   312,
+   313
+  ],
+  "n_contacts": 52,
+  "spans": {
+   "TM": [
+    52,
+    53,
+    66,
+    67,
+    107,
+    108,
+    260,
+    263,
+    264,
+    269,
+    273,
+    274,
+    278,
+    282,
+    299,
+    301,
+    302
+   ],
+   "CYT": [
+    56,
+    57,
+    60,
+    62,
+    63,
+    64,
+    65,
+    129,
+    143,
+    233,
+    234,
+    235,
+    305,
+    308,
+    309,
+    312,
+    313
+   ],
+   "EXT": [
+    87,
+    90,
+    91,
+    94,
+    95,
+    175,
+    176,
+    178,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    190,
+    194,
+    281
+   ]
+  },
+  "tm_contacts": 17,
+  "cyt_contacts": 17,
+  "ext_contacts": 18,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 94,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    21.09,
+    -5.15,
+    -20.5
+   ],
+   "cyt": [
+    -11.68,
+    -2.54,
+    8.48
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    106,
+    126
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    195,
+    215
+   ],
+   [
+    258,
+    278
+   ],
+   [
+    282,
+    302
+   ]
+  ]
+ },
+ "ARM_T2_GPR152__GHRL__DECOY_42-64": {
+  "file": "s/ARM_T2_GPR152__GHRL__DECOY_42-64.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 4.26 A",
+  "stage": "current",
+  "label": "GPR152 + GHRL \u2014 decoy cut",
+  "receptor": "GPR152",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   87,
+   90,
+   91,
+   94,
+   95,
+   107,
+   108,
+   111,
+   175,
+   179,
+   181,
+   182,
+   183,
+   184,
+   185,
+   190,
+   194,
+   253,
+   260,
+   263,
+   270,
+   273,
+   274,
+   275,
+   277,
+   278,
+   281,
+   282
+  ],
+  "n_contacts": 28,
+  "spans": {
+   "EXT": [
+    87,
+    90,
+    91,
+    94,
+    95,
+    175,
+    179,
+    181,
+    182,
+    183,
+    184,
+    185,
+    190,
+    194,
+    281
+   ],
+   "TM": [
+    107,
+    108,
+    111,
+    260,
+    263,
+    270,
+    273,
+    274,
+    275,
+    277,
+    278,
+    282
+   ],
+   "CYT": [
+    253
+   ]
+  },
+  "tm_contacts": 12,
+  "cyt_contacts": 1,
+  "ext_contacts": 15,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 23,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -20.38,
+    25.35,
+    9.29
+   ],
+   "cyt": [
+    11.58,
+    -10.25,
+    -0.33
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    106,
+    126
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    195,
+    215
+   ],
+   [
+    258,
+    278
+   ],
+   [
+    282,
+    302
+   ]
+  ]
+ },
+ "ARM_T2_GPR152__PF4__Platelet-factor-4,-short_48-101": {
+  "file": "s/ARM_T2_GPR152__PF4__Platelet-factor-4,-short_48-101.pdb",
+  "role": "confirmed",
+  "why": "Platelet factor 4, short form, 54 residues: <b>3.39 A</b> pooled over three seeds (3.39 on seed 1), against 3.77 as the precursor and 4.32 for the decoy cut",
+  "stage": "current",
+  "label": "GPR152 + PF4 \u2014 product",
+  "receptor": "GPR152",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   9,
+   15,
+   20,
+   21,
+   24,
+   28,
+   87,
+   90,
+   94,
+   108,
+   175,
+   176,
+   178,
+   179,
+   181,
+   183,
+   184,
+   185,
+   187,
+   190,
+   260,
+   263,
+   264,
+   266,
+   268,
+   269,
+   274,
+   275,
+   278,
+   279,
+   281
+  ],
+  "n_contacts": 36,
+  "spans": {
+   "EXT": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    15,
+    20,
+    21,
+    24,
+    28,
+    87,
+    90,
+    94,
+    175,
+    176,
+    178,
+    179,
+    181,
+    183,
+    184,
+    185,
+    187,
+    190,
+    279,
+    281
+   ],
+   "TM": [
+    108,
+    260,
+    263,
+    264,
+    266,
+    268,
+    269,
+    274,
+    275,
+    278
+   ]
+  },
+  "tm_contacts": 10,
+  "cyt_contacts": 0,
+  "ext_contacts": 26,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 54,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -0.03,
+    -3.2,
+    22.75
+   ],
+   "cyt": [
+    0.52,
+    -2.44,
+    -13.61
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    106,
+    126
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    195,
+    215
+   ],
+   [
+    258,
+    278
+   ],
+   [
+    282,
+    302
+   ]
+  ]
+ },
+ "ARM_T2_GPR152__PF4__PRECURSOR": {
+  "file": "s/ARM_T2_GPR152__PF4__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 3.77 A over three seeds",
+  "stage": "current",
+  "label": "GPR152 + PF4 \u2014 precursor",
+  "receptor": "GPR152",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   24,
+   28,
+   87,
+   90,
+   94,
+   95,
+   108,
+   175,
+   176,
+   177,
+   178,
+   179,
+   181,
+   182,
+   183,
+   184,
+   185,
+   187,
+   190,
+   260,
+   263,
+   264,
+   266,
+   268,
+   269,
+   270,
+   271,
+   274,
+   275,
+   278,
+   279,
+   281
+  ],
+  "n_contacts": 32,
+  "spans": {
+   "EXT": [
+    24,
+    28,
+    87,
+    90,
+    94,
+    95,
+    175,
+    176,
+    177,
+    178,
+    179,
+    181,
+    182,
+    183,
+    184,
+    185,
+    187,
+    190,
+    279,
+    281
+   ],
+   "TM": [
+    108,
+    260,
+    263,
+    264,
+    266,
+    268,
+    269,
+    270,
+    271,
+    274,
+    275,
+    278
+   ]
+  },
+  "tm_contacts": 12,
+  "cyt_contacts": 0,
+  "ext_contacts": 20,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 70,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -22.82,
+    1.01,
+    0.3
+   ],
+   "cyt": [
+    10.2,
+    -5.31,
+    -2.98
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    106,
+    126
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    195,
+    215
+   ],
+   [
+    258,
+    278
+   ],
+   [
+    282,
+    302
+   ]
+  ]
+ },
+ "ARM_T2_GPR152__PF4__DECOY_9-62": {
+  "file": "s/ARM_T2_GPR152__PF4__DECOY_9-62.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 4.32 A",
+  "stage": "current",
+  "label": "GPR152 + PF4 \u2014 decoy cut",
+  "receptor": "GPR152",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   28,
+   87,
+   90,
+   91,
+   93,
+   94,
+   95,
+   96,
+   108,
+   175,
+   176,
+   177,
+   178,
+   179,
+   181,
+   182,
+   184,
+   190,
+   194,
+   260,
+   263,
+   269,
+   270,
+   271,
+   272,
+   273,
+   274,
+   275,
+   282
+  ],
+  "n_contacts": 29,
+  "spans": {
+   "EXT": [
+    28,
+    87,
+    90,
+    91,
+    93,
+    94,
+    95,
+    96,
+    175,
+    176,
+    177,
+    178,
+    179,
+    181,
+    182,
+    184,
+    190,
+    194
+   ],
+   "TM": [
+    108,
+    260,
+    263,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    282
+   ]
+  },
+  "tm_contacts": 11,
+  "cyt_contacts": 0,
+  "ext_contacts": 18,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 54,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -21.48,
+    0.19,
+    5.8
+   ],
+   "cyt": [
+    9.74,
+    -3.25,
+    -5.88
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    106,
+    126
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    195,
+    215
+   ],
+   [
+    258,
+    278
+   ],
+   [
+    282,
+    302
+   ]
+  ]
+ },
+ "ARM_T2_MRGPRX2__GAST__Gastrin-6_87-92": {
+  "file": "s/ARM_T2_MRGPRX2__GAST__Gastrin-6_87-92.pdb",
+  "role": "confirmed",
+  "why": "Gastrin-6, 6 residues: <b>3.42 A</b> pooled over three seeds (3.44 on seed 1), against 5.10 as the precursor and 10.33 for the decoy cut",
+  "stage": "current",
+  "label": "MRGPRX2 + GAST \u2014 product",
+  "receptor": "MRGPRX2",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   30,
+   34,
+   37,
+   78,
+   82,
+   85,
+   86,
+   89,
+   106,
+   109,
+   110,
+   113,
+   170,
+   239,
+   243,
+   261,
+   262,
+   265,
+   268
+  ],
+  "n_contacts": 19,
+  "spans": {
+   "TM": [
+    30,
+    34,
+    37,
+    78,
+    82,
+    85,
+    86,
+    89,
+    106,
+    109,
+    110,
+    113,
+    170,
+    239,
+    243,
+    261,
+    262,
+    265,
+    268
+   ]
+  },
+  "tm_contacts": 19,
+  "cyt_contacts": 0,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 6,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -19.0,
+    -23.37,
+    21.81
+   ],
+   "cyt": [
+    14.23,
+    23.21,
+    -22.49
+   ]
+  },
+  "tm_spans": [
+   [
+    29,
+    56
+   ],
+   [
+    64,
+    93
+   ],
+   [
+    103,
+    129
+   ],
+   [
+    145,
+    170
+   ],
+   [
+    179,
+    207
+   ],
+   [
+    221,
+    250
+   ],
+   [
+    257,
+    283
+   ]
+  ]
+ },
+ "ARM_T2_MRGPRX2__GAST__PRECURSOR": {
+  "file": "s/ARM_T2_MRGPRX2__GAST__PRECURSOR.pdb",
+  "role": "precursor",
+  "why": "the construct the screen folded: 5.10 A over three seeds",
+  "stage": "current",
+  "label": "MRGPRX2 + GAST \u2014 precursor",
+  "receptor": "MRGPRX2",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   50,
+   54,
+   55,
+   59,
+   62,
+   64,
+   68,
+   127,
+   130,
+   131,
+   134,
+   137,
+   138,
+   219,
+   220,
+   221,
+   224,
+   279,
+   280,
+   282,
+   283,
+   286,
+   290
+  ],
+  "n_contacts": 23,
+  "spans": {
+   "TM": [
+    50,
+    54,
+    55,
+    64,
+    68,
+    127,
+    221,
+    224,
+    279,
+    280,
+    282,
+    283
+   ],
+   "CYT": [
+    59,
+    62,
+    130,
+    131,
+    134,
+    137,
+    138,
+    219,
+    220,
+    286,
+    290
+   ]
+  },
+  "tm_contacts": 12,
+  "cyt_contacts": 11,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 80,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -7.49,
+    11.21,
+    39.23
+   ],
+   "cyt": [
+    -10.54,
+    0.4,
+    -26.47
+   ]
+  },
+  "tm_spans": [
+   [
+    29,
+    56
+   ],
+   [
+    64,
+    93
+   ],
+   [
+    103,
+    129
+   ],
+   [
+    145,
+    170
+   ],
+   [
+    179,
+    207
+   ],
+   [
+    221,
+    250
+   ],
+   [
+    257,
+    283
+   ]
+  ]
+ },
+ "ARM_T2_MRGPRX2__GAST__DECOY_8-13": {
+  "file": "s/ARM_T2_MRGPRX2__GAST__DECOY_8-13.pdb",
+  "role": "decoy",
+  "why": "the same number of residues removed elsewhere: 10.33 A",
+  "stage": "current",
+  "label": "MRGPRX2 + GAST \u2014 decoy cut",
+  "receptor": "MRGPRX2",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   30,
+   89,
+   168,
+   169,
+   170,
+   243,
+   247,
+   257,
+   258,
+   261
+  ],
+  "n_contacts": 10,
+  "spans": {
+   "TM": [
+    30,
+    89,
+    168,
+    169,
+    170,
+    243,
+    247,
+    257,
+    258,
+    261
+   ]
+  },
+  "tm_contacts": 10,
+  "cyt_contacts": 0,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 6,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -33.51,
+    -16.56,
+    -5.55
+   ],
+   "cyt": [
+    30.04,
+    16.02,
+    6.89
+   ]
+  },
+  "tm_spans": [
+   [
+    29,
+    56
+   ],
+   [
+    64,
+    93
+   ],
+   [
+    103,
+    129
+   ],
+   [
+    145,
+    170
+   ],
+   [
+    179,
+    207
+   ],
+   [
+    221,
+    250
+   ],
+   [
+    257,
+    283
+   ]
+  ]
+ },
+ "V2_GPR45__GABRG2": {
+  "file": "s/V2_GPR45__GABRG2.pdb",
+  "role": "screen",
+  "why": "<b>1.77 A</b> interface PAE, ipTM 0.76; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR45 + GABRG2",
+  "receptor": "GPR45",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   1,
+   4,
+   5,
+   7,
+   8,
+   9,
+   11,
+   12,
+   14,
+   15,
+   16,
+   18,
+   19,
+   99,
+   169,
+   171,
+   172,
+   189,
+   192
+  ],
+  "n_contacts": 19,
+  "spans": {
+   "EXT": [
+    1,
+    4,
+    5,
+    7,
+    8,
+    9,
+    11,
+    12,
+    14,
+    15,
+    16,
+    18,
+    19,
+    99,
+    171,
+    172,
+    189,
+    192
+   ],
+   "TM": [
+    169
+   ]
+  },
+  "tm_contacts": 1,
+  "cyt_contacts": 0,
+  "ext_contacts": 18,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 236,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -5.26,
+    1.14,
+    8.84
+   ],
+   "cyt": [
+    3.62,
+    -13.85,
+    -42.43
+   ]
+  },
+  "tm_spans": [
+   [
+    39,
+    59
+   ],
+   [
+    76,
+    96
+   ],
+   [
+    110,
+    130
+   ],
+   [
+    150,
+    170
+   ],
+   [
+    199,
+    219
+   ],
+   [
+    269,
+    289
+   ],
+   [
+    306,
+    326
+   ]
+  ]
+ },
+ "V2_MRGPRX1__CD226": {
+  "file": "s/V2_MRGPRX1__CD226.pdb",
+  "role": "screen",
+  "why": "<b>2.08 A</b> interface PAE, ipTM 0.69; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "MRGPRX1 + CD226",
+  "receptor": "MRGPRX1",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   12,
+   15,
+   20,
+   23,
+   24,
+   27,
+   28,
+   31,
+   82,
+   86,
+   87,
+   88,
+   89,
+   90,
+   92,
+   95,
+   96,
+   99,
+   100,
+   103,
+   153,
+   157,
+   161,
+   167,
+   168,
+   169,
+   177,
+   236,
+   239,
+   240,
+   243,
+   246,
+   247,
+   248,
+   250,
+   251,
+   254,
+   255
+  ],
+  "n_contacts": 38,
+  "spans": {
+   "EXT": [
+    12,
+    15,
+    20,
+    23,
+    24,
+    88,
+    89,
+    90,
+    92,
+    167,
+    168,
+    169,
+    243,
+    246,
+    247,
+    248,
+    250
+   ],
+   "TM": [
+    27,
+    28,
+    31,
+    82,
+    86,
+    87,
+    95,
+    96,
+    99,
+    100,
+    103,
+    153,
+    157,
+    161,
+    177,
+    236,
+    239,
+    240,
+    251,
+    254,
+    255
+   ]
+  },
+  "tm_contacts": 21,
+  "cyt_contacts": 0,
+  "ext_contacts": 17,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 236,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -14.78,
+    10.04,
+    -9.24
+   ],
+   "cyt": [
+    44.46,
+    -2.33,
+    -1.76
+   ]
+  },
+  "tm_spans": [
+   [
+    25,
+    53
+   ],
+   [
+    61,
+    87
+   ],
+   [
+    94,
+    122
+   ],
+   [
+    138,
+    165
+   ],
+   [
+    172,
+    200
+   ],
+   [
+    214,
+    240
+   ],
+   [
+    251,
+    275
+   ]
+  ]
+ },
+ "V2_GPR83__GRIA4": {
+  "file": "s/V2_GPR83__GRIA4.pdb",
+  "role": "screen",
+  "why": "<b>2.22 A</b> interface PAE, ipTM 0.58; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR83 + GRIA4",
+  "receptor": "GPR83",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   33,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   52,
+   53,
+   57,
+   58,
+   60,
+   61,
+   209,
+   211,
+   212,
+   213,
+   214,
+   215,
+   225
+  ],
+  "n_contacts": 20,
+  "spans": {
+   "EXT": [
+    33,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    52,
+    53,
+    57,
+    58,
+    60,
+    61,
+    209,
+    211,
+    212,
+    213,
+    214,
+    215,
+    225
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 20,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 523,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    0.46,
+    -3.07,
+    -14.49
+   ],
+   "cyt": [
+    -30.71,
+    45.42,
+    -32.4
+   ]
+  },
+  "tm_spans": [
+   [
+    72,
+    92
+   ],
+   [
+    108,
+    129
+   ],
+   [
+    146,
+    167
+   ],
+   [
+    187,
+    208
+   ],
+   [
+    239,
+    260
+   ],
+   [
+    294,
+    315
+   ],
+   [
+    328,
+    348
+   ]
+  ]
+ },
+ "V2_GPR151__GPR37": {
+  "file": "s/V2_GPR151__GPR37.pdb",
+  "role": "screen",
+  "why": "<b>2.31 A</b> interface PAE, ipTM 0.55; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR151 + GPR37",
+  "receptor": "GPR151",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   32,
+   35,
+   36,
+   95,
+   98,
+   99,
+   101,
+   102,
+   103,
+   104,
+   111,
+   112,
+   115,
+   172,
+   176,
+   179,
+   181,
+   182,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   196,
+   200,
+   270,
+   273,
+   274,
+   276,
+   277,
+   278,
+   282,
+   285,
+   288,
+   289
+  ],
+  "n_contacts": 39,
+  "spans": {
+   "EXT": [
+    32,
+    35,
+    36,
+    95,
+    98,
+    99,
+    101,
+    102,
+    103,
+    104,
+    111,
+    112,
+    115,
+    176,
+    179,
+    181,
+    182,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    196,
+    200,
+    274,
+    276,
+    277,
+    278,
+    282,
+    285
+   ],
+   "TM": [
+    172,
+    270,
+    273,
+    288,
+    289
+   ]
+  },
+  "tm_contacts": 5,
+  "cyt_contacts": 0,
+  "ext_contacts": 34,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 239,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    2.04,
+    -13.78,
+    6.03
+   ],
+   "cyt": [
+    16.06,
+    20.03,
+    -24.19
+   ]
+  },
+  "tm_spans": [
+   [
+    42,
+    62
+   ],
+   [
+    72,
+    92
+   ],
+   [
+    117,
+    137
+   ],
+   [
+    154,
+    174
+   ],
+   [
+    202,
+    222
+   ],
+   [
+    253,
+    273
+   ],
+   [
+    287,
+    307
+   ]
+  ]
+ },
+ "V2_GPR37__RYK": {
+  "file": "s/V2_GPR37__RYK.pdb",
+  "role": "screen",
+  "why": "<b>2.34 A</b> interface PAE, ipTM 0.59; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR37 + RYK",
+  "receptor": "GPR37",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   116,
+   117,
+   118,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   134,
+   137,
+   138,
+   139,
+   141,
+   144,
+   147,
+   148,
+   151,
+   152,
+   154,
+   155,
+   156,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   291,
+   294,
+   350,
+   359,
+   361,
+   362,
+   369,
+   370,
+   371,
+   382,
+   393,
+   445,
+   483,
+   486,
+   487,
+   490,
+   555,
+   591,
+   594,
+   600
+  ],
+  "n_contacts": 50,
+  "spans": {
+   "EXT": [
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    134,
+    137,
+    138,
+    139,
+    141,
+    144,
+    147,
+    148,
+    151,
+    152,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164
+   ],
+   "CYT": [
+    291,
+    294,
+    359,
+    361,
+    362,
+    369,
+    370,
+    371,
+    483,
+    486,
+    487,
+    490,
+    555,
+    591,
+    594,
+    600
+   ],
+   "TM": [
+    350,
+    382,
+    393,
+    445
+   ]
+  },
+  "tm_contacts": 4,
+  "cyt_contacts": 16,
+  "ext_contacts": 30,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 202,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    5.27,
+    -0.19,
+    -17.3
+   ],
+   "cyt": [
+    -11.97,
+    7.57,
+    13.06
+   ]
+  },
+  "tm_spans": [
+   [
+    266,
+    286
+   ],
+   [
+    300,
+    320
+   ],
+   [
+    336,
+    356
+   ],
+   [
+    380,
+    400
+   ],
+   [
+    444,
+    464
+   ],
+   [
+    494,
+    514
+   ],
+   [
+    532,
+    552
+   ]
+  ]
+ },
+ "V2_GPR139__ASIP": {
+  "file": "s/V2_GPR139__ASIP.pdb",
+  "role": "screen",
+  "why": "<b>2.50 A</b> interface PAE, ipTM 0.55; partner folded as the molecule the cell releases",
+  "stage": "current",
+  "label": "GPR139 + ASIP",
+  "receptor": "GPR139",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   23,
+   24,
+   26,
+   27,
+   30,
+   80,
+   84,
+   85,
+   88,
+   89,
+   90,
+   93,
+   94,
+   95,
+   101,
+   105,
+   108,
+   109,
+   112,
+   166,
+   167,
+   168,
+   170,
+   171,
+   172,
+   187,
+   244,
+   260,
+   264,
+   267,
+   268,
+   271,
+   275
+  ],
+  "n_contacts": 33,
+  "spans": {
+   "EXT": [
+    23,
+    24,
+    26,
+    27,
+    88,
+    89,
+    90,
+    93,
+    94,
+    95,
+    101,
+    170,
+    171,
+    172,
+    260,
+    264,
+    267,
+    268
+   ],
+   "TM": [
+    30,
+    80,
+    84,
+    85,
+    105,
+    108,
+    109,
+    112,
+    166,
+    167,
+    168,
+    187,
+    244,
+    271,
+    275
+   ]
+  },
+  "tm_contacts": 15,
+  "cyt_contacts": 0,
+  "ext_contacts": 18,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 110,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -4.5,
+    -7.2,
+    -13.94
+   ],
+   "cyt": [
+    6.68,
+    6.34,
+    27.53
+   ]
+  },
+  "tm_spans": [
+   [
+    30,
+    50
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    103,
+    123
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    182,
+    202
+   ],
+   [
+    229,
+    249
+   ],
+   [
+    269,
+    289
+   ]
+  ]
+ },
+ "V2_GPR179__NCR3LG1": {
+  "file": "s/V2_GPR179__NCR3LG1.pdb",
+  "role": "screen",
+  "why": "<b>2.74 A</b> interface PAE, ipTM 0.76; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR179 + NCR3LG1",
+  "receptor": "GPR179",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   316,
+   318,
+   327,
+   334,
+   338,
+   367,
+   368,
+   525,
+   526,
+   527,
+   528,
+   529,
+   530,
+   534,
+   600,
+   601,
+   2278
+  ],
+  "n_contacts": 17,
+  "spans": {
+   "EXT": [
+    316,
+    318,
+    327,
+    334,
+    338,
+    367,
+    368,
+    525,
+    526,
+    527,
+    528,
+    529,
+    530,
+    534,
+    600,
+    601
+   ],
+   "CYT": [
+    2278
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 1,
+  "ext_contacts": 16,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 238,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -33.92,
+    -6.1,
+    -20.99
+   ],
+   "cyt": [
+    5.05,
+    4.17,
+    4.76
+   ]
+  },
+  "tm_spans": [
+   [
+    382,
+    402
+   ],
+   [
+    416,
+    436
+   ],
+   [
+    445,
+    465
+   ],
+   [
+    494,
+    514
+   ],
+   [
+    544,
+    564
+   ],
+   [
+    576,
+    594
+   ],
+   [
+    608,
+    628
+   ]
+  ]
+ },
+ "V2_GPR25__CATSPER2": {
+  "file": "s/V2_GPR25__CATSPER2.pdb",
+  "role": "screen",
+  "why": "<b>2.81 A</b> interface PAE, ipTM 0.66; receptor's long extracellular domain shortened",
+  "stage": "current",
+  "label": "GPR25 + CATSPER2",
+  "receptor": "GPR25",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   50,
+   54,
+   70,
+   72,
+   90,
+   91,
+   93,
+   94,
+   97,
+   100,
+   101,
+   104,
+   106,
+   107,
+   111,
+   148,
+   151,
+   188,
+   238,
+   332,
+   333,
+   335,
+   336,
+   339,
+   343
+  ],
+  "n_contacts": 25,
+  "spans": {
+   "TM": [
+    50,
+    54,
+    90,
+    91,
+    93,
+    94
+   ],
+   "CYT": [
+    70,
+    72,
+    148,
+    151,
+    238,
+    332,
+    333,
+    335,
+    336,
+    339,
+    343
+   ],
+   "EXT": [
+    97,
+    100,
+    101,
+    104,
+    106,
+    107,
+    111,
+    188
+   ]
+  },
+  "tm_contacts": 6,
+  "cyt_contacts": 11,
+  "ext_contacts": 8,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 530,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    37.03,
+    8.06,
+    -21.83
+   ],
+   "cyt": [
+    -4.17,
+    10.29,
+    -12.53
+   ]
+  },
+  "tm_spans": [
+   [
+    40,
+    60
+   ],
+   [
+    76,
+    96
+   ],
+   [
+    127,
+    147
+   ],
+   [
+    156,
+    176
+   ],
+   [
+    201,
+    220
+   ],
+   [
+    243,
+    263
+   ],
+   [
+    290,
+    310
+   ]
+  ]
+ },
+ "V2_GPR179__EPHA5": {
+  "file": "s/V2_GPR179__EPHA5.pdb",
+  "role": "screen",
+  "why": "<b>2.85 A</b> interface PAE, ipTM 0.58; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR179 + EPHA5",
+  "receptor": "GPR179",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   406,
+   407,
+   409,
+   410,
+   411,
+   412,
+   413,
+   414,
+   415,
+   469,
+   477,
+   479,
+   480,
+   481,
+   483,
+   484,
+   486,
+   487,
+   488,
+   489,
+   570,
+   571,
+   572,
+   573,
+   576,
+   629,
+   630,
+   633,
+   634,
+   636,
+   638,
+   639,
+   641,
+   642,
+   646,
+   648,
+   668,
+   678,
+   686,
+   689,
+   693,
+   697,
+   700,
+   701,
+   703,
+   860,
+   863,
+   867,
+   1877,
+   2113,
+   2114,
+   2115
+  ],
+  "n_contacts": 52,
+  "spans": {
+   "CYT": [
+    406,
+    407,
+    409,
+    410,
+    411,
+    412,
+    413,
+    414,
+    415,
+    469,
+    477,
+    479,
+    480,
+    481,
+    483,
+    484,
+    486,
+    487,
+    488,
+    489,
+    570,
+    571,
+    572,
+    573,
+    629,
+    630,
+    633,
+    634,
+    636,
+    638,
+    639,
+    641,
+    642,
+    646,
+    648,
+    668,
+    678,
+    686,
+    689,
+    693,
+    697,
+    700,
+    701,
+    703,
+    860,
+    863,
+    867,
+    1877,
+    2113,
+    2114,
+    2115
+   ],
+   "TM": [
+    576
+   ]
+  },
+  "tm_contacts": 1,
+  "cyt_contacts": 51,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 549,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    63.15,
+    29.75,
+    -55.15
+   ],
+   "cyt": [
+    -2.64,
+    -4.75,
+    1.64
+   ]
+  },
+  "tm_spans": [
+   [
+    382,
+    402
+   ],
+   [
+    416,
+    436
+   ],
+   [
+    445,
+    465
+   ],
+   [
+    494,
+    514
+   ],
+   [
+    544,
+    564
+   ],
+   [
+    576,
+    594
+   ],
+   [
+    608,
+    628
+   ]
+  ]
+ },
+ "V2_MRGPRF__ITGA9": {
+  "file": "s/V2_MRGPRF__ITGA9.pdb",
+  "role": "screen",
+  "why": "<b>2.88 A</b> interface PAE, ipTM 0.51; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "MRGPRF + ITGA9",
+  "receptor": "MRGPRF",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   14,
+   17,
+   18,
+   21,
+   23,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   38,
+   41,
+   188,
+   190,
+   195,
+   265,
+   266,
+   267,
+   268,
+   272,
+   274
+  ],
+  "n_contacts": 26,
+  "spans": {
+   "EXT": [
+    14,
+    17,
+    18,
+    21,
+    23,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    38,
+    41,
+    188,
+    190,
+    195,
+    265,
+    266,
+    267,
+    268,
+    272
+   ],
+   "TM": [
+    274
+   ]
+  },
+  "tm_contacts": 1,
+  "cyt_contacts": 0,
+  "ext_contacts": 25,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 952,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -1.37,
+    5.45,
+    24.29
+   ],
+   "cyt": [
+    -47.15,
+    16.72,
+    40.16
+   ]
+  },
+  "tm_spans": [
+   [
+    45,
+    66
+   ],
+   [
+    83,
+    104
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    199,
+    220
+   ],
+   [
+    242,
+    263
+   ],
+   [
+    274,
+    294
+   ]
+  ]
+ },
+ "V2_GPR39__LGALS3": {
+  "file": "s/V2_GPR39__LGALS3.pdb",
+  "role": "screen",
+  "why": "<b>2.91 A</b> interface PAE, ipTM 0.50; partner folded whole",
+  "stage": "current",
+  "label": "GPR39 + LGALS3",
+  "receptor": "GPR39",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   65,
+   133,
+   136,
+   137,
+   140,
+   141,
+   143,
+   144,
+   256,
+   266,
+   269,
+   270,
+   274,
+   372,
+   376,
+   379,
+   383
+  ],
+  "n_contacts": 17,
+  "spans": {
+   "CYT": [
+    65,
+    133,
+    136,
+    137,
+    140,
+    141,
+    143,
+    144,
+    256,
+    266,
+    269,
+    270,
+    274,
+    372,
+    376,
+    379,
+    383
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 17,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 250,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -47.4,
+    -8.22,
+    -22.88
+   ],
+   "cyt": [
+    21.02,
+    12.67,
+    -1.91
+   ]
+  },
+  "tm_spans": [
+   [
+    35,
+    55
+   ],
+   [
+    70,
+    89
+   ],
+   [
+    110,
+    131
+   ],
+   [
+    152,
+    172
+   ],
+   [
+    218,
+    242
+   ],
+   [
+    284,
+    305
+   ],
+   [
+    324,
+    344
+   ]
+  ]
+ },
+ "V2_MRGPRF__SFRP2": {
+  "file": "s/V2_MRGPRF__SFRP2.pdb",
+  "role": "screen",
+  "why": "<b>2.96 A</b> interface PAE, ipTM 0.55; partner folded as the molecule the cell releases",
+  "stage": "current",
+  "label": "MRGPRF + SFRP2",
+  "receptor": "MRGPRF",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   14,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   24,
+   27,
+   28,
+   32,
+   33,
+   37,
+   38,
+   40,
+   41,
+   42,
+   43,
+   92,
+   99,
+   103,
+   108,
+   113,
+   116,
+   120,
+   123,
+   124,
+   127,
+   178,
+   187,
+   198,
+   201,
+   202,
+   206,
+   255,
+   258,
+   259,
+   262,
+   268,
+   269,
+   271,
+   272,
+   273,
+   276,
+   277,
+   280
+  ],
+  "n_contacts": 52,
+  "spans": {
+   "EXT": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    14,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    24,
+    27,
+    28,
+    32,
+    33,
+    37,
+    38,
+    40,
+    41,
+    42,
+    43,
+    108,
+    113,
+    116,
+    120,
+    123,
+    187,
+    198,
+    268,
+    269,
+    271,
+    272,
+    273
+   ],
+   "TM": [
+    92,
+    99,
+    103,
+    124,
+    127,
+    178,
+    201,
+    202,
+    206,
+    255,
+    258,
+    259,
+    262,
+    276,
+    277,
+    280
+   ]
+  },
+  "tm_contacts": 16,
+  "cyt_contacts": 0,
+  "ext_contacts": 36,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 271,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -1.7,
+    -2.33,
+    5.65
+   ],
+   "cyt": [
+    -16.92,
+    -22.7,
+    -48.17
+   ]
+  },
+  "tm_spans": [
+   [
+    45,
+    66
+   ],
+   [
+    83,
+    104
+   ],
+   [
+    124,
+    144
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    199,
+    220
+   ],
+   [
+    242,
+    263
+   ],
+   [
+    274,
+    294
+   ]
+  ]
+ },
+ "V2_GPR15__PTPRC": {
+  "file": "s/V2_GPR15__PTPRC.pdb",
+  "role": "screen",
+  "why": "<b>3.02 A</b> interface PAE, ipTM 0.60; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR15 + PTPRC",
+  "receptor": "GPR15",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   3,
+   4,
+   6,
+   7,
+   8,
+   10,
+   12,
+   15,
+   17,
+   102,
+   103,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   187,
+   273,
+   276,
+   277,
+   278
+  ],
+  "n_contacts": 22,
+  "spans": {
+   "EXT": [
+    3,
+    4,
+    6,
+    7,
+    8,
+    10,
+    12,
+    15,
+    17,
+    102,
+    103,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    187,
+    273,
+    276,
+    277,
+    278
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 22,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 552,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -2.01,
+    0.14,
+    7.26
+   ],
+   "cyt": [
+    37.07,
+    -10.47,
+    -15.52
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    70,
+    90
+   ],
+   [
+    121,
+    141
+   ],
+   [
+    150,
+    170
+   ],
+   [
+    193,
+    213
+   ],
+   [
+    240,
+    260
+   ],
+   [
+    285,
+    305
+   ]
+  ]
+ },
+ "V2_GPR152__IFNL3": {
+  "file": "s/V2_GPR152__IFNL3.pdb",
+  "role": "screen",
+  "why": "<b>3.06 A</b> interface PAE, ipTM 0.41; partner folded as the molecule the cell releases",
+  "stage": "current",
+  "label": "GPR152 + IFNL3",
+  "receptor": "GPR152",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   20,
+   21,
+   24,
+   26,
+   87,
+   90,
+   91,
+   94,
+   95,
+   96,
+   107,
+   108,
+   111,
+   166,
+   175,
+   176,
+   177,
+   178,
+   179,
+   181,
+   182,
+   183,
+   184,
+   186,
+   190,
+   194,
+   197,
+   253,
+   257,
+   260,
+   263,
+   264,
+   266,
+   270,
+   273,
+   274,
+   275,
+   277,
+   278,
+   281,
+   282
+  ],
+  "n_contacts": 41,
+  "spans": {
+   "EXT": [
+    20,
+    21,
+    24,
+    26,
+    87,
+    90,
+    91,
+    94,
+    95,
+    96,
+    175,
+    176,
+    177,
+    178,
+    179,
+    181,
+    182,
+    183,
+    184,
+    186,
+    190,
+    194,
+    281
+   ],
+   "TM": [
+    107,
+    108,
+    111,
+    166,
+    197,
+    260,
+    263,
+    264,
+    266,
+    270,
+    273,
+    274,
+    275,
+    277,
+    278,
+    282
+   ],
+   "CYT": [
+    253,
+    257
+   ]
+  },
+  "tm_contacts": 16,
+  "cyt_contacts": 2,
+  "ext_contacts": 23,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 175,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -1.19,
+    8.74,
+    -12.29
+   ],
+   "cyt": [
+    -8.54,
+    -14.1,
+    3.55
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    66,
+    86
+   ],
+   [
+    106,
+    126
+   ],
+   [
+    149,
+    169
+   ],
+   [
+    195,
+    215
+   ],
+   [
+    258,
+    278
+   ],
+   [
+    282,
+    302
+   ]
+  ]
+ },
+ "V2_GPR25__KLRG1": {
+  "file": "s/V2_GPR25__KLRG1.pdb",
+  "role": "screen",
+  "why": "<b>3.09 A</b> interface PAE, ipTM 0.64; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR25 + KLRG1",
+  "receptor": "GPR25",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   7,
+   9,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   20,
+   21,
+   22,
+   24,
+   27,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   95,
+   98,
+   103,
+   119,
+   178,
+   184,
+   185,
+   186,
+   190,
+   191,
+   192,
+   260,
+   264,
+   267,
+   268,
+   271,
+   279,
+   280,
+   282,
+   283,
+   286,
+   289,
+   293
+  ],
+  "n_contacts": 42,
+  "spans": {
+   "EXT": [
+    7,
+    9,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    24,
+    27,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    98,
+    103,
+    119,
+    178,
+    184,
+    185,
+    186,
+    190,
+    191,
+    192,
+    264,
+    267,
+    268,
+    271,
+    279,
+    280,
+    282,
+    283,
+    286,
+    289
+   ],
+   "TM": [
+    95,
+    260,
+    293
+   ]
+  },
+  "tm_contacts": 3,
+  "cyt_contacts": 0,
+  "ext_contacts": 39,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 136,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -7.66,
+    -8.13,
+    5.04
+   ],
+   "cyt": [
+    24.94,
+    17.83,
+    -23.28
+   ]
+  },
+  "tm_spans": [
+   [
+    40,
+    60
+   ],
+   [
+    76,
+    96
+   ],
+   [
+    127,
+    147
+   ],
+   [
+    156,
+    176
+   ],
+   [
+    201,
+    220
+   ],
+   [
+    243,
+    263
+   ],
+   [
+    290,
+    310
+   ]
+  ]
+ },
+ "V2_GPR25__CD226": {
+  "file": "s/V2_GPR25__CD226.pdb",
+  "role": "screen",
+  "why": "<b>3.11 A</b> interface PAE, ipTM 0.61; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR25 + CD226",
+  "receptor": "GPR25",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   3,
+   4,
+   6,
+   7,
+   16,
+   18,
+   21,
+   24,
+   27,
+   29,
+   30,
+   31,
+   32,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   195,
+   197,
+   267,
+   270,
+   271,
+   272,
+   273,
+   276,
+   277,
+   278,
+   282,
+   283,
+   285,
+   286
+  ],
+  "n_contacts": 40,
+  "spans": {
+   "EXT": [
+    3,
+    4,
+    6,
+    7,
+    16,
+    18,
+    21,
+    24,
+    27,
+    29,
+    30,
+    31,
+    32,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    195,
+    197,
+    267,
+    270,
+    271,
+    272,
+    273,
+    276,
+    277,
+    278,
+    282,
+    283,
+    285,
+    286
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 40,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 236,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    2.58,
+    -6.57,
+    -8.24
+   ],
+   "cyt": [
+    13.78,
+    -1.92,
+    38.98
+   ]
+  },
+  "tm_spans": [
+   [
+    40,
+    60
+   ],
+   [
+    76,
+    96
+   ],
+   [
+    127,
+    147
+   ],
+   [
+    156,
+    176
+   ],
+   [
+    201,
+    220
+   ],
+   [
+    243,
+    263
+   ],
+   [
+    290,
+    310
+   ]
+  ]
+ },
+ "V2_GPR34__CSF1R": {
+  "file": "s/V2_GPR34__CSF1R.pdb",
+  "role": "screen",
+  "why": "<b>3.14 A</b> interface PAE, ipTM 0.34; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR34 + CSF1R",
+  "receptor": "GPR34",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   6,
+   8,
+   16,
+   18,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   51,
+   115,
+   116,
+   117,
+   119,
+   198,
+   199,
+   200,
+   203,
+   208,
+   209,
+   211,
+   212,
+   296
+  ],
+  "n_contacts": 25,
+  "spans": {
+   "EXT": [
+    6,
+    8,
+    16,
+    18,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    51,
+    115,
+    116,
+    117,
+    119,
+    198,
+    199,
+    200,
+    203,
+    208,
+    209,
+    211,
+    212,
+    296
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 25,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 498,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -3.02,
+    18.29,
+    -10.96
+   ],
+   "cyt": [
+    0.93,
+    -13.34,
+    -57.82
+   ]
+  },
+  "tm_spans": [
+   [
+    62,
+    82
+   ],
+   [
+    89,
+    109
+   ],
+   [
+    129,
+    149
+   ],
+   [
+    172,
+    192
+   ],
+   [
+    217,
+    237
+   ],
+   [
+    270,
+    290
+   ],
+   [
+    311,
+    331
+   ]
+  ]
+ },
+ "V2_GPR15__CLEC2D": {
+  "file": "s/V2_GPR15__CLEC2D.pdb",
+  "role": "screen",
+  "why": "<b>3.16 A</b> interface PAE, ipTM 0.68; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR15 + CLEC2D",
+  "receptor": "GPR15",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   14,
+   19,
+   23,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   186,
+   187
+  ],
+  "n_contacts": 12,
+  "spans": {
+   "EXT": [
+    14,
+    19,
+    23,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    186,
+    187
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 12,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 132,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    0.51,
+    -3.78,
+    11.45
+   ],
+   "cyt": [
+    -10.08,
+    14.77,
+    -30.9
+   ]
+  },
+  "tm_spans": [
+   [
+    34,
+    54
+   ],
+   [
+    70,
+    90
+   ],
+   [
+    121,
+    141
+   ],
+   [
+    150,
+    170
+   ],
+   [
+    193,
+    213
+   ],
+   [
+    240,
+    260
+   ],
+   [
+    285,
+    305
+   ]
+  ]
+ },
+ "V2_GPR179__UNC5D": {
+  "file": "s/V2_GPR179__UNC5D.pdb",
+  "role": "screen",
+  "why": "<b>3.19 A</b> interface PAE, ipTM 0.65; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR179 + UNC5D",
+  "receptor": "GPR179",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   155,
+   156,
+   199,
+   218,
+   220,
+   257,
+   258,
+   259,
+   260,
+   261,
+   263,
+   1069,
+   1071,
+   1073,
+   1076,
+   2285,
+   2292,
+   2293,
+   2296,
+   2317,
+   2321,
+   2355,
+   2358,
+   2359,
+   2364,
+   2367
+  ],
+  "n_contacts": 26,
+  "spans": {
+   "EXT": [
+    155,
+    156,
+    199,
+    218,
+    220,
+    257,
+    258,
+    259,
+    260,
+    261,
+    263
+   ],
+   "CYT": [
+    1069,
+    1071,
+    1073,
+    1076,
+    2285,
+    2292,
+    2293,
+    2296,
+    2317,
+    2321,
+    2355,
+    2358,
+    2359,
+    2364,
+    2367
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 15,
+  "ext_contacts": 11,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 347,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -3.67,
+    -14.08,
+    -11.49
+   ],
+   "cyt": [
+    8.59,
+    9.3,
+    5.54
+   ]
+  },
+  "tm_spans": [
+   [
+    382,
+    402
+   ],
+   [
+    416,
+    436
+   ],
+   [
+    445,
+    465
+   ],
+   [
+    494,
+    514
+   ],
+   [
+    544,
+    564
+   ],
+   [
+    576,
+    594
+   ],
+   [
+    608,
+    628
+   ]
+  ]
+ },
+ "V2_GPR158__NCR3LG1": {
+  "file": "s/V2_GPR158__NCR3LG1.pdb",
+  "role": "screen",
+  "why": "<b>3.30 A</b> interface PAE, ipTM 0.69; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR158 + NCR3LG1",
+  "receptor": "GPR158",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   61,
+   331,
+   333,
+   334,
+   355,
+   356,
+   357,
+   358,
+   359,
+   361,
+   362,
+   363,
+   391,
+   392,
+   393,
+   394,
+   395,
+   396,
+   397,
+   405
+  ],
+  "n_contacts": 20,
+  "spans": {
+   "EXT": [
+    61,
+    331,
+    333,
+    334,
+    355,
+    356,
+    357,
+    358,
+    359,
+    361,
+    362,
+    363,
+    391,
+    392,
+    393,
+    394,
+    395,
+    396,
+    397,
+    405
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 20,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 238,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -41.36,
+    13.53,
+    -8.51
+   ],
+   "cyt": [
+    29.39,
+    -1.64,
+    3.76
+   ]
+  },
+  "tm_spans": [
+   [
+    418,
+    439
+   ],
+   [
+    452,
+    474
+   ],
+   [
+    479,
+    501
+   ],
+   [
+    526,
+    547
+   ],
+   [
+    577,
+    597
+   ],
+   [
+    612,
+    633
+   ],
+   [
+    643,
+    664
+   ]
+  ]
+ },
+ "V2_GPR75__APLP2": {
+  "file": "s/V2_GPR75__APLP2.pdb",
+  "role": "screen",
+  "why": "<b>3.44 A</b> interface PAE, ipTM 0.42; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR75 + APLP2",
+  "receptor": "GPR75",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   77,
+   79,
+   142,
+   143,
+   146,
+   147,
+   148,
+   149,
+   151,
+   222,
+   225,
+   228,
+   231,
+   232,
+   235,
+   236,
+   240,
+   241,
+   242,
+   244,
+   276,
+   277,
+   279,
+   280,
+   281,
+   284,
+   290,
+   297,
+   298,
+   299,
+   303,
+   304,
+   306,
+   307,
+   308,
+   310,
+   311,
+   314,
+   315,
+   316,
+   317,
+   318,
+   319,
+   322,
+   323,
+   326,
+   376,
+   377,
+   378,
+   381,
+   385,
+   480,
+   482,
+   483,
+   484,
+   485,
+   486,
+   488
+  ],
+  "n_contacts": 58,
+  "spans": {
+   "CYT": [
+    77,
+    79,
+    142,
+    143,
+    146,
+    147,
+    148,
+    149,
+    151,
+    228,
+    231,
+    232,
+    235,
+    236,
+    240,
+    241,
+    242,
+    244,
+    276,
+    277,
+    279,
+    280,
+    281,
+    284,
+    290,
+    297,
+    298,
+    299,
+    303,
+    304,
+    306,
+    307,
+    308,
+    310,
+    311,
+    314,
+    315,
+    316,
+    317,
+    318,
+    376,
+    377,
+    378,
+    381,
+    385,
+    480,
+    482,
+    483,
+    484,
+    485,
+    486,
+    488
+   ],
+   "TM": [
+    222,
+    225,
+    319,
+    322,
+    323,
+    326
+   ]
+  },
+  "tm_contacts": 6,
+  "cyt_contacts": 52,
+  "ext_contacts": 0,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 661,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    42.18,
+    -31.3,
+    41.63
+   ],
+   "cyt": [
+    -0.9,
+    0.6,
+    7.27
+   ]
+  },
+  "tm_spans": [
+   [
+    47,
+    67
+   ],
+   [
+    87,
+    107
+   ],
+   [
+    121,
+    141
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    206,
+    226
+   ],
+   [
+    319,
+    339
+   ],
+   [
+    351,
+    371
+   ]
+  ]
+ },
+ "V2_GPR62__ALCAM": {
+  "file": "s/V2_GPR62__ALCAM.pdb",
+  "role": "screen",
+  "why": "<b>3.56 A</b> interface PAE, ipTM 0.50; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR62 + ALCAM",
+  "receptor": "GPR62",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   85,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   161,
+   166,
+   265,
+   266
+  ],
+  "n_contacts": 13,
+  "spans": {
+   "EXT": [
+    85,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    161,
+    166,
+    265,
+    266
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 13,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 500,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -13.15,
+    11.72,
+    -57.57
+   ],
+   "cyt": [
+    -39.58,
+    -21.71,
+    -60.04
+   ]
+  },
+  "tm_spans": [
+   [
+    19,
+    39
+   ],
+   [
+    54,
+    74
+   ],
+   [
+    92,
+    112
+   ],
+   [
+    130,
+    150
+   ],
+   [
+    178,
+    198
+   ],
+   [
+    240,
+    260
+   ],
+   [
+    273,
+    293
+   ]
+  ]
+ },
+ "V2_MRGPRX1__LHB": {
+  "file": "s/V2_MRGPRX1__LHB.pdb",
+  "role": "screen",
+  "why": "<b>3.61 A</b> interface PAE, ipTM 0.47; partner folded as the molecule the cell releases",
+  "stage": "current",
+  "label": "MRGPRX1 + LHB",
+  "receptor": "MRGPRX1",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   12,
+   20,
+   23,
+   24,
+   27,
+   28,
+   31,
+   79,
+   82,
+   86,
+   87,
+   90,
+   92,
+   95,
+   96,
+   99,
+   157,
+   160,
+   161,
+   162,
+   163,
+   166,
+   168,
+   169,
+   170,
+   171,
+   173,
+   174,
+   177,
+   236,
+   237,
+   240,
+   241,
+   243,
+   246,
+   250,
+   254,
+   258
+  ],
+  "n_contacts": 38,
+  "spans": {
+   "EXT": [
+    12,
+    20,
+    23,
+    24,
+    90,
+    92,
+    166,
+    168,
+    169,
+    170,
+    171,
+    241,
+    243,
+    246,
+    250
+   ],
+   "TM": [
+    27,
+    28,
+    31,
+    79,
+    82,
+    86,
+    87,
+    95,
+    96,
+    99,
+    157,
+    160,
+    161,
+    162,
+    163,
+    173,
+    174,
+    177,
+    236,
+    237,
+    240,
+    254,
+    258
+   ]
+  },
+  "tm_contacts": 23,
+  "cyt_contacts": 0,
+  "ext_contacts": 15,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 121,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    18.31,
+    5.3,
+    2.4
+   ],
+   "cyt": [
+    -31.55,
+    -23.07,
+    -6.4
+   ]
+  },
+  "tm_spans": [
+   [
+    25,
+    53
+   ],
+   [
+    61,
+    87
+   ],
+   [
+    94,
+    122
+   ],
+   [
+    138,
+    165
+   ],
+   [
+    172,
+    200
+   ],
+   [
+    214,
+    240
+   ],
+   [
+    251,
+    275
+   ]
+  ]
+ },
+ "V2_GPR65__HCST": {
+  "file": "s/V2_GPR65__HCST.pdb",
+  "role": "screen",
+  "why": "<b>3.61 A</b> interface PAE, ipTM 0.61; receptor's long extracellular domain shortened",
+  "stage": "current",
+  "label": "GPR65 + HCST",
+  "receptor": "GPR65",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   14,
+   22,
+   25,
+   26,
+   29,
+   30,
+   33,
+   34,
+   37,
+   41,
+   42,
+   49,
+   65,
+   68,
+   69,
+   71,
+   72,
+   75,
+   77,
+   82,
+   112,
+   115,
+   116,
+   119,
+   123,
+   164,
+   213,
+   215,
+   216,
+   217,
+   220,
+   224,
+   227,
+   293,
+   294,
+   295,
+   296,
+   299,
+   304,
+   307,
+   308,
+   311
+  ],
+  "n_contacts": 42,
+  "spans": {
+   "TM": [
+    14,
+    22,
+    25,
+    26,
+    29,
+    30,
+    33,
+    34,
+    37,
+    41,
+    42,
+    49,
+    65,
+    68,
+    69,
+    71,
+    72,
+    75,
+    77,
+    112,
+    115,
+    116,
+    217,
+    220,
+    224,
+    227,
+    293
+   ],
+   "EXT": [
+    82,
+    164
+   ],
+   "CYT": [
+    119,
+    123,
+    213,
+    215,
+    216,
+    294,
+    295,
+    296,
+    299,
+    304,
+    307,
+    308,
+    311
+   ]
+  },
+  "tm_contacts": 27,
+  "cyt_contacts": 13,
+  "ext_contacts": 2,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 93,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    26.45,
+    9.9,
+    -3.89
+   ],
+   "cyt": [
+    -19.2,
+    -22.27,
+    5.1
+   ]
+  },
+  "tm_spans": [
+   [
+    6,
+    42
+   ],
+   [
+    47,
+    77
+   ],
+   [
+    83,
+    118
+   ],
+   [
+    127,
+    153
+   ],
+   [
+    175,
+    212
+   ],
+   [
+    217,
+    252
+   ],
+   [
+    265,
+    293
+   ]
+  ]
+ },
+ "V2_P2RY10__CD44": {
+  "file": "s/V2_P2RY10__CD44.pdb",
+  "role": "screen",
+  "why": "<b>3.65 A</b> interface PAE, ipTM 0.46; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "P2RY10 + CD44",
+  "receptor": "P2RY10",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   18,
+   19,
+   20,
+   22,
+   33,
+   37,
+   66,
+   68,
+   90,
+   94,
+   110,
+   113,
+   114,
+   139,
+   140,
+   142,
+   143,
+   166,
+   167,
+   170,
+   171,
+   182,
+   183,
+   185,
+   187,
+   189,
+   195,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   237,
+   259,
+   263,
+   266,
+   270,
+   271,
+   287,
+   291,
+   315,
+   318,
+   319
+  ],
+  "n_contacts": 46,
+  "spans": {
+   "EXT": [
+    18,
+    19,
+    20,
+    22,
+    33,
+    37,
+    90,
+    94,
+    171,
+    182,
+    183,
+    185,
+    187,
+    189,
+    266,
+    270,
+    271,
+    287
+   ],
+   "CYT": [
+    66,
+    68,
+    139,
+    140,
+    142,
+    143,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    237,
+    315,
+    318,
+    319
+   ],
+   "TM": [
+    110,
+    113,
+    114,
+    166,
+    167,
+    170,
+    195,
+    259,
+    263,
+    291
+   ]
+  },
+  "tm_contacts": 10,
+  "cyt_contacts": 18,
+  "ext_contacts": 18,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 629,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -24.43,
+    13.76,
+    15.34
+   ],
+   "cyt": [
+    10.93,
+    -6.22,
+    -13.82
+   ]
+  },
+  "tm_spans": [
+   [
+    40,
+    60
+   ],
+   [
+    69,
+    89
+   ],
+   [
+    104,
+    124
+   ],
+   [
+    150,
+    170
+   ],
+   [
+    194,
+    214
+   ],
+   [
+    245,
+    265
+   ],
+   [
+    289,
+    309
+   ]
+  ]
+ },
+ "V2_GPR75__DAG1": {
+  "file": "s/V2_GPR75__DAG1.pdb",
+  "role": "screen",
+  "why": "<b>3.68 A</b> interface PAE, ipTM 0.48; receptor's long extracellular domain shortened",
+  "stage": "current",
+  "label": "GPR75 + DAG1",
+  "receptor": "GPR75",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   23,
+   26,
+   27,
+   30,
+   31,
+   34,
+   35,
+   38,
+   76,
+   92,
+   108,
+   109,
+   110,
+   111,
+   115,
+   143,
+   145,
+   146,
+   147,
+   150,
+   151,
+   152,
+   153,
+   154,
+   167,
+   171,
+   185,
+   186,
+   187,
+   188,
+   190,
+   193,
+   196,
+   197,
+   199,
+   202,
+   206,
+   210,
+   229,
+   236,
+   272,
+   275,
+   276,
+   279,
+   315,
+   316,
+   318,
+   319,
+   322,
+   323,
+   326,
+   349,
+   350,
+   352,
+   355,
+   356,
+   377,
+   378,
+   380,
+   381,
+   384,
+   511,
+   512,
+   514,
+   515,
+   516,
+   517,
+   518,
+   519
+  ],
+  "n_contacts": 69,
+  "spans": {
+   "EXT": [
+    23,
+    26,
+    27,
+    30,
+    31,
+    34,
+    35,
+    38,
+    108,
+    109,
+    110,
+    111,
+    115,
+    185,
+    186,
+    187,
+    188,
+    190,
+    193,
+    196,
+    197,
+    199,
+    202,
+    349,
+    350
+   ],
+   "CYT": [
+    76,
+    143,
+    145,
+    146,
+    147,
+    150,
+    151,
+    152,
+    153,
+    154,
+    229,
+    236,
+    272,
+    275,
+    276,
+    279,
+    315,
+    316,
+    318,
+    377,
+    378,
+    380,
+    381,
+    384,
+    511,
+    512,
+    514,
+    515,
+    516,
+    517,
+    518,
+    519
+   ],
+   "TM": [
+    92,
+    167,
+    171,
+    206,
+    210,
+    319,
+    322,
+    323,
+    326,
+    352,
+    355,
+    356
+   ]
+  },
+  "tm_contacts": 12,
+  "cyt_contacts": 32,
+  "ext_contacts": 25,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 895,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    15.91,
+    14.66,
+    -15.83
+   ],
+   "cyt": [
+    -26.66,
+    12.64,
+    -18.76
+   ]
+  },
+  "tm_spans": [
+   [
+    47,
+    67
+   ],
+   [
+    87,
+    107
+   ],
+   [
+    121,
+    141
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    206,
+    226
+   ],
+   [
+    319,
+    339
+   ],
+   [
+    351,
+    371
+   ]
+  ]
+ },
+ "V2_GPR75__DSC2": {
+  "file": "s/V2_GPR75__DSC2.pdb",
+  "role": "screen",
+  "why": "<b>3.72 A</b> interface PAE, ipTM 0.46; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR75 + DSC2",
+  "receptor": "GPR75",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   72,
+   74,
+   75,
+   77,
+   78,
+   79,
+   116,
+   119,
+   142,
+   143,
+   146,
+   147,
+   148,
+   149,
+   152,
+   154,
+   155,
+   157,
+   181,
+   185,
+   225,
+   229,
+   236,
+   311,
+   315,
+   316,
+   318,
+   319,
+   322,
+   378,
+   381
+  ],
+  "n_contacts": 31,
+  "spans": {
+   "CYT": [
+    72,
+    74,
+    75,
+    77,
+    78,
+    79,
+    142,
+    143,
+    146,
+    147,
+    148,
+    149,
+    152,
+    154,
+    155,
+    157,
+    229,
+    236,
+    311,
+    315,
+    316,
+    318,
+    378,
+    381
+   ],
+   "EXT": [
+    116,
+    119,
+    185
+   ],
+   "TM": [
+    181,
+    225,
+    319,
+    322
+   ]
+  },
+  "tm_contacts": 4,
+  "cyt_contacts": 24,
+  "ext_contacts": 3,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 559,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    52.93,
+    3.38,
+    26.41
+   ],
+   "cyt": [
+    -9.94,
+    26.78,
+    14.02
+   ]
+  },
+  "tm_spans": [
+   [
+    47,
+    67
+   ],
+   [
+    87,
+    107
+   ],
+   [
+    121,
+    141
+   ],
+   [
+    161,
+    181
+   ],
+   [
+    206,
+    226
+   ],
+   [
+    319,
+    339
+   ],
+   [
+    351,
+    371
+   ]
+  ]
+ },
+ "V2_GPR65__LAIR1": {
+  "file": "s/V2_GPR65__LAIR1.pdb",
+  "role": "screen",
+  "why": "<b>3.72 A</b> interface PAE, ipTM 0.41; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR65 + LAIR1",
+  "receptor": "GPR65",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   49,
+   53,
+   81,
+   82,
+   83,
+   84,
+   108,
+   112,
+   116,
+   119,
+   120,
+   123,
+   153,
+   155,
+   156,
+   157,
+   159,
+   160,
+   161,
+   164,
+   166,
+   168,
+   203,
+   206,
+   210,
+   213,
+   215,
+   216,
+   220,
+   223,
+   224,
+   227,
+   228,
+   231,
+   290,
+   294,
+   295,
+   296
+  ],
+  "n_contacts": 38,
+  "spans": {
+   "TM": [
+    49,
+    53,
+    83,
+    84,
+    108,
+    112,
+    116,
+    153,
+    203,
+    206,
+    210,
+    220,
+    223,
+    224,
+    227,
+    228,
+    231,
+    290
+   ],
+   "EXT": [
+    81,
+    82,
+    155,
+    156,
+    157,
+    159,
+    160,
+    161,
+    164,
+    166,
+    168
+   ],
+   "CYT": [
+    119,
+    120,
+    123,
+    213,
+    215,
+    216,
+    294,
+    295,
+    296
+   ]
+  },
+  "tm_contacts": 18,
+  "cyt_contacts": 9,
+  "ext_contacts": 11,
+  "spans_both_faces": true,
+  "is_ppi": true,
+  "partner_residues": 144,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    1.62,
+    21.09,
+    -7.9
+   ],
+   "cyt": [
+    17.03,
+    -22.65,
+    17.85
+   ]
+  },
+  "tm_spans": [
+   [
+    6,
+    42
+   ],
+   [
+    47,
+    77
+   ],
+   [
+    83,
+    118
+   ],
+   [
+    127,
+    153
+   ],
+   [
+    175,
+    212
+   ],
+   [
+    217,
+    252
+   ],
+   [
+    265,
+    293
+   ]
+  ]
+ },
+ "V2_GPR160__ADGRG1": {
+  "file": "s/V2_GPR160__ADGRG1.pdb",
+  "role": "screen",
+  "why": "<b>3.73 A</b> interface PAE, ipTM 0.48; partner folded as its ectodomain",
+  "stage": "current",
+  "label": "GPR160 + ADGRG1",
+  "receptor": "GPR160",
+  "receptor_chain": "A",
+  "ligand_chain": "B",
+  "contacts": [
+   81,
+   83,
+   86,
+   88,
+   90,
+   92,
+   93,
+   161
+  ],
+  "n_contacts": 8,
+  "spans": {
+   "EXT": [
+    81,
+    83,
+    86,
+    88,
+    90,
+    92,
+    93,
+    161
+   ]
+  },
+  "tm_contacts": 0,
+  "cyt_contacts": 0,
+  "ext_contacts": 8,
+  "spans_both_faces": false,
+  "is_ppi": true,
+  "partner_residues": 376,
+  "buried_fraction": null,
+  "iptm": null,
+  "axis": {
+   "ext": [
+    -18.88,
+    -3.58,
+    6.74
+   ],
+   "cyt": [
+    -47.54,
+    16.72,
+    -32.38
+   ]
+  },
+  "tm_spans": [
+   [
+    24,
+    44
+   ],
+   [
+    59,
+    79
+   ],
+   [
+    94,
+    114
+   ],
+   [
+    137,
+    157
+   ],
+   [
+    178,
+    198
+   ],
+   [
+    245,
+    265
+   ],
+   [
+    269,
+    289
+   ]
+  ]
+ }
+}
