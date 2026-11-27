@@ -103,25 +103,116 @@ of the five is a confirmed candidate, GPR22 + SLITRK2 at interface PAE 2.86, bet
 of the 57 pairs that were already in the table. The assembler now refuses to write when the
 current gate admits a pair that no run has triaged.</p>
 
+<!-- V2-SHORTLIST-START -->
+<h2>The shortlist, on the completed re-screen</h2>
+<p>All 4,769 pairs are folded as the molecule that exists and scored.
+<b>74 clear the 3.76 &#8491; gate</b>, and they do not all mean the same thing,
+so each carries the status of the thing most likely to be wrong with it.</p>
+<table>
+<tr><th>status</th><th>n</th><th>what it means</th></tr>
+<tr><td><b>clean</b></td><td>29</td>
+  <td>the partner is folded as a molecule the cell makes, and the receptor interface is
+  somewhere it could reach</td></tr>
+<tr><td><b>pending construct</b></td><td>17</td>
+  <td>the partner is a prohormone or an undecided precursor, so the hit is on a molecule
+  the cell never releases until the product refold says otherwise</td></tr>
+<tr><td><b>rejected on topology</b></td><td>28</td>
+  <td>the interface sits where a secreted partner has no route to</td></tr>
+</table>
+<p style="margin-top:14px">By construct: ectodomain 42, mature 26, asis_short_ecd 4, asis 2.
+<b>42 are ectodomain folds</b> &mdash; a membrane partner cut to
+the part that faces out. Those are the pairs the first screen could not have found, because
+it folded the whole protein including the half that sits in the cytosol.</p>
+
+<h3>Clean: 29 pairs</h3>
+<table>
+<tr><th>pair</th><th>interface PAE</th><th>construct</th></tr>
+<tr><td><b>GPR45</b> + GABRG2</td><td>1.77</td><td>ectodomain</td></tr>
+<tr><td><b>MRGPRX1</b> + CD226</td><td>2.08</td><td>ectodomain</td></tr>
+<tr><td><b>GPR83</b> + GRIA4</td><td>2.22</td><td>ectodomain</td></tr>
+<tr><td><b>GPR151</b> + GPR37</td><td>2.31</td><td>ectodomain</td></tr>
+<tr><td><b>GPR37</b> + RYK</td><td>2.34</td><td>ectodomain</td></tr>
+<tr><td><b>GPR139</b> + ASIP</td><td>2.50</td><td>mature</td></tr>
+<tr><td><b>GPR179</b> + NCR3LG1</td><td>2.74</td><td>ectodomain</td></tr>
+<tr><td><b>GPR25</b> + CATSPER2</td><td>2.81</td><td>asis_short_ecd</td></tr>
+<tr><td><b>GPR179</b> + EPHA5</td><td>2.85</td><td>ectodomain</td></tr>
+<tr><td><b>MRGPRF</b> + ITGA9</td><td>2.88</td><td>ectodomain</td></tr>
+<tr><td><b>GPR39</b> + LGALS3<span class="mut"> &middot; flagged substantially cytoplasmic</span></td><td>2.91</td><td>asis</td></tr>
+<tr><td><b>MRGPRF</b> + SFRP2</td><td>2.96</td><td>mature</td></tr>
+<tr><td><b>GPR15</b> + PTPRC</td><td>3.02</td><td>ectodomain</td></tr>
+<tr><td><b>GPR152</b> + IFNL3</td><td>3.06</td><td>mature</td></tr>
+<tr><td><b>GPR25</b> + KLRG1</td><td>3.09</td><td>ectodomain</td></tr>
+<tr><td><b>GPR25</b> + CD226</td><td>3.11</td><td>ectodomain</td></tr>
+<tr><td><b>GPR34</b> + CSF1R</td><td>3.14</td><td>ectodomain</td></tr>
+<tr><td><b>GPR15</b> + CLEC2D</td><td>3.16</td><td>ectodomain</td></tr>
+<tr><td><b>GPR179</b> + UNC5D</td><td>3.19</td><td>ectodomain</td></tr>
+<tr><td><b>GPR158</b> + NCR3LG1</td><td>3.30</td><td>ectodomain</td></tr>
+<tr><td><b>GPR75</b> + APLP2</td><td>3.44</td><td>ectodomain</td></tr>
+<tr><td><b>GPR62</b> + ALCAM</td><td>3.56</td><td>ectodomain</td></tr>
+<tr><td><b>MRGPRX1</b> + LHB</td><td>3.61</td><td>mature</td></tr>
+<tr><td><b>GPR65</b> + HCST<span class="mut"> &middot; flagged substantially cytoplasmic</span></td><td>3.61</td><td>asis_short_ecd</td></tr>
+<tr><td><b>P2RY10</b> + CD44<span class="mut"> &middot; flagged substantially cytoplasmic</span></td><td>3.65</td><td>ectodomain</td></tr>
+<tr><td><b>GPR75</b> + DAG1<span class="mut"> &middot; flagged substantially cytoplasmic</span></td><td>3.68</td><td>asis_short_ecd</td></tr>
+<tr><td><b>GPR75</b> + DSC2</td><td>3.72</td><td>ectodomain</td></tr>
+<tr><td><b>GPR65</b> + LAIR1</td><td>3.72</td><td>ectodomain</td></tr>
+<tr><td><b>GPR160</b> + ADGRG1</td><td>3.73</td><td>ectodomain</td></tr>
+</table>
+
+<h3>Pending the construct: 17 pairs</h3>
+<p>Every candidate this page has ever discussed is in here. Each has a partner folded as a
+prohormone or an undecided precursor, which is the single largest source of false positives
+found in this screen.</p>
+<table>
+<tr><th>pair</th><th>interface PAE</th><th>partner construct</th><th>refold</th></tr>
+<tr><td><b>MRGPRX2</b> + GNRH2</td><td>2.17</td><td>undecided</td><td>refold scored</td></tr>
+<tr><td><b>MRGPRF</b> + VEGFC</td><td>2.46</td><td>wrong molecule</td><td><b>folding now</b></td></tr>
+<tr><td><b>MRGPRX2</b> + SPX</td><td>2.59</td><td>undecided</td><td>refold scored</td></tr>
+<tr><td><b>GPR37L1</b> + GFRA3</td><td>2.64</td><td>wrong molecule</td><td><b>folding now</b></td></tr>
+<tr><td><b>GPRC5C</b> + IGF2</td><td>2.67</td><td>undecided</td><td>refold scored</td></tr>
+<tr><td><b>MRGPRX1</b> + GHRL</td><td>2.69</td><td>undecided</td><td>refold scored</td></tr>
+<tr><td><b>GPR152</b> + CXCL6</td><td>2.98</td><td>undecided</td><td><b>folding now</b></td></tr>
+<tr><td><b>GPR158</b> + NMS</td><td>2.99</td><td>wrong molecule</td><td>refold scored</td></tr>
+<tr><td><b>GPR148</b> + CFC1</td><td>3.17</td><td>wrong molecule</td><td>refold scored</td></tr>
+<tr><td><b>GPRC5A</b> + NTF4</td><td>3.26</td><td>wrong molecule</td><td>refold scored</td></tr>
+<tr><td><b>GPR142</b> + ADCYAP1</td><td>3.57</td><td>undecided</td><td>refold scored</td></tr>
+<tr><td><b>GPR22</b> + EFNA5</td><td>3.60</td><td>wrong molecule</td><td>refold scored</td></tr>
+<tr><td><b>GPR32</b> + GHRL</td><td>3.63</td><td>undecided</td><td>refold scored</td></tr>
+<tr><td><b>GPR65</b> + CD52</td><td>3.67</td><td>wrong molecule</td><td>refold scored</td></tr>
+<tr><td><b>GPR65</b> + CCL23</td><td>3.70</td><td>undecided</td><td><b>folding now</b></td></tr>
+<tr><td><b>MRGPRX4</b> + GHRL</td><td>3.73</td><td>undecided</td><td>refold scored</td></tr>
+<tr><td><b>GPR32</b> + CFC1</td><td>3.75</td><td>wrong molecule</td><td>refold scored</td></tr>
+</table>
+
+<p class="note"><b>What clearing this gate is worth.</b> Precision 0.73 and recall 0.50 on
+293 assayed pairs, so about one admitted pair in four is wrong and half the real ones never
+appear at all. And four of the seven textbook receptor&ndash;hormone pairs <em>fail</em> this
+same gate when folded as their own mature product, which is why the
+28 topology rejections are flagged and not buried: an
+earlier version of that rule was measured to reject 61% of real binders. Nothing in this list
+has experimental support of any kind.</p>
+<p class="mut" style="font-size:12px">Generated from
+<code>results/v2_shortlist.csv</code> on 2026-11-27; the page cannot drift from the table.</p>
+<!-- V2-SHORTLIST-END -->
+
 <h2>The screen re-run on molecules that exist</h2>
 <p>83% of the pairs in the first screen were folded as the wrong molecule: a membrane
 partner whole instead of its ectodomain, a secreted partner as its precursor. Every test on
 this page below attacks one of those faults <em>after</em> the gate. The re-screen folds the
-right chain before it, same pairs, same seed, same alignments. It is 4,166 of 4,769 pairs
-through.</p>
+right chain before it, same pairs, same seed, same alignments. It is <b>complete: all 4,769
+pairs folded</b>.</p>
 <table>
 <tr><th>construct</th><th>pairs</th><th>v1 median</th><th>v2 median</th><th>shift</th></tr>
-<tr><td>receptor ectodomain</td><td>2,150</td><td>15.55</td><td>14.09</td><td>&minus;1.07 &#8491;</td></tr>
-<tr><td>partner mature chain</td><td>1,221</td><td>14.36</td><td>14.02</td><td>&minus;0.43 &#8491;</td></tr>
-<tr><td>short ectodomain</td><td>665</td><td>18.00</td><td>17.61</td><td>&minus;0.32 &#8491;</td></tr>
-<tr><td>as-is</td><td>127</td><td>14.18</td><td>13.72</td><td>&minus;0.40 &#8491;</td></tr>
+<tr><td>receptor ectodomain</td><td>2,558</td><td>15.57</td><td>14.30</td><td>&minus;0.77 &#8491;</td></tr>
+<tr><td>partner mature chain</td><td>1,369</td><td>14.63</td><td>14.25</td><td>&minus;0.33 &#8491;</td></tr>
+<tr><td>short ectodomain</td><td>701</td><td>17.77</td><td>17.46</td><td>&minus;0.34 &#8491;</td></tr>
+<tr><td>as-is</td><td>137</td><td>14.12</td><td>13.77</td><td>&minus;0.38 &#8491;</td></tr>
 </table>
-<p style="margin-top:14px"><b>The candidate list barely survives the correction.</b> Of the
-4,165 pairs folded both ways, the old construct put 62 under the 3.76 &#8491; gate and the
-corrected one puts 68 there &mdash; but only <b>20 pairs are in both lists</b>. 42 of the old
-candidates are gone and 48 are new. A re-screen that returned the same pairs would have
-tested nothing; this one says the first shortlist was largely a list about molecules the cell
-does not make. Numbers will move until the last 603 folds land.</p>
+<p style="margin-top:14px"><b>Two thirds of the candidate list did not survive the
+correction.</b> Of the 4,767 pairs folded both ways, the old construct put 62 under the
+3.76 &#8491; gate and the corrected one puts <b>74</b> there &mdash; but only <b>23 pairs are
+in both lists</b>. 39 of the old candidates are gone and 51 are new. A re-screen that
+returned the same pairs would have tested nothing; this one says the first shortlist was
+largely a list about molecules the cell does not make.</p>
 
 <h2>What the screen's own controls say</h2>
 <figure>
@@ -888,7 +979,7 @@ table was drawn from has moved.</p>
 the pipeline, the deterministic gate and its rules, and the tests.</p>
 
 <footer><span style="float:right;font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums"
-  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-26 16:48  ·  293a7cb</span>
+  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-27 11:10  ·  c4364f6</span>
 Part of the human spatial atlas work:
 <a href="https://www.yizhouyu.com/humanspatialatlas/">the atlas</a> and its
 <a href="https://www.yizhouyu.com/humanspatialatlas/manuscript.html">figures</a>
