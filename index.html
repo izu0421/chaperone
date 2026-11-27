@@ -143,19 +143,26 @@ something no real pair here does.</p>
 precursor, and are not matched by a decoy cut of identical length. They are the direction no
 post-hoc test on a shortlist could reach, because none of them was on one.</p>
 <table>
-<tr><th>pair and molecule</th><th>product</th><th>precursor</th><th>decoy</th></tr>
-<tr><td><b>GPR39</b> + FGA<span class="mut">Fibrinopeptide A, 16 aa</span></td><td>2.42</td><td>17.15</td><td>16.57</td></tr>
-<tr><td><b>GPR39</b> + FGB<span class="mut">Fibrinopeptide B, 14 aa</span></td><td>2.93</td><td>5.65</td><td>9.76</td></tr>
-<tr><td><b>GPR45</b> + CCK<span class="mut">Cholecystokinin-8, 8 aa</span></td><td>2.96</td><td>4.96</td><td>5.52</td></tr>
-<tr><td><b>GPR65</b> + CCL23<span class="mut">CCL23(27-99), 73 aa</span></td><td>3.16</td><td>3.74</td><td>4.44</td></tr>
-<tr><td><b>GPR4</b> + CTSG<span class="mut">Cathepsin G, C-terminal truncated form, 223 aa</span></td><td>3.27</td><td>4.14</td><td>8.76</td></tr>
-<tr><td><b>GPR152</b> + GHRL<span class="mut">Obestatin, 23 aa</span></td><td>3.38</td><td>3.77</td><td>4.26</td></tr>
-<tr><td><b>MRGPRX2</b> + SST<span class="mut">Somatostatin-14, 14 aa</span></td><td>3.38</td><td>4.31</td><td>5.28</td></tr>
-<tr><td><b>GPR152</b> + PF4<span class="mut">Platelet factor 4, short form, 54 aa</span></td><td>3.39</td><td>4.77</td><td>8.07</td></tr>
-<tr><td><b>MRGPRX2</b> + GAST<span class="mut">Gastrin-6, 6 aa</span></td><td>3.44</td><td>5.38</td><td>4.92</td></tr>
-<tr><td><b>MRGPRF</b> + VEGFC<span class="mut">Vascular endothelial growth factor C, 116 aa</span></td><td>3.53</td><td>3.78</td><td>13.52</td></tr>
-<tr><td><b>GPR33</b> + CFC1<span class="mut">Cryptic protein, 133 aa</span></td><td>3.72</td><td>3.83</td><td>5.59</td></tr>
+<tr><th>pair and molecule</th><th>product</th><th>precursor</th><th>decoy</th>
+  <th>3 seeds</th></tr>
+<tr><td><b>GPR39</b> + FGA<span class="mut">Fibrinopeptide A, 16 aa</span></td><td>2.42</td><td>17.15</td><td>16.57</td><td><b>2.37</b></td></tr>
+<tr><td><b>GPR39</b> + FGB<span class="mut">Fibrinopeptide B, 14 aa</span></td><td>2.93</td><td>5.65</td><td>9.76</td><td><b>2.93</b></td></tr>
+<tr><td><b>GPR45</b> + CCK<span class="mut">Cholecystokinin-8, 8 aa</span></td><td>2.96</td><td>4.96</td><td>5.52</td><td><b>2.96</b></td></tr>
+<tr><td><b>GPR65</b> + CCL23<span class="mut">CCL23(27-99), 73 aa</span></td><td>3.16</td><td>3.74</td><td>4.44</td><td><b>2.62</b></td></tr>
+<tr><td><b>GPR4</b> + CTSG<span class="mut">Cathepsin G, C-terminal truncated form, 223 aa</span></td><td>3.27</td><td>4.14</td><td>8.76</td><td><b>3.24</b></td></tr>
+<tr><td><b>GPR152</b> + GHRL<span class="mut">Obestatin, 23 aa</span></td><td>3.38</td><td>3.77</td><td>4.26</td><td><b>3.38</b></td></tr>
+<tr><td><b>MRGPRX2</b> + SST<span class="mut">Somatostatin-14, 14 aa</span></td><td>3.38</td><td>4.31</td><td>5.28</td><td><b>3.08</b></td></tr>
+<tr><td><b>GPR152</b> + PF4<span class="mut">Platelet factor 4, short form, 54 aa</span></td><td>3.39</td><td>4.77</td><td>8.07</td><td><b>3.39</b></td></tr>
+<tr><td><b>MRGPRX2</b> + GAST<span class="mut">Gastrin-6, 6 aa</span></td><td>3.44</td><td>5.38</td><td>4.92</td><td><b>3.42</b></td></tr>
+<tr><td><b>MRGPRF</b> + VEGFC<span class="mut">Vascular endothelial growth factor C, 116 aa</span></td><td>3.53</td><td>3.78</td><td>13.52</td><td><b>1.95</b></td></tr>
+<tr><td><b>GPR33</b> + CFC1<span class="mut">Cryptic protein, 133 aa</span></td><td>3.72</td><td>3.83</td><td>5.59</td><td><span class="mut">3.72, precursor now better</span></td></tr>
 </table>
+<p style="margin-top:14px"><b>10 of 11 hold across three seeds.</b> One seed
+is a screen: AlphaFold3 docking splits by seed, and two of this arm's own product folds
+straddle the gate <em>within</em> a single seed. Each hit was re-folded on seeds 2 and 3
+together with its precursor and its decoy, from the same inputs, with nothing changed but
+the seed. The one that did not hold, GPR33 + CFC1, is not refuted &mdash; its precursor
+caught up, which is exactly what a one-seed screen cannot tell you.</p>
 <p style="margin-top:14px"><b>GPR39 + fibrinopeptide A is the clearest.</b> The precursor
 sits at 17.15 &#8491; and the 16-residue released peptide at <b>2.42</b>, while a decoy
 removing the same number of residues elsewhere stays at 16.57. A 14.73 &#8491; move that an
@@ -167,13 +174,13 @@ product (9.79 &#8491;, GHSR + ghrelin-28) <em>and</em> worse than its own decoy 
 real molecule doing worse than an arbitrary cut of the same size.</p>
 <table>
 <tr><th>pair and molecule</th><th>product</th><th>precursor</th><th>decoy</th></tr>
-<tr><td><b>GPR37</b> + EFNA4<span class="mut">Ephrin-A4, 145 aa</span></td><td>10.12</td><td>5.22</td><td>5.92</td></tr>
-<tr><td><b>GPR32</b> + INHA<span class="mut">Inhibin alpha chain, 134 aa</span></td><td>10.44</td><td>5.57</td><td>10.09</td></tr>
-<tr><td><b>MRGPRD</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>11.36</td><td>6.25</td><td>11.18</td></tr>
-<tr><td><b>GPR37L1</b> + GFRA3<span class="mut">GDNF family receptor alpha-3, 343 aa</span></td><td>11.67</td><td>2.61</td><td>3.01</td></tr>
-<tr><td><b>MAS1L</b> + TDGF1<span class="mut">Protein Cripto, 120 aa</span></td><td>14.15</td><td>4.23</td><td>4.41</td></tr>
-<tr><td><b>MAS1L</b> + CALCB<span class="mut">Calcitonin gene-related peptide 2, 37 aa</span></td><td>20.05</td><td>5.02</td><td>5.22</td></tr>
-<tr><td><b>GPR31</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>21.36</td><td>5.18</td><td>2.57</td></tr>
+<tr><td><b>GPR37</b> + EFNA4<span class="mut">Ephrin-A4, 145 aa</span></td><td>10.12</td><td>5.22</td><td>5.92</td><td>&mdash;</td></tr>
+<tr><td><b>GPR32</b> + INHA<span class="mut">Inhibin alpha chain, 134 aa</span></td><td>10.44</td><td>5.57</td><td>10.09</td><td>&mdash;</td></tr>
+<tr><td><b>MRGPRD</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>11.36</td><td>6.25</td><td>11.18</td><td>&mdash;</td></tr>
+<tr><td><b>GPR37L1</b> + GFRA3<span class="mut">GDNF family receptor alpha-3, 343 aa</span></td><td>11.67</td><td>2.61</td><td>3.01</td><td>&mdash;</td></tr>
+<tr><td><b>MAS1L</b> + TDGF1<span class="mut">Protein Cripto, 120 aa</span></td><td>14.15</td><td>4.23</td><td>4.41</td><td>&mdash;</td></tr>
+<tr><td><b>MAS1L</b> + CALCB<span class="mut">Calcitonin gene-related peptide 2, 37 aa</span></td><td>20.05</td><td>5.02</td><td>5.22</td><td>&mdash;</td></tr>
+<tr><td><b>GPR31</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>21.36</td><td>5.18</td><td>2.57</td><td>&mdash;</td></tr>
 </table>
 <p class="note"><b>The rule changed, and it was too strict before.</b> The second clause
 used to ask for a product-minus-precursor move larger than +12.22 &#8491;, the observed
@@ -1067,7 +1074,7 @@ table was drawn from has moved.</p>
 the pipeline, the deterministic gate and its rules, and the tests.</p>
 
 <footer><span style="float:right;font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums"
-  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-27 14:58  ·  f27c362</span>
+  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-27 15:00  ·  PENDING</span>
 Part of the human spatial atlas work:
 <a href="https://www.yizhouyu.com/humanspatialatlas/">the atlas</a> and its
 <a href="https://www.yizhouyu.com/humanspatialatlas/manuscript.html">figures</a>
