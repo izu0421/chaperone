@@ -62,8 +62,14 @@ code, because an agent that both assembles evidence and judges it will rationali
 hypothesis it was given.</p>
 
 <h2>Runs</h2>
+<a class="card" href="reports/product_arm_2026-11-27/structures/">
+  <b>Product, precursor, decoy &rarr;</b>
+  <span>22 structures from the controlled arm, in triples: the molecule the cell releases,
+  the precursor the screen folded instead, and a decoy cut removing the same number of
+  residues from the same terminus. A hit has to beat both, because the product alone cannot
+  tell &ldquo;this molecule binds&rdquo; from &ldquo;a chain of this length binds&rdquo;.</span></a>
 <a class="card" href="reports/product_refold_2026-11-26/structures/">
-  <b>Which molecule holds the interface &rarr;</b>
+  <b>The first refold, 2026-11-26 &rarr;</b>
   <span>20 structures, in pairs: the prohormone the screen folded and the peptide the cell
   actually secretes, same receptor, same alignments, same seed. Beside them the textbook
   receptor&ndash;hormone pairs, because four of seven fail the gate as their own mature
@@ -104,6 +110,88 @@ of the 57 pairs that were already in the table. The assembler now refuses to wri
 current gate admits a pair that no run has triaged.</p>
 
 <!-- V2-SHORTLIST-START -->
+<!-- ARM-START -->
+<h2>The construct arm, with every control folded beside it</h2>
+<p>283 folds. Each pair appears three times: as every product UniProt annotates, as
+the unmodified precursor, and as a <b>decoy cut</b> &mdash; the same number of residues
+removed from the same terminus, at a boundary away from any annotated cleavage site. The
+decoy is what separates <em>cut to the right molecule</em> from <em>cut at all</em>, and it
+is what the first refold lacked.</p>
+
+<h3>What a real pair does, which nothing had measured</h3>
+<p>Seven textbook receptor&ndash;hormone pairs were folded as their precursor so they could
+be paired against the mature products already in hand. <b>Every one improves</b> when cut to
+its own product, by a median of 3.30 &#8491;.</p>
+<table>
+<tr><th>pair</th><th>precursor</th><th>product</th><th>change</th></tr>
+<tr><td>GALR3 + SPX</td><td>7.62</td><td>4.19</td><td>-3.43</td></tr>
+<tr><td>GHSR + GHRL</td><td>10.12</td><td>8.71</td><td>-1.41</td></tr>
+<tr><td>GALR2 + SPX</td><td>10.26</td><td>3.14</td><td>-7.12</td></tr>
+<tr><td>NMUR2 + NMS</td><td>7.19</td><td>5.68</td><td>-1.51</td></tr>
+<tr><td>NMUR1 + NMS</td><td>10.20</td><td>6.90</td><td>-3.30</td></tr>
+<tr><td>ADCYAP1R1 + ADCYAP1</td><td>1.59</td><td>1.44</td><td>-0.15</td></tr>
+<tr><td>NTRK2 + NTF4</td><td>11.42</td><td>3.27</td><td>-8.15</td></tr>
+</table>
+<p style="margin-top:14px">This reverses what this page said earlier. It reported that four
+of seven textbook pairs fail the gate as their mature product, which is true, and concluded
+that a loss on refolding was uninterpretable. They fail the <em>gate</em>; not one of them
+gets <em>worse</em>. So a candidate that degrades as its own released product is doing
+something no real pair here does.</p>
+
+<h3>11 pairs the correct molecule reveals</h3>
+<p>These clear the 3.76 &#8491; gate as the peptide the cell secretes, beat their own
+precursor, and are not matched by a decoy cut of identical length. They are the direction no
+post-hoc test on a shortlist could reach, because none of them was on one.</p>
+<table>
+<tr><th>pair and molecule</th><th>product</th><th>precursor</th><th>decoy</th></tr>
+<tr><td><b>GPR39</b> + FGA<span class="mut">Fibrinopeptide A, 16 aa</span></td><td>2.42</td><td>17.15</td><td>16.57</td></tr>
+<tr><td><b>GPR39</b> + FGB<span class="mut">Fibrinopeptide B, 14 aa</span></td><td>2.93</td><td>5.65</td><td>9.76</td></tr>
+<tr><td><b>GPR45</b> + CCK<span class="mut">Cholecystokinin-8, 8 aa</span></td><td>2.96</td><td>4.96</td><td>5.52</td></tr>
+<tr><td><b>GPR65</b> + CCL23<span class="mut">CCL23(27-99), 73 aa</span></td><td>3.16</td><td>3.74</td><td>4.44</td></tr>
+<tr><td><b>GPR4</b> + CTSG<span class="mut">Cathepsin G, C-terminal truncated form, 223 aa</span></td><td>3.27</td><td>4.14</td><td>8.76</td></tr>
+<tr><td><b>GPR152</b> + GHRL<span class="mut">Obestatin, 23 aa</span></td><td>3.38</td><td>3.77</td><td>4.26</td></tr>
+<tr><td><b>MRGPRX2</b> + SST<span class="mut">Somatostatin-14, 14 aa</span></td><td>3.38</td><td>4.31</td><td>5.28</td></tr>
+<tr><td><b>GPR152</b> + PF4<span class="mut">Platelet factor 4, short form, 54 aa</span></td><td>3.39</td><td>4.77</td><td>8.07</td></tr>
+<tr><td><b>MRGPRX2</b> + GAST<span class="mut">Gastrin-6, 6 aa</span></td><td>3.44</td><td>5.38</td><td>4.92</td></tr>
+<tr><td><b>MRGPRF</b> + VEGFC<span class="mut">Vascular endothelial growth factor C, 116 aa</span></td><td>3.53</td><td>3.78</td><td>13.52</td></tr>
+<tr><td><b>GPR33</b> + CFC1<span class="mut">Cryptic protein, 133 aa</span></td><td>3.72</td><td>3.83</td><td>5.59</td></tr>
+</table>
+<p style="margin-top:14px"><b>GPR39 + fibrinopeptide A is the clearest.</b> The precursor
+sits at 17.15 &#8491; and the 16-residue released peptide at <b>2.42</b>, while a decoy
+removing the same number of residues elsewhere stays at 16.57. A 14.73 &#8491; move that an
+arbitrary cut does not reproduce is not the cut doing the work.</p>
+
+<h3>7 retired</h3>
+<p>To retire, a pair has to be worse than the worst known true pair folded as its own mature
+product (9.79 &#8491;, GHSR + ghrelin-28) <em>and</em> worse than its own decoy &mdash; the
+real molecule doing worse than an arbitrary cut of the same size.</p>
+<table>
+<tr><th>pair and molecule</th><th>product</th><th>precursor</th><th>decoy</th></tr>
+<tr><td><b>GPR37</b> + EFNA4<span class="mut">Ephrin-A4, 145 aa</span></td><td>10.12</td><td>5.22</td><td>5.92</td></tr>
+<tr><td><b>GPR32</b> + INHA<span class="mut">Inhibin alpha chain, 134 aa</span></td><td>10.44</td><td>5.57</td><td>10.09</td></tr>
+<tr><td><b>MRGPRD</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>11.36</td><td>6.25</td><td>11.18</td></tr>
+<tr><td><b>GPR37L1</b> + GFRA3<span class="mut">GDNF family receptor alpha-3, 343 aa</span></td><td>11.67</td><td>2.61</td><td>3.01</td></tr>
+<tr><td><b>MAS1L</b> + TDGF1<span class="mut">Protein Cripto, 120 aa</span></td><td>14.15</td><td>4.23</td><td>4.41</td></tr>
+<tr><td><b>MAS1L</b> + CALCB<span class="mut">Calcitonin gene-related peptide 2, 37 aa</span></td><td>20.05</td><td>5.02</td><td>5.22</td></tr>
+<tr><td><b>GPR31</b> + BMP6<span class="mut">Bone morphogenetic protein 6, 139 aa</span></td><td>21.36</td><td>5.18</td><td>2.57</td></tr>
+</table>
+<p class="note"><b>The rule changed, and it was too strict before.</b> The second clause
+used to ask for a product-minus-precursor move larger than +12.22 &#8491;, the observed
+maximum of an aggregate cut null. That bar could not fire: the median move on this arm is
++0.19 &#8491;, so nothing was going to travel further than any of 27 controls, and a rule
+that cannot fire is not a test. It stood in for a per-pair control this arm now carries.
+Both versions retire the same seven, so the change costs no strictness.</p>
+
+<h3>27 unresolved, and why that is the honest answer</h3>
+<p>Almost nothing moved. Across the pairs that stayed above the gate the median
+product-minus-precursor change is <b>+0.19 &#8491;</b>. For those receptors the
+prohormone-versus-product distinction simply does not matter: they engage neither molecule.
+Eleven sit within 1.5 &#8491; of the gate, led by GPR141 + PLAU short by 0.08 &#8491;, where
+seed variance alone could decide it.</p>
+<p class="mut" style="font-size:12px">Generated from <code>results/arm_verdicts.csv</code>
+on 2026-11-27. Every new hit is one seed; the three-seed confirmation is folding.</p>
+<!-- ARM-END -->
+
 <h2>The shortlist, on the completed re-screen</h2>
 <p>All 4,769 pairs are folded as the molecule that exists and scored.
 <b>74 clear the 3.76 &#8491; gate</b>, and they do not all mean the same thing,
@@ -979,7 +1067,7 @@ table was drawn from has moved.</p>
 the pipeline, the deterministic gate and its rules, and the tests.</p>
 
 <footer><span style="float:right;font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums"
-  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-27 11:10  ·  f53f1f4</span>
+  title="If this is older than you expect, your browser is serving a cached copy -- hard-reload">build 2026-11-27 14:58  ·  PENDING</span>
 Part of the human spatial atlas work:
 <a href="https://www.yizhouyu.com/humanspatialatlas/">the atlas</a> and its
 <a href="https://www.yizhouyu.com/humanspatialatlas/manuscript.html">figures</a>
